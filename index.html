@@ -29,8 +29,8 @@ header{position:sticky;top:0;z-index:20;background:rgba(11,17,23,.92);backdrop-f
 .header-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{text-decoration:none;font-weight:700;letter-spacing:-.03em;white-space:nowrap}
 .brand span{color:var(--accent)}
-nav{display:flex;align-items:center;gap:20px;overflow-x:auto}
-nav a{text-decoration:none;color:var(--muted);font-size:.88rem;white-space:nowrap}
+nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(9px,1.35vw,18px);overflow-x:auto}
+nav a{text-decoration:none;color:var(--muted);font-size:.82rem;white-space:nowrap}
 nav a:hover{color:var(--ink)}
 .nav-cta{padding:8px 13px;border:1px solid var(--accent);color:var(--accent)!important}
 .hero{padding:clamp(64px,9vw,120px) 0 64px;position:relative;border-bottom:1px solid var(--line)}
@@ -115,7 +115,7 @@ footer{padding:28px 0;color:var(--muted);font:.78rem var(--mono)}
  <div class="wrap header-inner">
   <a class="brand" href="#top">AGUS BUDIANTO <span>ULIL ABSYOR</span></a>
   <nav aria-label="Navigasi utama">
-   <a href="#expertise">Expertise</a><a href="#projects-section">Projects</a><a href="#library">Library</a><a href="#terminal-section">AI Lab</a><a href="#calculator">Calculator</a><a href="#experience">Experience</a><a class="nav-cta" href="#contact">Contact ↗</a>
+   <a href="#top">Home</a><a href="#expertise">Expertise</a><a href="#projects-section">Projects</a><a href="#terminal-section">IDX Terminal</a><a href="#career">Career &amp; Opportunities</a><a href="#about">About</a><a class="nav-cta" href="#contact">Contact ↗</a>
   </nav>
  </div>
 </header>
@@ -183,8 +183,17 @@ footer{padding:28px 0;color:var(--muted);font:.78rem var(--mono)}
  <p class="note">Analisis bersifat edukatif/ilustratif, bukan rekomendasi investasi. Data dapat berasal dari penyedia pihak ketiga dan tidak selalu real-time.</p>
 </div></section>
 
+<section id="career"><div class="wrap">
+ <div class="section-head"><div><div class="section-no">05 / CAREER &amp; OPPORTUNITIES</div><h2>Bring expertise<br>to meaningful work.</h2></div><p class="sub">Terbuka untuk posisi profesional internasional, proyek freelance, konsultasi engineering, dan kolaborasi pengembangan solusi AI.</p></div>
+ <div class="grid">
+  <article class="card"><h3>Global Career Opportunities</h3><p>Remote, international, dan executive roles di mining, construction, cost engineering, serta project control.</p><ul class="tags"><li>Remote</li><li>International</li><li>Leadership</li></ul><div class="links"><a href="https://agusbudiantojobhunter.streamlit.app/" target="_blank" rel="noopener">Explore Career Job Hub ↗</a></div></article>
+  <article class="card"><h3>Freelance &amp; Consulting</h3><p>Dukungan financial modeling, NPV/IRR, cost estimation, project controls, tender evaluation, dan operational analytics.</p><ul class="tags"><li>Financial Engineering</li><li>Mining</li><li>Project Control</li></ul><div class="links"><a href="mailto:aulilabsyor@gmail.com?subject=Consulting%20Opportunity">Discuss a Project ↗</a></div></article>
+  <article class="card"><h3>Strategic Collaboration</h3><p>Kolaborasi membangun AI-powered decision systems, research tools, workflow automation, dan business intelligence.</p><ul class="tags"><li>AI Solutions</li><li>Automation</li><li>Business Intelligence</li></ul><div class="links"><a href="https://linkedin.com/in/agus-budianto-ulil-absyor-45724945" target="_blank" rel="noopener">Connect on LinkedIn ↗</a></div></article>
+ </div>
+</div></section>
+
 <section id="calculator"><div class="wrap">
- <div class="section-head"><div><div class="section-no">05 / OPERATIONS FINANCE</div><h2>Hauling cost & margin simulator.</h2></div><p class="sub">Simulasi biaya per rit untuk membantu memahami sensitivitas biaya, pendapatan, dan margin kontrak. Angka awal adalah contoh.</p></div>
+ <div class="section-head"><div><div class="section-no">06 / OPERATIONS FINANCE</div><h2>Hauling cost & margin simulator.</h2></div><p class="sub">Simulasi biaya per rit untuk membantu memahami sensitivitas biaya, pendapatan, dan margin kontrak. Angka awal adalah contoh.</p></div>
  <div class="calc">
   <fieldset>
    <label>Fuel price (Rp/liter)<input id="hf" type="number" min="0" value="20000"></label>
@@ -204,8 +213,8 @@ footer{padding:28px 0;color:var(--muted);font:.78rem var(--mono)}
  </div>
 </div></section>
 
-<section id="experience"><div class="wrap">
- <div class="section-head"><div><div class="section-no">06 / PROFESSIONAL JOURNEY</div><h2>From site execution<br>to operational leadership.</h2></div><p class="sub">Pengalaman lintas konstruksi, infrastruktur, dan operasi tambang dengan fondasi teknis serta komersial.</p></div>
+<section id="about"><div class="wrap">
+ <div class="section-head"><div><div class="section-no">07 / PROFESSIONAL JOURNEY</div><h2>From site execution<br>to operational leadership.</h2></div><p class="sub">Pengalaman lintas konstruksi, infrastruktur, dan operasi tambang dengan fondasi teknis serta komersial.</p></div>
  <ol class="timeline">
   <li><h3>Production Head — Mining & Stone Crusher</h3><div class="meta">PT Indo Global Traktor (Indomobil Group) · Oct 2020 – Present</div><p>Memimpin estimasi dan metode pekerjaan fondasi/struktur crusher, arus kas dan anggaran produksi, maintenance planning, forecasting alat dan spare parts. Meningkatkan produksi 70.000 m³ menjadi 100.000 m³ dan profit proyek hingga 50%.</p></li>
   <li><h3>Technical Sales Engineer</h3><div class="meta">PT Indo Global Traktor · Apr 2019 – Sep 2020</div><p>Pengembangan klien, tender dan negosiasi kontrak, analisis biaya, serta strategi penjualan.</p></li>
@@ -237,7 +246,7 @@ footer{padding:28px 0;color:var(--muted);font:.78rem var(--mono)}
 </div></section>
 
 <section id="contact"><div class="wrap">
- <div class="contact-box"><div class="section-no">08 / LET’S CONNECT</div><h2>Build insight.<br>Deliver impact.</h2><p class="sub">Terbuka untuk peluang di cost engineering, project control, mining operations, financial engineering, dan AI-driven business intelligence.</p>
+ <div class="contact-box"><div class="section-no">09 / LET’S CONNECT</div><h2>Build insight.<br>Deliver impact.</h2><p class="sub">Terbuka untuk peluang di cost engineering, project control, mining operations, financial engineering, dan AI-driven business intelligence.</p>
   <div class="actions"><a class="btn teal" href="mailto:aulilabsyor@gmail.com">Email me ↗</a><a class="btn secondary" href="https://linkedin.com/in/agus-budianto-ulil-absyor-45724945" target="_blank" rel="noopener">LinkedIn ↗</a></div>
  </div>
 </div></section>
