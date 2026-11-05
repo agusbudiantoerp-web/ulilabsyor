@@ -271,10 +271,11 @@ footer{padding:28px 0;color:var(--muted);font:.78rem var(--mono)}
    if(p.catatan)a.appendChild(el("p","note",p.catatan));
    if(p.tech&&p.tech.length){var t=el("ul","tags");p.tech.forEach(function(x){t.appendChild(el("li","",x))});a.appendChild(t)}
    if(p.files&&p.files.length){var l=el("div","links");p.files.forEach(function(f){var k=el("a","",f.label);k.href=f.href;if(f.href.charAt(0)!=="#")k.setAttribute("download","");l.appendChild(k)});a.appendChild(l)}
+   if(p.detail){var d=el("div","links"),v=el("a","","View project details ↗");v.href=p.detail;d.appendChild(v);a.appendChild(d)}
    box.appendChild(a)
   });
  }
- fetch("data/projects.json").then(function(r){return r.json()}).then(load).catch(function(){box.textContent="Data proyek belum dapat dimuat. Pastikan website dibuka melalui GitHub Pages."});
+ fetch("projects.json").then(function(r){return r.json()}).then(load).catch(function(){box.textContent="Data proyek belum dapat dimuat. Pastikan website dibuka melalui GitHub Pages."});
  var $=function(i){return document.getElementById(i)},rp=function(n){return isFinite(n)?"Rp "+Math.round(n).toLocaleString("id-ID"):"–"},pc=function(n){return isFinite(n)?(n*100).toFixed(1).replace(".",",")+"%":"–"};
  function calc(){
   var g=function(i){return +$(i).value||0},m=g("mt"),j=g("jk"),w=g("wp"),tk=m*j,fx=g("fx")/100;
