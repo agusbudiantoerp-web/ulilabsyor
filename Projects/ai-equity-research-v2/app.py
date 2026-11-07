@@ -1,6 +1,7 @@
 
 import streamlit as st
-from engine import analyze_equity, calculate_dcf, dcf_sensitivity, build_research_summary, calculate_multistage_dcf
+from engine import analyze_equity, calculate_dcf, dcf_sensitivity, build_research_summary
+from multistage_adapter import calculate_multistage_dcf
 from reports import make_excel_report, make_pdf_report
 from scenario_ui import render_scenario_analysis
 from dcf_sensitivity import run_dcf_sensitivity
