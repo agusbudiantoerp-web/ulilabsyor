@@ -462,5 +462,61 @@
   "deskripsi": "Fungsi bagian mesin, mode kerusakan, desain, dan perencana perawatan berbasis hour meter.",
   "href": "halaman-crusher-belt-conveyor.html",
   "kb": 20
+ },
+ {
+  "judul": "Delay Analysis in Construction Contracts",
+  "jenis": "Modul belajar",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Teori dan ringkasan interaktif analisis keterlambatan pada kontrak konstruksi.",
+  "href": "halaman-delay-analysis-konstruksi.html",
+  "kb": 24
+ },
+ {
+  "judul": "PMBOK® Guide 8th Edition: Peta Teori & Rumus",
+  "jenis": "Landing page",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Peta teori dan rumus interaktif PMBOK Guide edisi ke-8.",
+  "href": "halaman-pmbok8-teori-rumus.html",
+  "kb": 21
+ },
+ {
+  "judul": "Financial Markets: Teori & Kalkulator",
+  "jenis": "Modul belajar",
+  "kategori": "Keuangan & investasi",
+  "deskripsi": "Teori pasar keuangan dengan kalkulator interaktif.",
+  "href": "halaman-financial-markets.html",
+  "kb": 21
+ },
+ {
+  "judul": "Introduction to Financial Derivatives",
+  "jenis": "Modul belajar",
+  "kategori": "Keuangan & investasi",
+  "deskripsi": "Teori derivatif keuangan dan lab interaktif.",
+  "href": "halaman-financial-derivatives.html",
+  "kb": 21
+ },
+ {
+  "judul": "Introduction to Central Banking",
+  "jenis": "Modul belajar",
+  "kategori": "Keuangan & investasi",
+  "deskripsi": "Teori, rumus, dan lab interaktif tentang bank sentral.",
+  "href": "halaman-central-banking.html",
+  "kb": 22
+ },
+ {
+  "judul": "Money and Debt: The Public Role of Banks",
+  "jenis": "Modul belajar",
+  "kategori": "Keuangan & investasi",
+  "deskripsi": "Teori, rumus, dan lab interaktif tentang peran publik perbankan.",
+  "href": "halaman-money-and-debt.html",
+  "kb": 26
+ },
+ {
+  "judul": "Financial Management for Small Businesses: Neon Lab",
+  "jenis": "Modul belajar",
+  "kategori": "Keuangan & investasi",
+  "deskripsi": "Versi bertema neon dari panduan manajemen keuangan usaha kecil.",
+  "href": "halaman-financial-management-small-business-neon-lab.html",
+  "kb": 25
  }
 ]

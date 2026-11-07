@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Delay Analysis in Construction Contracts — Teori &amp; Ringkasan Interaktif</title>
+<style>
+:root{--ink:#0f1b2d;--mut:#54647a;--bg:#eef2f6;--card:#fff;--line:#cfd8e3;--emp:#b5442e;--con:#1f7a8c;--flt:#d99a1c;--ok:#2d7a4b}
+@media(prefers-color-scheme:dark){:root{--ink:#e6edf5;--mut:#9fb0c4;--bg:#0e1622;--card:#16212f;--line:#2a3a4e;--emp:#e0785f;--con:#4db3c6;--flt:#e8b24a;--ok:#5cc489}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Georgia,"Source Serif 4",serif}
+h1,h2,h3,nav,label,button,table,.big,.tag{font-family:system-ui,"Segoe UI",sans-serif}
+h1{font-size:clamp(30px,5vw,50px);line-height:1.15;margin:0 0 .4em}h2{font-size:28px;margin:0 0 .6em}h3{font-size:18px;margin:1.4em 0 .3em}
+nav{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);display:flex;gap:2px;overflow-x:auto;padding:6px 12px;font-size:14px}
+nav a{white-space:nowrap;padding:6px 10px;border-radius:6px;text-decoration:none;color:var(--ink)}nav a:hover,nav a:focus-visible{background:var(--bg);outline:2px solid var(--con)}
+section{max-width:860px;margin:0 auto;padding:48px 20px;border-bottom:1px solid var(--line)}
+.lead{color:var(--mut);font-size:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin:16px 0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+label{display:block;font-weight:600;margin:10px 0 4px;font-size:14px}
+input[type=range]{width:100%}input[type=number],select{width:100%;padding:7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+button{font:inherit;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px}button.alt{background:transparent;color:var(--ink)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.tabs button{background:transparent;color:var(--ink);border-color:var(--line)}.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg)}
+.row{display:flex;align-items:center;height:28px}.row span{width:90px;font:13px system-ui;color:var(--mut)}
+.track{flex:1;height:16px;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),var(--line) calc(10% - 1px) 10%);position:relative}
+.bar{position:absolute;top:1px;height:14px;border-radius:3px;transition:width .3s}
+.big{font-size:30px;font-weight:700}.res{display:flex;gap:22px;flex-wrap:wrap}.res small{display:block;font:13px system-ui;color:var(--mut)}
+.tag{display:inline-block;padding:1px 10px;border-radius:99px;font-size:13px;border:1px solid var(--line);margin:2px}
+.good{color:var(--ok)}.bad{color:var(--emp)}.f{border-left:4px solid var(--flt);padding:4px 14px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 8px;text-align:left}.sc{overflow-x:auto}
+code{background:var(--card);padding:1px 6px;border-radius:4px;border:1px solid var(--line)}
+footer{text-align:center;padding:30px 20px;color:var(--mut);font:14px system-ui}
+@media print{nav,.np{display:none}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<nav><a href="#b1">1 Pendahuluan</a><a href="#b2">2 Program &amp; CPM</a><a href="#b3">3 Identifikasi</a><a href="#b4">4 Analisis</a><a href="#b5">5 Teknik</a><a href="#b6">6 Isu Bermasalah</a><a href="#b7">7 Presentasi</a></nav>
+<main>
+<section id="top"><h1>Delay Analysis in Construction Contracts</h1>
+<p class="lead">Ringkasan teori per bab dari buku P. J. Keane &amp; A. F. Caletka (Wiley, edisi ke-2, 2015), dilengkapi alat hitung interaktif di tiap topik.</p>
+<p class="np"><button id="dl">Unduh teks ringkasan (.md)</button> <button class="alt" onclick="print()">Cetak / simpan PDF</button></p></section>
+
+<section id="b1"><h2>Bab 1 — Pendahuluan</h2>
+<p>Klaim keterlambatan sering terjadi dan harus dievaluasi cepat. Topik ini penuh perdebatan karena panduan teknik analisisnya tampak rumit dan saling bertentangan. Buku ini menjadi panduan praktis proses evaluasi delay beserta kajian mendalam metodologi utamanya.</p>
+<h3>Tiga tujuan analisis delay</h3>
+<p><b>Entitlement</b> (apakah kontraktor berhak atas waktu/biaya), <b>causation</b> (peristiwa mana yang menyebabkan keterlambatan), dan <b>damages</b> (berapa nilainya). Analisis yang baik menjawab ketiganya secara kualitatif dan kuantitatif.</p>
+<h3>Isu panas yang dibahas</h3>
+<p>Kepemilikan float, concurrency, persetujuan program, mitigasi, akselerasi, pacing, hak penyelesaian lebih awal, dan penilaian kerugian disruption. Penulis menekankan bahwa sengketa muncul bila dampak perubahan dan klaim waktu tidak dikelola tepat waktu.</p>
+<p class="f">Pesan kunci: pilih teknik yang sesuai fakta, transparan, dan dapat dipahami tribunal. Fakta lebih menentukan daripada nama metodenya.</p></section>
+
+<section id="b2"><h2>Bab 2 — Program Konstruksi (CPM)</h2>
+<h3>Planning, programming, project controls</h3>
+<p>Perencanaan menentukan strategi dan urutan kerja; programming menuangkannya ke jadwal berbasis waktu; project controls memantau progres dan mengoreksi. Work breakdown structure (WBS) memecah lingkup menjadi paket kerja sebagai dasar aktivitas.</p>
+<h3>Durasi dan logika</h3>
+<p>Durasi bersifat subjektif dan bergantung pada pengalaman. Rumusnya: <code>Durasi (hari) = Kebutuhan tenaga (jam) ÷ Tenaga tersedia (jam/hari)</code>. Faktor yang memengaruhi: kuantitas, jumlah sumber daya, jam kerja per hari, kedalaman/tinggi muka kerja, kondisi dan keselamatan, akses, pemilihan alat (radius putar, cycle time), cuaca, dan masa tunggu minimum (misalnya curing beton).</p>
+<p>Relasi aktivitas terdiri dari <b>hard logic</b> (urutan alami) dan <b>soft logic</b> (urutan pilihan). Dua metode diagram: ADM/AOA (I-J, hanya finish-to-start) dan PDM (precedence). Kesalahan logika bawaan baseline biasanya baru terlihat saat berubah menjadi delay di lapangan; bila koreksinya menambah waktu pada critical path, itu risiko kontraktor.</p>
+<h3>Forward pass, backward pass, float</h3>
+<p>Forward pass menghitung <b>ES</b> dan <b>EF</b> serta tanggal selesai terpendek. Backward pass dari tanggal selesai itu menghitung <b>LS</b> dan <b>LF</b>. <b>Total float</b> = LF − EF (waktu yang boleh dipakai tanpa memperpanjang proyek). <b>Free float</b> = waktu tanpa menggeser awal aktivitas penerus. <b>Critical path</b> adalah aktivitas dengan total float nol. Coba sendiri (ubah durasi):</p>
+<div class="card"><div class="grid" id="cpmIn"></div><div class="sc"><table id="cpmT"></table></div><p id="cpmN" class="lead"></p></div>
+<h3>Constraints dan validasi baseline</h3>
+<p>Constraint tanggal sah untuk milestone kontrak, akses lahan, barang long-lead, atau peralatan dari employer. Namun bukan pengganti logika; pemakaian berlebih membuat critical path tidak dapat diaudit. Baseline perlu joint review dan persetujuan sebelum menjadi acuan.</p>
+<h3>Teknik perencanaan lain</h3>
+<p>PERT (estimasi probabilistik), Gantt/bar chart, line of balance (pekerjaan berulang/linear), dan critical chain (theory of constraints). CPM tetap dasar analisis delay karena mengidentifikasi critical path dan float secara terukur.</p>
+<h3>Earned value</h3>
+<p>Parameter: <b>BCWS</b> (anggaran pekerjaan terjadwal), <b>BCWP</b> (anggaran pekerjaan yang selesai), <b>ACWP</b> (biaya aktual), <b>BAC</b> (total anggaran). <code>EAC = ACWP + (BAC − BCWP)</code>, <code>CPI = BCWP/ACWP</code>, <code>SPI = BCWP/BCWS</code>.</p>
+<div class="card"><div class="grid"><div><label>BAC</label><input id="e1" type="number" value="1000"></div><div><label>BCWS</label><input id="e2" type="number" value="400"></div><div><label>BCWP</label><input id="e3" type="number" value="320"></div><div><label>ACWP</label><input id="e4" type="number" value="380"></div></div>
+<div class="res" style="margin-top:12px"><div><small>CPI</small><span class="big" id="cpi"></span></div><div><small>SPI</small><span class="big" id="spi"></span></div><div><small>EAC</small><span class="big" id="eac"></span></div></div></div>
+<h3>Catatan dan praktik programming yang merugikan</h3>
+<p>Catatan (records) adalah fondasi klaim: kelola dokumen dan data elektronik secara terkontrol. Waspadai praktik predator: memangkas float, durasi/logika buatan untuk menyembunyikan float atau membesar-besarkan delay, program early-completion yang tidak realistis, update tanpa data as-built historis, tanggal aktual keliru, mengubah data historis, serta perubahan logika/durasi yang tidak dilaporkan.</p></section>
+
+<section id="b3"><h2>Bab 3 — Identifikasi Delay</h2>
+<h3>Dasar identifikasi</h3>
+<p>Delay hanya dapat diukur terhadap program as-planned yang tervalidasi. Fakta aktual dituangkan dalam <b>as-built programme</b>, yang disusun dari catatan lapangan, laporan harian, dan data progres. Peristiwa delay diidentifikasi, dicatat, dan dikaitkan dengan aktivitas yang terdampak.</p>
+<h3>Delay versus disruption</h3>
+<p>Delay menggeser waktu; disruption mengganggu efisiensi kerja dan menaikkan biaya meski tanggal selesai belum tentu bergeser. Penyebab harus dibuktikan. <b>Total cost / global claim</b> (selisih biaya aktual dan estimasi) rawan ditolak karena tidak memisahkan penyebab.</p>
+<h3>Measured mile</h3>
+<p>Bandingkan produktivitas periode tanpa gangguan (the measured mile) dengan periode terganggu pada pekerjaan sejenis; selisihnya adalah kerugian. Metode ini didukung SCL Protocol dan pengadilan federal AS, tetapi bergantung pada catatan kontemporer dan kehati-hatian (hindari learning curve atau target tak realistis).</p>
+<div class="card"><div class="grid"><div><label>Output normal (unit/jam)</label><input id="m1" type="number" value="12"></div><div><label>Output terganggu (unit/jam)</label><input id="m2" type="number" value="8"></div><div><label>Volume saat terganggu (unit)</label><input id="m3" type="number" value="2400"></div></div>
+<div class="res" style="margin-top:12px"><div><small>Jam seharusnya</small><span class="big" id="h1"></span></div><div><small>Jam aktual</small><span class="big" id="h2"></span></div><div><small>Jam hilang</small><span class="big bad" id="h3"></span></div></div></div>
+<p class="f">Jangan menambah presisi yang tidak didukung data: bila progres hanya tercatat bulanan, analisis hanya valid sampai tingkat bulan.</p></section>
+
+<section id="b4"><h2>Bab 4 — Analisis Delay</h2>
+<h3>Klasifikasi peristiwa</h3>
+<p>Peristiwa dikategorikan sebagai risiko Employer (ERE), risiko Kontraktor (CRE), atau netral. Delay juga dapat bersifat kritis, non-kritis, concurrent, dominan, sub-kritis, atau tidak relevan bila merupakan pacing yang dinyatakan.</p>
+<div class="card"><label for="ev">Jenis peristiwa</label><select id="ev"><option value="a">Risiko Employer (perubahan desain, lahan terlambat)</option><option value="b">Risiko Kontraktor (alat rusak, produktivitas rendah)</option><option value="c">Netral (force majeure, cuaca ekstrem)</option></select><div id="evo" style="margin-top:10px"></div></div>
+<h3>SCL Delay and Disruption Protocol (21 prinsip)</h3>
+<p>Berlaku sejak 2002 dan dirujuk pengadilan TCC Inggris. Prinsip intinya: program dan catatan, tujuan serta hak atas EOT, prosedur pemberian EOT, efek delay, review bertahap, float (waktu dan biaya), concurrency (EOT dan biaya), analisis setelah kejadian, mitigasi, kaitan EOT dan kompensasi, valuasi variasi, dasar perhitungan prolongation, alokasi tender, periode evaluasi, global claims, akselerasi, dan disruption.</p>
+<ul><li>EOT melepaskan kontraktor dari LD dan menjaga hak employer menetapkan tanggal selesai baru (waktu tidak menjadi at large).</li><li>EOT diajukan dan diputuskan sedekat mungkin dengan kejadian; hindari sikap <i>wait and see</i>. Dasarnya entitlement, bukan kebutuhan.</li><li>EOT dapat diberikan bertahap dan ditinjau berkala.</li><li>Hakim diminta menempatkan diri pada posisi contract administrator saat itu, tanpa hindsight.</li><li>Sanksi bila program tidak diserahkan: potongan pembayaran 25%, biaya konsultan, hingga default.</li></ul>
+<h3>AACEI RP 29R-03 dan pemilihan teknik</h3>
+<p>AACEI RP-FSA adalah panduan forensic schedule analysis yang menimbang semua teknik setara dan menambah faktor forum serta persyaratan hukum/prosedural. SCL Protocol bersifat prospektif dan lebih menyukai TIA; kritiknya, terlalu menekankan satu metode. Keduanya sering dijadikan senjata untuk menyerang metodologi dan kredibilitas ahli, sehingga ahli harus bisa menjelaskan mengapa memilih teknik tertentu.</p></section>
+
+<section id="b5"><h2>Bab 5 — Teknik Analisis Delay</h2>
+<p>Empat teknik utama dengan turunannya dikelompokkan menjadi <b>additive</b> (IAP, TIA), <b>subtractive</b> (CAB), dan <b>analytical</b> (APAB). IAP, TIA, dan CAB berbasis <i>sebab</i> (peristiwa dimodelkan, efek dihitung); metode as-built berbasis <i>akibat</i> (mulai dari efek, cari peristiwa penyebab terdekat).</p>
+<div class="tabs" id="tt" role="tablist"></div><div class="card" id="tc"></div>
+<h3>Derivatif penting</h3>
+<p><b>Windows analysis</b> membagi proyek ke periode; <b>contemporaneous windows</b> memakai update program aktual tiap periode; <b>month-to-month update</b> unggul karena memakai critical path yang dinamis, dapat menangkap concurrency pada periode kerja nyata, dan dapat mengidentifikasi kehilangan maupun perolehan waktu. Kelemahannya: butuh update lengkap dengan tanggal aktual, dan perubahan logika kontraktor sulit dirasionalisasi secara forensik.</p></section>
+
+<section id="b6"><h2>Bab 6 — Isu Bermasalah</h2>
+<h3>Float</h3>
+<p>Total float, free float, dan <b>terminal float</b> (ada bila rencana selesai lebih awal dari tanggal kontrak). Float hilang mengurangi cadangan waktu dan menaikkan peluang delay kritis, bahkan bisa menimbulkan kerugian biaya meski proyek tidak telat.</p>
+<div class="card"><label>Total float: <b id="tfv"></b> hari</label><input id="tf" type="range" min="0" max="30" value="10"><label>Delay aktivitas: <b id="dyv"></b> hari</label><input id="dy" type="range" min="0" max="40" value="15">
+<div class="row"><span>Float</span><div class="track"><div class="bar" id="b1" style="background:var(--flt)"></div></div></div><div class="row"><span>Delay</span><div class="track"><div class="bar" id="b2" style="background:var(--emp)"></div></div></div>
+<div class="res"><div><small>Float terserap</small><span class="big" id="fa"></span></div><div><small>Dampak ke proyek</small><span class="big" id="fi"></span></div></div></div>
+<p><b>Siapa pemilik float?</b> Tiga pandangan: (1) <i>kontraktor</i>, karena ia menanggung risiko tenggat tetap dan menyusun urutan kerja; NEC3 klausul 63.3 menegaskan ini lewat time-risk allowance dan terminal float; (2) <i>employer</i>; (3) <i>proyek</i> (siapa pun yang lebih dulu memakainya). SCL Protocol: EOT hanya bila float jalur kritis menjadi negatif; namun kontraktor berhak biaya langsung terkait waktu saat float terkikis.</p>
+<h3>Concurrency dan pacing</h3>
+<p>Concurrent delay sejati jarang dan sering diperdebatkan. Pendekatan: <b>first-in-line</b>, <b>dominant cause</b> (cenderung dipakai pengadilan Inggris), dan <b>apportionment</b>. SCL Protocol mengikuti pendekatan AS: risiko employer yang concurrent memberi EOT, tetapi biaya hanya bila dapat dipisahkan dari penyebab non-kompensabel.</p>
+<div class="card"><label>Delay Employer: <b id="dev"></b> bulan</label><input id="de" type="range" min="0" max="6" step=".5" value="2"><label>Delay Kontraktor: <b id="dcv"></b> bulan</label><input id="dc" type="range" min="0" max="6" step=".5" value="1">
+<div class="row"><span>Employer</span><div class="track"><div class="bar" id="c1" style="background:var(--emp)"></div></div></div><div class="row"><span>Kontraktor</span><div class="track"><div class="bar" id="c2" style="background:var(--con)"></div></div></div>
+<div class="res"><div><small>EOT</small><span class="big" id="eot"></span></div><div><small>Biaya prolongation</small><span class="big" id="pc"></span></div></div><p class="lead">Model ilustrasi dari dua contoh SCL di buku (1 vs 1 bulan: EOT 1, tanpa biaya; 2 vs 1: EOT 2, biaya untuk 1 bulan kelebihan).</p></div>
+<p><b>Pacing</b>: menyesuaikan laju kerja dengan delay pihak lain yang lebih kritis. Syaratnya: mengetahui delay yang lebih kritis, keputusan pacing yang tegas, pemberitahuan ke pihak lain, dan kemampuan memulihkan output normal.</p>
+<h3>Persetujuan program, mitigasi, akselerasi</h3>
+<p>Program yang disetujui dan spesifikasi berat (onerous) memengaruhi kemampuan membuktikan klaim. <b>Mitigasi</b> adalah kewajiban mengurangi dampak delay dan kerugian (terutama tenaga dan alat nganggur). <b>Akselerasi</b> (SCL): menyelesaikan lingkup rencana dalam waktu lebih singkat atau lingkup lebih besar dalam durasi semula; sering mahal dan menimbulkan stacking, kemacetan, produktivitas turun, dan cacat. <b>Constructive acceleration</b> terjadi ketika employer menolak EOT yang sah sehingga kontraktor terpaksa mempercepat.</p>
+<p><b>Penyelesaian lebih awal:</b> kontraktor boleh merencanakannya (sisa waktu menjadi float di akhir), tetapi program itu tidak mengubah hak kontraktual. Di AS, employer dapat menerima program sekaligus tanggal awalnya, atau hanya programnya dengan tanggal kontrak tetap.</p></section>
+
+<section id="b7"><h2>Bab 7 — Presentasi Efektif</h2>
+<p>Bukti visual diingat jauh lebih baik (studi AS: juri hanya mengingat 10–20% materi lisan, tetapi 65–80% materi visual). Satu fakta yang sama dapat disajikan ke kesimpulan berbeda, sehingga presentasi harus jelas dan jujur.</p>
+<h3>Studi kasus perluasan terminal bandara</h3>
+<p>Ahli dari tiap pihak menghasilkan analisis awal berbeda; TIA dipakai untuk prolongation; ahli tribunal memakai pendekatan kontemporer dan menguji relevansi delay pada runway extension dan terminal building.</p>
+<h3>Float mapping</h3>
+<ul><li>Ekstrak nilai float dari setiap update program.</li><li>Buat peta float (perubahan float antar-periode).</li><li>Identifikasi <i>driving activities</i> pada tiap periode.</li><li>Rangkai menjadi as-built critical path.</li></ul>
+<h3>Mendemonstrasikan akselerasi dan bukti demonstratif</h3>
+<p>Akselerasi dibuktikan dengan data sumber daya dan produktivitas. Bukti demonstratif mencakup demonstrasi, rekonstruksi, dan data cuaca.</p></section>
+</main>
+<footer>Ringkasan bebas berdasarkan Keane &amp; Caletka (Wiley, 2015); bukan pengganti buku maupun nasihat hukum.<br>Disusun oleh Ir. Agus Budianto Ulil Absyor, S.T., M.M., M.LSCM., M.AIB.</footer>
+<script>
+const $=i=>document.getElementById(i),N=i=>+$(i).value;
+// CPM
+const A={A:[5,[]],B:[4,['A']],C:[7,['A']],D:[3,['B','C']],E:[2,['D']]},K=Object.keys(A);
+$("cpmIn").innerHTML=K.map(k=>`<div><label>${k} (pra: ${A[k][1].join(",")||"-"})</label><input type="number" min="1" id="d${k}" value="${A[k][0]}"></div>`).join("");
+function cpm(){const d={},ES={},EF={},LS={},LF={};K.forEach(k=>d[k]=Math.max(1,N("d"+k)));
+K.forEach(k=>{ES[k]=Math.max(0,...A[k][1].map(p=>EF[p]));EF[k]=ES[k]+d[k]});const T=Math.max(...K.map(k=>EF[k]));
+[...K].reverse().forEach(k=>{const s=K.filter(x=>A[x][1].includes(k));LF[k]=s.length?Math.min(...s.map(x=>LS[x])):T;LS[k]=LF[k]-d[k]});
+$("cpmT").innerHTML="<tr><th>Akt.</th><th>Durasi</th><th>ES</th><th>EF</th><th>LS</th><th>LF</th><th>TF</th></tr>"+K.map(k=>{const tf=LS[k]-ES[k];return`<tr${tf?"":' style="font-weight:700;color:var(--emp)"'}><td>${k}</td><td>${d[k]}</td><td>${ES[k]}</td><td>${EF[k]}</td><td>${LS[k]}</td><td>${LF[k]}</td><td>${tf}</td></tr>`}).join("");
+$("cpmN").textContent="Durasi proyek "+T+" hari. Baris merah = critical path (TF 0). Perpanjang aktivitas kritis dan proyek ikut mundur; aktivitas non-kritis punya float."}
+K.forEach(k=>$("d"+k).oninput=cpm);cpm();
+// EVM
+function evm(){const b=N("e1"),s=N("e2"),p=N("e3"),a=N("e4");$("cpi").textContent=(p/a).toFixed(2);$("spi").textContent=(p/s).toFixed(2);$("eac").textContent=Math.round(a+b-p)}
+["e1","e2","e3","e4"].forEach(i=>$(i).oninput=evm);evm();
+function mm(){const a=N("m1"),b=N("m2"),v=N("m3");if(a>0&&b>0){$("h1").textContent=Math.round(v/a);$("h2").textContent=Math.round(v/b);$("h3").textContent=Math.round(Math.max(0,v/b-v/a))}}
+["m1","m2","m3"].forEach(i=>$(i).oninput=mm);mm();
+const E={a:["Excusable","Compensable","Berhak EOT dan biaya delay."],b:["Non-excusable","Non-compensable","Tanpa EOT; risiko ditanggung kontraktor (LD dapat dikenakan)."],c:["Excusable","Non-compensable","EOT diberikan, tanpa biaya delay."]};
+$("ev").onchange=()=>{const e=E[$("ev").value];$("evo").innerHTML=`<span class="tag">${e[0]}</span><span class="tag">${e[1]}</span><p>${e[2]} Status akhir tetap bergantung pada isi kontrak.</p>`};$("ev").onchange();
+function fl(){const t=N("tf"),d=N("dy"),i=Math.max(0,d-t);$("tfv").textContent=t;$("dyv").textContent=d;$("b1").style.width=t/40*100+"%";$("b2").style.width=d/40*100+"%";$("fa").textContent=Math.min(t,d)+" hr";$("fi").textContent=i+" hr";$("fi").className="big "+(i?"bad":"good")}
+$("tf").oninput=$("dy").oninput=fl;fl();
+function cc(){const e=N("de"),c=N("dc");$("dev").textContent=e;$("dcv").textContent=c;$("c1").style.width=e/10*100+"%";$("c2").style.width=c/10*100+"%";$("eot").textContent=e+" bln";$("pc").textContent=Math.max(0,e-c)+" bln"}
+$("de").oninput=$("dc").oninput=cc;cc();
+const T=[["IAP","Impacted as-planned","Additive, berbasis sebab","Jenis paling sederhana: delay (fragnet EDE/CDE) disisipkan ke baseline as-planned. Hanya butuh baseline yang patuh kontrak dan mencerminkan niat kontraktor sebelum kerja; baseline rekonstruksi sebaiknya dihindari kecuali disepakati. Varian: non-integrated (EDE atau CDE saja) dan combined (keduanya).","Mudah dipahami; variabel paling sedikit; tanpa as-built atau program progres; bisa dilakukan kontemporer.","Mengabaikan perubahan logika/durasi; hasil teoretis (pertanyaan hipotetis); tidak dapat mengidentifikasi concurrency sejati."],
+["TIA","Time impact analysis","Additive, berbasis sebab","Evolusi IAP dengan <b>banyak baseline</b>: tiap peristiwa disisipkan ke program update terakhir sebelum kejadian. SCL Protocol menyebutnya teknik pilihan untuk sengketa kompleks dan terbaik menentukan EOT yang seharusnya diberikan saat itu. Prospektif memakai estimasi durasi; forensik wajib memakai fakta aktual agar tidak terlalu teoretis. Asumsi harus dapat direproduksi dan diaudit.","Memakai status proyek nyata; membantu concurrency, akselerasi, disruption; dapat diotomasi dan diubah bila asumsi berubah.","Butuh program update andal; banyak model dan variabel; berisiko dianggap teoretis bila fakta aktual diabaikan."],
+["CAB","Collapsed as-built","Subtractive, berbasis sebab","Pendekatan deduktif: dari program as-built, hapus delay Employer untuk menjawab <i>kapan proyek selesai tanpa peristiwa itu</i>. SCL 4.7: tidak mampu mengidentifikasi concurrency, resequencing, redistribusi sumber daya, atau akselerasi; hasil bisa tidak andal pada logika kompleks.","Memakai urutan dan durasi nyata; cocok untuk proyek sederhana dan linear.","Perlu as-built terverifikasi dan logika rekonstruksi yang subjektif; spekulatif; SCL Protocol berhati-hati."],
+["APAB","As-planned vs as-built","Analytical, berbasis akibat","Membandingkan rencana dengan realisasi, menelusuri critical path nyata, dan mencari penyebab terdekat. Versi statis kasar; versi windows dan month-to-month update lebih halus.","Berbasis catatan aktual; versi update memakai critical path dinamis dan menangkap concurrency.","Versi statis tidak membedakan penyebab; versi window bergantung kualitas update dan kejelasan logika."]];
+let ti=0;function tb(){$("tt").innerHTML=T.map((t,i)=>`<button role="tab" aria-selected="${i==ti}" data-i="${i}">${t[0]}</button>`).join("");document.querySelectorAll("#tt button").forEach(b=>b.onclick=()=>{ti=+b.dataset.i;tb();sh()})}
+function sh(){const t=T[ti];$("tc").innerHTML=`<h3 style="margin-top:0">${t[1]}</h3><span class="tag">${t[2]}</span><p>${t[3]}</p><p><b class="good">Kekuatan:</b> ${t[4]}</p><p><b class="bad">Kelemahan:</b> ${t[5]}</p>`}tb();sh();
+$("dl").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([document.querySelector("main").innerText],{type:"text/markdown"}));a.download="Ringkasan_Delay_Analysis_Lengkap.md";a.click()};
+</script></body></html>

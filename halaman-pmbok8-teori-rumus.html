@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PMBOK® Guide 8th Edition — Peta Teori & Rumus Interaktif</title>
+<style>
+:root{--bg:#05060f;--c1:#00f0ff;--c2:#ff2bd6;--c3:#b6ff3b;--tx:#e8ecff;--mu:#8b93b8;--cd:rgba(14,18,42,.62);color-scheme:dark}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,Segoe UI,Roboto,sans-serif;overflow-x:hidden}
+#bg{position:fixed;inset:0;z-index:-1}
+.aur{position:fixed;inset:0;z-index:-2;background:radial-gradient(40% 40% at 20% 20%,#00f0ff33,transparent),radial-gradient(40% 40% at 80% 30%,#ff2bd633,transparent),radial-gradient(50% 50% at 50% 90%,#6a2bff44,transparent);animation:aur 14s ease-in-out infinite alternate}
+@keyframes aur{to{transform:scale(1.25) rotate(6deg);filter:hue-rotate(50deg)}}
+nav{position:sticky;top:0;z-index:9;display:flex;gap:14px;align-items:center;padding:12px 5vw;backdrop-filter:blur(14px);background:#05060fb0;border-bottom:1px solid #ffffff14;flex-wrap:wrap}
+nav b{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.1em}
+nav a{color:var(--mu);text-decoration:none;font-size:14px}nav a:hover{color:var(--c1)}nav .sp{flex:1}
+.btn{cursor:pointer;border:0;color:#021;font-weight:700;padding:10px 20px;border-radius:99px;background:linear-gradient(90deg,var(--c1),var(--c3));box-shadow:0 0 24px #00f0ff66;transition:.25s}
+.btn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 40px #b6ff3b88}
+.btn.o{background:none;color:var(--c1);border:1px solid var(--c1);box-shadow:none}
+header{min-height:86vh;display:grid;place-content:center;text-align:center;padding:8vh 5vw}
+.tag{color:var(--c3);letter-spacing:.35em;font-size:13px;text-transform:uppercase}
+h1{font-size:clamp(2.4rem,7vw,5.6rem);line-height:1.05;margin:14px 0;font-weight:900;background:linear-gradient(100deg,#fff,var(--c1),var(--c2),var(--c3),#fff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 7s linear infinite}
+@keyframes sh{to{background-position:300% 0}}
+header p{max-width:700px;margin:0 auto 28px;color:var(--mu);font-size:1.1rem}
+.stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:42px}
+.st{min-width:130px;padding:16px 20px;border-radius:16px;background:var(--cd);border:1px solid #ffffff18;backdrop-filter:blur(8px);transition:.3s}
+.st:hover{border-color:var(--c2);transform:translateY(-6px);box-shadow:0 0 30px #ff2bd655}
+.st b{display:block;font-size:2.2rem;color:var(--c1);text-shadow:0 0 16px var(--c1)}.st span{font-size:12px;color:var(--mu)}
+section{padding:7vh 5vw;max-width:1180px;margin:auto}
+h2{font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:6px}h2 i{font-style:normal;color:var(--c2)}
+.sub{color:var(--mu);margin-bottom:22px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.bar input{flex:1;min-width:220px;padding:12px 18px;border-radius:99px;border:1px solid #ffffff22;background:#0b0f26;color:var(--tx);outline:0}
+.bar input:focus{border-color:var(--c1);box-shadow:0 0 18px #00f0ff55}
+.chip{cursor:pointer;padding:9px 16px;border-radius:99px;border:1px solid #ffffff22;background:#0b0f26;color:var(--mu);transition:.2s}
+.chip.on,.chip:hover{color:#021;background:var(--c1);border-color:var(--c1)}
+.ch{margin-bottom:18px;border-radius:20px;background:var(--cd);border:1px solid #ffffff16;backdrop-filter:blur(10px);overflow:hidden;opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s,border-color .3s,box-shadow .3s}
+.ch.in{opacity:1;transform:none}.ch:hover{border-color:var(--c1);box-shadow:0 0 34px #00f0ff30}
+.hd{display:flex;gap:16px;align-items:center;padding:20px 24px;cursor:pointer}
+.no{font-size:2rem;font-weight:900;min-width:64px;color:transparent;-webkit-text-stroke:1.5px var(--c2)}
+.hd h3{font-size:1.2rem}.hd small{color:var(--mu);display:block}.hd .ar{margin-left:auto;font-size:1.6rem;color:var(--c1);transition:.3s}
+.ch.open .ar{transform:rotate(135deg)}
+.bd{max-height:0;overflow:hidden;transition:max-height .6s ease}
+.ch.open .bd{max-height:9000px}
+.sb{margin:0 24px 14px;padding:14px 18px;border-left:3px solid var(--c1);background:#ffffff08;border-radius:0 12px 12px 0}
+.sb h4{color:var(--c1);font-size:1rem}.sb p{color:#c5cbea;font-size:.95rem}
+.fm{margin-top:8px;padding:9px 14px;border-radius:10px;background:#0008;border:1px dashed var(--c3);color:var(--c3);font:600 .9rem ui-monospace,Consolas,monospace;white-space:pre-wrap}
+.ch .bd>div:last-child{padding-bottom:10px}
+.cal{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.cd{padding:22px;border-radius:20px;background:var(--cd);border:1px solid #ffffff18;backdrop-filter:blur(10px)}
+.cd h3{color:var(--c1);margin-bottom:10px}
+.cd label{display:flex;justify-content:space-between;align-items:center;margin:6px 0;color:var(--mu);font-size:14px}
+.cd input{width:110px;padding:7px 10px;border-radius:8px;border:1px solid #ffffff2a;background:#0b0f26;color:var(--tx)}
+.out{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.out div{padding:8px 10px;border-radius:10px;background:#0006;font-size:13px;color:var(--mu)}
+.out b{display:block;color:var(--c3);font-size:1.1rem}.out b.bad{color:#ff5470}
+.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.fc{height:150px;perspective:700px;cursor:pointer}
+.fi{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.fc.f .fi{transform:rotateY(180deg)}
+.fc div div{position:absolute;inset:0;backface-visibility:hidden;display:grid;place-content:center;text-align:center;padding:12px;border-radius:16px;border:1px solid var(--c2);background:var(--cd);font-size:.9rem}
+.fc div div:first-child{font-weight:800;color:var(--c2);font-size:1.05rem}
+.fc div div:last-child{transform:rotateY(180deg);border-color:var(--c1);color:#cfe}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:50px 5vw 70px}
+#top{position:fixed;right:22px;bottom:22px;z-index:9;width:46px;height:46px;border-radius:50%;font-size:20px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="aur"></div><canvas id="bg"></canvas>
+<nav><b>PMBOK 8</b><a href="#isi">Materi</a><a href="#alat">Kalkulator</a><a href="#prinsip">Prinsip</a><span class="sp"></span><button class="btn o" id="ex">Buka semua</button><button class="btn" id="dl">⬇ Unduh halaman</button></nav>
+<header><div class="tag">PMI · ANSI/PMI 99-001-2025</div>
+<h1>PMBOK® Guide<br>Eighth Edition</h1>
+<p>Peta belajar interaktif: teori dan rumus per bab &amp; subbab, lengkap dengan kalkulator EVM, jalur kritis, PERT, risiko, dan komunikasi.</p>
+<div><button class="btn" onclick="location.hash='isi'">Mulai Jelajah ⚡</button></div>
+<div class="stats"><div class="st"><b data-n="401">0</b><span>Halaman buku</span></div><div class="st"><b data-n="6">0</b><span>Prinsip</span></div><div class="st"><b data-n="5">0</b><span>Focus Area</span></div><div class="st"><b data-n="7">0</b><span>Performance Domain</span></div><div class="st"><b data-n="40">0</b><span>Proses</span></div></div></header>
+
+<section id="prinsip"><h2>6 Prinsip <i>— klik kartu</i></h2><p class="sub">Fondasi cara berpikir manajemen proyek (Standar, Bab 3).</p><div class="fl" id="fl"></div></section>
+<section id="isi"><h2>Isi Buku <i>per Bab &amp; Subbab</i></h2><p class="sub">Ringkasan dengan bahasa sendiri. Klik bab untuk membuka subbab.</p>
+<div class="bar"><input id="q" placeholder="Cari topik atau rumus… (mis. EAC, risiko, float)"><span class="chip on" data-p="all">Semua</span><span class="chip" data-p="S">Standar</span><span class="chip" data-p="G">Panduan</span></div><div id="list"></div></section>
+<section id="alat"><h2>Lab <i>Kalkulator Interaktif</i></h2><p class="sub">Ubah angka, hasil langsung berubah.</p><div class="cal" id="cal"></div></section>
+<footer>Ringkasan belajar tidak resmi, disusun dengan kata-kata sendiri dari salinan pribadi buku. Untuk teks lengkap &amp; definisi resmi, rujuk buku PMBOK® Guide Edisi Kedelapan dari PMI. PMBOK® adalah merek dagang PMI.</footer>
+<button class="btn" id="top" onclick="scrollTo(0,0)">↑</button>
+<script>
+const P=[["Holistic View","Adopsi Pandangan Holistik","Lihat proyek sebagai sistem utuh: dampak, keterkaitan domain, dan konteks organisasi."],["Focus on Value","Fokus pada Nilai","Ukur keberhasilan dari manfaat yang dirasakan, bukan sekadar output selesai."],["Quality","Sematkan Kualitas","Kualitas dibangun dalam proses dan hasil, bukan diperiksa di akhir."],["Accountable Leader","Pemimpin Akuntabel","Pemimpin menginspirasi, bertanggung jawab, dan memberi teladan."],["Sustainability","Integrasikan Keberlanjutan","Pertimbangkan dampak lingkungan, sosial, dan ekonomi di semua area."],["Empowered Culture","Budaya Berdaya","Tim diberi kepercayaan, ruang keputusan, dan tumbuh bersama."]];
+const D=[
+["S","1","Pendahuluan (Standar)","Tujuan standar, istilah kunci, elemen fondasional.",[
+["1.1 Tujuan Standar Manajemen Proyek","Standar memberi prinsip dasar yang berlaku lintas industri dan pendekatan pengembangan; berfokus pada hasil dan nilai.",""],
+["1.2 Istilah &amp; Konsep Kunci","Definisi diperbarui agar selaras praktik global dan mudah dipahami: proyek, produk, nilai, portofolio, program, dsb.",""],
+["1.3 Elemen Fondasional","Karakteristik proyek (unik, sementara), tata kelola organisasi vs proyek, operasi vs proyek, dan relasi portofolio–program–proyek–operasi.","Proyek = upaya sementara &amp; unik → menghasilkan produk/layanan/hasil"]]],
+["S","2","Sistem Penyampaian Nilai","Bagaimana proyek menciptakan nilai dalam lingkungan organisasi.",[
+["2.1 Menciptakan Nilai","Komponen penyampaian nilai &amp; penilaian keberhasilan proyek: nilai dilihat dari sudut pandang pemangku kepentingan.","ROI = (Manfaat − Biaya) / Biaya × 100%"],
+["2.2 Lingkungan Proyek","EEF (faktor lingkungan perusahaan), OPA (aset proses organisasi), kebijakan/prosedur, repositori pengetahuan, struktur organisasi.",""],
+["2.3 Pertimbangan Manajemen Produk","Siklus hidup produk berinteraksi dengan siklus hidup proyek.",""],
+["2.4–2.5 Fungsi &amp; Peran","Fungsi: pengawasan, umpan balik, fasilitasi, kerja, keahlian, arahan, sumber daya. Peran: tim manajemen proyek, sponsor/pelanggan/product owner, tim proyek, pengguna akhir.",""]]],
+["S","3","Prinsip Manajemen Proyek","Mindset, 6 prinsip, dan hubungannya dengan domain.",[
+["3.1–3.2 Mindset &amp; Prinsip","Prinsip memandu perilaku dan keputusan; dikaitkan ke performance domain.",""],
+["3.3–3.8 Enam Prinsip","Tiap prinsip diuraikan: dampak proyek, penerapan nyata, dan domain terkait. Lihat kartu prinsip di atas.",""]]],
+["S","4","Siklus Hidup Proyek","Fase, pendekatan pengembangan, kadens, dan 5 Focus Area.",[
+["4.1 Fase Proyek","Fase dipisahkan oleh gerbang tinjauan (phase gate) untuk keputusan lanjut/berhenti.",""],
+["4.2 Pendekatan Pengembangan","Prediktif (rencana di awal), adaptif (iteratif, backlog, umpan balik), hibrida (campuran).",""],
+["4.3 Pemilihan Pendekatan","Pertimbangkan: deliverable, proyek, dan organisasi. Makin tinggi ketidakpastian → makin banyak umpan balik.",""],
+["4.4 Kadens Penyampaian","Satu kali, berkala, atau berkelanjutan (continuous delivery).",""],
+["4.5 Focus Area","Initiating, Planning, Executing, Monitoring &amp; Controlling, Closing. Tidak berurutan kaku; saling tumpang tindih dan diulang.","5 Focus Area ≠ urutan wajib"]]],
+["G","1","Pendahuluan (Panduan)","Struktur panduan, hubungan dengan Standar, perubahan edisi ke-8.",[
+["1.1–1.3 Struktur &amp; Perubahan","Panduan = 7 performance domain, 40 proses (input, T&amp;T, output) yang bersifat ilustratif, bukan metodologi preskriptif.",""]]],
+["G","2.1","Domain Tata Kelola","Governance — 9 proses.",[
+["Konsep &amp; Model","Penciptaan nilai, model tata kelola, metrik dan mekanisme tata kelola proyek.",""],
+["9 Proses","Initiate Project or Phase · Integrate and Align Plans · Plan Sourcing Strategy · Manage Project Execution · Manage Quality Assurance · Manage Project Knowledge · Monitor and Control Performance · Assess and Implement Changes · Close Project or Phase.","Tiap domain: Konsep → Proses → Tailoring → Interaksi → Cek Hasil"]]],
+["G","2.2","Domain Lingkup","Scope — 6 proses.",[
+["Konsep","Lingkup produk vs proyek, kebutuhan, dan struktur lingkup (WBS/backlog).",""],
+["6 Proses","Plan Scope Management · Elicit and Analyze Requirements · Define Scope · Develop Scope Structure · Monitor and Control Scope · Validate Scope.","Pelacakan kebutuhan: % tercakup = kebutuhan terverifikasi / total × 100%"]]],
+["G","2.3","Domain Jadwal","Schedule — 3 proses.",[
+["Konsep &amp; Proses","Plan Schedule Management · Develop Schedule · Monitor and Control Schedule.",""],
+["Metode Jalur Kritis (CPM)","Forward pass &amp; backward pass menentukan jadwal terpendek dan fleksibilitas (float). Float nol = jalur kritis.","EF = ES + Durasi − 1\nLS = LF − Durasi + 1\nTotal Float = LS − ES = LF − EF"],
+["Estimasi Tiga Titik","Menangani ketidakpastian durasi/biaya dari skenario optimistis (O), paling mungkin (M), pesimistis (P).","Beta/PERT: E = (O + 4M + P) / 6\nσ = (P − O) / 6\nSegitiga: E = (O + M + P) / 3"]]],
+["G","2.4","Domain Keuangan","Finance — 4 proses.",[
+["Proses","Plan Financial Management · Estimate Costs · Develop Budget · Monitor and Control Finances.",""],
+["Cadangan &amp; Anggaran","Cadangan kontinjensi mengatasi risiko teridentifikasi; cadangan manajemen di luar baseline dan atas persetujuan manajemen.","Anggaran = Σ estimasi paket kerja + kontinjensi (+ cadangan manajemen)"],
+["Metrik Keuangan","Analisis biaya-manfaat dan ukuran seperti NPV, IRR, payback, ROI.","BCR = Manfaat / Biaya\nPayback = Investasi / Arus kas per periode"]]],
+["G","2.5","Domain Pemangku Kepentingan","Stakeholders — 7 proses.",[
+["Proses","Identify Stakeholders · Plan Stakeholder Engagement · Plan Communications · Manage Engagement · Manage Communications · Monitor Engagement · Monitor Communications.",""],
+["Kompleksitas Komunikasi","Makin besar tim, makin banyak kanal komunikasi.","Kanal = n(n − 1) / 2"]]],
+["G","2.6","Domain Sumber Daya","Resources — 5 proses.",[
+["Proses","Plan Resource Management · Estimate Resources · Acquire Resources · Lead the Team · Monitor and Control Resourcing.",""],
+["Kepemimpinan Tim","Pelatihan, kompetensi, pengelolaan konflik, dan budaya tim.","Utilisasi = jam produktif / jam tersedia × 100%"]]],
+["G","2.7","Domain Risiko","Risk — 6 proses.",[
+["Proses","Plan Risk Management · Identify Risks · Perform Risk Analysis · Plan Risk Responses · Implement Risk Responses · Monitor Risks.",""],
+["Analisis Risiko","Kualitatif (probabilitas × dampak) dan kuantitatif (EMV, simulasi Monte Carlo). Strategi ancaman &amp; peluang (mis. exploit).","Skor Risiko = Probabilitas × Dampak\nEMV = Probabilitas × Dampak (±)"]]],
+["G","3","Tailoring","Menyesuaikan pendekatan.",[
+["3.1–3.4 Mengapa &amp; Bagaimana","Pilih pendekatan awal → sesuaikan untuk organisasi → untuk proyek → perbaikan berkelanjutan.",""],
+["3.5–3.7 Domain &amp; Diagnostik","Tiap domain punya pertimbangan tailoring; ada alat diagnostik.",""]]],
+["G","4","Input &amp; Output","Artefak yang dipakai dan dihasilkan proses.",[
+["Katalog Artefak","Daftar input/output seperti rencana manajemen proyek, register risiko, baseline, log isu, dan laporan kinerja.",""]]],
+["G","5","Alat &amp; Teknik","Kumpulan teknik pendukung proses.",[
+["Analisis Nilai Terkelola (EVA)","EV, PV, AC dibandingkan dengan baseline untuk mengukur kinerja jadwal dan biaya.","SV = EV − PV    CV = EV − AC\nSPI = EV / PV    CPI = EV / AC"],
+["Perkiraan (Forecast)","Pilih EAC sesuai asumsi tren.","EAC = BAC / CPI\nEAC = AC + (BAC − EV)\nEAC = AC + ETC bottom-up\nEAC = AC + (BAC − EV)/(CPI × SPI)\nETC = EAC − AC    VAC = BAC − EAC"],
+["TCPI","Efisiensi yang dibutuhkan agar target tercapai; &gt;1 berarti lebih sulit.","TCPI = (BAC − EV) / (BAC − AC)\nTCPI = (BAC − EV) / (EAC − AC)"],
+["Teknik Lain","CPM, float, Monte Carlo, analisis biaya-manfaat, analisis cadangan, tren, dan lainnya.",""]]]];
+const $=s=>document.querySelector(s),L=$('#list');
+$('#fl').innerHTML=P.map((p,i)=>`<div class="fc"><div class="fi"><div>${i+1}. ${p[0]}</div><div><b>${p[1]}</b><br>${p[2]}</div></div></div>`).join('');
+document.querySelectorAll('.fc').forEach(c=>c.onclick=()=>c.classList.toggle('f'));
+function render(){const t=$('#q').value.toLowerCase(),pt=document.querySelector('.chip.on').dataset.p;
+L.innerHTML=D.filter(c=>(pt=='all'||c[0]==pt)).map(c=>{const subs=c[4].filter(s=>!t||(s.join(' ')+c[2]).toLowerCase().includes(t));if(!subs.length)return'';
+return`<div class="ch ${t?'open':''}"><div class="hd"><div class="no">${c[0]=='S'?'S':'G'}${c[1]}</div><div><h3>${c[2]}</h3><small>${c[3]}</small></div><div class="ar">+</div></div><div class="bd"><div>${subs.map(s=>`<div class="sb"><h4>${s[0]}</h4><p>${s[1]}</p>${s[2]?`<div class="fm">${s[2]}</div>`:''}</div>`).join('')}</div></div></div>`}).join('')||'<p class="sub">Tidak ada hasil.</p>';
+L.querySelectorAll('.hd').forEach(h=>h.onclick=()=>h.parentNode.classList.toggle('open'));
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.1});L.querySelectorAll('.ch').forEach(c=>io.observe(c))}
+$('#q').oninput=render;document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{document.querySelector('.chip.on').classList.remove('on');c.classList.add('on');render()});
+let all=false;$('#ex').onclick=e=>{all=!all;L.querySelectorAll('.ch').forEach(c=>c.classList.toggle('open',all));e.target.textContent=all?'Tutup semua':'Buka semua'};
+render();
+/* kalkulator */
+const C=[
+["Analisis Nilai Terkelola (EVM)",[["BAC",1000],["PV",400],["EV",350],["AC",420]],v=>{const{BAC,PV,EV,AC}=v,CPI=EV/AC,SPI=EV/PV,EAC=BAC/CPI;return[["SV",EV-PV],["CV",EV-AC],["SPI",SPI],["CPI",CPI],["EAC (BAC/CPI)",EAC],["EAC (laju rencana)",AC+BAC-EV],["EAC (CPI×SPI)",AC+(BAC-EV)/(CPI*SPI)],["ETC",EAC-AC],["VAC",BAC-EAC],["TCPI (BAC)",(BAC-EV)/(BAC-AC)]]}],
+["Estimasi Tiga Titik (PERT)",[["Optimistis",5],["Paling mungkin",8],["Pesimistis",17]],v=>[["Beta/PERT",(v.Optimistis+4*v["Paling mungkin"]+v.Pesimistis)/6],["Deviasi σ",(v.Pesimistis-v.Optimistis)/6],["Segitiga",(v.Optimistis+v["Paling mungkin"]+v.Pesimistis)/3]]],
+["Jalur Kritis &amp; Float",[["ES",1],["Durasi",4],["LF",10]],v=>{const EF=v.ES+v.Durasi-1,LS=v.LF-v.Durasi+1;return[["EF",EF],["LS",LS],["Total Float",LS-v.ES],["Kritis?",LS-v.ES==0?"YA":"Tidak"]]}],
+["Risiko &amp; EMV",[["Probabilitas %",30],["Dampak ($)",-50000]],v=>[["Skor (P×I)",v["Probabilitas %"]/100*Math.abs(v["Dampak ($)"])],["EMV",v["Probabilitas %"]/100*v["Dampak ($)"]]]],
+["Kanal Komunikasi",[["Jumlah orang n",8]],v=>[["Kanal",v["Jumlah orang n"]*(v["Jumlah orang n"]-1)/2]]],
+["ROI &amp; BCR",[["Manfaat",150000],["Biaya",100000]],v=>[["ROI %",(v.Manfaat-v.Biaya)/v.Biaya*100],["BCR",v.Manfaat/v.Biaya]]]];
+$('#cal').innerHTML=C.map((c,i)=>`<div class="cd" id="c${i}"><h3>${c[0]}</h3>${c[1].map(f=>`<label>${f[0]}<input type="number" step="any" value="${f[1]}"></label>`).join('')}<div class="out"></div></div>`).join('');
+C.forEach((c,i)=>{const el=$('#c'+i),run=()=>{const v={};c[1].forEach((f,j)=>v[f[0]]=parseFloat(el.querySelectorAll('input')[j].value)||0);
+el.querySelector('.out').innerHTML=c[2](v).map(([k,x])=>`<div>${k}<b class="${typeof x=='number'&&(x<0&&/SV|CV|VAC|SPI|CPI/.test(k)||(/SPI|CPI/.test(k)&&x<1))?'bad':''}">${typeof x=='number'?(isFinite(x)?+x.toFixed(2):'∞'):x}</b></div>`).join('')};
+el.oninput=run;run()});
+/* count-up */
+document.querySelectorAll('[data-n]').forEach(e=>{const n=+e.dataset.n;let i=0;const t=setInterval(()=>{i+=Math.ceil(n/50);if(i>=n){i=n;clearInterval(t)}e.textContent=i},30)});
+/* unduh */
+$('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['<!DOCTYPE html>\n'+document.documentElement.outerHTML],{type:'text/html'}));a.download='pmbok8-landing-page.html';a.click()};
+/* background */
+const cv=$('#bg'),x=cv.getContext('2d');let W,H,pts=[],m={x:-999,y:-999};
+const rs=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight;pts=Array.from({length:Math.min(110,W/12|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.8,vy:(Math.random()-.5)*.8,h:Math.random()<.5?185:310}))};
+addEventListener('resize',rs);addEventListener('pointermove',e=>{m.x=e.clientX;m.y=e.clientY});rs();
+(function f(){x.clearRect(0,0,W,H);for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);if(d<140){p.x+=dx/d*2;p.y+=dy/d*2}
+x.fillStyle=`hsl(${p.h},100%,65%)`;x.shadowBlur=10;x.shadowColor=x.fillStyle;x.beginPath();x.arc(p.x,p.y,1.8,0,7);x.fill()}
+x.shadowBlur=0;for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){x.strokeStyle=`hsla(${a.h},100%,60%,${(1-d/120)*.35})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+requestAnimationFrame(f)})();
+</script></body></html>

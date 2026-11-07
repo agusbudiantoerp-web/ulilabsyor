@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Financial Management for Small Businesses — Neon Lab</title>
+<style>
+:root{--bg:#05060f;--tx:#e8f1ff;--mut:#8fa3c7;--cy:#00e5ff;--mg:#ff2bd6;--lm:#b6ff3b;--am:#ffb82e;--gl:rgba(14,20,48,.62);--ln:rgba(0,229,255,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,"Segoe UI",sans-serif;overflow-x:hidden}
+#fx{position:fixed;inset:0;z-index:-2;width:100%;height:100%}
+.blob{position:fixed;z-index:-3;border-radius:50%;filter:blur(90px);opacity:.45;animation:fl 14s ease-in-out infinite alternate}
+.b1{width:46vw;height:46vw;background:var(--mg);left:-12vw;top:-10vw}.b2{width:42vw;height:42vw;background:var(--cy);right:-12vw;top:30vh;animation-delay:-5s}.b3{width:38vw;height:38vw;background:#6a3dff;left:25vw;bottom:-18vw;animation-delay:-9s}
+@keyframes fl{to{transform:translate(8vw,6vh) scale(1.2)}}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(rgba(0,229,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 80%)}
+h1,h2,nav,button,summary,.big,label{font-family:"Orbitron","Rajdhani",system-ui,sans-serif;letter-spacing:.04em}
+nav{position:sticky;top:0;z-index:9;display:flex;gap:4px;overflow-x:auto;padding:8px 14px;background:rgba(5,6,15,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);font-size:13px;text-transform:uppercase}
+nav a{padding:6px 12px;border-radius:99px;color:var(--tx);text-decoration:none;white-space:nowrap}nav a:hover,nav a:focus-visible{background:rgba(0,229,255,.15);outline:1px solid var(--cy)}
+section{max-width:940px;margin:0 auto;padding:46px 20px}
+h1{font-size:clamp(32px,6.5vw,66px);line-height:1.05;margin:.1em 0;text-transform:uppercase;background:linear-gradient(90deg,var(--cy),var(--mg),var(--lm),var(--cy));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 7s linear infinite}
+@keyframes sh{to{background-position:300% 0}}
+h2{font-size:26px;margin:0 0 .5em;color:var(--cy)}.lead{color:var(--mut);font-size:18px;max-width:68ch}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin:22px 0}
+.glass,.stat,details{background:var(--gl);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(10px);box-shadow:0 0 24px rgba(0,229,255,.08)}
+.stat{padding:14px;text-align:center}.stat b{display:block;font:700 34px Orbitron,system-ui;color:var(--lm);text-shadow:0 0 14px var(--lm)}
+.ctl{display:grid;gap:10px;grid-template-columns:2fr repeat(auto-fit,minmax(110px,1fr))}
+input,select{width:100%;padding:9px;border-radius:8px;border:1px solid var(--ln);background:rgba(5,6,15,.7);color:var(--tx);font:inherit}input:focus,select:focus{outline:2px solid var(--cy);box-shadow:0 0 14px var(--cy)}
+button{font:inherit;cursor:pointer;border:1px solid var(--cy);background:linear-gradient(90deg,rgba(0,229,255,.25),rgba(255,43,214,.25));color:var(--tx);padding:9px 14px;border-radius:10px;text-transform:uppercase;font-size:12px;transition:.2s}button:hover{box-shadow:0 0 18px var(--cy);transform:translateY(-2px)}
+button.on{background:var(--cy);color:#001018}
+details{margin:12px 0;padding:2px 16px;transition:.25s}details:hover,details[open]{border-color:var(--cy);box-shadow:0 0 28px rgba(0,229,255,.2)}
+summary{cursor:pointer;font-weight:700;font-size:15px;padding:12px 0;list-style:none}summary::before{content:"▸ ";color:var(--mg)}details[open] summary::before{content:"▾ "}
+.sub{border-top:1px solid var(--ln);padding:10px 0}.n{color:var(--am);font-weight:700}.sub b{color:var(--tx)}
+.fm{display:block;margin-top:6px;padding:7px 10px;background:rgba(0,0,0,.4);border-left:3px solid var(--lm);color:var(--lm);font:13.5px ui-monospace,Consolas,monospace;overflow-x:auto}
+.lab{padding:18px;margin:16px 0}.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+label{display:block;margin:6px 0 3px;font-size:11px;text-transform:uppercase;color:var(--mut)}
+.res{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}.res small{display:block;color:var(--mut);font-size:12px}.big{font-size:22px;font-weight:700;color:var(--cy);text-shadow:0 0 10px var(--cy)}
+.ok{color:var(--lm)!important;text-shadow:0 0 10px var(--lm)}.no{color:var(--mg)!important;text-shadow:0 0 10px var(--mg)}
+footer{text-align:center;padding:36px 20px;color:var(--mut);font-size:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{#fx,.blob,nav,.np{display:none}body{background:#fff;color:#000}}
+</style></head><body>
+<canvas id="fx"></canvas><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<nav><a href="#top">Start</a><a href="#bab">Teori</a><a href="#lab">Lab</a></nav>
+<section id="top"><p style="color:var(--mg);letter-spacing:.3em;font-size:12px">ROBISON · HANSON · BLACK · 2021 · OER</p>
+<h1>Financial Management for Small Businesses</h1>
+<p class="lead">Financial Statements &amp; Present Value Models, edisi terbuka ke-2 (Michigan State University). Lima bagian, 22 bab: manajemen, analisis kekuatan-kelemahan lewat laporan dan rasio, model nilai kini, ukuran homogen untuk meranking investasi, dan aplikasinya.</p>
+<div class="stats"><div class="stat"><b data-n="22">0</b>BAB</div><div class="stat"><b data-n="5">0</b>BAGIAN</div><div class="stat"><b data-n="95">0</b>SUBBAB</div><div class="stat"><b data-n="5">0</b>LAB INTERAKTIF</div></div>
+<div class="glass" style="padding:14px"><div class="ctl np"><input id="q" type="search" placeholder="Cari: NPV, IRR, DuPont, SPELL, APR…" aria-label="Cari"><button id="ex">Buka semua</button><button id="dl">Unduh .md</button><button onclick="print()">Cetak</button></div><div id="chips" class="np" style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap"></div></div></section>
+<section id="bab"><h2>// Teori &amp; rumus per bab</h2><div id="ch"></div></section>
+
+<section id="lab"><h2>// Laboratorium interaktif</h2>
+<div class="glass lab"><b>1 · Rasio SPELL &amp; DuPont (Bab 6-7)</b><div class="grid"><div><label>Revenue</label><input id="s1" type="number" value="2000"></div><div><label>EBIT</label><input id="s2" type="number" value="300"></div><div><label>Bunga</label><input id="s3" type="number" value="100"></div><div><label>Depresiasi</label><input id="s4" type="number" value="80"></div><div><label>Cicilan pokok (kini)</label><input id="s5" type="number" value="120"></div><div><label>Aset</label><input id="s6" type="number" value="1500"></div><div><label>Utang</label><input id="s7" type="number" value="900"></div><div><label>Aset lancar</label><input id="s8" type="number" value="600"></div><div><label>Utang lancar</label><input id="s9" type="number" value="400"></div></div>
+<div class="res"><div><small>TIE = EBIT/Bunga</small><span class="big" id="r1"></span></div><div><small>DS</small><span class="big" id="r2"></span></div><div><small>ROA</small><span class="big" id="r3"></span></div><div><small>ROE</small><span class="big" id="r4"></span></div><div><small>ATO</small><span class="big" id="r5"></span></div><div><small>Current ratio</small><span class="big" id="r6"></span></div><div><small>D/E</small><span class="big" id="r7"></span></div></div></div>
+<div class="glass lab"><b>2 · NPV · IRR · AE · Payback (Bab 9)</b><div class="grid"><div><label>Investasi awal V₀</label><input id="p1" type="number" value="1000"></div><div style="grid-column:span 2"><label>Arus kas per tahun (koma)</label><input id="p2" value="300,350,400,450"></div><div><label>Discount rate r (%)</label><input id="p3" type="number" value="10" step=".5"></div></div>
+<div class="res"><div><small>NPV</small><span class="big" id="q1"></span></div><div><small>IRR</small><span class="big" id="q2"></span></div><div><small>AE (per tahun)</small><span class="big" id="q3"></span></div><div><small>Payback (th)</small><span class="big" id="q4"></span></div><div><small>Maximum bid</small><span class="big" id="q5"></span></div></div></div>
+<div class="glass lab"><b>3 · Analisis pinjaman (Bab 17)</b><div class="grid"><div><label>Pinjaman L</label><input id="l1" type="number" value="100000"></div><div><label>APR (%)</label><input id="l2" type="number" value="6" step=".1"></div><div><label>Tahun</label><input id="l3" type="number" value="10"></div><div><label>Pembayaran / tahun</label><input id="l4" type="number" value="12"></div></div>
+<div class="res"><div><small>Pembayaran A</small><span class="big" id="m1"></span></div><div><small>Total bunga</small><span class="big" id="m2"></span></div><div><small>Suku efektif (EAR)</small><span class="big" id="m3"></span></div></div></div>
+<div class="glass lab"><b>4 · Leverage: ROE vs ROA (Bab 6, 8)</b><div class="grid"><div><label>ROA %</label><input id="e1" type="number" value="8" step=".5"></div><div><label>Bunga i %</label><input id="e2" type="number" value="6" step=".5"></div><div><label>D/E</label><input id="e3" type="number" value="1.5" step=".1"></div></div>
+<div class="res"><div><small>ROE = ROA + (ROA − i)·D/E</small><span class="big" id="e4"></span></div><div><small>Efek leverage</small><span class="big" id="e5"></span></div></div></div>
+<div class="glass lab"><b>5 · Risiko, certainty equivalent, portofolio (Bab 4)</b><div class="grid"><div><label>μ₁ %</label><input id="k1" type="number" value="12"></div><div><label>σ₁ %</label><input id="k2" type="number" value="20"></div><div><label>μ₂ %</label><input id="k3" type="number" value="6"></div><div><label>σ₂ %</label><input id="k4" type="number" value="8"></div><div><label>ρ</label><input id="k5" type="number" value="0.2" step=".1"></div><div><label>Bobot aset 1</label><input id="k6" type="number" value="0.5" step=".1"></div><div><label>λ risk aversion</label><input id="k7" type="number" value="3" step=".5"></div></div>
+<div class="res"><div><small>E(portofolio)</small><span class="big" id="n1"></span></div><div><small>σ portofolio</small><span class="big" id="n2"></span></div><div><small>CE = μ − λσ²/2</small><span class="big" id="n3"></span></div><div><small>Premi risiko π</small><span class="big" id="n4"></span></div></div></div></section>
+<footer>Ringkasan bebas dari buku open access (CC BY 4.0). Persamaan di PDF berupa gambar, jadi rumus yang ditampilkan adalah definisi standar yang konsisten dengan buku. Bukan nasihat keuangan.<br>Disusun oleh Ir. Agus Budianto Ulil Absyor, S.T., M.M., M.LSCM., M.AIB.</footer>
+<script>
+const P=["I Manajemen","II SWOT & Laporan","III Model Nilai Kini","IV Ukuran Homogen","V Aplikasi"];
+const C=[
+[0,"1 Manajemen keuangan dan perusahaan","Proses manajemen universal: misi, tujuan, evaluasi.",[
+["1.1","Pengantar, misi, tujuan strategis dan objektif taktis","Setiap orang adalah manajer. Tentukan misi, lalu tujuan strategis dan objektif taktis yang konsisten; tanpa tujuan berarti memilih ‘tidak ke mana-mana’."],
+["1.2","SWOT, strategi, implementasi, evaluasi","Identifikasi Strengths, Weaknesses, Opportunities, Threats; susun dan evaluasi strategi, jalankan, lalu ukur kinerja.","Misi → Tujuan → SWOT → Strategi → Implementasi → Evaluasi"],
+["1.3","Proses manajemen keuangan dan trade-off","Tujuan finansial (profit, likuiditas, solvabilitas, risiko) saling bertukar; manajer memilih keseimbangan."]]],
+[0,"2 Bentuk organisasi bisnis","Pilihan bentuk memengaruhi tanggung jawab, pajak, dan kontinuitas.",[
+["2.1","Sole proprietorship dan partnership","Mudah dibentuk; pemilik menanggung kewajiban tak terbatas; laba dipajaki di pemilik."],
+["2.2","Corporation dan LLC","Tanggung jawab terbatas; korporasi dapat dikenai pajak ganda (laba dan dividen); LLC menggabungkan perlindungan dan fleksibilitas pajak."],
+["2.3","Cooperative, trust, dan pertanian AS","Koperasi dimiliki pengguna; trust memisahkan kepemilikan; tinjauan bentuk usaha tani di AS."]]],
+[0,"3 Sistem pajak federal","Yang penting adalah arus kas setelah pajak.",[
+["3.1","Pajak individu, tarif marginal, bracket creep","Tarif rata-rata vs marginal; inflasi mendorong pendapatan ke tarif lebih tinggi (bracket creep).","Tarif rata-rata = Pajak / Pendapatan kena pajak"],
+["3.2","Bunga, dividen, capital gains, kredit pajak","Perlakuan pajak berbeda untuk bunga dan dividen; capital gain/loss dan tax credit memengaruhi pendapatan bersih."],
+["3.3","Pajak bisnis dan depresiasi","Depresiasi (garis lurus, MACRS, bonus) menjadi perisai pajak.","Depresiasi garis lurus = (Biaya − Salvage)/Umur;  ATCF = (CR − CE − Dep)(1 − T) + Dep"]]],
+[0,"4 Mengelola risiko","Statistik risiko dan respons perusahaan.",[
+["4.1","Konsep statistik dan distribusi normal","Nilai harapan, varians, simpangan baku, kovarians, korelasi; distribusi normal.","E(w) = Σp·w;  σ² = Σp(w − μ)²;  ρ = Cov/(σ₁σ₂)"],
+["4.2","Berbagi risiko dan asuransi","Premi π adalah jumlah yang rela dibayar untuk menukar distribusi berisiko dengan nilai pasti.","CE = μ − λσ²/2;  π = μ − CE"],
+["4.3","Diversifikasi dan investasi pengurang risiko","Korelasi rendah menurunkan risiko portofolio.","σp² = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂"],
+["4.4","Struktur modal optimal","Utang menaikkan return ekuitas sekaligus risiko; preferensi risiko manajer menentukan titik optimal."]]],
+[1,"5 Laporan keuangan","Laporan harus konsisten (coordinated financial statements).",[
+["5.1","Neraca","Aset dibiayai utang dan ekuitas.","Aset = Utang + Ekuitas;  NWC = Aset lancar − Utang lancar"],
+["5.2","Checkbook, SAUF, dan Statement of Cash Flow","Sumber dan penggunaan dana menjelaskan perubahan kas."],
+["5.3","Cash income statement dan accrual income statement","Laba akrual memperhitungkan persediaan, piutang, hutang, depresiasi.","NIAT = Pendapatan − COGS − OE − Dep − Bunga − Pajak"],
+["5.4","Variabel over-identified dan studi kasus CFS","Laporan konsisten itu perlu tetapi belum cukup untuk akurat.","ΔEkuitas = NIAT − Penarikan"]]],
+[1,"6 Rasio keuangan","Rasio solvabilitas, profitabilitas, efisiensi, likuiditas, leverage.",[
+["6.1","Solvabilitas: TIE dan DS","TIE mengukur EBIT per $1 bunga; DS menambah depresiasi dan cicilan pokok yang jatuh tempo.","TIE = EBIT/Bunga;  DS = (EBIT + Dep)/(Bunga + Pokok kini)"],
+["6.2","Profitabilitas: m, ROA, ROE","Margin, return aset, dan return ekuitas; ROE > ROA bila ROA > i.","m = Laba/Penerimaan;  ROE = ROA + (ROA − i)·D/E"],
+["6.3","Efisiensi: turnover dan turnover time","Output per unit input; TOT = 365/TO.","ITO = Revenue/Persediaan;  ATO = Revenue/Aset"],
+["6.4","Likuiditas dan leverage","Kemampuan membayar kewajiban jangka pendek dan porsi utang.","Current ratio = CA/CL;  DE = Utang/Ekuitas"],
+["6.5","DuPont, benchmark industri, keterbatasan","Memecah ROE; bandingkan dengan standar industri, waspadai keterbatasan rasio.","ROA = m × ATO;  ROE = ROA × (Aset/Ekuitas)"]]],
+[1,"7 Analisis sistem","CFS adalah sistem: perubahan satu bagian memengaruhi bagian lain.",[
+["7.1","What-is dan rasio SPELL","Solvency, Profitability, Efficiency, Liquidity, Leverage dihitung dari CFS dan dibandingkan dengan industri."],
+["7.2","What-if, skenario, endogenisasi variabel","Ubah variabel eksogen, hitung ulang SPELL, bandingkan skenario."],
+["7.3","How-much dan Goal Seek","Cari nilai variabel agar rasio target tercapai."],
+["7.4","Common size statements dan forecasting","Item dinyatakan sebagai persen aset/pendapatan.","Common size = Item / Total aset (atau Pendapatan)"]]],
+[2,"8 Model nilai kini dan laporan akrual","PV model sebaiknya perluasan multi-periode dari AIS.",[
+["8.1","AIS, ROA, ROE","Laba aset dan laba ekuitas menghasilkan IRR^A dan IRR^E berbeda."],
+["8.2","Model IRR, IRRA, IRRE","IRR adalah tingkat diskonto yang membuat NPV nol.","NPV = Σ Rₜ/(1+r)ᵗ − V₀;  IRR: NPV = 0"],
+["8.3","NPV aset vs ekuitas, setelah pajak","Rangking aset dan ekuitas dapat bertentangan; model setelah pajak IRRE(1−T), IRRA(1−T*)."]]],
+[2,"9 Model nilai kini","Berbagai model menjawab pertanyaan berbeda.",[
+["9.1","NPV dan IRR","Meranking investasi.","NPV > 0 ⇒ layak"],
+["9.2","Break-even, maximum bid, break-even cash flow","Selesaikan satu variabel agar NPV = 0; maximum bid adalah harga beli tertinggi dengan return sama dengan defender.","V₀max = Σ Rₜ/(1+r)ᵗ"],
+["9.3","Annuity equivalent dan kapitalisasi","AE meratakan NPV; kapitalisasi untuk arus kas konstan.","AE = NPV·r/(1 − (1+r)^−n);  V = R/r;  V = R/(r − g)"],
+["9.4","Optimal life dan payback","Payback hanya aturan praktis tanpa nilai waktu."]]],
+[2,"10 Investasi inkremental","Investasi tambahan memerlukan perubahan layanan yang ada.",[
+["10.1","Mengukur kontribusi inkremental","Analisis perubahan variabel dalam template PV.","ΔRₜ = Rₜ(dengan) − Rₜ(tanpa)"],
+["10.2","Laju ekstraksi layanan optimal","Optimasi stand-alone vs inkremental."],
+["10.3","Contoh: Green and White Services dan doughnuts","Menambah landscaping pada GWS; membandingkan doughnut cokelat dan bulat."]]],
+[2,"11 Peramalan dan model nilai kini","Semua orang peramal; ramalan sering keliru.",[
+["11.1","Persamaan ramalan deterministik dan regresi","Gunakan yang diketahui; regresi linear.","y = α + βx + ε;  yₜ₊₁ = yₜ(1 + g)"],
+["11.2","Shock, variabel eksogen, ramalan kualitatif","Akurasi ramalan endogen tergantung eksogen."],
+["11.3","PV model dan peramalan","Nilai kini memakai arus kas proyeksi."]]],
+[3,"12 Meranking investasi dan ukuran homogen","Diskonto = IRR defender (biaya peluang).",[
+["12.1","Biaya peluang","Mengganti defender dengan challenger mengorbankan IRR defender."],
+["12.2","Ukuran satu dimensi dan homogen","NPV dan IRR bisa bertentangan kecuali ukurannya homogen (ukuran, jangka, pajak, likuiditas)."]]],
+[3,"13 Ukuran homogen: ukuran investasi","Investasi awal dan arus kas periodik harus sama.",[
+["13.1","MIRR dan MNPV","Reinvestasi arus kas sampai periode akhir dengan tingkat reinvestasi sama membuat rangking konsisten."],
+["13.2","Scaling dan addition","Scaling bila challenger dapat diskalakan; penambahan bila unik.","γ = V₀(defender)/V₀(challenger)"],
+["13.3","Empat model rangking konsisten dan non-mutually exclusive","Kapan dipakai tiap model."]]],
+[3,"14 Ukuran homogen: jangka waktu","Jangka berbeda perlu dinormalisasi.",[
+["14.1","Kapitalisasi dan rata-rata PV","Rate kapitalisasi dan rumus yang lebih kompleks."],
+["14.2","Investasi berulang: AE","Rangking investasi berulang dengan annuity equivalent."],
+["14.3","Umur penggantian optimal","Pilih umur yang memaksimumkan AE."]]],
+[3,"15 Ukuran homogen: tarif pajak","Yang dihitung adalah IRR setelah pajak.",[
+["15.1","IRR setelah pajak defender","Cari tingkat diskonto yang membuat NPV arus kas setelah pajak nol; bandingkan dengan tarif marginal."],
+["15.2","Koefisien penyesuaian pajak","Praktik: IRR sebelum pajak × (1 − T) hanya aproksimasi.","IRR(1−T) ≈ IRR × (1 − T)"]]],
+[3,"16 Ukuran homogen: likuiditas dan mata uang","Return berupa kas dan capital gain.",[
+["16.1","CTR, inflasi, dan suku riil","Porsi return tunai menentukan likuiditas; inflasi mengurangi likuiditas jangka panjang.","1 + r = (1 + r*)(1 + π)"],
+["16.2","PE ratio dan coverage","Harga terhadap laba; kemampuan menutup beban.","PE = Harga/Laba"],
+["16.3","Kurs dan PV model","Konversi arus kas atau tingkat bunga antarmata uang."]]],
+[4,"17 Analisis pinjaman","Satu persamaan PV menyelesaikan satu variabel tak diketahui.",[
+["17.1","Actuarial rate, APR, suku efektif","Suku nyata berbeda dari suku tercatat.","EAR = (1 + APR/m)^m − 1"],
+["17.2","Pinjaman pembayaran konstan dan tabel amortisasi","Pembayaran, jangka, jumlah, atau bunga.","A = L·i/(1 − (1+i)^−n)"],
+["17.3","Pinjaman khusus: concessionary, refinance, moderated, disguised interest","Hitung PV beban pinjaman sebenarnya."]]],
+[4,"18 Investasi tanah","Tanah tahan lama dan tak bergerak, cocok sebagai agunan.",[
+["18.1","Volatilitas harga tanah","Harga sensitif terhadap perubahan kecil r atau g.","V = R/(r − g)"],
+["18.2","Biaya transaksi, likuiditas, pajak, koefisien θ","Maximum bid dikoreksi biaya transaksi dan pajak."],
+["18.3","PE ratio untuk tanah","Harga relatif terhadap sewa/laba tanah."]]],
+[4,"19 Sewa (lease)","Kontrol berpindah tanpa kepemilikan.",[
+["19.1","Jenis sewa dan pajak","Sale-leaseback, operating lease, financial lease."],
+["19.2","Net present cost: sewa vs beli","Bandingkan PV biaya setelah pajak.","NPC = Σ Biaya setelah pajak/(1+r)ᵗ"],
+["19.3","Keunggulan komparatif lessee dan lessor","Likuiditas, risiko, pajak."]]],
+[4,"20 Investasi keuangan","Fokus pada jumlah di masa depan.",[
+["20.1","Sekuritas bebas risiko dan bunga majemuk","Mulai dini dan biarkan tumbuh.","FV = PV(1 + r)ⁿ"],
+["20.2","Time deposit dan obligasi","Likuiditas lebih rendah, yield lebih tinggi.","Harga = Σ C/(1+r)ᵗ + F/(1+r)ⁿ"]]],
+[4,"21 Kurva yield","Tingkat diskonto multi-periode tersusun dari tingkat periodik yang berubah.",[
+["21.1","Yield curve dan forward rate","Kurva mencerminkan ekspektasi ekonomi.","(1+yₙ)ⁿ = (1+yₙ₋₁)ⁿ⁻¹(1+fₙ)"]]],
+[4,"22 Econs dan humans","Komoditas vs modal sosial dan barang relasional.",[
+["22.1","Berperilaku sebagai econ vs human","Buku mengajarkan perilaku ‘econ’, tetapi kadang perlu dilunakkan oleh modal sosial; menyeimbangkan keduanya adalah tugas manajemen terpenting."]]]];
+const $=i=>document.getElementById(i),N=i=>+$(i).value,R=(v,d=2)=>isFinite(v)?v.toLocaleString("id-ID",{maximumFractionDigits:d}):"–";
+let part=-1;
+function draw(){const f=$("q").value.toLowerCase();$("ch").innerHTML=C.filter(c=>part<0||c[0]==part).map(c=>{const s=c[3].filter(x=>!f||x.join(" ").toLowerCase().includes(f)||c[1].toLowerCase().includes(f));return s.length?`<details ${f?"open":""}><summary>${c[1]} <span style="font-weight:400;color:var(--mut)">· ${c[2]}</span></summary>${s.map(x=>`<div class="sub"><b><span class="n">${x[0]}</span> ${x[1]}</b><br>${x[2]}${x[3]?`<span class="fm">${x[3]}</span>`:""}</div>`).join("")}</details>`:""}).join("")||"<p>Tidak ada hasil.</p>"}
+$("chips").innerHTML=["Semua",...P].map((p,i)=>`<button data-p="${i-1}" class="${i?"":"on"}">${p}</button>`).join("");
+$("chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;part=+b.dataset.p;[...$("chips").children].forEach(x=>x.classList.toggle("on",x==b));draw()};
+$("q").oninput=draw;$("ex").onclick=()=>document.querySelectorAll("#ch details").forEach(d=>d.open=true);draw();
+$("dl").onclick=()=>{const t="# Financial Management for Small Businesses - Ringkasan\n\n"+C.map(c=>`## ${c[1]}\n${c[2]}\n\n`+c[3].map(x=>`### ${x[0]} ${x[1]}\n${x[2]}\n`+(x[3]?`Rumus: ${x[3]}\n`:"")).join("\n")).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/markdown"}));a.download="Ringkasan_Financial_Management_Small_Business.md";a.click()};
+document.querySelectorAll("[data-n]").forEach(e=>{const T=+e.dataset.n;let v=0;const id=setInterval(()=>{v++;e.textContent=v;if(v>=T)clearInterval(id)},900/T)});
+const on=(ids,f)=>{ids.forEach(i=>$(i).oninput=f);f()},set=(i,t,c)=>{$(i).textContent=t;if(c!==undefined)$(i).className="big "+(c?"ok":"no")};
+on(["s1","s2","s3","s4","s5","s6","s7","s8","s9"],()=>{const Rv=N("s1"),eb=N("s2"),i=N("s3"),d=N("s4"),p=N("s5"),A=N("s6"),D=N("s7"),E=A-D,ca=N("s8"),cl=N("s9");set("r1",R(eb/i));set("r2",R((eb+d)/(i+p)));set("r3",R((eb)/A*100,1)+"%");set("r4",R((eb-i)/E*100,1)+"%");set("r5",R(Rv/A));set("r6",R(ca/cl));set("r7",R(D/E))});
+const npv=(r,V,c)=>c.reduce((s,x,t)=>s+x/Math.pow(1+r,t+1),0)-V;
+on(["p1","p2","p3"],()=>{const V=N("p1"),c=$("p2").value.split(",").map(Number).filter(x=>!isNaN(x)),r=N("p3")/100,n=c.length,v=npv(r,V,c);set("q1",R(v),v>=0);let lo=-.9,hi=5;for(let k=0;k<100;k++){const m=(lo+hi)/2;npv(m,V,c)>0?lo=m:hi=m}set("q2",R((lo+hi)/2*100,2)+"%");set("q3",R(r?v*r/(1-Math.pow(1+r,-n)):v/n));let cum=0,pb="–";for(let t=0;t<n;t++){const pr=cum;cum+=c[t];if(cum>=V){pb=R(t+(V-pr)/c[t],2);break}}set("q4",pb);set("q5",R(v+V))});
+on(["l1","l2","l3","l4"],()=>{const L=N("l1"),a=N("l2")/100,m=N("l4"),n=N("l3")*m,i=a/m,A=i?L*i/(1-Math.pow(1+i,-n)):L/n;set("m1",R(A));set("m2",R(A*n-L,0));set("m3",R((Math.pow(1+i,m)-1)*100,3)+"%")});
+on(["e1","e2","e3"],()=>{const a=N("e1"),i=N("e2"),k=N("e3"),r=a+(a-i)*k;set("e4",R(r,2)+"%");set("e5",a>i?"Menguatkan (ROA > i)":a<i?"Melemahkan (ROA < i)":"Netral",a>=i)});
+on(["k1","k2","k3","k4","k5","k6","k7"],()=>{const m1=N("k1"),s1=N("k2"),m2=N("k3"),s2=N("k4"),r=N("k5"),w=N("k6"),l=N("k7"),mu=w*m1+(1-w)*m2,v=w*w*s1*s1+(1-w)*(1-w)*s2*s2+2*w*(1-w)*r*s1*s2,ce=mu-l/2*v/100;set("n1",R(mu)+"%");set("n2",R(Math.sqrt(v))+"%");set("n3",R(ce)+"%");set("n4",R(mu-ce)+"%")});
+(function(){const c=$("fx"),x=c.getContext("2d"),mq=matchMedia("(prefers-reduced-motion:reduce)").matches;let W,H,pt=[],m={x:-9,y:-9};const rs=()=>{W=c.width=innerWidth;H=c.height=innerHeight;pt=Array.from({length:Math.min(90,Math.floor(W*H/16000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,h:Math.random()<.5?185:310}))};addEventListener("resize",rs);addEventListener("pointermove",e=>{m.x=e.clientX;m.y=e.clientY});rs();
+const f=()=>{x.clearRect(0,0,W,H);pt.forEach((p,i)=>{if(!mq){p.x+=p.vx;p.y+=p.vy}if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;const dx=m.x-p.x,dy=m.y-p.y;if(!mq&&dx*dx+dy*dy<22000){p.x+=dx*.01;p.y+=dy*.01}x.fillStyle=`hsl(${p.h},100%,65%)`;x.shadowBlur=10;x.shadowColor=x.fillStyle;x.beginPath();x.arc(p.x,p.y,1.8,0,7);x.fill();for(let j=i+1;j<pt.length;j++){const q=pt[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle=`hsla(${p.h},100%,65%,${.28*(1-d/130)})`;x.shadowBlur=0;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});if(!mq)requestAnimationFrame(f)};f()})();
+</script></body></html>

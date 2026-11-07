@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Money and Debt: The Public Role of Banks — Teori, Rumus &amp; Lab Interaktif</title>
+<style>
+:root{--ink:#0f1b2d;--mut:#54647a;--bg:#eef2f6;--card:#fff;--line:#cfd8e3;--a:#1f7a8c;--b:#b5442e;--c:#d99a1c;--ok:#2d7a4b}
+@media(prefers-color-scheme:dark){:root{--ink:#e6edf5;--mut:#9fb0c4;--bg:#0e1622;--card:#16212f;--line:#2a3a4e;--a:#4db3c6;--b:#e0785f;--c:#e8b24a;--ok:#5cc489}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Georgia,serif}
+h1,h2,h3,nav,label,button,summary,.big,small,input{font-family:system-ui,"Segoe UI",sans-serif}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:0 0 .4em}h2{font-size:26px;margin:0 0 .5em}
+nav{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);display:flex;gap:2px;overflow-x:auto;padding:6px 12px;font-size:14px}
+nav a{white-space:nowrap;padding:6px 10px;border-radius:6px;text-decoration:none;color:var(--ink)}nav a:hover,nav a:focus-visible{background:var(--bg);outline:2px solid var(--a)}
+section{max-width:880px;margin:0 auto;padding:40px 20px;border-bottom:1px solid var(--line)}
+.lead{color:var(--mut);font-size:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+label{display:block;font-weight:600;margin:8px 0 4px;font-size:14px}
+input,select{width:100%;padding:7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}input[type=range]{padding:0}
+button{font:inherit;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px}button.alt{background:transparent;color:var(--ink)}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:4px 16px}
+summary{cursor:pointer;font-weight:700;font-size:18px;padding:10px 0}
+.sub{border-top:1px solid var(--line);padding:10px 0}.sub b{font-family:system-ui}.sub .n{color:var(--a)}
+.fm{display:block;margin-top:6px;padding:6px 10px;background:var(--bg);border-left:4px solid var(--c);font:14px ui-monospace,Consolas,monospace}
+.big{font-size:26px;font-weight:700}.res{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px}.res small{display:block;color:var(--mut)}
+.good{color:var(--ok)}.bad{color:var(--b)}svg{width:100%;height:150px;background:var(--bg);border-radius:6px}
+footer{text-align:center;padding:30px 20px;color:var(--mut);font:14px system-ui}
+@media print{nav,.np{display:none}details>*{display:block}}
+</style></head><body>
+<nav><a href="#top">Awal</a><a href="#bab">Teori per bab</a><a href="#lab">Laboratorium</a></nav>
+<section id="top"><h1>Money and Debt: The Public Role of Banks</h1>
+<p class="lead">Bart Stellinga, Josta de Hoog, Arthur van Riel &amp; Casper de Vries (WRR, Springer, 2021). Kajian untuk pemerintah Belanda tentang penciptaan uang oleh bank, sistem <i>sovereign money</i>, dan keseimbangan kepentingan publik–swasta. Di bawah ini: teori tiap bab dan subbab, rumus/identitas kunci, dan empat laboratorium.</p>
+<div class="grid np"><input id="q" type="search" placeholder="Cari istilah (mis. leverage, seigniorage, QE)…" aria-label="Cari"><button id="ex">Buka semua</button><button class="alt" id="dl">Unduh ringkasan (.md)</button><button class="alt" onclick="print()">Cetak / PDF</button></div></section>
+<section id="bab"><h2>Teori dan rumus per bab</h2><div id="ch"></div></section>
+
+<section id="lab"><h2>Laboratorium interaktif</h2>
+<div class="card"><b>1. Neraca bank: pinjaman menciptakan deposito (Bab 2)</b>
+<div class="grid"><div><label>Total aset awal</label><input id="a1" type="number" value="100"></div><div><label>Rasio ekuitas (%)</label><input id="a2" type="number" value="5" step=".5"></div><div><label>Pinjaman baru L</label><input id="a3" type="number" value="10"></div><div><label>Kerugian aset (%)</label><input id="a4" type="number" value="4" step=".5"></div><div><label>ROA (%)</label><input id="a5" type="number" value="0.4" step=".1"></div></div>
+<div class="res"><div><small>Deposito baru (uang dicipta)</small><span class="big" id="r1"></span></div><div><small>Leverage ratio sebelum → sesudah</small><span class="big" id="r2"></span></div><div><small>Ekuitas setelah rugi</small><span class="big" id="r3"></span></div><div><small>Status</small><span class="big" id="r4"></span></div><div><small>ROE = ROA × A/E</small><span class="big" id="r5"></span></div></div></div>
+<div class="card"><b>2. Liquidity coverage ratio (Box 2.3)</b>
+<div class="grid"><div><label>Obligasi pemerintah (haircut 0%)</label><input id="l1" type="number" value="30"></div><div><label>Aset likuid lain</label><input id="l2" type="number" value="20"></div><div><label>Haircut aset lain (%)</label><input id="l3" type="number" value="15"></div><div><label>Arus keluar bersih 30 hari</label><input id="l4" type="number" value="45"></div></div>
+<div class="res"><div><small>LCR</small><span class="big" id="lr"></span></div><div><small>Minimum 100%</small><span class="big" id="ls"></span></div></div></div>
+<div class="card"><b>3. Utang swasta vs PDB (Bab 4.1.2 dan 7.1.1)</b>
+<div class="grid"><div><label>Utang/PDB awal (%)</label><input id="d1" type="number" value="100"></div><div><label>Pertumbuhan utang (%/th)</label><input id="d2" type="number" value="6" step=".5"></div><div><label>Pertumbuhan PDB nominal (%/th)</label><input id="d3" type="number" value="4" step=".5"></div><div><label>Tahun</label><input id="d4" type="number" value="30"></div></div>
+<svg id="ds" viewBox="0 0 400 150"></svg><div class="res"><div><small>Utang/PDB akhir</small><span class="big" id="de"></span></div></div></div>
+<div class="card"><b>4. Bias pajak terhadap utang (Lampiran II) dan seigniorage (6.3.2)</b>
+<div class="grid"><div><label>Utang bank</label><input id="t1" type="number" value="1000"></div><div><label>Bunga (%)</label><input id="t2" type="number" value="3" step=".1"></div><div><label>Tarif pajak (%)</label><input id="t3" type="number" value="25"></div><div><label>Uang dicetak</label><input id="t4" type="number" value="100"></div><div><label>Biaya produksi (%)</label><input id="t5" type="number" value="5"></div></div>
+<div class="res"><div><small>Pajak dihemat</small><span class="big" id="u1"></span></div><div><small>Biaya utang setelah pajak</small><span class="big" id="u2"></span></div><div><small>Seigniorage konvensional</small><span class="big" id="u3"></span></div></div></div></section>
+<footer>Ringkasan bebas berdasarkan buku open access WRR/Springer (CC BY 4.0); rumus adalah identitas dan rasio standar yang dipakai buku, bukan model dari buku itu sendiri. Bukan nasihat keuangan.<br>Disusun oleh Ir. Agus Budianto Ulil Absyor, S.T., M.M., M.LSCM., M.AIB.</footer>
+<script>
+const C=[
+["1 Pendahuluan","Uang dan utang sebagai konstruksi sosial yang bertumpu pada kepercayaan.",[
+["1.1","Apa itu uang?","Uang adalah kesepakatan implisit antarmanusia: aset hanya menjadi uang jika orang percaya pihak lain akan menerimanya. Nilainya bersumber dari kepercayaan, bukan bahan. Asal-usulnya diperdebatkan: efisiensi barter (tanpa bukti sejarah kuat), relasi utang, atau pajak/persembahan oleh negara dan lembaga agama. Untuk deposito bank, kepercayaan dibangun oleh penjaminan simpanan, pengawasan, dan dukungan likuiditas.","Uang = alat bayar + alat pelunasan utang yang diterima umum"],
+["1.2","Apa itu utang?","Utang pada dasarnya pertukaran tidak simultan: satu pihak sudah memberi, pihak lain belum membalas (Graeber: pertukaran yang belum selesai). Utang memungkinkan mengantisipasi pendapatan masa depan untuk investasi atau konsumsi, tetapi sering dibingkai secara moral (kata schuld = utang dan kesalahan; berbagai pandangan agama tentang bunga).","Klaim kreditur (aset) = kewajiban debitur (liabilitas)"],
+["1.3","Pentingnya kepercayaan","Kepercayaan krusial bagi uang dan pinjaman, dan terguncang oleh krisis keuangan. Warga Belanda kurang percaya pada perbankan dibanding institusi lain; yang berpendidikan tinggi justru kurang percaya. Kepercayaan meliputi pembuat kebijakan, bank, dan stabilitas sistem."],
+["1.4","Dinamika sistem keuangan-moneter","Sistem moneter-keuangan tidak statis: berubah oleh inovasi, regulasi, dan perilaku pelaku, sehingga analisis harus melihat perkembangan, bukan hanya foto sesaat."],
+["1.5","Gambaran laporan","Pemerintah meminta WRR menilai penciptaan uang oleh bank, kelebihan dan kekurangan alternatif, serta seigniorage (latar belakang inisiatif warga Ons Geld). Alur: mekanika (Bab 2), sejarah (3), penilaian dengan empat tujuan (4), sovereign money (5-6), kebijakan (7), kesimpulan (8)."]]],
+["2 Bagaimana uang diciptakan?","Bank komersial menciptakan sebagian besar uang lewat pemberian pinjaman.",[
+["2.1","Bank dan penciptaan uang","Mayoritas uang beredar (lebih dari 90%) berupa deposito bank, hanya sebagian kecil tunai. Neraca bank: aset (pinjaman, surat berharga, cadangan bank sentral) di kiri; utang (deposito) dan ekuitas di kanan. Saat bank memberi pinjaman, aset (pinjaman) dan utang (deposito nasabah) muncul bersamaan: itulah uang baru. Pelunasan menghancurkan uang.","Aset = Utang + Ekuitas;  Pinjaman L: Aset +L, Deposito +L;  Pelunasan: −L"],
+["2.1.1","Pembayaran elektronik dan penarikan tunai","Pembayaran antarbank diselesaikan memakai cadangan bank sentral, dan uang tunai bagi bank dapat dipertukarkan dengan cadangan. Uang kertas dan koin hanya masuk peredaran ketika deposito dikonversi, sehingga mencetaknya tidak menambah jumlah uang beredar."],
+["2.1.2","Uang gratis?","Uang baru bukan milik bank, melainkan milik peminjam; bank memegang tagihan (pinjaman) dan berutang kepada peminjam. Bank tidak membelanjakannya sendiri, dan menanggung risiko kredit serta likuiditas."],
+["2.2","Kekuatan pendorong dan pembatas","Penciptaan uang tidak tak terbatas: ia dipengaruhi (1) perilaku rumah tangga dan bisnis, (2) risiko neraca bank, dan (3) kebijakan moneter."],
+["2.2.1","Peran rumah tangga dan bisnis","Permintaan pinjaman menggerakkan penciptaan uang. Setelah krisis 2007-2009 rumah tangga dan bisnis lebih memilih melunasi utang daripada meminjam, sehingga penciptaan uang melemah."],
+["2.2.2","Risiko neraca bank","Dua risiko utama: <b>solvabilitas</b> (ekuitas tak mampu menyerap penurunan nilai aset) dan <b>likuiditas</b> (tak mampu memenuhi penarikan atau pendanaan jangka pendek mengering). Pemegang saham menyukai utang karena lebih murah (bunga dapat dikurangkan dari pajak) dan deposito berbunga rendah, sehingga ROE naik; regulator meminta ekuitas cukup.","Leverage ratio = Ekuitas (Tier 1) / Total aset;  Basel III min 3%; bank sistemik Belanda min 4% (2018);  Capital ratio = Modal / Aset tertimbang risiko;  ROE = ROA × (Aset/Ekuitas)"],
+["2.2.2.2","Likuiditas","Aset likuid: pasar besar dan aktif, volatilitas rendah, dianggap safe haven. Pengawas menghitung LCR; obligasi pemerintah berperingkat tinggi dihitung 100%, aset lain dikenai haircut, pinjaman individual tidak dihitung. Ada sirkularitas: label likuid sendiri menaikkan likuiditas aset itu.","LCR = Aset likuid berkualitas tinggi (setelah haircut) / Arus keluar bersih 30 hari ≥ 100%"],
+["2.3","Kebijakan moneter","Tujuan dan instrumen berubah sepanjang waktu."],
+["2.3.1","Tujuan dan instrumen","Sejak 1980-an menjaga inflasi menjadi tujuan utama. Mandat ECB adalah stabilitas harga (Pasal 127(1) TFEU), ditafsirkan sebagai inflasi HICP di bawah tetapi dekat 2% (memberi ruang melawan deflasi karena bunga sulit turun jauh di bawah nol).","π (HICP) ≲ 2% jangka menengah"],
+["2.3.2","Kebijakan moneter dalam praktik","Kebijakan terutama bekerja lewat suku bunga yang memengaruhi permintaan dan penawaran kredit melalui berbagai saluran transmisi; efeknya sulit diprediksi dan hubungannya dengan penciptaan uang tidak langsung."],
+["2.3.3","Quantitative easing","Setelah krisis suku bunga kebijakan mendekati batas bawah nol (zero lower bound) sementara inflasi dan penciptaan uang di bawah target. Bank sentral (Fed, BoE, ECB sejak 2014) membeli aset untuk memengaruhi suku bunga jangka panjang."],
+["2.4","Kesimpulan","Bank-bank komersial, bukan bank sentral, menciptakan sebagian besar uang lewat pinjaman. Ada pembatas, tetapi penciptaan uang dan utang terkait erat."]]],
+["3 Sejarah penciptaan uang","Dilema abadi: stabilitas mata uang versus fleksibilitas moneter.",[
+["3.1","Abad ke-19","<b>Pembayaran:</b> koin dominan (publik, kandungan logam ditetapkan negara); uang kertas DNB untuk perdagangan (hibrida publik-swasta; UU Perbankan 1863). <b>Pembiayaan:</b> deposito terkait kredit dagang jangka pendek. <b>Kebijakan:</b> pembatas utama adalah kaitan dengan logam mulia. Porsi deposito baru naik struktural di awal abad ke-20."],
+["3.2","Antarperang dan Depresi (1918-1939)","<b>Pembayaran:</b> koin masih dominan, uang kertas dipakai bisnis dan orang kaya, giro publik berkembang. <b>Pembiayaan:</b> DNB menjadi bank sentral bagi bank (membeli pinjaman merchant bank); kredit industri jangka panjang tumbuh. <b>Kebijakan:</b> standar emas kembali 1925 mengaitkan penciptaan uang dengan pasokan emas."],
+["3.3","Bretton Woods (1945-1973)","<b>Pembayaran:</b> deposito menjadi dominan berkat otomasi dan skala; preferensi giro publik dan tunai membatasi ekspansi pinjaman bank. Bank menjadi bank serba guna. <b>Kebijakan:</b> instrumen pemerintah secara kuat memengaruhi pinjaman bank."],
+["3.4","Pra-krisis (1973-2008)","Deposito menjadi norma; PCGD dan Rijkspostspaarbank diprivatisasi dan operasi bank rumah tangga dan bisnis menyatu (konglomerat bank-asuransi). Kontrol modal, plafon kredit, aturan alokasi, dan batas bunga dibongkar, digantikan terutama oleh regulasi permodalan."],
+["3.5","Kesimpulan","Sistem hari ini tidak berasal dari cetak biru; ia berevolusi bertahap. Keterkaitan dengan emas sudah hilang; yang menentukan sekarang adalah penawaran dan permintaan kredit, perbankan, dan kebijakan pemerintah. Pembuat kebijakan awalnya melihat deposito sebagai efisiensi, lalu belajar bahwa ia memungkinkan ekspansi kredit besar."]]],
+["4 Penilaian sistem keuangan-moneter","Empat tujuan: kontribusi ekonomi, stabilitas, keadilan, legitimasi.",[
+["4.1.1","Sistem pembayaran","Dinilai dengan lima kriteria: biaya, aksesibilitas, kenyamanan, keamanan, keandalan. Biaya sistem pembayaran Belanda terhadap PDB lebih rendah dari kebanyakan negara."],
+["4.1.2","Volume utang","Utang swasta Belanda (BIS) naik dari kurang dari 40% PDB (1960) menjadi lebih dari 250%. Pinjaman efisien mendorong pertumbuhan, tetapi ada titik ketika tambahan pinjaman tidak lagi berkontribusi (kurva U terbalik).","Utang swasta / PDB: <40% (1960) → >250%"],
+["4.1.3","Mengurangi utang","Deleveraging tampak jelas tetapi cara pencapaiannya tidak mudah, karena total utang swasta sudah sangat besar."],
+["4.2.1","Stabilitas bank individual","Kerapuhan bank berasal dari transformasi jatuh tempo dan transformasi risiko: bermanfaat bagi pembiayaan dan hasil tabungan, tetapi membuat bank rentan secara inheren."],
+["4.2.2","Instabilitas sistemik","Stabilitas sistem bukan sekadar jumlah stabilitas bank individu; risiko sistemik adalah gangguan layanan keuangan akibat gangguan sebagian atau seluruh sistem (pelajaran 2007-2009)."],
+["4.3.1","Biaya publik krisis","Anggapan: laba sebelum krisis ke bank, biaya ke pemerintah dan publik. Biaya langsung (penyelamatan bank) dan tidak langsung (pengangguran, dll.)."],
+["4.3.2","Keuntungan finansial bank","Menurut DNB bank menikmati subsidi, sebagian besar dari aturan pajak, yang merangsang kelebihan pasokan dan menurunkan kesejahteraan."],
+["4.3.3","Manfaat dan biaya utang lebih besar","Kenaikan utang bisa berarti demokratisasi layanan keuangan, tetapi manfaat, biaya, dan risikonya terdistribusi tidak merata."],
+["4.4.1","Sifat publik-swasta lembaga keuangan","Sektor keuangan bukan sektor biasa: bank menjalankan fungsi publik (pembayaran, tabungan) sebagai perusahaan swasta, sehingga menjadi lembaga semi-publik."],
+["4.4.2","Opsi kendali demokratis","Pemerintah wajib mengatur sistem moneter (Pasal 106 UUD Belanda); kepentingan publik tidak berarti layanan harus milik publik, tetapi opsi kendali demokratis menyusut."],
+["4.4.3","Posisi warga","Opsi exit terhambat (hambatan administratif berpindah bank, tidak adanya portabilitas rekening)."],
+["4.5","Kesimpulan","Dua masalah mendasar: (1) pertumbuhan uang dan utang yang tidak seimbang dan tak terkendali; (2) keseimbangan kepentingan publik dan swasta yang terdistorsi."]]],
+["5 Cara kerja sistem sovereign money","Semua uang, langsung atau tak langsung, adalah uang publik.",[
+["5.1","Sistem pembayaran","Pembayaran dipisah dari pembiayaan; semua uang adalah uang berdaulat, baik di bank sentral maupun di institusi pembayaran dengan cadangan 100%.","Deposito institusi pembayaran = cadangan bank sentral (rasio 100%)"],
+["5.1.1","Rekening di institusi pembayaran","Bank terpisah khusus pembayaran: uang tetap utang kepada pemegang rekening, tetapi asetnya dibatasi pada cadangan bank sentral."],
+["5.1.2","Rekening di bank sentral","Semua rekening pembayaran dipindah ke bank sentral sebagai tunai elektronik (Positive Money: pemegang rekening pemilik hukum uang)."],
+["5.1.3","Kesimpulan","Semua proposal mengasumsikan pembayaran 100% uang berdaulat; perbedaan teknis tidak berdampak praktis; bank sentral bertanggung jawab penuh atas penciptaan uang baru."],
+["5.2.1","Pembiayaan berbasis utang","Lembaga pembiayaan harus meminjam dulu dari rumah tangga/perusahaan sebelum meminjamkan, dengan ekuitas sebagai penyerap rugi."],
+["5.2.2","Pembiayaan hanya ekuitas","Misalnya Limited Purpose Banking (Kotlikoff): lembaga hanya menerbitkan saham yang dapat diperdagangkan (dana investasi)."],
+["5.2.3","Pembiayaan swasta dan publik","Benes dan Kumhof: bank sentral dapat meminjamkan ke lembaga pembiayaan pada suku bunga tertentu."],
+["5.3.1","Penciptaan, alokasi, dan penghancuran uang","Uang baru hanya dibuat lembaga publik independen; kewajiban lembaga pembiayaan swasta tak lagi berfungsi sebagai uang."],
+["5.3.2","Regulasi sistem keuangan","Regulasi pembiayaan dapat lebih ringan karena sistem pembayaran terlindung dari risiko (mis. tak perlu penjaminan simpanan)."],
+["5.3.3","Independensi dan akuntabilitas","Parlemen menetapkan tujuan dan alokasi uang baru; lembaga pencipta uang harus cukup independen dari politik."],
+["5.4.1","Transisi sistem pembayaran","Pertanyaan: deposito apa yang dikonversi (Positive Money: hanya sight deposit)."],
+["5.4.2","Transisi sistem keuangan","Bank menanggung utang besar ke bank sentral; dapat dilunasi antara lain dengan obligasi pemerintah yang dimiliki."],
+["5.5","Kesimpulan","Kesamaan: pembayaran dipisah dari pembiayaan, uang baru hanya oleh bank sentral, dana dihimpun dulu sebelum dipinjamkan. Perbedaan: lokasi rekening, mekanisme uang baru masuk ekonomi, utang atau ekuitas, kecepatan transisi."]]],
+["6 Kelebihan dan kekurangan sovereign money","Dinilai dengan empat tujuan yang sama.",[
+["6.1","Kontribusi ekonomi","<b>6.1.1 Pembayaran:</b> tak ada perbaikan atau penurunan langsung; stabil terhadap krisis. <b>6.1.2 Prosiklikalitas:</b> pembatasan pinjaman diharapkan meredam optimisme dan pesimisme kolektif. <b>6.1.3 Harga dan ketersediaan kredit:</b> kurva U terbalik; kredit bisa lebih sedikit/mahal. <b>6.1.4 Pengurangan utang sekali waktu:</b> pinjaman bank sentral ke bank dapat dikompensasi dengan utang publik. <b>6.1.5 Ringkasan:</b> volume pinjaman kemungkinan lebih rendah tetapi lebih stabil."],
+["6.2","Stabilitas","<b>6.2.1 Individual:</b> institusi pembayaran stabil (cadangan penuh); lembaga pembiayaan tetap berisiko. <b>6.2.2 Sistemik:</b> pembatasan pinjaman menahan gelembung kredit; guncangan terbatas di bagian keuangan. <b>6.2.3 Ringkasan:</b> stabilitas pembiayaan bergantung pada persyaratan pendanaan (ekuitas)."],
+["6.3","Keadilan","<b>6.3.1 Penghapusan dukungan:</b> laba swasta, biaya publik bisa berkurang. <b>6.3.2 Seigniorage:</b> bank tak menerima seigniorage konvensional tetapi punya keuntungan pendanaan; pendukung memperkirakan sekitar €20 miliar per tahun di Belanda (Dommerholt dan Van Tilburg). <b>6.3.3 Manfaat dan biaya utang:</b> utang lebih rendah tak otomatis menurunkan beban bunga atau ketimpangan. <b>6.3.4 Ringkasan.</b>","Seigniorage = Nilai uang bagi masyarakat − Biaya produksi uang"],
+["6.4","Legitimasi","<b>6.4.1:</b> pemisahan bagian publik (pembayaran) dan swasta (pembiayaan) lebih jelas. <b>6.4.2:</b> kendali publik lebih kuat, meski klaim kemampuan menjaga inflasi (bahkan nol) bersifat optimistis. <b>6.4.3:</b> warga mendapat opsi dan daya tawar lebih baik. <b>6.4.4 Ringkasan.</b>"],
+["6.5","Isu lain","<b>6.5.1 Internasional:</b> proposal mengasumsikan sistem tertutup padahal dimensi internasional penting. <b>6.5.2 Transisi:</b> ketidakpastian dinamika. <b>6.5.3 Dinamika dan inovasi:</b> risiko munculnya shadow money (kewajiban swasta yang berfungsi sebagai uang) sehingga sistem kembali mirip yang sekarang."],
+["6.6","Kesimpulan","Kepercayaan harus diperoleh dan tak dapat dipastikan sebelumnya. Keunggulan utama: pembayaran aman saat krisis. Pembiayaan lebih ketat dan mungkin kurang prosiklikal, tetapi dapat membuat kredit terlalu sedikit/mahal."]]],
+["7 Kebijakan memulihkan keseimbangan","Perbaikan dalam sistem yang ada, terinspirasi gagasan sovereign money.",[
+["7.1.1","Membatasi pertumbuhan utang","Insentif meminjam dan memberi pinjaman, termasuk rezim pajak yang membuat utang menarik (Lampiran II); reformasi pasca-krisis belum cukup kuat mengurangi gunungan utang.","Pajak dihemat = tarif pajak × bunga;  biaya utang = i(1 − t)"],
+["7.1.2","Koherensi kebijakan dan struktur sektor","Reformasi berfokus pada pembatas dan insentif utang, kurang pada koherensi kebijakan dan struktur sektor keuangan (konsentrasi, keragaman)."],
+["7.1.3","Kesiapan menghadapi krisis berikutnya","Mencegah guncangan menjadi krisis (persyaratan perbankan lebih ketat) dan menjamin uang dan kredit tetap berfungsi bila krisis terjadi."],
+["7.2.1","Batas publik-swasta yang lebih jelas","Upaya memisahkan aktivitas publik bank (pembayaran, tabungan) dari yang lain."],
+["7.2.2","Kesimpulan sementara","Pemerintah Belanda memutuskan tidak memisahkan bank universal; bank besar menjadi semi-publik de facto."],
+["7.3","Kesimpulan","Dua tantangan: pertumbuhan uang dan utang yang lebih seimbang, dan keseimbangan publik-swasta; perlu perhatian pada insentif, koherensi kebijakan, dan struktur sektor."]]],
+["8 Kesimpulan dan rekomendasi","Ringkasan dan empat rekomendasi.",[
+["8.1","Cara kerja penciptaan uang","Uang: tunai (publik) dan deposito bank (utang bank kepada nasabah), sekitar 93% dari uang beredar. Contoh buku: Peter meminjam €1000, rekeningnya dikredit €1000, di situ uang baru tercipta."],
+["8.2","Tujuan sistem","Sistem harus stabil, berkontribusi pada ekonomi, adil, dan sah; kekurangan di keempatnya."],
+["8.3","Apakah sovereign money solusi?","Menjawab sebagian masalah tetapi membawa risiko dan ketidakpastian baru (Bab 6); fokus rekomendasi ada pada perbaikan sistem yang ada."],
+["8.4","Dua tantangan utama","8.4.1 pertumbuhan uang dan utang yang seimbang (fleksibilitas dan kekakuan kredit); 8.4.2 keseimbangan kepentingan publik dan swasta (infrastruktur pembayaran bersifat barang publik)."],
+["8.5.1","Dorong keragaman sektor","Landskap seragam memicu perilaku kawanan; pangsa tiga bank terbesar naik dari 71% (2006) menjadi 75% (2016). Sediakan alternatif publik untuk pembayaran dan tabungan (bank pembayaran dengan cadangan bank sentral, mata uang digital bank sentral).","Konsentrasi (CR3): 71% (2006) → 75% (2016)"],
+["8.5.2","Batasi pertumbuhan utang berlebih","Utang swasta/PDB Belanda kini lebih tinggi dibanding sebelum krisis; atasi insentif pinjam-meminjam."],
+["8.5.3","Siap menghadapi krisis berikutnya","Uang dan utang saling menguatkan naik dan turun; pemulihan lambat bila utang awal tinggi."],
+["8.5.4","Jangkarkan dimensi publik bank","Fungsi publik pembayaran dan tabungan harus terjamin dalam struktur dan tata kelola bank."],
+["8.6","Penutup","Reformasi diperlukan untuk menciptakan sistem yang lebih stabil, adil, dan sah."]]]];
+const $=i=>document.getElementById(i),N=i=>+$(i).value,R=(v,d=2)=>v.toLocaleString("id-ID",{maximumFractionDigits:d});
+function draw(f){f=(f||"").toLowerCase();$("ch").innerHTML=C.map((c,k)=>{const s=c[2].filter(x=>!f||(x.join(" ")).toLowerCase().includes(f));return s.length?`<details ${f?"open":""}><summary>${c[0]}: <span style="font-weight:400;color:var(--mut)">${c[1]}</span></summary>${s.map(x=>`<div class="sub"><b><span class="n">${x[0]}</span> ${x[1]}</b><br>${x[2]}${x[3]?`<span class="fm">${x[3]}</span>`:""}</div>`).join("")}</details>`:""}).join("")||"<p>Tidak ada hasil.</p>"}
+draw();$("q").oninput=e=>draw(e.target.value);$("ex").onclick=()=>document.querySelectorAll("#ch details").forEach(d=>d.open=true);
+$("dl").onclick=()=>{const t="# Money and Debt: The Public Role of Banks - Ringkasan\n\n"+C.map(c=>`## ${c[0]}\n${c[1]}\n\n`+c[2].map(x=>`### ${x[0]} ${x[1]}\n${x[2].replace(/<[^>]+>/g,"")}\n`+(x[3]?`Rumus: ${x[3]}\n`:"")).join("\n")).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/markdown"}));a.download="Ringkasan_Money_and_Debt.md";a.click()};
+const on=(ids,f)=>{ids.forEach(i=>$(i).oninput=f);f()};
+on(["a1","a2","a3","a4","a5"],()=>{const A=N("a1"),e=N("a2")/100,L=N("a3"),E=A*e,A2=A+L,E2=E-N("a4")/100*A2;$("r1").textContent=R(L);$("r2").textContent=R(E/A*100)+"% → "+R(E/A2*100)+"%";$("r3").textContent=R(E2);const ok=E2>0;$("r4").textContent=ok?"Solven":"Insolven";$("r4").className="big "+(ok?"good":"bad");$("r5").textContent=R(N("a5")*A/E)+"%"});
+on(["l1","l2","l3","l4"],()=>{const v=(N("l1")+N("l2")*(1-N("l3")/100))/N("l4")*100;$("lr").textContent=R(v,1)+"%";$("ls").textContent=v>=100?"Terpenuhi":"Tidak terpenuhi";$("ls").className="big "+(v>=100?"good":"bad")});
+on(["d1","d2","d3","d4"],()=>{const d0=N("d1"),g=N("d2")/100,y=N("d3")/100,n=Math.min(100,N("d4"));let p=[],lo=1e9,hi=-1e9;for(let t=0;t<=n;t++){const v=d0*Math.pow((1+g)/(1+y),t);p.push(v);lo=Math.min(lo,v);hi=Math.max(hi,v)}if(hi==lo)hi=lo+1;$("ds").innerHTML=`<polyline fill="none" stroke="var(--b)" stroke-width="3" points="${p.map((v,t)=>(t/Math.max(1,n)*380+10)+","+(140-(v-lo)/(hi-lo)*125)).join(" ")}"/><text x="10" y="12" font-size="11" fill="currentColor">${R(hi,0)}%</text><text x="10" y="148" font-size="11" fill="currentColor">${R(lo,0)}%</text>`;$("de").textContent=R(p[p.length-1],0)+"%"});
+on(["t1","t2","t3","t4","t5"],()=>{const i=N("t2")/100,t=N("t3")/100;$("u1").textContent=R(N("t1")*i*t);$("u2").textContent=R(i*(1-t)*100)+"%";$("u3").textContent=R(N("t4")*(1-N("t5")/100))});
+</script></body></html>
