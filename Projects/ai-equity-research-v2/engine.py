@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 from market_engine import resolve_market_ticker
-
+from multistage_adapter import calculate_multistage_dcf
 
 def normalize_ticker(symbol: str) -> str:
     s = (symbol or "").strip().upper().replace(" ", "")
@@ -201,7 +201,17 @@ def analyze_equity(symbol: str, period: str = "5y", market: str = "IDX") -> dict
         ["Operating Income", "Total Operating Income As Reported"]
     )
     ebitda = _statement_value(financials, ["EBITDA"])
-
+    normalized_ebitda = _statement_value(
+        financials, ["Normalized EBITDA"]
+    )
+    tax_provision = _statement_value(
+        financials,
+        ["Tax Provision", "Income Tax Expense"]
+    )
+    pretax_income = _statement_value(
+        financials,
+        ["Pretax Income", "Income Before Tax"]
+    )
     # Balance sheet
     total_debt = _statement_value(
         balance,
@@ -214,7 +224,18 @@ def analyze_equity(symbol: str, period: str = "5y", market: str = "IDX") -> dict
             "Cash Cash Equivalents And Short Term Investments"
         ]
     )
-
+    accounts_receivable = _statement_value(
+        balance,
+        ["Accounts Receivable", "Receivables"]
+    )
+    inventory = _statement_value(
+        balance,
+        ["Inventory", "Inventories"]
+    )
+    accounts_payable = _statement_value(
+        balance,
+        ["Accounts Payable", "Payables"]
+    )
     # Cash flow statement
     operating_cash_flow = _statement_value(
         cashflow,
@@ -226,6 +247,14 @@ def analyze_equity(symbol: str, period: str = "5y", market: str = "IDX") -> dict
     )
     capex = _statement_value(
         cashflow, ["Capital Expenditure", "Capital Expenditures"]
+    )
+    depreciation_amortization = _statement_value(
+        financials,
+        [
+            "Depreciation And Amortization In Income Statement",
+            "Reconciled Depreciation",
+            "Depreciation Income Statement"
+        ]
     )
     free_cash_flow = _statement_value(cashflow, ["Free Cash Flow"])
 
@@ -346,6 +375,13 @@ def analyze_equity(symbol: str, period: str = "5y", market: str = "IDX") -> dict
         "Net income including noncontrolling interests": net_income_consolidated,
         "Operating income": operating_income,
         "EBITDA": ebitda,
+        "Normalized EBITDA": normalized_ebitda,
+        "Tax provision": tax_provision,
+        "Pretax income": pretax_income,
+        "Depreciation and amortization": depreciation_amortization,
+        "Accounts receivable": accounts_receivable,
+        "Inventory": inventory,
+        "Accounts payable": accounts_payable,
         "Market capitalization": _number(info.get("marketCap")),
 	"Shares outstanding": _number(info.get("sharesOutstanding")),
         "Trailing P/E": raw_pe,
