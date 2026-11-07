@@ -72,6 +72,12 @@ h2{font-size:clamp(2rem,4.5vw,3.6rem)}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
 .filters button{cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 13px;font:600 .8rem var(--mono)}
 .filters button[aria-pressed=true]{background:var(--accent2);border-color:var(--accent2);color:#071411}
+#tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px;margin-bottom:20px}
+#tabs button{min-height:52px;padding:12px 14px;text-align:left;white-space:normal;line-height:1.35;border-color:#35505e;color:var(--ink);background:rgba(17,27,35,.55)}
+#tabs button[aria-pressed=true]{background:var(--accent2);border-color:var(--accent2);color:#071411;box-shadow:0 0 0 2px rgba(0,209,178,.16)}
+.terminal-message button.load{min-width:190px;padding:14px 22px;font-size:.9rem;font-weight:800;letter-spacing:.02em}
+.terminal-message h3{font-size:1.55rem}
+.terminal-message p{max-width:70ch;line-height:1.7}
 .projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .project{display:flex;flex-direction:column;gap:12px;padding:25px;background:var(--surface);border:1px solid var(--line);border-top:2px solid var(--accent)}
 .project h3{font-size:1.45rem}.project .meta{font: .76rem var(--mono);color:var(--accent2)}
@@ -187,7 +193,7 @@ footer{padding:28px 0;color:var(--muted);font:.78rem var(--mono)}
  <div class="section-head"><div><div class="section-no">05 / CAREER &amp; OPPORTUNITIES</div><h2>Bring expertise<br>to meaningful work.</h2></div><p class="sub">Terbuka untuk posisi profesional internasional, proyek freelance, konsultasi engineering, dan kolaborasi pengembangan solusi AI.</p></div>
  <div class="grid">
   <article class="card"><h3>Global Career Opportunities</h3><p>Remote, international, dan executive roles di mining, construction, cost engineering, serta project control.</p><ul class="tags"><li>Remote</li><li>International</li><li>Leadership</li></ul><div class="links"><a href="https://agusbudiantojobhunter.streamlit.app/" target="_blank" rel="noopener">Explore Career Job Hub ↗</a></div></article>
-  <article class="card"><h3>Freelance &amp; Consulting</h3><p>Dukungan financial modeling, NPV/IRR, cost estimation, project controls, tender evaluation, dan operational analytics.</p><ul class="tags"><li>Financial Engineering</li><li>Mining</li><li>Project Control</li></ul><div class="links"><a href="mailto:aulilabsyor@gmail.com?subject=Consulting%20Opportunity">Discuss a Project ↗</a></div></article>
+  <article class="card"><h3>Freelance &amp; Consulting</h3><p>Dukungan financial modeling, NPV/IRR, cost estimation, project controls, tender evaluation, dan operational analytics.</p><ul class="tags"><li>Financial Engineering</li><li>Mining</li><li>Project Control</li></ul><div class="links"><a href="mailto:agusbudiantoerp@gmail.com?subject=Consulting%20Opportunity">Discuss a Project ↗</a></div></article>
   <article class="card"><h3>Strategic Collaboration</h3><p>Kolaborasi membangun AI-powered decision systems, research tools, workflow automation, dan business intelligence.</p><ul class="tags"><li>AI Solutions</li><li>Automation</li><li>Business Intelligence</li></ul><div class="links"><a href="https://linkedin.com/in/agus-budianto-ulil-absyor-45724945" target="_blank" rel="noopener">Connect on LinkedIn ↗</a></div></article>
  </div>
 </div></section>
@@ -247,7 +253,7 @@ footer{padding:28px 0;color:var(--muted);font:.78rem var(--mono)}
 
 <section id="contact"><div class="wrap">
  <div class="contact-box"><div class="section-no">09 / LET’S CONNECT</div><h2>Build insight.<br>Deliver impact.</h2><p class="sub">Terbuka untuk peluang di cost engineering, project control, mining operations, financial engineering, dan AI-driven business intelligence.</p>
-  <div class="actions"><a class="btn teal" href="mailto:aulilabsyor@gmail.com">Email me ↗</a><a class="btn secondary" href="https://linkedin.com/in/agus-budianto-ulil-absyor-45724945" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+  <div class="actions"><a class="btn teal" href="mailto:agusbudiantoerp@gmail.com">Email me ↗</a><a class="btn secondary" href="https://linkedin.com/in/agus-budianto-ulil-absyor-45724945" target="_blank" rel="noopener">LinkedIn ↗</a></div>
  </div>
 </div></section>
 </main>
@@ -304,7 +310,7 @@ footer{padding:28px 0;color:var(--muted);font:.78rem var(--mono)}
   else m.appendChild(el("p","note","Aplikasi ini sedang disiapkan."));
   box.appendChild(m)
  }
- fetch("data/terminals.json").then(function(r){return r.json()}).then(function(d){T=d;show()}).catch(function(){addr.textContent="Daftar aplikasi belum dapat dimuat"});
+ fetch("data/terminals.json").then(function(r){return r.json()}).then(function(d){T=d;var featured=T.findIndex(function(t){return t.nama==="AI Journal Finder V1.0"});cur=featured>=0?featured:0;show()}).catch(function(){addr.textContent="Daftar aplikasi belum dapat dimuat"});
 })();
 </script>
 <script>
