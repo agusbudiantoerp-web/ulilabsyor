@@ -81,6 +81,33 @@
     "files": []
   },
   {
+    "judul": "AI Journal Finder V1.0",
+    "kategori": [
+      "AI Research",
+      "Academic Discovery",
+      "Aplikasi"
+    ],
+    "konteks": "Streamlit application · multidisciplinary scholarly paper and journal discovery",
+    "ringkas": "A research-discovery tool for finding scholarly papers and potential journals for publication using OpenAlex metadata.",
+    "hasil": [
+      "Paper Finder for multidisciplinary scholarly literature discovery",
+      "Journal Finder to explore journals, publishers, ISSN, citation and open-access metadata",
+      "Search results with paper and journal links",
+      "CSV and Excel export for further screening and review"
+    ],
+    "catatan": "Research discovery support only. Verify journal indexing, scope, policies, and publication fees independently before submitting.",
+    "tech": [
+      "Python",
+      "Streamlit",
+      "OpenAlex API",
+      "Pandas",
+      "Requests",
+      "Excel"
+    ],
+    "launch": "https://ai-journal-finder.streamlit.app/",
+    "files": []
+  },
+  {
     "judul": "Mining Financial Engineering",
     "kategori": [
       "Mining Finance",
