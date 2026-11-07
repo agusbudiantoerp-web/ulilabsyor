@@ -52,6 +52,35 @@
     "files": []
   },
   {
+    "judul": "AI Equity Research V2",
+    "kategori": [
+      "AI Equity Research",
+      "Financial Markets",
+      "Financial Engineering"
+    ],
+    "konteks": "Streamlit application · IDX and US equity research",
+    "ringkas": "Interactive equity research combining market data, fundamental analysis, DCF valuation, configurable sensitivity analysis, scenario analysis, and downloadable Excel/PDF reports.",
+    "hasil": [
+      "Research coverage for Indonesian (IDX) and US-listed equities",
+      "Fundamental metrics and financial-statement context",
+      "DCF valuation and WACC / growth sensitivity analysis",
+      "Scenario analysis with downloadable Excel and PDF reports"
+    ],
+    "catatan": "Research support only · not investment advice. Verify data and assumptions independently.",
+    "tech": [
+      "Python",
+      "Streamlit",
+      "Pandas",
+      "NumPy",
+      "yfinance",
+      "DCF",
+      "Excel",
+      "PDF"
+    ],
+    "launch": "https://ulilabsyor89-equity-research-v2.streamlit.app/",
+    "files": []
+  },
+  {
     "judul": "Mining Financial Engineering",
     "kategori": [
       "Mining Finance",
