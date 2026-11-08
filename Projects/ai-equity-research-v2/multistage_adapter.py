@@ -59,10 +59,24 @@ def calculate_multistage_dcf(
     else:
         ebitda = reported_ebitda
         ebitda_source = "EBITDA (Yahoo Finance)"
+    if (
+        normalized_ebitda is not None
+        and normalized_ebitda <= 0
+        and reported_ebitda is not None
+        and reported_ebitda > 0
+    ):
+        warnings.append(
+            "Normalized EBITDA tidak positif, tetapi EBITDA biasa positif. "
+            "Model menggunakan EBITDA biasa; periksa unusual items "
+            "dan lakukan review manual sebelum memakai valuasi."
+        )
+
     da = number(ratios.get("Depreciation and amortization"))
     operating_income = number(ratios.get("Operating income"))
+    ebit = number(ratios.get("EBIT"))
     pretax_income = number(ratios.get("Pretax income"))
     tax_provision = number(ratios.get("Tax provision"))
+    yahoo_tax_rate = number(ratios.get("Tax Rate For Calcs"))
 
     total_debt = number(ratios.get("Total debt"))
     cash = number(ratios.get("Cash and equivalents"))
@@ -99,22 +113,29 @@ def calculate_multistage_dcf(
             "reason": "Shares outstanding dan harga saham harus positif."
         }
 
-    # Periksa konsistensi EBITDA - D&A dengan Operating Income.
-    if operating_income is not None:
+    # Validasi EBITDA - D&A menggunakan EBIT jika tersedia.
+    validation_ebit = ebit if ebit is not None else operating_income
+    if validation_ebit is not None:
         calculated_ebit = ebitda - da
-        discrepancy = abs(calculated_ebit - operating_income) / revenue
+        discrepancy = abs(calculated_ebit - validation_ebit) / revenue
 
         if discrepancy > 0.03:
+            comparison_label = "EBIT" if ebit is not None else "Operating Income"
             warnings.append(
-                "EBITDA - D&A berbeda material dari Operating Income "
+                f"EBITDA - D&A berbeda material dari {comparison_label} "
                 f"({discrepancy:.2%} dari Revenue). Periksa sumber laporan."
             )
 
-    # Tax rate harus berasal dari data yang masuk akal.
+    # Prioritaskan Tax Rate For Calcs dari Yahoo jika valid.
     tax_rate = None
 
+    if yahoo_tax_rate is not None and 0 <= yahoo_tax_rate <= 1:
+        tax_rate = yahoo_tax_rate
+
+    # Fallback: hitung dari Tax Provision jika data Yahoo tidak valid.
     if (
-        pretax_income is not None
+        tax_rate is None
+        and pretax_income is not None
         and tax_provision is not None
         and pretax_income > 0
         and tax_provision >= 0

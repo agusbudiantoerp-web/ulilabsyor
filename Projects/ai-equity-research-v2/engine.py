@@ -200,6 +200,7 @@ def analyze_equity(symbol: str, period: str = "5y", market: str = "IDX") -> dict
         financials,
         ["Operating Income", "Total Operating Income As Reported"]
     )
+    ebit = _statement_value(financials, ["EBIT"])
     ebitda = _statement_value(financials, ["EBITDA"])
     normalized_ebitda = _statement_value(
         financials, ["Normalized EBITDA"]
@@ -211,6 +212,10 @@ def analyze_equity(symbol: str, period: str = "5y", market: str = "IDX") -> dict
     pretax_income = _statement_value(
         financials,
         ["Pretax Income", "Income Before Tax"]
+    )
+    tax_rate_for_calcs = _statement_value(
+        financials,
+        ["Tax Rate For Calcs"]
     )
     # Balance sheet
     total_debt = _statement_value(
@@ -374,10 +379,12 @@ def analyze_equity(symbol: str, period: str = "5y", market: str = "IDX") -> dict
         "Net income attributable to parent": net_income_parent,
         "Net income including noncontrolling interests": net_income_consolidated,
         "Operating income": operating_income,
+        "EBIT": ebit,
         "EBITDA": ebitda,
         "Normalized EBITDA": normalized_ebitda,
         "Tax provision": tax_provision,
         "Pretax income": pretax_income,
+        "Tax Rate For Calcs": tax_rate_for_calcs,
         "Depreciation and amortization": depreciation_amortization,
         "Accounts receivable": accounts_receivable,
         "Inventory": inventory,
