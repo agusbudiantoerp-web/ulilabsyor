@@ -95,7 +95,7 @@ def run_dcf_sensitivity(
     )
 
     return {
-        "available": True,
+        "available": any(x["available"] and x["intrinsic_value_per_share"] is not None for x in scenarios),
         "years": years,
         "wacc_values": list(wacc_values),
         "terminal_growth_values": list(terminal_growth_values),
