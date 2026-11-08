@@ -1,4 +1,3 @@
-
 import unittest
 from unittest.mock import patch
 
@@ -73,6 +72,35 @@ class MultiStageAdapterFXTests(unittest.TestCase):
         self.assertIn("FX rate wajib diisi", result["reason"])
         mock_dcf.assert_not_called()
 
+    @patch("multistage_adapter.project_multistage_dcf")
+    def test_material_normalized_ebitda_difference_requires_review(self, mock_dcf):
+        data = self.sample_data()
+        data["ratios"]["Normalized EBITDA"] = 150.0
+
+        result = calculate_multistage_dcf(data, {})
+
+        self.assertFalse(result["available"])
+        self.assertIn("Requires Manual Review", result["reason"])
+        self.assertTrue(result["warnings"])
+        mock_dcf.assert_not_called()
+
+    @patch("multistage_adapter.project_multistage_dcf")
+    def test_engine_warning_is_informational_not_blocking(self, mock_dcf):
+        mock_dcf.return_value = {"available": True}
+        data = self.sample_data()
+        data["data_quality_warnings"] = [
+            "EBITDA berasal dari klasifikasi Yahoo Finance."
+        ]
+
+        result = calculate_multistage_dcf(data, {})
+
+        self.assertTrue(result["available"])
+        self.assertEqual(
+            result["data_quality_warnings"],
+            data["data_quality_warnings"]
+        )
+        self.assertFalse(result["warnings"])
+        mock_dcf.assert_called_once()
 
 if __name__ == "__main__":
     unittest.main()

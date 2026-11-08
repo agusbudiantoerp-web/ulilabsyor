@@ -32,6 +32,7 @@ def calculate_multistage_dcf(
 
     ratios = data.get("ratios") or {}
     warnings = []
+    informational_warnings = list(data.get("data_quality_warnings") or [])
 
     sector = str(data.get("sector", "")).lower()
     industry = str(data.get("industry", "")).lower()
@@ -60,6 +61,29 @@ def calculate_multistage_dcf(
     else:
         ebitda = reported_ebitda
         ebitda_source = "EBITDA (Yahoo Finance)"
+    # Normalized EBITDA yang berbeda material memerlukan review manual.
+    normalized_ebitda_review_threshold = 0.10
+
+    if (
+        normalized_ebitda is not None
+        and normalized_ebitda > 0
+        and reported_ebitda is not None
+        and reported_ebitda > 0
+    ):
+        normalized_ebitda_gap = (
+            abs(normalized_ebitda - reported_ebitda)
+            / abs(reported_ebitda)
+        )
+
+        if normalized_ebitda_gap > normalized_ebitda_review_threshold:
+            warnings.append(
+                f"Normalized EBITDA berbeda {normalized_ebitda_gap:.2%} "
+                f"dari EBITDA biasa (ambang review "
+                f"{normalized_ebitda_review_threshold:.0%}). "
+                "Model tetap menggunakan Normalized EBITDA; "
+                "lakukan review manual."
+            )
+
     if (
         normalized_ebitda is not None
         and normalized_ebitda <= 0
@@ -150,7 +174,8 @@ def calculate_multistage_dcf(
         return {
             "available": False,
             "reason": "Requires Manual Review: " + " ".join(warnings),
-            "warnings": warnings
+            "warnings": warnings,
+            "data_quality_warnings": informational_warnings
         }
 
     model_assumptions = dict(assumptions)
@@ -251,7 +276,8 @@ def calculate_multistage_dcf(
         result["ebitda_used"] = ebitda
         result["sensitivity_financials"] = dict(financials)
         result["sensitivity_assumptions"] = dict(model_assumptions)
-        result["data_quality_warnings"] = warnings
+        result["warnings"] = warnings
+        result["data_quality_warnings"] = informational_warnings
         result["fx_source_date"] = fx_source_date if financial_currency != quote_currency else None
         result["fx_rate_applied"] = applied_fx_rate
         result["data_quality_override"] = bool(
