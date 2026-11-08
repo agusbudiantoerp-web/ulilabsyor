@@ -153,7 +153,8 @@ if run:
                 multistage_assumptions,
                 fx_rate=fx_rate,
                 years=years,
-                allow_data_quality_override=allow_data_quality_override
+                allow_data_quality_override=allow_data_quality_override,
+                fx_source_date=fx_source_date
             )
 
         st.session_state["equity_result"] = result
@@ -347,6 +348,13 @@ if data:
                 f"{multistage_dcf.get('financial_currency', ms_currency)}"
             )
 
+            ms_financial_currency = multistage_dcf.get('financial_currency', ms_currency)
+            ms_fx_rate = multistage_dcf.get('fx_rate_applied')
+            ms_fx_date = multistage_dcf.get('fx_source_date')
+            if ms_financial_currency != ms_currency:
+                st.caption('Currency conversion: {} to {} - Applied FX rate: {:,.2f} - Reference date: {}'.format(ms_financial_currency, ms_currency, ms_fx_rate, ms_fx_date or 'Not specified'))
+            else:
+                st.caption('Valuation currency: {}. No currency conversion applied.'.format(ms_currency))
             # Transparansi sumber EBITDA yang digunakan model.
             ebitda_used = multistage_dcf.get("ebitda_used")
             ebitda_source = multistage_dcf.get("ebitda_source")

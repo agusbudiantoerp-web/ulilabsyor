@@ -7,7 +7,8 @@ def calculate_multistage_dcf(
     assumptions,
     fx_rate=None,
     years=5,
-    allow_data_quality_override=False
+    allow_data_quality_override=False,
+    fx_source_date=None
 ):
     """
     Adapter Multi-Stage DCF untuk output analyze_equity().
@@ -251,6 +252,8 @@ def calculate_multistage_dcf(
         result["sensitivity_financials"] = dict(financials)
         result["sensitivity_assumptions"] = dict(model_assumptions)
         result["data_quality_warnings"] = warnings
+        result["fx_source_date"] = fx_source_date if financial_currency != quote_currency else None
+        result["fx_rate_applied"] = applied_fx_rate
         result["data_quality_override"] = bool(
             warnings and allow_data_quality_override
         )
