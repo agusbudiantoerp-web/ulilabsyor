@@ -376,11 +376,12 @@ if data:
                 )
 
             if multistage_dcf.get("warnings"):
-                st.warning("Valuasi memiliki peringatan yang memerlukan review manual.")
-            elif multistage_dcf.get("data_quality_warnings"):
-                st.info("Terdapat catatan kualitas data dari sumber Yahoo Finance.")
-            else:
-                st.success("Pemeriksaan konsistensi data: tidak ada warning.")
+    		st.warning("Valuasi memiliki peringatan yang memerlukan review manual.")
+	    elif multistage_dcf.get("data_quality_warnings"):
+    		st.info("Terdapat catatan kualitas data dari sumber Yahoo Finance.")
+	    else:
+    		st.success("Pemeriksaan konsistensi data: tidak ada warning.")
+
             st.write(
                 "**Enterprise Value:** "
                 f"{multistage_dcf['enterprise_value']:,.2f} "
@@ -531,16 +532,17 @@ if data:
                     )
 
             for warning in multistage_dcf.get("data_quality_warnings", []):
-                st.info(warning)
+    		st.info(warning)
 
-            for warning in multistage_dcf.get("warnings", []):
-                st.warning(warning)
+	    for warning in multistage_dcf.get("warnings", []):
+    		st.warning(warning)
 
-            if multistage_dcf.get("data_quality_override"):
-                st.warning(
-                    "Perhitungan dilanjutkan dengan persetujuan manual "
-                    "meskipun terdapat peringatan yang memerlukan review."
-                )
+	    if multistage_dcf.get("data_quality_override"):
+    		st.warning(
+        	    "Perhitungan dilanjutkan dengan persetujuan manual "
+        	    "meskipun terdapat peringatan yang memerlukan review."
+    	        )
+
             st.caption(multistage_dcf.get("warning", ""))
 
         else:
