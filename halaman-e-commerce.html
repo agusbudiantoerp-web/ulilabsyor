@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E-Commerce &amp; Digital Marketing — Landing Page Interaktif</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0820;--ink:#fff4ec;--mut:#bfaed6;--c:#ff5a1f;--pn:rgba(28,14,58,.74);--ln:rgba(255,160,120,.25)}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+h1,h2,h3{font-family:Sora,"Segoe UI",sans-serif;line-height:1.15}
+#bg{position:fixed;inset:0;z-index:-1}
+nav{position:sticky;top:0;z-index:9;display:flex;gap:6px;align-items:center;padding:10px 4vw;background:rgba(13,8,32,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);overflow-x:auto}
+nav b{font-family:Sora;margin-right:auto;white-space:nowrap;color:var(--c)}
+nav a{text-decoration:none;color:inherit;padding:6px 14px;border-radius:99px;white-space:nowrap;font-size:14px}
+nav a:hover{background:var(--c);color:#1a0a00}
+#cnt{white-space:nowrap;font-weight:700;padding:6px 14px;border-radius:99px;background:var(--c);color:#1a0a00}
+section{padding:80px 4vw;max-width:1180px;margin:auto}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(40px,7.5vw,92px);font-weight:800;letter-spacing:-.03em}
+.hero h1 span{background:linear-gradient(90deg,#ff5a1f,#ffd23f,#ff3d9a,#8a5cff,#ff5a1f);background-size:300%;-webkit-background-clip:text;color:transparent;animation:fl 6s linear infinite}
+@keyframes fl{to{background-position:300%}}
+.hero p{max-width:650px;color:var(--mut);font-size:19px;margin:22px 0 30px}
+.btn{display:inline-block;padding:13px 26px;border-radius:12px;background:var(--c);color:#1a0a00;font-weight:700;text-decoration:none;font-size:16px;transition:transform .15s}
+.btn:hover{transform:translateY(-3px) scale(1.04)}.btn.o{background:none;color:var(--ink);border:1px solid var(--ln);margin-left:10px}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:46px}
+.stats div{font-family:Sora;font-size:34px;font-weight:800;color:var(--c)}.stats small{display:block;font:13px "Segoe UI";color:var(--mut)}
+h2{font-size:clamp(28px,4vw,46px);margin-bottom:12px}.sub{color:var(--mut);max-width:700px;margin-bottom:34px}
+.panel{background:var(--pn);border:1px solid var(--ln);border-radius:18px;padding:26px;backdrop-filter:blur(10px)}
+.lab{display:grid;grid-template-columns:260px 1fr;gap:20px}
+.rail{display:flex;flex-direction:column;gap:8px}
+.rail button{all:unset;cursor:pointer;padding:12px 16px;border-radius:12px;border:1px solid var(--ln);background:var(--pn);transition:.2s}
+.rail button:hover{transform:translateX(6px)}
+.rail button.on{background:var(--c);color:#1a0a00;font-weight:700;border-color:var(--c);box-shadow:0 0 28px -4px var(--c)}
+.rail span{display:block;font-size:12px;opacity:.75;font-weight:400}
+#tp h3{font-size:30px;color:var(--c);margin-bottom:6px}#tp .pg{color:var(--mut);font-size:14px;margin-bottom:14px}
+#tp li{margin:0 0 10px 20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.chips i{font-style:normal;font-size:13px;padding:5px 12px;border-radius:99px;border:1px solid var(--c);cursor:pointer;transition:.15s}
+.chips i:hover{background:var(--c);color:#1a0a00}
+.net{border-left:4px solid var(--c);background:rgba(255,255,255,.06);padding:14px 18px;border-radius:0 12px 12px 0;margin-top:18px}
+.net h4{color:var(--c);margin-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{cursor:pointer;transition:.25s}.card:hover,.card.on{transform:translateY(-6px);border-color:var(--c);box-shadow:0 14px 40px -14px var(--c)}
+.card h3{font-size:19px;margin-bottom:6px;color:var(--c)}.card p{font-size:14.5px;color:var(--mut)}
+.bar{height:12px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden;margin:6px 0 16px}
+.bar u{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff5a1f,#ffd23f);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.tool{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.row{display:grid;grid-template-columns:1fr 130px 50px;gap:10px;align-items:center;font-size:14px;margin-bottom:6px}
+input[type=range]{width:100%;accent-color:var(--c)}
+input[type=number]{width:100%;padding:8px;border-radius:8px;border:1px solid var(--ln);background:#160a30;color:var(--ink);font-size:15px}
+label{font-size:13px;color:var(--mut);display:block;margin:10px 0 3px}
+.res b{color:var(--c)}.res p{margin:6px 0}
+.fn div{height:34px;margin:5px auto;border-radius:8px;background:linear-gradient(90deg,#ff5a1f,#ff3d9a);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;transition:width .4s;white-space:nowrap;overflow:hidden}
+.tl{display:flex;gap:10px;flex-wrap:wrap}.tl button{flex:1;min-width:140px;all:unset;box-sizing:border-box;cursor:pointer;padding:14px;border:1px solid var(--ln);border-radius:14px;background:var(--pn);text-align:center;font-weight:700;transition:.2s}
+.tl button.on{background:var(--c);color:#1a0a00}.tl button b{display:block;font:800 26px Sora}
+#ph{margin-top:16px}
+footer{text-align:center;padding:50px 4vw;color:var(--mut);border-top:1px solid var(--ln);font-size:14px}
+@media(max-width:800px){.lab,.tool{grid-template-columns:1fr}.rail{flex-direction:row;overflow-x:auto}.rail button{white-space:nowrap}.btn.o{margin:10px 0 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:3px solid #fff;outline-offset:2px}
+</style></head><body>
+<canvas id="bg"></canvas>
+<nav><b>E-Commerce Lab</b><a href="#materi">Materi PDF</a><a href="#teori">Teori Tambahan</a><a href="#alat">Kalkulator</a><a href="#funnel">Funnel</a><span id="cnt">🛒 0 pesanan</span></nav>
+
+<section class="hero">
+<h1>Dari pengunjung<br><span>jadi pembeli.</span></h1>
+<p>Sembilan bab materi <i>E-Commerce &amp; Digital Marketing</i> — penjualan online, marketplace, m-commerce, funnel, analitik, UX, kampanye digital, mobile payment, dan landing page — plus teori unit economics dan tiga kalkulator. Pecahkan gelembung di latar untuk mengumpulkan pesanan.</p>
+<div><a class="btn" href="#materi">Mulai belajar</a><a class="btn o" href="#alat">Coba kalkulator</a></div>
+<div class="stats"><div data-n="9">0<small>bab materi</small></div><div data-n="210">0<small>halaman PDF</small></div><div data-n="3">0<small>kalkulator</small></div><div data-n="70">0<small>% keranjang ditinggalkan (Baymard, 2022)</small></div></div>
+</section>
+
+<section id="materi"><h2>Materi dari PDF</h2><p class="sub">Pilih bab; warna halaman dan gelembung latar ikut berubah. Klik label isi bab untuk catatan singkatnya.</p>
+<div class="lab"><div class="rail" id="rail"></div><div class="panel" id="tp"></div></div></section>
+
+<section id="teori"><h2>Teori tambahan dari literatur &amp; riset</h2><p class="sub">Kerangka yang melengkapi PDF. Klik kartu untuk detail.</p>
+<div class="grid" id="th"></div><div class="panel" id="thd" style="margin-top:16px;min-height:90px"></div>
+<div class="panel" style="margin-top:26px" id="st"><h3 style="margin-bottom:14px">Tolok ukur e-commerce</h3>
+<div>Keranjang belanja yang ditinggalkan (PDF, Baymard Agu 2022)<span style="float:right">69,99%</span></div><div class="bar"><u data-w="70"></u></div>
+<div>Konversi rata-rata global (dugaan 2025–2026)<span style="float:right">2,5–3%</span></div><div class="bar"><u data-w="3"></u></div>
+<div>Konversi mobile (sumber vendor)<span style="float:right">±1,8%</span></div><div class="bar"><u data-w="2"></u></div>
+<p style="font-size:14px;color:var(--mut)">Rasio LTV:CAC sehat sekitar 3:1; median lintas industri 3,4:1 dan kuartil teratas 5,6:1 (kompilasi vendor 2026, bersifat indikatif). CAC dilaporkan naik sekitar 40% dalam dua tahun. Angka berbeda tiap kategori dan negara; bandingkan dengan tren toko Anda sendiri.</p></div></section>
+
+<section id="alat"><h2>Kalkulator interaktif</h2><p class="sub">Rumus yang sama ada di Excel (E_Commerce_Rumus.xlsx).</p>
+<div class="tool"><div class="panel"><h3>Unit economics: CLV, CAC, payback</h3>
+<label>Nilai order rata-rata / AOV (Rp)</label><input type="number" id="u1" value="250000">
+<label>Margin kotor (%)</label><input type="number" id="u2" value="40">
+<label>Pembelian per tahun</label><input type="number" id="u3" value="3">
+<label>Lama pelanggan aktif (tahun)</label><input type="number" id="u4" value="2">
+<label>CAC (Rp)</label><input type="number" id="u5" value="120000">
+<div class="res" id="ur" style="margin-top:14px"></div></div>
+<div class="panel"><h3>Marketplace vs toko sendiri</h3>
+<label>Harga jual (Rp)</label><input type="number" id="m1" value="300000">
+<label>HPP per unit (Rp)</label><input type="number" id="m2" value="170000">
+<label>Komisi marketplace (%)</label><input type="number" id="m3" value="8">
+<label>Biaya iklan toko sendiri per order (Rp)</label><input type="number" id="m4" value="35000">
+<label>Biaya payment gateway (%)</label><input type="number" id="m5" value="2.5">
+<div class="res" id="mr" style="margin-top:14px"></div></div></div></section>
+
+<section id="funnel"><h2>Simulator funnel konversi</h2><p class="sub">Empat tahap dari PDF: perhatian, minat, keinginan, aksi. Geser tingkat konversi tiap tahap.</p>
+<div class="panel tool"><div><label>Pengunjung per bulan</label><input type="number" id="f0" value="50000">
+<div style="margin-top:14px" id="fs"></div><label>AOV (Rp)</label><input type="number" id="f4" value="250000"></div>
+<div class="fn res" id="fo"></div></div></section>
+<footer>Disusun untuk Ir. Agus Budianto Ulil Absyor, S.T., M.M., M.LSCM., M.AIB.<br>Sumber: E-COMMERCE.pdf (E-commerce — Digital Marketing) + kompilasi benchmark e-commerce 2026 dan literatur growth marketing.</footer>
+
+<script>
+const T=[
+{n:"Penjualan Online",p:"hlm 7–37",c:"#ff5a1f",l:"E-commerce menawarkan kehadiran global, tanpa batas jam, interaksi, serta personalisasi produk dan pembelian.",k:["Lima tipe: B2C (toko online), B2B (perusahaan ke perusahaan), C2C (konsumen ke konsumen, mis. Vinted), C2B (mis. komisi influencer), B2G (ke lembaga pemerintah).","Teori tiga 'Co': trust (kepercayaan), convenience (kemudahan), cost (biaya).","Kepercayaan mahal didapat, murah hilang. Lebih dari 20% keranjang ditinggal bila metode bayar tidak cocok."],t:{"E-commerce: mengapa?":"Pasar global, buka 24 jam, personalisasi.","Jenis e-commerce":"B2C, B2B, C2C, C2B, B2G.","Evolusi":"Terus tumbuh dalam dekade mendatang.","Pendorong belanja":"Trust, convenience, cost.","Strategi":"Selaras dengan tujuan bisnis dan pelanggan.","Metode pembayaran":"Pilihan yang dianggap aman oleh pembeli.","Platform utama":"Pilihan platform toko online."},i:"Model 'long tail' (Anderson): toko online mampu melayani ribuan produk niche yang tak muat di rak toko fisik."},
+{n:"Web Store & Marketplace",p:"hlm 40–53",c:"#ff3d9a",l:"Marketplace adalah toko dari toko-toko: banyak penjual dalam satu platform, mirip mal online.",k:["Kelebihan: jualan lebih mudah, jangkauan lebih luas, toko jadi lebih cepat dan murah.","Kekurangan: identitas merek berkurang, pelanggan milik marketplace, harus patuh kebijakan, bayar komisi.","Tipe: managed (mis. fnac), decentralized (Vinted), on-demand (Glovo), community-driven (Airbnb), SaaS."],t:{"Mengapa marketplace":"Etalase cepat tanpa membangun dari nol.","Jenis marketplace":"Managed, terdesentralisasi, on-demand, komunitas, SaaS.","Studi kasus Just Eat":"Marketplace pesan-antar makanan yang sukses."},i:"Efek jaringan dua sisi: makin banyak penjual menarik pembeli, dan sebaliknya. Pakai kalkulator di bawah untuk membandingkan laba."},
+{n:"Aplikasi Mobile",p:"hlm 56–77",c:"#ffd23f",l:"Mobile commerce adalah e-commerce lewat perangkat seluler, via browser atau aplikasi.",k:["Mencakup mobile shopping, mobile banking, dan sistem pembayaran seluler.","Kartu kredit tetap protagonis, tetapi jumlah metode bayar terus bertambah.","BNPL (buy now pay later): pembiayaan jangka pendek, bayar di kemudian hari setelah disetujui pemberi dana."],t:{"E-commerce vs m-commerce":"Beda perangkat dan perilaku.","Jenis m-commerce":"Shopping, banking, payment.","Metode bayar":"Kartu, rekening, dompet, BNPL.","Tips aplikasi":"Aplikasi sederhana, cepat, aman."},i:"Mayoritas lalu lintas toko online kini dari ponsel, namun konversi mobile cenderung lebih rendah dari desktop: peluang optimasi."},
+{n:"Funnel Konversi",p:"hlm 79–101",c:"#8a5cff",l:"Funnel menggambarkan jalur pelanggan dari mengenal merek hingga membeli.",k:["Empat tahap: attention (perhatian), interest (minat), desire/decision (keinginan), action (aksi).","Rata-rata keranjang ditinggalkan 69,99% (Baymard, Agustus 2022), patokan efisiensi checkout.","Tips: kampanye pemulihan keranjang via email, tanyakan alasan pengguna meninggalkan proses."],t:{"Perhatian":"Konsumen mencari solusi masalahnya.","Minat":"Pertahankan perhatian pada merek dan produk.","Keinginan":"Fokus pada kebutuhan dan pemicu penjualan.","Aksi":"Tujuannya menyelesaikan penjualan.","Optimasi":"Perbaiki titik bocor tiap tahap."},i:"AARRR 'Pirate Metrics' (Acquisition, Activation, Retention, Referral, Revenue) memperluas funnel sampai retensi dan rujukan."},
+{n:"Web Analytics & KPI",p:"hlm 103–123",c:"#22d3ee",l:"Analitik web: visualisasi dan pengukuran data kuantitatif serta kualitatif situs untuk mengarahkan pemasaran.",k:["KPI harus dipilih sesuai tujuan bisnis unik dan dipantau harian.","KPI penjualan: penjualan, average order size, gross profit, margin, jumlah transaksi, conversion rate, cart abandonment, CAC, COGS, RPV, CLV.","PDF mengelompokkan KPI: layanan pelanggan, pemasaran, volume penjualan, manufaktur, manajemen proyek; ada usulan KPI untuk toko online Zara."],t:{"Conversion rate":"Pembeli ÷ pengunjung × 100.","Cart abandonment":"Keranjang tak selesai ÷ keranjang dibuat.","CAC":"Biaya pemasaran ÷ pelanggan baru.","CLV":"Nilai total pelanggan sepanjang hubungan.","RPV":"Pendapatan ÷ pengunjung.","Product affinity":"Produk yang dibeli bersamaan, dasar cross-sell."},i:"Segmentasi RFM (Recency, Frequency, Monetary) membagi pelanggan agar promosi dan retensi lebih tepat sasaran."},
+{n:"User Experience",p:"hlm 125–147",c:"#4ade80",l:"UX membuat konsumen nyaman dan betah di situs; pengalaman baik meningkatkan peluang penjualan.",k:["Usability: kemudahan menggunakan sesuatu; rasa takut atau curiga berarti usability gagal.","Perjalanan keputusan beli harus dipahami agar pengalaman cocok di tiap tahap.","Keranjang harus menarik dan meyakinkan agar pengguna tidak kabur ke toko lain."],t:{"Prinsip UX":"Fokus pada tujuan bisnis dan pengguna.","Halaman produk":"Foto, deskripsi, harga, ulasan jelas.","Keranjang belanja":"Ringkas, transparan, aman."},i:"Uji A/B dan peta panas (heatmap) membantu menemukan hambatan; biaya kejutan seperti ongkir adalah alasan utama keranjang ditinggal."},
+{n:"Kampanye Digital",p:"hlm 149–169",c:"#fb923c",l:"Iklan e-commerce: konten berbayar di media online atau offline untuk menginformasikan dan mengarahkan calon pembeli.",k:["Display (banner) kini personal berdasarkan minat dan lokasi; Google Ads = PPC/SEM.","Strategi digital: brand awareness, lead generation, direct sales.","Meta pixel membuat audiens khusus; Instagram untuk produk visual, TikTok untuk audiens muda, LinkedIn untuk profesional."],t:{"Nilai iklan":"Informasi dan pengarahan calon pembeli.","Google Ads":"Bayar per klik di hasil pencarian.","Display":"Banner terarah.","Media sosial":"Facebook, Instagram, X, TikTok, LinkedIn."},i:"ROAS = pendapatan iklan ÷ biaya iklan. ROAS impas = 1 ÷ margin kotor; di bawahnya iklan merugi. Cek di Excel."},
+{n:"Mobile Payment",p:"hlm 171–187",c:"#f472b6",l:"Dompet seluler menyimpan kartu kredit, debit, loyalitas, kupon, dan hadiah di ponsel untuk membayar tanpa kartu fisik.",k:["Dengan enkripsi dan fitur keamanan, dompet seluler lebih aman daripada kartu fisik.","Banyak ponsel membawa dompet bawaan; ada pula opsi lintas merek (mis. Venmo).","Menjadi alat pemasaran penting: promosi dan pembayaran instan dalam satu aplikasi."],t:{"Apa itu mobile wallet":"Kartu virtual di ponsel.","Dalam strategi pemasaran":"Promo, loyalitas, bayar cepat."},i:"QRIS dan dompet digital mendorong inklusi pembayaran di Indonesia; kecepatan checkout menekan abandonment."},
+{n:"Landing Page",p:"hlm 189–207",c:"#a3e635",l:"Halaman khusus dengan satu tujuan: mengubah pengunjung menjadi lead lewat penawaran spesifik.",k:["Desain sederhana, tautan sedikit, informasi dasar penawaran, dan formulir konversi.","Landing page yang baik bisa berkonversi jauh lebih tinggi daripada situs biasa.","Tips: judul dan subjudul menarik, formulir wajar, CTA jelas, visual kuat, promosikan lewat media sosial."],t:{"Jenis landing page":"Lead generation dan click-through.","Tips":"Judul, formulir, CTA, visual.","Kesalahan dan sukses":"Pelajaran dari kasus nyata.","Alat pembuatan":"Platform pembuat halaman."},i:"Satu halaman, satu tujuan, satu CTA. Uji judul dan tombol dengan A/B test."}];
+const TH=[
+["AARRR (Pirate Metrics)","Acquisition, Activation, Retention, Referral, Revenue. Mengukur seluruh siklus pelanggan, bukan hanya penjualan pertama."],
+["Unit economics","CLV = AOV × margin × frekuensi × umur pelanggan. Sehat jika LTV:CAC sekitar 3:1 dan payback CAC kurang dari 12 bulan."],
+["Long tail","Katalog sangat luas melayani permintaan niche yang tak terjangkau toko fisik, selama biaya penyimpanan dan penemuan rendah."],
+["RFM &amp; retensi","Segmentasi pelanggan berdasar Recency, Frequency, Monetary. Pelanggan lama lebih murah dilayani daripada akuisisi baru."],
+["Omnichannel &amp; social commerce","Pengalaman satu kesatuan lintas toko fisik, web, aplikasi, marketplace, dan media sosial/live commerce."],
+["Lima tuas pertumbuhan","Traffic, konversi, AOV, retensi, ekspansi. Perbaiki tuas yang paling bocor lebih dulu."]];
+const PH=[["Perhatian","Pelanggan mencari solusi; hadir lewat SEO, iklan, sosial."],["Minat","Pertahankan perhatian dengan konten dan halaman produk yang relevan."],["Keinginan","Pemicu penjualan: ulasan, promo, bukti sosial."],["Aksi","Checkout mulus, banyak metode bayar, kepercayaan."]];
+const $=s=>document.querySelector(s),rp=n=>"Rp "+Math.round(n).toLocaleString("id-ID"),v=s=>+$(s).value;
+let hue="#ff5a1f";const root=document.documentElement;
+function sel(i){const o=T[i];root.style.setProperty("--c",o.c);hue=o.c;
+document.querySelectorAll("#rail button").forEach((b,j)=>b.classList.toggle("on",j==i));
+$("#tp").innerHTML=`<h3>${o.n}</h3><div class="pg">${o.p}</div><p>${o.l}</p><ul style="margin-top:12px">${o.k.map(x=>`<li>${x}</li>`).join("")}</ul><div class="chips">${Object.keys(o.t).map(x=>`<i tabindex=0 data-k="${x}">${x}</i>`).join("")}</div><div class="net" id="cn"><h4>Catatan bab</h4>Klik salah satu label isi bab.</div><div class="net"><h4>Tambahan dari literatur</h4>${o.i}</div>`;
+$("#tp").querySelectorAll(".chips i").forEach(e=>{const f=()=>{$("#cn").innerHTML=`<h4>${e.dataset.k}</h4>${o.t[e.dataset.k]}`};e.onclick=f;e.onkeydown=ev=>ev.key=="Enter"&&f()})}
+$("#rail").innerHTML=T.map((o,i)=>`<button onclick="sel(${i})">${o.n}<span>${o.p}</span></button>`).join("");sel(0);
+$("#th").innerHTML=TH.map((x,i)=>`<div class="panel card" tabindex=0 onclick="th(${i})"><h3>${x[0]}</h3><p>Klik untuk detail</p></div>`).join("");
+function th(i){document.querySelectorAll("#th .card").forEach((c,j)=>c.classList.toggle("on",i==j));$("#thd").innerHTML=`<b>${TH[i][0]}</b><p>${TH[i][1]}</p>`}th(0);
+function ue(){const m=v("#u2")/100,a=v("#u1"),f=v("#u3"),y=v("#u4"),c=v("#u5"),clv=a*m*f*y,r=c>0?clv/c:0,pb=a*m*f>0?c/(a*m*f/12):0;
+$("#ur").innerHTML=`<p>CLV (margin): <b>${rp(clv)}</b></p><p>LTV:CAC: <b>${r.toFixed(1)} : 1</b></p><p>Payback CAC: <b>${pb.toFixed(1)} bulan</b></p><p>ROAS impas: <b>${(1/m).toFixed(1)}×</b></p><p>${r<1?"Rugi di tiap pelanggan: hentikan scaling.":r<3?"Di bawah 3:1: perbaiki unit economics.":r<=5?"Sehat dan berkelanjutan.":"Di atas 5:1: mungkin kurang investasi pertumbuhan."}</p>`}
+function mk(){const p=v("#m1"),h=v("#m2"),k=v("#m3")/100,a=v("#m4"),g=v("#m5")/100,x=p-h-p*k-p*g,y=p-h-a-p*g;
+$("#mr").innerHTML=`<p>Laba marketplace/unit: <b>${rp(x)}</b> (${(x/p*100).toFixed(1)}%)</p><p>Laba toko sendiri/unit: <b>${rp(y)}</b> (${(y/p*100).toFixed(1)}%)</p><p>${x>y?"Marketplace lebih untung, tetapi pelanggan milik platform.":"Toko sendiri lebih untung dan Anda memegang data pelanggan."}</p>`}
+document.querySelectorAll("#alat input").forEach(e=>e.oninput=()=>{ue();mk()});ue();mk();
+const FN=[["Perhatian → Minat",40],["Minat → Keinginan",25],["Keinginan → Aksi",12]];
+$("#fs").innerHTML=FN.map((f,i)=>`<div class="row"><span>${f[0]}</span><input type="range" min="1" max="90" value="${f[1]}" id="s${i}"><b id="sv${i}">${f[1]}%</b></div>`).join("");
+function fu(){let n=v("#f0");const rows=[["Perhatian",n]];FN.forEach((f,i)=>{const r=v("#s"+i);$("#sv"+i).textContent=r+"%";n=n*r/100;rows.push([f[0].split("→")[1].trim(),n])});
+const t=rows[0][1];$("#fo").innerHTML=rows.map(r=>`<div style="width:${Math.max(18,r[1]/t*100)}%">${r[0]}: ${Math.round(r[1]).toLocaleString("id-ID")}</div>`).join("")+`<p style="margin-top:14px;text-align:left">Konversi total: <b>${(n/t*100).toFixed(2)}%</b></p><p style="text-align:left">Pesanan: <b>${Math.round(n).toLocaleString("id-ID")}</b> · Omzet: <b>${rp(n*v("#f4"))}</b></p><p style="text-align:left;font-weight:400;color:var(--mut)">RPV: ${rp(n*v("#f4")/t)} per pengunjung</p>`}
+document.querySelectorAll("#funnel input").forEach(e=>e.oninput=fu);fu();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll("u").forEach(u=>u.style.width=Math.max(u.dataset.w*1.3,4)+"%")}),{threshold:.3});io.observe($("#st"));
+document.querySelectorAll(".stats div").forEach(d=>{const n=+d.dataset.n,s=d.querySelector("small");let k=0;const m=setInterval(()=>{k+=Math.ceil(n/40);if(k>=n){k=n;clearInterval(m)}d.firstChild.textContent=k},35)});
+const cv=$("#bg"),x=cv.getContext("2d"),G=["🛒","💳","📦","⭐","%","🛍️"];let W,H,B=[],S=[],M={x:-999,y:-999},orders=0;
+const nb=()=>({x:Math.random()*W,y:H+Math.random()*H*.5,r:14+Math.random()*26,vy:-(.3+Math.random()*.9),ph:Math.random()*6.3,g:G[Math.random()*G.length|0]});
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;B=Array.from({length:Math.min(46,W/28|0)},()=>{const b=nb();b.y=Math.random()*H;return b})}
+rs();addEventListener("resize",rs);addEventListener("pointermove",e=>{M.x=e.clientX;M.y=e.clientY});
+const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
+function pop(b){orders++;$("#cnt").textContent="🛒 "+orders+" pesanan";for(let i=0;i<14;i++){const a=Math.random()*6.3,s=1+Math.random()*3;S.push({x:b.x,y:b.y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1})}Object.assign(b,nb())}
+addEventListener("pointerdown",e=>{for(const b of B)if(Math.hypot(b.x-e.clientX,b.y-e.clientY)<b.r+10)pop(b)});
+function fr(){x.fillStyle="#0d0820";x.fillRect(0,0,W,H);
+const g=x.createRadialGradient(M.x,M.y,0,M.x,M.y,300);g.addColorStop(0,hue+"3a");g.addColorStop(1,"transparent");x.fillStyle=g;x.fillRect(0,0,W,H);
+x.textAlign="center";x.textBaseline="middle";
+for(const b of B){if(!still){b.y+=b.vy;b.ph+=.02;b.x+=Math.sin(b.ph)*.4;if(b.y<-50){Object.assign(b,nb())}
+if(Math.hypot(b.x-M.x,b.y-M.y)<b.r)pop(b)}
+x.globalAlpha=.55;x.strokeStyle=hue;x.lineWidth=2;x.fillStyle=hue+"22";x.beginPath();x.arc(b.x,b.y,b.r,0,6.3);x.fill();x.stroke();
+x.globalAlpha=.95;x.font=b.r*.9+"px serif";x.fillText(b.g,b.x,b.y+1)}
+for(let i=S.length-1;i>=0;i--){const s=S[i];s.x+=s.vx;s.y+=s.vy;s.vy+=.08;s.l-=.025;if(s.l<=0){S.splice(i,1);continue}x.globalAlpha=s.l;x.fillStyle=hue;x.beginPath();x.arc(s.x,s.y,3,0,6.3);x.fill()}
+x.globalAlpha=1;if(!still)requestAnimationFrame(fr)}
+fr();
+</script></body></html>

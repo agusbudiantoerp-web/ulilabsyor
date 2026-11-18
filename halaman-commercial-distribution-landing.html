@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commercial Distribution: Panduan Interaktif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07202b;--bg2:#0d3342;--ink:#effaf8;--mute:#9cc7c4;--or:#ff6b2c;--vi:#8a6bff;--aq:#2ee6c5;--ye:#ffd84a;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.2)}
+@media (prefers-color-scheme:light){:root{--bg:#eafaf7;--bg2:#d3f1ec;--ink:#07303b;--mute:#2f6b70;--card:rgba(255,255,255,.75);--line:rgba(7,48,59,.22)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(150deg,var(--bg),var(--bg2));color:var(--ink);font:400 17px/1.6 Sora,system-ui,sans-serif;min-height:100vh}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+header,nav,main,footer{position:relative;z-index:1}
+h1,h2,h3{font-family:Unbounded,Impact,sans-serif;margin:0 0 .5em;line-height:1.1}
+h1{font-size:clamp(2.2rem,6.6vw,4.8rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,4vw,2.5rem);font-weight:800}h3{font-size:1.05rem;font-weight:600}
+.hero{min-height:86vh;max-width:1080px;margin:0 auto;padding:3rem 1.2rem;display:grid;align-content:center;gap:1.4rem}
+.hero p{max-width:58ch;color:var(--mute);font-size:1.12rem}
+nav{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;padding:.7rem;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 70%,transparent)}
+nav a{color:var(--ink);text-decoration:none;font-size:.88rem;padding:.35rem .9rem;border:1px solid var(--line);border-radius:99px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--ye);outline-offset:2px}
+section{max-width:1080px;margin:0 auto;padding:4rem 1.2rem}
+.btn{display:inline-block;border:0;border-radius:12px;background:var(--or);color:#1a0a02;font:600 1rem Sora;padding:.8rem 1.4rem;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-3px) skewX(-4deg)}.btn.alt{background:var(--aq);color:#032b25}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.3rem;backdrop-filter:blur(10px)}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tabs button{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:.45rem .95rem;font:600 .9rem Sora;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ye);color:#222;border-color:var(--ye)}
+.tag{display:inline-block;font-size:.78rem;padding:.1rem .65rem;border-radius:99px;background:var(--aq);color:#032b25;margin-bottom:.5rem}.tag.w{background:var(--vi);color:#fff}
+ul{padding-left:1.1rem}li{margin:.35rem 0}
+label{display:block;font-size:.88rem;color:var(--mute);margin-top:.65rem}
+input[type=number],select{width:100%;padding:.5rem .7rem;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.1);color:var(--ink);font:inherit}
+select option{color:#111}
+input[type=range]{width:100%;accent-color:var(--or)}
+.out{font:800 1.7rem Unbounded,sans-serif;color:var(--ye);margin-top:.7rem}.out small{display:block;font:400 .83rem Sora;color:var(--mute)}
+.bars{display:flex;align-items:flex-end;gap:8px;height:190px;margin-top:1rem}
+.bars div{flex:1;border-radius:10px 10px 0 0;background:var(--or);position:relative;transition:height .4s;min-height:4px}
+.bars div span{position:absolute;top:-1.5rem;left:0;right:0;text-align:center;font-size:.78rem}
+.bars div i{position:absolute;bottom:-1.6rem;left:0;right:0;text-align:center;font:normal .72rem Sora;color:var(--mute)}
+.jr{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:1rem 0 2rem}
+.jr div{padding:.6rem .3rem;border-radius:10px;text-align:center;font-size:.76rem;background:var(--vi);color:#fff;transition:background .3s}
+.jr div.s{background:var(--aq);color:#032b25}
+@media(max-width:640px){.jr{grid-template-columns:repeat(3,1fr)}}
+footer{text-align:center;color:var(--mute);padding:3rem 1rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style></head><body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header class="hero"><h1>Dari pabrik ke tangan konsumen, rasakan alurnya.</h1>
+<p>Ringkasan 7 topik modul Commercial Distribution (136 halaman) plus teori tambahan, kalkulator saluran, bea masuk, Incoterms, dan persediaan. Gerakkan kursor untuk menarik paket, klik untuk mengirim kargo baru.</p>
+<div><a class="btn" href="#lab">Coba kalkulator</a> <a class="btn alt" href="Commercial_Distribution_Toolkit.xlsx" download>Unduh spreadsheet</a></div></header>
+<nav aria-label="Navigasi"><a href="#materi">Materi</a><a href="#saluran">Saluran</a><a href="#landed">Landed cost</a><a href="#inco">Incoterms</a><a href="#stok">Persediaan</a><a href="#kuis">Kuis</a></nav>
+<main>
+<section id="materi"><h2>Tujuh topik inti</h2><div class="tabs" id="tabs" role="tablist"></div><div class="grid" id="pane"></div></section>
+
+<section id="saluran"><h2>Pembangun saluran distribusi</h2>
+<div class="card"><label>Jenis saluran <select id="ch"><option value="3">Panjang: produsen, grosir, pengecer, konsumen</option><option value="2">Pendek: produsen, pengecer, konsumen</option><option value="1">Langsung: produsen ke konsumen</option></select></label>
+<label>Biaya produksi per unit <input type="number" id="c0" value="60"></label>
+<label>Markup produsen (%) <input type="number" id="m1" value="25"></label><label>Markup grosir (%) <input type="number" id="m2" value="15"></label><label>Markup pengecer (%) <input type="number" id="m3" value="40"></label>
+<div class="bars" id="bars"></div><div class="out" id="co" style="margin-top:2.4rem"></div></div></section>
+
+<section id="landed"><h2>Kalkulator landed cost</h2>
+<div class="grid"><div class="card"><label>Nilai barang FOB <input type="number" id="l1" value="50000"></label><label>Ongkos angkut <input type="number" id="l2" value="3000"></label><label>Asuransi (% FOB) <input type="number" id="l3" value="0.5" step="0.1"></label><label>Bea ad valorem (%) <input type="number" id="l4" value="10"></label><label>Bea specific per unit <input type="number" id="l5" value="2"></label><label>Jumlah unit <input type="number" id="l6" value="5000"></label><label>PPN impor (%) <input type="number" id="l7" value="11"></label></div>
+<div class="card"><div class="out" id="lo"></div><p style="color:var(--mute)">Modul membagi tarif jadi tiga: ad valorem (persen dari harga), specific (nominal per satuan), dan mixed (gabungan).</p><a class="btn alt" href="Commercial_Distribution_Toolkit.xlsx" download>Unduh spreadsheet (6 sheet)</a></div></div></section>
+
+<section id="inco"><h2>Perjalanan Incoterms 2020</h2>
+<div class="card"><p style="color:var(--mute);margin-top:0">Geser untuk melihat seberapa jauh penjual menanggung biaya. Hijau = ditanggung penjual, ungu = pembeli.</p>
+<input type="range" id="ic" min="0" max="5" value="0" aria-label="Pilih Incoterm"><div class="out" id="in"></div>
+<div class="jr" id="jr"></div></div></section>
+
+<section id="stok"><h2>Persediaan dan logistik</h2>
+<div class="grid"><div class="card"><label>Permintaan tahunan <input type="number" id="e1" value="12000"></label><label>Biaya pesan per order <input type="number" id="e2" value="150"></label><label>Biaya simpan per unit/tahun <input type="number" id="e3" value="6"></label><label>Lead time (hari) <input type="number" id="e4" value="7"></label><label>Simpangan baku harian <input type="number" id="e5" value="12"></label></div>
+<div class="card"><div class="out" id="eo"></div><p style="color:var(--mute)">EOQ = akar(2DS/H); safety stock = 1,65 × σ × akar(lead time) untuk layanan 95%.</p></div></div></section>
+
+<section id="kuis"><h2>Kuis kilat</h2><div class="card" id="qz"></div></section>
+</main>
+<footer>Sumber: modul COMMERCIAL DISTRIBUTION (PDF unggahan) dan teori distribusi umum (EOQ, landed cost, Incoterms 2020 ICC, intensitas distribusi).</footer>
+<script>
+const T=[
+{n:"1. Saluran komersial",p:["Saluran panjang, pendek, dan langsung; unsurnya produsen, grosir, pengecer, konsumen akhir.","Perantara menghubungkan pihak-pihak yang bertransaksi dan memberi manfaat bagi keduanya.","Manajemen saluran dan sistem distribusi menentukan jangkauan pasar."],w:["Intensitas distribusi: intensif, selektif, eksklusif.","Konflik saluran (vertikal dan horizontal) harus dikelola lewat insentif dan kontrak jelas."]},
+{n:"2. Kontrak & hukum persaingan",p:["Kontrak distribusi adalah dasar jual beli; isinya wajib memenuhi unsur minimum agar sah.","Kontrak bisa berakhir bukan hanya karena terlaksana.","Hukum persaingan menolak kebijakan pembatas persaingan dan persaingan tidak sehat."],w:["Jenis umum: agensi, distributor, waralaba (franchise), lisensi.","Klausul penting: eksklusivitas, wilayah, target minimum, harga, masa berlaku, pengakhiran."]},
+{n:"3. Kebijakan perdagangan",p:["Alat restriktif: tarif (ad valorem, specific, mixed) dan non-tarif (kuota impor, fitosanitari).","Alat terbuka: liberalisasi perdagangan dengan kelebihan dan kekurangannya.","WTO, kebijakan UE dan Amerika Latin, serta kebijakan komersial perusahaan."],w:["Bea masuk dihitung atas nilai CIF di banyak negara; cek aturan lokal.","Perjanjian dagang bebas (FTA) memangkas tarif dengan syarat aturan asal barang."]},
+{n:"4. Perdagangan internasional",p:["Unsur pasar global, istilah kepabeanan, transportasi, pengapalan, dan angkutan udara.","Dokumen kepabeanan, AEO dan EDI.","Alat pembayaran dan risiko valuta serta lindung nilai."],w:["Cara bayar populer: L/C, inkaso dokumen, transfer di muka, open account.","Hedging: kontrak forward, opsi, atau natural hedge."]},
+{n:"5. Perdagangan luar negeri",p:["Beda perdagangan internasional dan luar negeri.","Karakteristik, kelebihan, kekurangan, dan model perdagangan luar negeri.","Bentuk impor-ekspor dan pentingnya bagi ekonomi."],w:["Ekspor langsung versus tidak langsung (lewat trading house).","Neraca perdagangan = ekspor − impor."]},
+{n:"6. Incoterms",p:["Incoterms mengatur biaya, risiko, dan kewajiban dalam jual beli internasional.","Daftar: EXW, FCA, CPT, CIP, DAP, DPU, DDP, FAS, FOB, CFR, CIF.","EXW paling membebani pembeli; DDP paling membebani penjual."],w:["FOB, FAS, CFR, CIF khusus angkutan laut/perairan.","Incoterms bukan kontrak: tetap perlu hukum yang berlaku dan klausul penyelesaian sengketa."]},
+{n:"7. Internasionalisasi",p:["Syarat, tipe perusahaan, kelebihan dan kekurangan internasionalisasi.","Masuk pasar lain mendorong pertumbuhan dan skala produksi.","Perlu mengenal kompetitor di pasar tujuan."],w:["Mode masuk: ekspor, lisensi, joint venture, anak usaha penuh.","Model Uppsala: ekspansi bertahap sesuai jarak psikis pasar."]}];
+const tabs=document.getElementById('tabs'),pane=document.getElementById('pane');
+T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.role='tab';b.onclick=()=>sh(i);tabs.append(b)});
+function sh(i){[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',i==j));const t=T[i];
+pane.innerHTML=`<div class="card"><span class="tag">Dari modul PDF</span><ul>${t.p.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="card"><span class="tag w">Teori tambahan</span><ul>${t.w.map(x=>`<li>${x}</li>`).join('')}</ul></div>`}sh(0);
+const g=id=>+document.getElementById(id).value,f=(x,d=0)=>isFinite(x)?x.toLocaleString('id-ID',{maximumFractionDigits:d}):'-';
+function calc(){
+const n=g('ch'),c=g('c0'),m=[g('m1'),g('m2'),g('m3')].map(x=>x/100);
+let seq=n==3?[0,1,2]:n==2?[0,2]:[0],names=['Produsen','Grosir','Pengecer'],p=c,B=[['Biaya',c]];
+seq.forEach(i=>{p*=1+m[i];B.push([names[i],p])});
+const mx=Math.max(...B.map(b=>b[1]));
+bars.innerHTML=B.map(b=>`<div style="height:${b[1]/mx*100}%"><span>${f(b[1],1)}</span><i>${b[0]}</i></div>`).join('');
+co.innerHTML=`${f(p,2)}<small>Harga akhir konsumen · ${f((p/c-1)*100,1)}% di atas biaya produksi</small>`;
+const fob=g('l1'),ins=fob*g('l3')/100,cif=fob+g('l2')+ins,ad=cif*g('l4')/100,sp=g('l5')*g('l6'),vat=g('l7')/100;
+const tot=cif+ad+(cif+ad)*vat,tm=cif+ad+sp+(cif+ad+sp)*vat;
+lo.innerHTML=`CIF ${f(cif)}<small>Total landed (ad valorem): ${f(tot)} · per unit ${f(tot/g('l6'),2)}<br>Total landed (mixed): ${f(tm)}</small>`;
+const D=g('e1'),S=g('e2'),H=g('e3'),L=g('e4'),sg=g('e5'),q=Math.sqrt(2*D*S/H),ss=1.65*sg*Math.sqrt(L),rop=D/365*L+ss;
+eo.innerHTML=`EOQ ${f(q)}<small>Order per tahun ${f(D/q,1)} · safety stock ${f(ss)} · reorder point ${f(rop)}</small>`}
+document.querySelectorAll('input[type=number],select').forEach(e=>e.oninput=calc);
+const IT=[["EXW",0,"Pembeli menanggung semua biaya dan risiko sejak gudang penjual."],["FCA",2,"Penjual mengurus ekspor dan menyerahkan ke pengangkut."],["CPT",3,"Penjual membayar angkutan utama; risiko pindah saat diserahkan ke pengangkut."],["CIP",4,"Seperti CPT plus asuransi."],["DAP",5,"Penjual mengantar ke tujuan; pembeli mengurus bea impor."],["DDP",6,"Penjual menanggung semuanya sampai tujuan, termasuk bea impor."]];
+const ST=["Angkut asal","Izin ekspor","Angkut utama","Asuransi","Angkut tujuan","Bea impor"];
+function ic(){const v=g('ic'),t=IT[v];document.getElementById('in').innerHTML=`${t[0]}<small>${t[2]}</small>`;jr.innerHTML=ST.map((s,i)=>`<div class="${i<t[1]?'s':''}">${s}</div>`).join('')}
+document.getElementById('ic').oninput=ic;
+const Q=[["Saluran dengan jumlah perantara maksimum disebut?",["Saluran panjang","Saluran langsung","Saluran pendek"],0],["Tarif persentase dari harga barang impor?",["Specific","Ad valorem","Kuota"],1],["Incoterm yang paling membebani penjual?",["EXW","FCA","DDP"],2],["EOQ meminimalkan?",["Biaya pesan + simpan","Harga jual","Bea masuk"],0]];
+let qi=0,sc=0;function rq(){const q=document.getElementById('qz');if(qi>=Q.length){q.innerHTML=`<h3>Skor ${sc}/${Q.length}</h3>`;const b=document.createElement('button');b.className='btn';b.textContent='Ulangi';b.onclick=()=>{qi=0;sc=0;rq()};q.append(b);return}
+const z=Q[qi];q.innerHTML=`<h3>${z[0]}</h3>`;z[1].forEach((o,i)=>{const b=document.createElement('button');b.className='btn alt';b.style.margin='.3rem .3rem 0 0';b.textContent=o;b.onclick=()=>{if(i==z[2]){sc++;launch(innerWidth/2,innerHeight/2)}qi++;rq()};q.append(b)})}
+// background: jaringan pelabuhan dan paket
+const cn=document.getElementById('fx'),cx=cn.getContext('2d');let W,Hh,N=[],K=[],M={x:-999,y:-999};
+const cols=['#ff6b2c','#8a6bff','#2ee6c5','#ffd84a'];
+function rs(){W=cn.width=innerWidth;Hh=cn.height=innerHeight;N=[];for(let i=0;i<9;i++)N.push({x:Math.random()*W,y:Math.random()*Hh,r:5+Math.random()*5})}rs();addEventListener('resize',rs);
+function spawn(a,b){K.push({a,b,t:0,s:.004+Math.random()*.008,c:cols[Math.random()*4|0]})}
+function launch(x,y){let a={x,y,r:3},b=N[Math.random()*N.length|0];for(let i=0;i<10;i++)spawn(a,N[Math.random()*N.length|0])}
+for(let i=0;i<30;i++)spawn(N[i%9],N[(i*5+3)%9]);
+addEventListener('pointermove',e=>{M.x=e.clientX;M.y=e.clientY});addEventListener('pointerdown',e=>launch(e.clientX,e.clientY));
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function tick(){cx.clearRect(0,0,W,Hh);cx.lineWidth=1;
+for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++){const d=Math.hypot(N[i].x-N[j].x,N[i].y-N[j].y);if(d<420){cx.globalAlpha=.18;cx.strokeStyle='#9cc7c4';cx.beginPath();cx.moveTo(N[i].x,N[i].y);cx.lineTo(N[j].x,N[j].y);cx.stroke()}}
+N.forEach(n=>{cx.globalAlpha=.9;cx.fillStyle='#2ee6c5';cx.beginPath();cx.arc(n.x,n.y,n.r,0,7);cx.fill();cx.globalAlpha=.25;cx.beginPath();cx.arc(n.x,n.y,n.r+8+Math.sin(Date.now()/400+n.x)*4,0,7);cx.stroke()});
+K=K.filter(k=>{k.t+=k.s;if(k.t>=1){if(!k.once&&Math.random()<.9){k.a=k.b;k.b=N[Math.random()*N.length|0];k.t=0;return true}return false}return true});
+K.forEach(k=>{let x=k.a.x+(k.b.x-k.a.x)*k.t,y=k.a.y+(k.b.y-k.a.y)*k.t-Math.sin(k.t*Math.PI)*60;const dx=x-M.x,dy=y-M.y,d=Math.hypot(dx,dy);if(d<130){x+=dx/d*(130-d)*.5;y+=dy/d*(130-d)*.5}
+cx.globalAlpha=1;cx.fillStyle=k.c;cx.fillRect(x-5,y-5,10,10)});
+if(K.length>90)K.splice(0,K.length-90);
+if(!rm)requestAnimationFrame(tick)}
+calc();ic();rq();tick();
+</script></body></html>

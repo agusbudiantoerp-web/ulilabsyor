@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision Making – Belajar Interaktif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14082e;--bg2:#2a1260;--ink:#f6f1ff;--mute:#b3a6e0;--or:#ff7a1a;--cy:#29d9ff;--ye:#ffe14d;--pk:#ff4fa3;--gr:#5dff9a;--line:rgba(255,255,255,.16);--card:rgba(32,16,76,.78);color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 Figtree,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.08;letter-spacing:-.02em}
+#bg{position:fixed;inset:0;z-index:-2;width:100%;height:100%}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--or),var(--pk),var(--cy));z-index:50}
+nav{position:sticky;top:4px;z-index:40;margin:0 auto;max-width:1100px;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:rgba(20,8,46,.82);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:99px;scrollbar-width:none}
+nav a{color:var(--mute);text-decoration:none;padding:6px 14px;border-radius:99px;white-space:nowrap;font-weight:500;font-size:15px;transition:.2s}
+nav a:hover,nav a.on{background:var(--or);color:#220a00}
+section{max-width:1100px;margin:0 auto;padding:84px 20px 20px}
+h2{font-size:clamp(30px,5vw,52px);margin-bottom:12px}
+h3{font-size:24px}
+.lead{color:var(--mute);max-width:62ch;margin-bottom:26px}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
+.hero h1{font-size:clamp(46px,10vw,124px);font-weight:800}
+.hero h1 span{display:block;background:linear-gradient(95deg,var(--or),var(--pk) 50%,var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.hero p{max-width:56ch;font-size:19px;color:#e0d6ff;margin:22px 0 28px}
+.btn{display:inline-block;padding:14px 26px;border-radius:14px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font:700 16px Figtree,sans-serif;transition:transform .15s}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.pri{background:var(--ye);color:#2a2000;animation:pu 2.2s infinite}
+@keyframes pu{70%{box-shadow:0 0 0 18px rgba(255,225,77,0)}0%{box-shadow:0 0 0 0 rgba(255,225,77,.6)}}
+.sec{color:var(--ink);border:1.5px solid var(--cy);margin-left:8px;background:transparent}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.stat{padding:12px 18px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.stat b{font:800 30px 'Bricolage Grotesque';color:var(--or);display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;backdrop-filter:blur(8px)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tabs button,.chip{background:var(--card);color:var(--ink);border:1px solid var(--line);padding:10px 16px;border-radius:12px;cursor:pointer;font:600 15px Figtree;transition:.2s}
+.tabs button:hover,.chip:hover{border-color:var(--or)}
+.tabs button.on,.chip.on{background:var(--pk);border-color:var(--pk);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.pt{border-left:4px solid var(--cy);padding:4px 0 4px 14px;margin:10px 0}
+.pt h4{font:700 17px Figtree;color:var(--cy)}
+.net{border-left-color:var(--gr)}.net h4{color:var(--gr)}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:2px 10px;border-radius:99px;background:var(--gr);color:#06220f;margin-bottom:6px}
+.tag.pdf{background:var(--cy);color:#04162a}
+label{display:block;font-size:14px;color:var(--mute);margin:12px 0 4px}
+input[type=text]{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--ink);font:500 16px Figtree}
+input[type=range]{width:100%;accent-color:var(--or)}
+input:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--ye);outline-offset:2px}
+.out{font:800 clamp(24px,4vw,36px) 'Bricolage Grotesque';color:var(--ye);margin-top:8px}
+.bar{height:26px;border-radius:8px;background:linear-gradient(90deg,var(--or),var(--pk));transition:width .4s;color:#fff;font:700 13px/26px Figtree;padding-left:8px;white-space:nowrap;overflow:hidden}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.steps button{flex:1;min-width:92px;padding:12px 8px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:700 14px Figtree;cursor:pointer;transition:.25s}
+.steps button.on{background:linear-gradient(90deg,var(--or),var(--pk));transform:translateY(-4px)}
+.hats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hats button{padding:16px 6px;border-radius:14px;border:3px solid transparent;font:800 15px Figtree;cursor:pointer;transition:.2s}
+.hats button.on{border-color:var(--ye);transform:scale(1.07)}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--cy)}
+tr.win td{background:rgba(93,255,154,.18);font-weight:700}
+.scard{perspective:600px}
+.scamper{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.scamper button{padding:14px 8px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:700 15px Figtree;cursor:pointer}
+.scamper button.on{background:var(--cy);color:#04162a}
+.eis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.eis div{min-height:92px;padding:10px;border-radius:12px;border:1px solid var(--line);font-size:14px}
+.eis b{display:block;margin-bottom:4px}
+.eis span{display:inline-block;background:rgba(255,255,255,.14);padding:2px 9px;border-radius:99px;margin:2px}
+.q button{display:block;width:100%;text-align:left;margin:6px 0;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 16px Figtree;cursor:pointer}
+.q button:hover{border-color:var(--or)}.q .ok{background:#1f7a35;border-color:var(--gr)}.q .no{background:#8a1f3f;border-color:var(--pk)}
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}
+.dl div{padding:16px;border:1px dashed var(--or);border-radius:16px}
+svg text{fill:var(--ink);font:600 12px Figtree}
+footer{max-width:1100px;margin:80px auto 40px;padding:0 20px;color:var(--mute);font-size:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas><div id="prog"></div>
+<nav id="nav"><a href="#home">Mulai</a><a href="#proses">Proses</a><a href="#materi">Materi</a><a href="#lab">Lab Keputusan</a><a href="#kreatif">Kreativitas</a><a href="#framework">Framework</a><a href="#kuis">Kuis</a><a href="#unduh">Unduh</a></nav>
+
+<section id="home" class="hero">
+<h1>Decision<span>Making</span></h1>
+<p>Dari mendefinisikan masalah sampai rencana aksi. Pelajari 7 topik modul, bermain dengan kalkulator keputusan, lalu unduh spreadsheet rumusnya. Gerakkan kursor atau klik layar dan lihat jalur keputusan bercabang.</p>
+<div><a class="btn pri" href="#unduh">Unduh toolkit</a><a class="btn sec" href="#proses">Mulai belajar</a></div>
+<div class="stats"><div class="stat"><b data-n="7">0</b>topik modul</div><div class="stat"><b data-n="6">0</b>langkah proses</div><div class="stat"><b data-n="9">0</b>jenis masalah bisnis</div><div class="stat"><b data-n="177">0</b>halaman sumber</div></div>
+</section>
+
+<section id="proses">
+<h2>Enam langkah menyelesaikan masalah</h2>
+<p class="lead">Urutan yang diajarkan modul (Business Problem Solving). Prosesnya boleh berulang dan mundur bila perlu.</p>
+<div class="steps" id="steps"></div><div class="card" id="stepinfo"></div>
+</section>
+
+<section id="materi">
+<h2>Isi modul per topik</h2>
+<p class="lead">Label biru dari PDF Anda, label hijau tambahan teori dari internet.</p>
+<div class="tabs" id="tabs"></div><div class="card" id="tabbody"></div>
+</section>
+
+<section id="lab">
+<h2>Lab keputusan</h2>
+<p class="lead">Geser slider dan lihat hasilnya langsung. Angka awal diambil dari contoh di modul.</p>
+<div class="grid">
+<div class="card"><h3>Pohon keputusan</h3><p class="lead" style="margin:6px 0">Buat sendiri atau beli? Bandingkan nilai harapan biaya (contoh pabrik dalam modul).</p>
+<label>Biaya dasar membuat: <b id="v1"></b></label><input type="range" id="r1" min="100000" max="250000" step="5000" value="160000">
+<label>Peluang butuh parameterisasi: <b id="v2"></b></label><input type="range" id="r2" min="0" max="100" value="30">
+<label>Biaya tambahan jika terjadi: <b id="v3"></b></label><input type="range" id="r3" min="0" max="200000" step="5000" value="80000">
+<label>Harga beli dari pemasok: <b id="v4"></b></label><input type="range" id="r4" min="100000" max="300000" step="5000" value="200000">
+<div style="margin-top:12px"><div class="bar" id="b1"></div><div class="bar" id="b2" style="margin-top:6px;background:linear-gradient(90deg,var(--cy),#6a5bff)"></div></div>
+<div class="out" id="tr"></div><small id="tn" style="color:var(--mute)"></small></div>
+<div class="card"><h3>Diagram Pareto</h3><p class="lead" style="margin:6px 0">Penjualan merek tepung dalam modul. Geser batas kumulatif.</p><label>Batas Pareto: <b id="pv"></b></label><input type="range" id="pr" min="50" max="95" value="80"><svg id="psvg" viewBox="0 0 400 230" width="100%" role="img" aria-label="Diagram Pareto penjualan merek"></svg><small id="pn" style="color:var(--mute)"></small></div>
+<div class="card" style="grid-column:1/-1"><h3>Tabel multikriteria berbobot</h3><p class="lead" style="margin:6px 0">Skor 1-10 dari modul. Atur seberapa penting tiap kriteria (0 = abaikan). Dengan semua bobot sama, Solusi B menang.</p><div id="wsl" class="grid" style="margin-bottom:10px"></div><div style="overflow-x:auto"><table id="mc"></table></div></div>
+<div class="card"><h3>Enam topi berpikir</h3><div class="hats" id="hats"></div><p id="hatinfo" style="margin-top:12px"></p></div>
+<div class="card"><h3>Lima kali "mengapa"</h3><label for="pb">Masalah</label><input type="text" id="pb" value="Penjualan turun 20%"><div id="why"></div><div class="out" style="font-size:20px" id="root"></div></div>
+</div>
+</section>
+
+<section id="kreatif">
+<h2>Mesin kreativitas</h2>
+<p class="lead">Tahap generasi ide membutuhkan banyak ide dan menunda kritik. Coba SCAMPER dan kata acak.</p>
+<div class="grid"><div class="card"><h3>SCAMPER</h3><div class="scamper" id="sc"></div><p id="scq" style="margin-top:14px"></p></div>
+<div class="card"><h3>Kata acak</h3><p class="lead" style="margin:6px 0">Hubungkan kata acak dengan masalah Anda untuk memancing asosiasi baru.</p><button class="btn pri" id="rw">Beri saya kata</button><div class="out" id="rwo" style="font-size:44px">...</div><p id="rwn" style="color:var(--mute)"></p></div></div>
+</section>
+
+<section id="framework">
+<h2>Framework tambahan</h2>
+<p class="lead">Dari internet: alat yang melengkapi teknik modul.</p>
+<div class="grid"><div class="card"><h3>Matriks Eisenhower</h3><label for="et">Tugas baru</label><input type="text" id="et" placeholder="Ketik tugas lalu pilih"><div class="tabs" style="margin-top:10px"><button class="chip" data-e="ui">Mendesak + penting</button><button class="chip" data-e="i">Penting saja</button><button class="chip" data-e="u">Mendesak saja</button><button class="chip" data-e="n">Tidak keduanya</button></div><div class="eis" id="eis"></div></div>
+<div class="card"><h3>Cynefin: jenis situasi apa ini?</h3><div class="tabs" id="cy"></div><div id="cyi"></div></div>
+<div class="card" style="grid-column:1/-1"><h3>Bias yang menjebak keputusan</h3><p class="lead" style="margin:6px 0">Modul memperingatkan bias kognitif saat memakai pemikiran rasional. Klik untuk penangkalnya.</p><div class="tabs" id="bi"></div><div id="bii"></div></div></div>
+</section>
+
+<section id="kuis"><h2>Uji pemahaman</h2><p class="lead">Enam soal. Skor tampil di akhir.</p><div class="card q" id="quiz"></div></section>
+
+<section id="unduh">
+<h2>Unduh toolkit</h2>
+<p class="lead">Spreadsheet berisi 151 rumus aktif. Sel kuning berisi input yang boleh Anda ubah.</p>
+<div class="card"><a class="btn pri" href="Decision_Making_Toolkit.xlsx" download>Unduh Decision_Making_Toolkit.xlsx</a>
+<div class="dl"><div><b>1. Pareto</b><br>Persentase dan kumulatif 80/20</div><div><b>2. Pohon Keputusan</b><br>Nilai harapan, kasus terburuk, regret</div><div><b>3. Multikriteria</b><br>Bobot dan peringkat otomatis</div><div><b>4. Berpasangan</b><br>Pairwise comparison</div><div><b>5. Dot Voting</b><br>Putaran 1 dan 2</div><div><b>6. Medali Nilai</b><br>Aturan mata rantai terlemah</div><div><b>7. Rencana Aksi</b><br>Jadwal, anggaran, kontinjensi</div><div><b>8. Prioritas</b><br>Eisenhower dan Impact-Effort</div></div>
+<p style="margin-top:16px;color:var(--mute)">Simpan file xlsx di folder yang sama dengan halaman ini agar tombol unduh berfungsi. Untuk menyimpan halaman, tekan Ctrl+S (Cmd+S di Mac).</p></div>
+</section>
+<footer>Sumber: modul PDF "Decision Making Management" (Topik 1–7) dan tambahan dari berbagai artikel tentang OODA Loop, Eisenhower Matrix, Cynefin, dan pemikiran bias kognitif. Angka simulasi hanya ilustrasi, bukan nasihat profesional.</footer>
+
+<script>
+const $=id=>document.getElementById(id),f=n=>n.toLocaleString('id-ID',{maximumFractionDigits:0});
+// ===== Latar: jalur keputusan yang bercabang =====
+const cv=$('bg'),cx=cv.getContext('2d'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let W,H,A=[],M={x:-9,y:-9};
+const COL=['#ff7a1a','#29d9ff','#ffe14d','#ff4fa3','#5dff9a'];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;cx.fillStyle='#14082e';cx.fillRect(0,0,W,H);A=[];for(let i=0;i<14;i++)sp(Math.random()*W,Math.random()*H)}
+function sp(x,y,a,c){if(A.length>240)return;A.push({x,y,a:a==null?Math.random()*6.28:a,c:c||COL[Math.random()*5|0],l:80+Math.random()*160,s:1.6+Math.random()*1.6})}
+addEventListener('resize',rs);rs();
+addEventListener('pointermove',e=>{M.x=e.clientX;M.y=e.clientY});
+addEventListener('pointerdown',e=>{for(let i=0;i<14;i++)sp(e.clientX,e.clientY,i/14*6.28)});
+function step(){cx.fillStyle='rgba(20,8,46,.07)';cx.fillRect(0,0,W,H);
+for(let i=A.length-1;i>=0;i--){const p=A[i],ox=p.x,oy=p.y;
+const d=Math.hypot(M.x-p.x,M.y-p.y);if(d<260){const t=Math.atan2(M.y-p.y,M.x-p.x);let df=t-p.a;df=Math.atan2(Math.sin(df),Math.cos(df));p.a+=df*.04}
+p.a+=(Math.random()-.5)*.12;p.x+=Math.cos(p.a)*p.s;p.y+=Math.sin(p.a)*p.s;p.l--;
+cx.strokeStyle=p.c;cx.lineWidth=1.6;cx.beginPath();cx.moveTo(ox,oy);cx.lineTo(p.x,p.y);cx.stroke();
+if(Math.random()<.012&&A.length<240){sp(p.x,p.y,p.a+.7,p.c);p.a-=.7}
+if(p.l<=0||p.x<-20||p.x>W+20||p.y<-20||p.y>H+20){A.splice(i,1)}}
+while(A.length<14)sp(Math.random()*W,Math.random()*H);
+if(!RM)requestAnimationFrame(step)}
+step();
+// ===== Progress, nav, counters =====
+const pr=$('prog'),links=[...document.querySelectorAll('#nav a')];
+addEventListener('scroll',()=>{pr.style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%';let cur=links[0];links.forEach(a=>{const s=document.querySelector(a.hash);if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=a});links.forEach(a=>a.classList.toggle('on',a===cur))},{passive:true});
+document.querySelectorAll('[data-n]').forEach(el=>{const t=+el.dataset.n;let v=0;const s=()=>{v+=Math.ceil(t/40);if(v>=t)v=t;el.textContent=v;if(v<t)setTimeout(s,35)};s()});
+// ===== Langkah proses =====
+const ST=[['1. Definisi','Topik 1','Kenali dan definisikan masalah. Mengidentifikasi tidak sama dengan mendefinisikan. Teknik: As is / To be, lima "mengapa", 5W dan 2H, lalu rumuskan pernyataan masalah dan tujuan.'],['2. Kriteria','Topik 2','Pilih cara berpikir dan alat analisis: berpikir intuitif atau reflektif, lateral, diagram Ishikawa, pohon penyebab, PEST, PMI, peta pikiran dan peta konsep.'],['3. Alternatif','Topik 3','Cari solusi dengan urutan lima tahap, pertanyaan yang tepat untuk tiap tahap, teknik pembalikan asumsi, serta perhatikan sisi emosional dan orang yang tepat untuk tiap bagian masalah.'],['4. Analisis','Topik 4','Hasilkan banyak ide tanpa kritik: brainstorming, nominal group, SCAMPER, enam topi, fish tank. Lalu analisis dengan pohon keputusan dan nilai harapan.'],['5. Keputusan','Topik 5','Nilai opsi, evaluasi konsekuensi, prioritaskan (berpasangan, multikriteria), seleksi berdasar nilai (6 medali), Pareto, dan voting. Penerimaan pengguna kunci keberhasilan.'],['6. Rencana aksi','Topik 6','Keputusan tanpa rencana aksi hampir pasti tidak terlaksana. Susun jadwal, anggaran, pembagian tanggung jawab, komite pemantau, kontrol, dan rencana kontinjensi.']];
+const sb=$('steps');ST.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s[0];b.onclick=()=>{[...sb.children].forEach((x,j)=>x.classList.toggle('on',i==j));$('stepinfo').innerHTML=`<h3>${s[0]}</h3><small style="color:var(--cy)">${s[1]}</small><p style="margin-top:8px">${s[2]}</p>`};sb.append(b)});sb.children[0].click();
+// ===== Materi =====
+const T=[
+{n:'1. Definisi masalah',s:[['pdf','Masalah bisnis','Pernyataan masalah pelanggan menentukan proposisi nilai yang bisa kita tawarkan. Pernyataan masalah bisnis membantu mengatasi kesulitan mencapai tujuan strategis atau operasional.'],['pdf','Pendekatan','Pasif (reaktif) atau aktif (mengelola risiko dan peluang). Rasional atau emosional.'],['pdf','Teknik definisi','As is... To be (kondisi sekarang dan yang diinginkan), lima "mengapa", 5W dan 2H (apa, siapa, di mana, kapan, mengapa, bagaimana, berapa), lalu merumuskan pernyataan tujuan.'],['net','Tambahan: Ladder of inference','Hati-hati melompat dari data ke kesimpulan. Periksa asumsi di tiap anak tangga sebelum bertindak.']]},
+{n:'2. Kriteria dan teknik',s:[['pdf','Dua sistem berpikir','Intuitif (cepat, otomatis) dan reflektif (lambat, disengaja). Pemikiran rasional rentan bias kognitif; pemikiran divergen mengaktifkan kreativitas.'],['pdf','Alat analisis','Berpikir lateral, diagram Ishikawa (sebab-akibat), pohon penyebab, analisis PEST, PMI (plus, minus, menarik), peta pikiran, dan peta konsep.'],['net','Tambahan: SWOT','Kekuatan, kelemahan, peluang, ancaman. Cocok untuk membingkai keputusan strategis yang luas.']]},
+{n:'3. Pengembangan alternatif',s:[['pdf','Lima tahap','Proses pemecahan masalah berjalan lima tahap, tetapi boleh iteratif: berulang dalam satu tahap atau mundur. Tujuannya menyesuaikan solusi seiring berkembang, bukan sekadar menyelesaikan.'],['pdf','Pembalikan asumsi','Tulis asumsi tentang masalah, lalu balikkan untuk menemukan peluang baru.'],['pdf','Faktor manusia','Keterampilan dan sikap orang di tiap tahap adalah aset. Sisi emosional pengelolaan masalah sering kurang mendapat perhatian.']]},
+{n:'4. Analisis',s:[['pdf','Lingkungan berpikir','Lingkungan yang baik memungkinkan orang berpikir dengan ketelitian, imajinasi, dan keberanian. Tahap generasi bertujuan menghasilkan banyak ide dan menunda kritik.'],['pdf','Metodologi','Brainstorming, Nominal Group Technique, SCAMPER (Substitute, Combine, Adapt, Modify, Put to other use, Eliminate, Reorder), enam topi berpikir, dan fish tank.'],['pdf','Pohon keputusan','Beri probabilitas dan nilai dampak tiap cabang, jumlahkan nilai harapan, lalu pilih sesuai toleransi risiko. Valid bila opsi saling lepas, menyeluruh, dan respons bersifat aditif.']]},
+{n:'5. Keputusan',s:[['pdf','Menilai opsi','Nilai solusi dengan kriteria efisiensi rasional dan juga kriteria tak berwujud: nilai organisasi, manusia, reputasi.'],['pdf','Memprioritaskan','Perbandingan berpasangan (tiap peserta membagi 3 poin per pasangan), tabel multikriteria skala 1-10, enam medali (emas, perak, baja, kayu, kaca, kuningan), diagram Pareto 80/20, dan voting titik.'],['pdf','Prinsip pemilihan','Bila dua opsi sama nilainya, pilih yang nilai harapan risikonya lebih rendah. Penerimaan oleh pengguna adalah kunci keberhasilan.'],['net','Tambahan: pre-mortem','Bayangkan keputusan sudah gagal setahun lagi, lalu tulis penyebabnya sebelum memutuskan.']]},
+{n:'6. Rencana aksi',s:[['pdf','Menyusun rencana','Jadwal, anggaran, dan pembagian tanggung jawab. Tidak semua inisiatif butuh detail perencanaan yang sama.'],['pdf','Rencana fleksibel','Di lingkungan yang tidak stabil, pilih rencana yang berevolusi saat dijalankan.'],['pdf','Pelaksanaan','Komite pemantau, peran manajer proyek, tindak lanjut dan kontrol, serta rencana kontinjensi. Bila tujuan belum tercapai, lakukan tindakan korektif atau pelengkap.'],['net','Tambahan: RACI dan DACI','Memperjelas siapa yang bertanggung jawab, menyetujui, berkonsultasi, dan diberi tahu.']]},
+{n:'7. Contoh masalah',s:[['pdf','Sembilan kelompok masalah','Keuangan, model bisnis, reputasi, merek, penjualan, biaya, distribusi, pengalaman pelanggan, serta organisasi dan SDM. Tiap kelompok dibahas dengan gejala dan pendekatannya.'],['net','Tambahan: tiga horizon','Pisahkan masalah jangka pendek (operasional), menengah (taktis), dan panjang (strategis) agar alatnya tepat.']]}];
+const tb=$('tabs'),tbd=$('tabbody');
+T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.onclick=()=>{[...tb.children].forEach((x,j)=>x.classList.toggle('on',i==j));tbd.innerHTML=t.s.map(x=>`<div class="pt ${x[0]=='net'?'net':''}"><span class="tag ${x[0]}">${x[0]=='net'?'Internet':'Dari PDF'}</span><h4>${x[1]}</h4>${x[2]}</div>`).join('')};tb.append(b)});tb.children[0].click();
+// ===== Pohon keputusan =====
+function tree(){const g=i=>+$('r'+i).value,b=g(1),p=g(2)/100,x=g(3),y=g(4);$('v1').textContent='€'+f(b);$('v2').textContent=g(2)+'%';$('v3').textContent='€'+f(x);$('v4').textContent='€'+f(y);
+const em=b+p*x,mx=Math.max(em,y,1);$('b1').style.width=em/mx*100+'%';$('b1').textContent='Membuat: €'+f(em);$('b2').style.width=y/mx*100+'%';$('b2').textContent='Membeli: €'+f(y);
+$('tr').textContent=em<y?'Pilih: membuat sendiri':em>y?'Pilih: membeli':'Seimbang';
+const be=x?(y-b)/x:0;$('tn').innerHTML=`Terburuk membuat: €${f(b+x)}. Membeli pasti €${f(y)}. Peluang impas: ${be>=0&&be<=1?(be*100).toFixed(0)+'%':'tidak ada'}. Pencari kepastian bisa tetap membeli.`}
+['r1','r2','r3','r4'].forEach(i=>$(i).oninput=tree);tree();
+// ===== Pareto =====
+const PD=[['Blue Sphere',72858],['Hercules',34716],['The King',22085],['Golden moon',17131],['The girl',8370],['The Yaqui',4511],['Grandmother Josefa',980]],PT=PD.reduce((a,b)=>a+b[1],0);
+function par(){const th=+$('pr').value;$('pv').textContent=th+'%';let c=0,h='',pts=[],vf=0;const bw=48;
+PD.forEach((d,i)=>{const prev=c;c+=d[1];const vital=prev/PT*100<th;if(vital)vf++;const bh=d[1]/PD[0][1]*150,x=20+i*54;h+=`<rect x="${x}" y="${190-bh}" width="${bw}" height="${bh}" rx="5" fill="${vital?'#ff7a1a':'#5b4a96'}"/><text x="${x+bw/2}" y="206" text-anchor="middle" font-size="9">${d[0].split(' ')[0]}</text>`;pts.push((x+bw/2)+','+(190-c/PT*150))});
+h+=`<line x1="10" x2="395" y1="${190-th/100*150}" y2="${190-th/100*150}" stroke="#ffe14d" stroke-dasharray="5"/><polyline points="${pts.join(' ')}" fill="none" stroke="#29d9ff" stroke-width="2.5"/>`+pts.map(p=>`<circle cx="${p.split(',')[0]}" cy="${p.split(',')[1]}" r="3.5" fill="#29d9ff"/>`).join('');
+$('psvg').innerHTML=h;let s=0;PD.forEach((d,i)=>{if(i<vf)s+=d[1]});$('pn').textContent=`${vf} dari 7 merek (oranye) menyumbang ${(s/PT*100).toFixed(1)}% penjualan. Fokuskan keputusan pada merek ini.`}
+$('pr').oninput=par;par();
+// ===== Multikriteria =====
+const CR=['Efisiensi','Biaya/manfaat','Kelayakan teknologi','Pengetahuan','Waktu','Penerimaan'],SC={A:[9,6,4,8,7,3],B:[8,4,6,7,6,9],C:[9,7,8,3,3,5],D:[8,8,5,4,4,3],E:[9,5,4,7,5,5]},WT=[1,1,1,1,1,1];
+CR.forEach((c,i)=>{const d=document.createElement('div');d.innerHTML=`<label>${c}: <b id="w${i}">1</b></label><input type="range" min="0" max="5" value="1" data-i="${i}">`;d.querySelector('input').oninput=e=>{WT[i]=+e.target.value;$('w'+i).textContent=WT[i];mc()};$('wsl').append(d)});
+function mc(){const sw=WT.reduce((a,b)=>a+b,0)||1,rows=Object.entries(SC).map(([k,v])=>[k,v.reduce((a,x,i)=>a+x*WT[i],0)/sw*6]),mx=Math.max(...rows.map(r=>r[1]));
+$('mc').innerHTML=`<tr><th>Solusi</th>${CR.map(c=>`<th>${c}</th>`).join('')}<th>Total berbobot</th></tr>`+rows.map(r=>`<tr class="${r[1]==mx?'win':''}"><td>${r[0]}</td>${SC[r[0]].map(x=>`<td>${x}</td>`).join('')}<td>${r[1].toFixed(1)}</td></tr>`).join('')}mc();
+// ===== Topi =====
+const HT=[['Putih','#f4f4f4','#111','Fakta, angka, informasi. Bersikap netral seperti mesin hitung, tanpa opini.'],['Merah','#e63946','#fff','Emosi, firasat, intuisi. Perasaan dibuat terlihat tanpa perlu dijelaskan secara logis.'],['Hitam','#222','#fff','Penilaian negatif: risiko, bahaya, mengapa ini tidak akan berhasil. Peran advokat setan.'],['Kuning','#ffd60a','#222','Optimisme: manfaat, nilai, mengapa ini bisa berhasil.'],['Hijau','#2dc653','#052b10','Kreativitas: alternatif, ide baru, provokasi.'],['Biru','#3a86ff','#fff','Proses: mengatur jalannya berpikir dan menyimpulkan.']];
+HT.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h[0];b.style.cssText=`background:${h[1]};color:${h[2]}`;b.onclick=()=>{[...$('hats').children].forEach((x,j)=>x.classList.toggle('on',i==j));$('hatinfo').innerHTML=`<b>Topi ${h[0]}.</b> ${h[3]}`};$('hats').append(b)});$('hats').children[0].click();
+// ===== Lima mengapa =====
+const WH=['Mengapa terjadi?','Mengapa itu terjadi?','Mengapa lagi?','Mengapa lagi?','Mengapa akhirnya?'],ex=['Pelanggan beralih ke pesaing','Pesaing menawarkan pengiriman lebih cepat','Gudang kami lambat memproses','Sistem stok dikerjakan manual',''];
+WH.forEach((w,i)=>{const d=document.createElement('div');d.innerHTML=`<label>${i+1}. ${w}</label><input type="text" value="${ex[i]}">`;d.querySelector('input').oninput=rw5;$('why').append(d)});
+function rw5(){const v=[...$('why').querySelectorAll('input')].map(x=>x.value.trim()).filter(Boolean);$('root').textContent=v.length?'Akar masalah: '+v[v.length-1]:'Isi jawaban untuk menemukan akar masalah.'}rw5();$('pb').oninput=rw5;
+// ===== SCAMPER dan kata acak =====
+const SQ=[['Substitute','Apa yang bisa diganti: bahan, aturan, proses, tempat, pendekatan? Contoh: Sylvan Goldman mengganti keranjang dengan kereta belanja beroda.'],['Combine','Apa yang bisa digabung: ide, fungsi, tujuan, atau unit?'],['Adapt','Apa yang bisa disesuaikan dari bidang lain?'],['Modify','Apa yang bisa diubah, diperbesar, diperkecil, atau diberi ciri baru?'],['Put to other use','Bisa dipakai untuk hal lain atau kelompok pengguna lain?'],['Eliminate','Apa yang bisa dihapus atau disederhanakan?'],['Reorder','Apa yang bisa dibalik atau diurutkan ulang?']];
+SQ.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s[0];b.onclick=()=>{[...$('sc').children].forEach((x,j)=>x.classList.toggle('on',i==j));$('scq').textContent=s[1]};$('sc').append(b)});$('sc').children[0].click();
+const RW=['Kapal','Cermin','Lebah','Pasar','Jembatan','Api','Kunci','Musik','Hutan','Menara','Sungai','Roda'];
+$('rw').onclick=()=>{$('rwo').textContent=RW[Math.random()*RW.length|0];$('rwn').textContent='Apa kesamaan kata ini dengan masalah Anda? Catat setiap ide, jangan dinilai dulu.'};
+// ===== Eisenhower =====
+const EQ={ui:['Kerjakan sekarang',[]],i:['Jadwalkan',[]],u:['Delegasikan',[]],n:['Hapus',[]]};['Perbaiki keluhan pelanggan besar:ui','Susun strategi tahun depan:i','Balas email rutin:u'].forEach(s=>{const[a,b]=s.split(':');EQ[b][1].push(a)});
+function eis(){$('eis').innerHTML=Object.values(EQ).map(q=>`<div><b>${q[0]}</b>${q[1].map(t=>`<span>${t.replace(/</g,'&lt;')}</span>`).join('')}</div>`).join('')}eis();
+document.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{const t=$('et').value.trim();if(!t){$('et').focus();return}EQ[b.dataset.e][1].push(t);$('et').value='';eis()});
+// ===== Cynefin =====
+const CY=[['Sederhana','Sebab-akibat jelas. Pendekatan: amati, kategorikan, respons dengan praktik terbaik.'],['Rumit','Butuh keahlian untuk menganalisis. Pendekatan: amati, analisis, respons dengan praktik baik.'],['Kompleks','Hubungan sebab-akibat baru terlihat belakangan. Pendekatan: uji coba kecil, amati, respons.'],['Kacau','Krisis. Pendekatan: bertindak cepat untuk menstabilkan, amati, lalu respons.']];
+CY.forEach((c,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=c[0];b.onclick=()=>{[...$('cy').children].forEach((x,j)=>x.classList.toggle('on',i==j));$('cyi').innerHTML=`<p><b>${c[0]}.</b> ${c[1]}</p>`};$('cy').append(b)});$('cy').children[0].click();
+// ===== Bias =====
+const BI=[['Konfirmasi','Mencari bukti yang mendukung keyakinan awal. Tangkal: cari bukti yang membantah dan tunjuk pembela posisi lawan.'],['Anchoring','Terpaku pada angka pertama. Tangkal: buat estimasi sendiri sebelum melihat angka orang lain.'],['Biaya tenggelam','Melanjutkan karena sudah banyak mengeluarkan. Tangkal: nilai hanya biaya dan manfaat ke depan.'],['Groupthink','Tim menyetujui demi keharmonisan. Tangkal: tulis opini individu dulu (seperti dot voting yang disarankan modul).'],['Overconfidence','Terlalu yakin dengan perkiraan. Tangkal: beri rentang, bukan angka tunggal, dan lakukan pre-mortem.']];
+BI.forEach((c,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=c[0];b.onclick=()=>{[...$('bi').children].forEach((x,j)=>x.classList.toggle('on',i==j));$('bii').innerHTML=`<p><b>${c[0]}.</b> ${c[1]}</p>`};$('bi').append(b)});$('bi').children[0].click();
+// ===== Kuis =====
+const Q=[['Teknik yang bertanya "mengapa" berulang untuk menemukan akar masalah disebut...',['5W dan 2H','Lima "mengapa"','SCAMPER','PEST'],1],['Pada tahap menghasilkan ide, apa yang harus ditunda?',['Mencatat ide','Kritik atau penilaian','Kerja tim','Pemilihan topik'],1],['Pada contoh pohon keputusan, nilai harapan "membuat sendiri" adalah...',['€160.000','€184.000','€200.000','€240.000'],1],['Prinsip Pareto menyatakan...',['50% penyebab menimbulkan 50% masalah','80% masalah berasal dari 20% sumber','10% masalah menyebabkan 90% biaya','Semua penyebab setara'],1],['Dalam 6 medali de Bono, medali yang mewakili nilai manusia adalah...',['Emas','Perak','Kayu','Kaca'],0],['Menurut modul, mengapa rencana aksi wajib ada?',['Agar rapat lebih lama','Keputusan tanpa rencana hampir pasti tidak terlaksana','Agar tak perlu kontrol','Agar anggaran bisa dihapus'],1]];
+let qi=0,sc=0;const qz=$('quiz');
+function rq(){if(qi>=Q.length){qz.innerHTML=`<h3>Skor Anda: ${sc} / ${Q.length}</h3><p style="margin:10px 0">${sc==Q.length?'Sempurna. Lanjut ke spreadsheet.':'Baca lagi topik yang meleset, lalu coba ulang.'}</p><button class="btn pri" id="rt" style="width:auto">Ulangi</button>`;$('rt').onclick=()=>{qi=0;sc=0;rq()};return}
+const q=Q[qi];qz.innerHTML=`<p><b>Soal ${qi+1} dari ${Q.length}</b></p><h3 style="margin:8px 0 12px">${q[0]}</h3>`;q[1].forEach((o,i)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>{[...qz.querySelectorAll('button')].forEach((x,j)=>{x.disabled=true;if(j==q[2])x.classList.add('ok')});if(i==q[2])sc++;else b.classList.add('no');setTimeout(()=>{qi++;rq()},1100)};qz.append(b)})}
+rq();
+</script>
+</body>
+</html>

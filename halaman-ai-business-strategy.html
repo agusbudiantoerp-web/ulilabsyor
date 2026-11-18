@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Business Lab - Strategi AI dan AI in Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0720;--p:#8b4dff;--c:#00e5ff;--m:#ff3d81;--l:#c8ff3d;--t:#ecebff;--mu:#a9a5d6;--card:rgba(24,17,60,.78);--bd:rgba(139,77,255,.45)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--t);font:16px/1.6 Outfit,system-ui,sans-serif}
+#bg{position:fixed;inset:0;z-index:-1;width:100%;height:100%}
+.glow{position:fixed;inset:0;z-index:-2;background:radial-gradient(60% 50% at 20% 10%,#4b1fa8aa,transparent),radial-gradient(50% 50% at 90% 30%,#00a8c455,transparent),radial-gradient(50% 40% at 50% 100%,#ff3d8144,transparent);animation:hue 14s linear infinite alternate}
+@keyframes hue{to{filter:hue-rotate(60deg)}}
+h1,h2,h3{font-family:Unbounded,Outfit,sans-serif;line-height:1.15;margin:0 0 .5em}
+header.hero{min-height:88vh;display:grid;place-content:center;text-align:left;padding:48px 6vw;max-width:1100px;margin:auto}
+.hero h1{font-size:clamp(34px,7vw,74px);font-weight:800;background:linear-gradient(100deg,var(--c),var(--p) 45%,var(--m));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:620px;font-size:19px;color:var(--mu)}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.btn{border:0;cursor:pointer;font:600 16px Outfit;padding:13px 24px;border-radius:999px;background:linear-gradient(90deg,var(--p),var(--m));color:#fff;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 30px #8b4dff77}
+.btn.g{background:transparent;border:1.5px solid var(--c);color:var(--c)}
+.stat{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px}.stat b{font:800 30px Unbounded;color:var(--l);display:block}.stat span{color:var(--mu);font-size:14px}
+#xpbar{position:sticky;top:0;z-index:20;background:#0b0720ee;backdrop-filter:blur(10px);border-bottom:1px solid var(--bd);padding:8px 5vw}
+#xpbar .in{max-width:1100px;margin:auto;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+nav{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+nav button{background:none;border:1px solid transparent;color:var(--mu);padding:8px 14px;border-radius:999px;font:500 15px Outfit;cursor:pointer}
+nav button:hover{color:var(--t)}nav button.on{background:var(--p);color:#fff;box-shadow:0 0 18px #8b4dff99}
+.xp{min-width:190px;font-size:13px;color:var(--mu)}.xp i{display:block;height:8px;border-radius:9px;background:#2a2060;overflow:hidden;margin-top:3px}.xp i u{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c),var(--l));transition:width .5s}
+main{max-width:1100px;margin:auto;padding:30px 5vw 80px}
+.pane{display:none}.pane.on{display:block;animation:in .4s}@keyframes in{from{opacity:0;transform:translateY(14px)}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px;margin:14px 0;backdrop-filter:blur(8px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+details{background:var(--card);border:1px solid var(--bd);border-radius:16px;margin:12px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 20px;font:600 18px Outfit;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::after{content:"+";color:var(--c);font-size:24px}details[open] summary::after{content:"-"}
+details[open]{border-color:var(--c);box-shadow:0 0 24px #00e5ff33}
+details .b{padding:0 20px 18px;color:#d9d6ff}
+code,.f{font-family:ui-monospace,Menlo,monospace;background:#120a38;border:1px solid var(--bd);border-radius:10px;color:var(--l);padding:3px 8px}
+.f{display:block;padding:12px 14px;margin:10px 0;overflow-x:auto;font-size:15px}
+.tag{display:inline-block;font-size:13px;padding:2px 10px;border-radius:99px;background:#00e5ff22;color:var(--c);margin:2px 4px 2px 0}
+label{display:flex;justify-content:space-between;font-size:14px;color:var(--mu);margin-top:12px}label b{color:var(--c)}
+input[type=range]{width:100%;accent-color:var(--m)}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+.res div{background:#120a38;border:1px solid var(--bd);border-radius:12px;padding:10px;text-align:center}.res b{display:block;font:800 22px Unbounded;color:var(--l)}.res span{font-size:12px;color:var(--mu)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--t);padding:9px 16px;border-radius:999px;font:500 15px Outfit;transition:.2s}
+.chip:hover{border-color:var(--c);transform:translateY(-2px)}.chip.on{background:linear-gradient(90deg,var(--c),var(--p));color:#07031a;font-weight:600}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:12px;border:1px solid var(--bd);background:#120a38;color:var(--t);font:16px Outfit;cursor:pointer}
+.opt:hover{border-color:var(--c)}.opt.ok{background:#1d5c2c;border-color:var(--l)}.opt.no{background:#6b1738;border-color:var(--m)}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer}.ck input{margin-top:6px;accent-color:var(--l);width:18px;height:18px}
+.ans{margin-top:10px;padding:12px;border-left:3px solid var(--l);background:#c8ff3d14}
+h2{font-size:clamp(22px,3.6vw,32px)}h3{font-size:19px;color:var(--c)}
+footer{text-align:center;color:var(--mu);padding:30px;font-size:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="glow"></div><canvas id="bg"></canvas>
+<header class="hero">
+<h1>AI Business Lab</h1>
+<p>Belajar strategi AI dan inovasi bisnis dari nol sampai bisa dipakai di meja kerja besok pagi: teori, rumus yang bisa dihitung langsung, soal latihan, dan 10 studi kasus industri.</p>
+<div class="row"><a class="btn" href="#app" onclick="go('teori')">Mulai belajar</a><a class="btn g" href="#app" onclick="go('industri')">Lihat studi kasus industri</a></div>
+<div class="stat"><div><b>8</b><span>materi teori</span></div><div><b>3</b><span>kalkulator rumus</span></div><div><b>10</b><span>industri</span></div><div><b>5</b><span>soal + kuis</span></div></div>
+</header>
+<div id="xpbar"><div class="in"><nav id="nav"></nav><div class="xp"><span id="xpt">XP 0 / 100 - Pemula</span><i><u id="xpu"></u></i></div></div></div>
+<main id="app">
+
+<section class="pane" id="p-teori"><h2>Teori inti: dari konsep sampai strategi</h2><p style="color:var(--mu)">Buka tiap kartu. Setiap kartu yang dibuka menambah XP.</p><div id="teori"></div></section>
+
+<section class="pane" id="p-rumus"><h2>Rumus dan kalkulator</h2><p style="color:var(--mu)">Geser slider, hasil dan langkah hitung berubah langsung.</p>
+<div class="grid">
+<div class="card" data-x="calc1"><h3>1. NPV, ROI, Payback proyek AI</h3>
+<div class="f">NPV = Σ [ CFt / (1+r)^t ] − I0<br>ROI = (ΣCF − I0) / I0<br>Payback = I0 / CF per tahun</div>
+<label>Investasi I0 (Rp juta)<b id="o1">800</b></label><input id="i1" type="range" min="100" max="5000" step="50" value="800">
+<label>Arus kas bersih CF per tahun (Rp juta)<b id="o2">300</b></label><input id="i2" type="range" min="50" max="2000" step="10" value="300">
+<label>Umur proyek n (tahun)<b id="o3">4</b></label><input id="i3" type="range" min="1" max="8" value="4">
+<label>Discount rate r (%)<b id="o4">10</b></label><input id="i4" type="range" min="1" max="25" value="10">
+<div class="res" id="r1"></div><div class="f" id="s1" style="white-space:pre"></div></div>
+
+<div class="card" data-x="calc2"><h3>2. Kualitas model: Precision, Recall, F1</h3>
+<div class="f">Precision = TP/(TP+FP)<br>Recall = TP/(TP+FN)<br>F1 = 2·P·R/(P+R)<br>Accuracy = (TP+TN)/Total</div>
+<label>TP (alarm benar)<b id="o5">80</b></label><input id="i5" type="range" min="0" max="200" value="80">
+<label>FP (alarm palsu)<b id="o6">20</b></label><input id="i6" type="range" min="0" max="200" value="20">
+<label>FN (kejadian terlewat)<b id="o7">40</b></label><input id="i7" type="range" min="0" max="200" value="40">
+<label>TN (aman, benar)<b id="o8">860</b></label><input id="i8" type="range" min="0" max="1000" value="860">
+<div class="res" id="r2"></div><p id="s2" style="color:var(--mu)"></p></div>
+
+<div class="card" data-x="calc3"><h3>3. Skor prioritas use case AI</h3>
+<div class="f">Skor = (Nilai × Kelayakan × Kesiapan Data) / Risiko</div>
+<label>Nilai bisnis (1-10)<b id="o9">8</b></label><input id="i9" type="range" min="1" max="10" value="8">
+<label>Kelayakan teknis (1-10)<b id="o10">6</b></label><input id="i10" type="range" min="1" max="10" value="6">
+<label>Kesiapan data (1-10)<b id="o11">7</b></label><input id="i11" type="range" min="1" max="10" value="7">
+<label>Risiko (1-10)<b id="o12">3</b></label><input id="i12" type="range" min="1" max="10" value="3">
+<div class="res" id="r3"></div><p id="s3" style="color:var(--mu)"></p></div>
+</div></section>
+
+<section class="pane" id="p-industri"><h2>Studi kasus per industri</h2><p style="color:var(--mu)">Pilih industri. Setiap kasus memuat masalah, solusi AI, data, KPI, hitungan manfaat, dan cara pakai sehari-hari.</p><div class="chips" id="chips"></div><div id="kasus"></div></section>
+
+<section class="pane" id="p-soal"><h2>Contoh soal</h2><p style="color:var(--mu)">Kerjakan di kertas dulu, lalu buka jawabannya.</p><div id="soal"></div></section>
+
+<section class="pane" id="p-kuis"><h2>Kuis kilat</h2><div class="card" id="kuis"></div></section>
+
+<section class="pane" id="p-rencana"><h2>Rencana 90 hari dan kebiasaan harian</h2>
+<div class="grid"><div class="card"><h3>Roadmap 90 hari</h3><div id="road"></div><div class="res"><div><b id="rp">0%</b><span>selesai</span></div></div></div>
+<div class="card"><h3>Pembuat prompt kerja harian</h3>
+<div class="f">Prompt = Peran + Konteks + Tugas + Format + Batasan</div>
+<label>Peran</label><input id="pr" style="width:100%" class="opt" value="Analis operasi tambang senior">
+<label>Konteks</label><input id="pc" style="width:100%" class="opt" value="Data produksi dump truck 7 hari terakhir">
+<label>Tugas</label><input id="pt" style="width:100%" class="opt" value="Cari 3 penyebab utama penurunan ton per jam">
+<label>Format dan batasan</label><input id="pf" style="width:100%" class="opt" value="Tabel ringkas, maksimal 150 kata, sebutkan asumsi">
+<div class="f" id="po" style="white-space:normal;margin-top:14px"></div><button class="btn" id="cp">Salin prompt</button></div></div></section>
+</main>
+<footer>AI Business Lab. Satu file HTML, bisa dibuka offline dan diunduh. Angka pada studi kasus adalah ilustrasi untuk latihan, sesuaikan dengan data perusahaan Anda.</footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],fm=n=>Math.round(n).toLocaleString('id-ID');
+/* XP */
+let xp=0;const seen=new Set();
+function gain(k,n=5){if(seen.has(k))return;seen.add(k);xp=Math.min(100,xp+n);const lv=xp<25?'Pemula':xp<55?'Praktisi':xp<85?'Strategis':'Master';$('#xpt').textContent=`XP ${xp} / 100 - ${lv}`;$('#xpu').style.width=xp+'%'}
+/* Tabs */
+const T=[['teori','Teori'],['rumus','Rumus'],['industri','Industri'],['soal','Soal'],['kuis','Kuis'],['rencana','Rencana']];
+$('#nav').innerHTML=T.map(t=>`<button data-t="${t[0]}">${t[1]}</button>`).join('');
+function go(t){$$('.pane').forEach(p=>p.classList.toggle('on',p.id==='p-'+t));$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));gain('tab'+t,2)}
+$$('#nav button').forEach(b=>b.onclick=()=>{go(b.dataset.t);scrollTo({top:$('#app').offsetTop-50,behavior:'smooth'})});
+/* Teori */
+const TE=[
+['AI, Machine Learning, Deep Learning, GenAI','<b>AI</b> adalah sistem yang meniru kemampuan kognitif. <b>ML</b> belajar pola dari data. <b>Deep Learning</b> memakai jaringan saraf berlapis untuk gambar, suara, teks. <b>GenAI</b> (LLM) menghasilkan teks, kode, gambar. Pilih alat sesuai masalah: prediksi angka pakai ML, baca foto pakai computer vision, ringkas dokumen pakai LLM.'],
+['Kerangka strategi AI: V-D-T-G','<b>Value</b> (masalah bernilai), <b>Data</b> (kualitas dan akses), <b>Talent</b> (orang dan proses), <b>Governance</b> (etika, keamanan, kepatuhan). Strategi AI yang gagal biasanya kuat di teknologi tetapi lemah di Value dan Governance.<div class="f">Nilai AI = Dampak bisnis × Probabilitas sukses × Skala adopsi</div>'],
+['Business innovation: 3 Horizon dan eksperimen cepat','<b>H1</b> efisiensi inti (0-12 bulan), <b>H2</b> produk dan layanan baru (1-3 tahun), <b>H3</b> model bisnis baru (3+ tahun). Alokasi umum 70/20/10. Uji ide dengan siklus <i>Bangun - Ukur - Pelajari</i>: pilot 6-8 minggu dengan metrik sukses yang disepakati sebelum mulai.'],
+['Data dan MLOps','Kualitas data menentukan kualitas model: kelengkapan, akurasi, konsistensi, ketepatan waktu. MLOps menjaga model tetap sehat: versioning, monitoring drift, retraining terjadwal.<div class="f">Drift terdeteksi bila Akurasi_sekarang < Akurasi_baseline − toleransi (mis. 5 poin)</div>'],
+['Memilih dan memprioritaskan use case','Petakan ide pada matriks Nilai vs Kelayakan. Mulai dari <i>quick win</i> (nilai tinggi, mudah), siapkan <i>big bet</i> (nilai tinggi, sulit), hindari <i>time sink</i>. Gunakan kalkulator skor prioritas di tab Rumus.'],
+['Etika, risiko, dan tata kelola','Risiko utama: bias data, kebocoran data, halusinasi LLM, ketergantungan berlebih. Prinsip: transparan, adil, aman, akuntabel, ada manusia dalam lingkaran (human-in-the-loop) untuk keputusan berisiko tinggi. Patuhi UU PDP dan kebijakan data perusahaan.'],
+['Manajemen perubahan dan adopsi','Teknologi tidak menghasilkan nilai sampai dipakai. Terapkan model ADKAR: Awareness, Desire, Knowledge, Ability, Reinforcement. Libatkan operator lapangan sejak awal, ukur adopsi (persentase pengguna aktif mingguan), bukan hanya akurasi model.<div class="f">Nilai nyata = Nilai teoritis × Tingkat adopsi</div>'],
+['GenAI dan agen AI di pekerjaan harian','Pakai untuk: meringkas rapat, menyusun laporan, analisis tabel, draf email, review kontrak, tanya jawab SOP. Rumus prompt: <b>Peran + Konteks + Tugas + Format + Batasan</b>. Selalu verifikasi angka penting dan jangan unggah data rahasia ke alat yang tidak disetujui. Coba pembuat prompt di tab Rencana.']];
+$('#teori').innerHTML=TE.map((t,i)=>`<details data-k="te${i}"><summary>${t[0]}</summary><div class="b">${t[1]}</div></details>`).join('');
+$$('#teori details').forEach(d=>d.addEventListener('toggle',()=>d.open&&gain(d.dataset.k,4)));
+/* Calc 1 */
+const g=id=>+$('#'+id).value;
+function c1(){const I=g('i1'),CF=g('i2'),n=g('i3'),r=g('i4')/100;$('#o1').textContent=fm(I);$('#o2').textContent=fm(CF);$('#o3').textContent=n;$('#o4').textContent=r*100;
+let npv=-I,s=`Tahun 0: -${fm(I)}\n`;for(let t=1;t<=n;t++){const pv=CF/Math.pow(1+r,t);npv+=pv;s+=`Tahun ${t}: ${fm(CF)} / (1+${r})^${t} = ${fm(pv)}\n`}
+const roi=(CF*n-I)/I,pb=I/CF;s+=`NPV = ${fm(npv)} juta`;
+$('#r1').innerHTML=`<div><b>${fm(npv)}</b><span>NPV (Rp juta)</span></div><div><b>${(roi*100).toFixed(0)}%</b><span>ROI</span></div><div><b>${pb.toFixed(1)} th</b><span>Payback</span></div>`;$('#s1').textContent=s+(npv>0?'\nKeputusan: layak (NPV > 0)':'\nKeputusan: belum layak (NPV < 0)');gain('calc1',6)}
+function c2(){const TP=g('i5'),FP=g('i6'),FN=g('i7'),TN=g('i8');[5,6,7,8].forEach((k,i)=>$('#o'+k).textContent=[TP,FP,FN,TN][i]);
+const P=TP/(TP+FP||1),R=TP/(TP+FN||1),F=2*P*R/(P+R||1),A=(TP+TN)/(TP+FP+FN+TN||1);
+$('#r2').innerHTML=[['Precision',P],['Recall',R],['F1',F],['Accuracy',A]].map(x=>`<div><b>${(x[1]*100).toFixed(1)}%</b><span>${x[0]}</span></div>`).join('');
+$('#s2').textContent=`Hitung: P = ${TP}/(${TP}+${FP}), R = ${TP}/(${TP}+${FN}). `+(R<P?'Recall rendah: banyak kejadian penting terlewat (cocok diperbaiki untuk keselamatan).':'Precision rendah: banyak alarm palsu (biaya investigasi naik).');gain('calc2',6)}
+function c3(){const V=g('i9'),F=g('i10'),D=g('i11'),R=g('i12');[9,10,11,12].forEach((k,i)=>$('#o'+k).textContent=[V,F,D,R][i]);const s=V*F*D/R;
+$('#r3').innerHTML=`<div><b>${s.toFixed(0)}</b><span>Skor</span></div><div><b>${(s/ (1000/1)*100).toFixed(0)}%</b><span>Skala (maks 1000)</span></div>`;
+$('#s3').textContent=`Hitung: (${V}×${F}×${D})/${R} = ${s.toFixed(1)}. `+(s>=150?'Quick win: kerjakan sekarang.':s>=60?'Kandidat pilot: perkuat data dulu.':'Tunda atau kecilkan lingkup.');gain('calc3',6)}
+$$('#p-rumus input').forEach(i=>i.oninput=()=>{c1();c2();c3()});c1();c2();c3();xp=0;seen.clear();
+/* Industri */
+const IN=[
+['Perminyakan','Pompa dan kompresor sering mati mendadak, downtime mahal.','Predictive maintenance dari sensor getaran, suhu, tekanan (anomaly detection + model sisa umur).','Data SCADA/historian, log kerja, histori kegagalan','Unplanned downtime, MTBF, biaya perawatan per barel','Hemat = N × C × Recall − FA × c<br>= 12 × 1,5 M × 70% − 20 × 5 jt<br>= 12,6 M − 0,1 M = <b>Rp 12,5 M/tahun</b>','Engineer cek dasbor risiko pompa tiap pagi dan menjadwalkan perbaikan sebelum rusak.'],
+['Pertambangan','Truk menunggu, dispatch manual, produktivitas tidak merata.','Optimasi dispatch dan prediksi cycle time (ML + optimasi), computer vision untuk kondisi jalan.','GPS fleet, data FMS, cuaca, kondisi jalan','Ton/jam, match factor, antrean, biaya per ton','Tambahan = 30 DT × 450 t × 6% = 810 t/hari<br>× Rp 25.000 margin × 330 hari = <b>Rp 6,68 M/tahun</b>','Supervisor menerima rekomendasi pindah unit dan memantau antrean di layar.'],
+['Konstruksi','Proyek molor dan biaya membengkak tanpa peringatan dini.','Prediksi overrun biaya dan jadwal (regresi, gradient boosting) plus foto drone untuk progres otomatis.','Jadwal, RAB vs realisasi, laporan harian, foto lapangan','CPI, SPI, deviasi jadwal, klaim variasi','Overrun rata-rata 7% × Rp 500 M = 35 M<br>AI mengurangi 25% → <b>Hemat Rp 8,75 M</b>','Manajer proyek mendapat alert minggu ini bila SPI < 0,9.'],
+['Logistik','Rute tidak efisien dan armada kosong saat balik.','Optimasi rute (VRP) dan prediksi permintaan untuk muat balik.','GPS, order, jam layanan, kondisi lalu lintas','Biaya per km, on-time delivery, load factor','Biaya/hari = 100 truk × 200 km × Rp 3.000 = 60 jt<br>Hemat 8% × 300 hari = <b>Rp 1,44 M/tahun</b>','Dispatcher menekan satu tombol untuk rute terbaik hari ini.'],
+['Perkapalan','Konsumsi bahan bakar tinggi dan jadwal sandar tidak pasti.','Optimasi kecepatan dan trim (ML + cuaca), prediksi ETA pelabuhan.','Data mesin, AIS, cuaca laut, arus','Ton BBM per mil, ETA error, jam tunggu sandar','BBM/hari = 30 t × Rp 9,6 jt = 288 jt<br>Hemat 4% × 280 hari = <b>Rp 3,23 M/tahun</b>','Nakhoda menerima saran kecepatan harian sesuai cuaca.'],
+['Rumah Sakit','Pasien tidak datang (no-show) dan antrean IGD padat.','Prediksi no-show, bantuan triase, ringkasan rekam medis dengan GenAI (tetap diawasi klinisi).','Data janji temu, rekam medis terstruktur (anonim), kunjungan IGD','No-show rate, waktu tunggu, utilisasi dokter','Slot terselamatkan = 400 × (18% − 11%) = 28<br>× Rp 450.000 = <b>Rp 12,6 jt/hari</b>','Admin mengirim pengingat prioritas ke pasien berisiko tidak hadir.'],
+['Petrokimia','Yield produk belum optimal dan konsumsi energi besar.','Digital twin dan model optimasi parameter proses (suhu, tekanan, laju umpan).','Data DCS/historian, lab, harga bahan baku','Yield, energi per ton, off-spec rate','Kapasitas 500.000 t × 0,5% yield = 2.500 t<br>× Rp 1,2 jt margin = <b>Rp 3 M/tahun</b>','Operator menyetel setpoint rekomendasi setelah persetujuan supervisor.'],
+['Manufaktur','Cacat produk lolos ke pelanggan.','Computer vision inspeksi kualitas di lini produksi.','Foto produk berlabel, data reject','Defect escape rate, biaya garansi','Cacat lolos = 1.000.000 × 2% = 20.000<br>× Rp 80.000 = 1,6 M/bulan; turun 60% = <b>Rp 0,96 M/bulan</b>','Operator QC meninjau hanya item yang ditandai ragu oleh model.'],
+['Perbankan','Kredit macet dan penipuan transaksi.','Credit scoring, deteksi fraud real time, chatbot layanan.','Histori transaksi, perilaku bayar, data biro','NPL, fraud loss, waktu persetujuan kredit','NPL 3% × Rp 2 T = 60 M; turun jadi 2,4% = 48 M<br><b>Hemat Rp 12 M</b>','Analis kredit memakai skor sebagai pembanding, bukan pengganti keputusan.'],
+['Ritel','Stok mati dan kehabisan barang laris.','Peramalan permintaan per toko dan SKU, rekomendasi harga.','Penjualan harian, promo, musim, stok','MAPE, stockout rate, perputaran persediaan','Stok mati = 8% × Rp 50 M = 4 M<br>Turun 25% = <b>Rp 1 M</b>; MAPE = (1/n)Σ|A−F|/A','Buyer memesan ulang berdasarkan saran jumlah per toko.']];
+$('#chips').innerHTML=IN.map((x,i)=>`<button class="chip" data-i="${i}">${x[0]}</button>`).join('');
+function show(i){const x=IN[i];$$('.chip').forEach((c,j)=>c.classList.toggle('on',i===j));
+$('#kasus').innerHTML=`<div class="card"><h3>${x[0]}</h3><p><b>Masalah:</b> ${x[1]}</p><p><b>Solusi AI:</b> ${x[2]}</p><p><span class="tag">Data</span>${x[3]}</p><p><span class="tag">KPI</span>${x[4]}</p><div class="f" style="white-space:normal;line-height:1.8">${x[5]}</div><p><b>Dipakai sehari-hari:</b> ${x[6]}</p></div>`;gain('ind'+i,3)}
+$$('.chip').forEach(c=>c.onclick=()=>show(+c.dataset.i));show(0);
+/* Soal */
+const SO=[
+['Soal 1 (NPV): investasi Rp 800 juta, arus kas Rp 300 juta/tahun selama 4 tahun, r = 10%. Layakkah?','Faktor anuitas = (1 − 1,1^−4)/0,1 = 3,1699<br>PV = 300 × 3,1699 = 950,96<br>NPV = 950,96 − 800 = <b>Rp 150,96 juta &gt; 0, layak</b>.'],
+['Soal 2 (Model): TP = 80, FP = 20, FN = 40. Hitung Precision, Recall, F1.','P = 80/100 = <b>0,80</b>; R = 80/120 = <b>0,667</b><br>F1 = 2×0,8×0,667/(0,8+0,667) = <b>0,727</b>. Banyak kejadian terlewat.'],
+['Soal 3 (Payback): investasi Rp 1,2 M, penghematan bersih Rp 400 juta/tahun. Berapa payback?','Payback = 1.200/400 = <b>3 tahun</b>.'],
+['Soal 4 (Prioritas): Use case A (N=9,K=5,D=4,R=6) vs B (N=7,K=8,D=8,R=2). Mana duluan?','A = 9×5×4/6 = 30; B = 7×8×8/2 = 224. <b>B</b> dikerjakan lebih dulu (quick win).'],
+['Soal 5 (Adopsi): nilai teoritis Rp 10 M/tahun, hanya 40% operator memakai. Nilai nyata?','Nilai nyata = 10 × 40% = <b>Rp 4 M</b>. Investasi pelatihan dan perubahan kebiasaan sama pentingnya dengan model.']];
+$('#soal').innerHTML=SO.map((s,i)=>`<div class="card"><p><b>${s[0]}</b></p><button class="btn g" data-s="${i}">Tampilkan jawaban</button><div class="ans" hidden>${s[1]}</div></div>`).join('');
+$$('[data-s]').forEach(b=>b.onclick=()=>{const a=b.nextElementSibling;a.hidden=!a.hidden;gain('so'+b.dataset.s,4)});
+/* Kuis */
+const Q=[['Apa yang paling menentukan nilai nyata proyek AI?',['Jumlah parameter model','Dampak bisnis dikali adopsi','Merek vendor'],1,'Nilai nyata = nilai teoritis × adopsi.'],
+['Pada deteksi kegagalan alat berat yang berbahaya, metrik yang dijaga tinggi adalah...',['Recall','Jumlah fitur','Ukuran dataset'],0,'Recall menekan kejadian terlewat.'],
+['NPV negatif berarti...',['Proyek menguntungkan','Nilai kini manfaat lebih kecil dari investasi','Payback 1 tahun'],1,'Manfaat terdiskonto kurang dari I0.'],
+['Langkah pertama strategi AI yang sehat adalah...',['Beli GPU','Pilih masalah bernilai dan ukur dengan KPI','Rekrut 20 data scientist'],1,'Mulai dari Value.'],
+['Keputusan berisiko tinggi sebaiknya...',['Diserahkan penuh ke AI','Ada manusia dalam lingkaran','Tanpa audit'],1,'Human-in-the-loop.']];
+let qi=0,qs=0;
+function rq(){if(qi>=Q.length){$('#kuis').innerHTML=`<h3>Skor ${qs}/${Q.length}</h3><p>${qs>=4?'Mantap, Anda siap memimpin inisiatif AI.':'Ulangi teori dan kalkulator, lalu coba lagi.'}</p><button class="btn" onclick="qi=0;qs=0;rq()">Ulangi kuis</button>`;gain('kuisdone',15);return}
+const q=Q[qi];$('#kuis').innerHTML=`<p style="color:var(--mu)">Pertanyaan ${qi+1} dari ${Q.length}</p><h3>${q[0]}</h3>`+q[1].map((o,i)=>`<button class="opt" data-o="${i}">${o}</button>`).join('')+'<p id="fb"></p>';
+$$('.opt[data-o]').forEach(b=>b.onclick=()=>{const k=+b.dataset.o;$$('.opt[data-o]').forEach(x=>{x.disabled=true;x.classList.add(+x.dataset.o===q[2]?'ok':'no');if(+x.dataset.o!==q[2]&&+x.dataset.o!==k)x.classList.remove('no')});if(k===q[2])qs++;$('#fb').innerHTML=q[3]+' <button class="btn" style="margin-left:8px;padding:6px 16px" id="nx">Lanjut</button>';$('#nx').onclick=()=>{qi++;rq()}})}
+rq();
+/* Rencana */
+const RD=['Hari 1-14: tulis 10 masalah operasional dan hitung biayanya','Hari 15-30: skor semua ide dengan rumus prioritas, pilih 2','Hari 31-45: audit data (kelengkapan, akses, pemilik data)','Hari 46-60: pilot 6-8 minggu dengan KPI dan baseline jelas','Hari 61-75: latih pengguna lapangan dan kumpulkan umpan balik','Hari 76-90: hitung NPV aktual, putuskan skala atau hentikan'];
+$('#road').innerHTML=RD.map((r,i)=>`<label class="ck"><input type="checkbox" data-r="${i}"><span style="color:var(--t);font-size:16px;display:block">${r}</span></label>`).join('');
+$$('[data-r]').forEach(c=>c.onchange=()=>{const n=$$('[data-r]:checked').length;$('#rp').textContent=Math.round(n/RD.length*100)+'%';gain('rd'+c.dataset.r,3)});
+function pp(){$('#po').textContent=`Bertindaklah sebagai ${$('#pr').value}. Konteks: ${$('#pc').value}. Tugas: ${$('#pt').value}. Format dan batasan: ${$('#pf').value}.`}
+['pr','pc','pt','pf'].forEach(i=>$('#'+i).oninput=()=>{pp();gain('prompt',4)});pp();
+$('#cp').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('#po').textContent);$('#cp').textContent='Tersalin';setTimeout(()=>$('#cp').textContent='Salin prompt',1500)};
+go('teori');
+/* Background */
+const cv=$('#bg'),cx=cv.getContext('2d');let W,H,P=[],M={x:-999,y:-999};
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(90,W/14|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.7,vy:(Math.random()-.5)*.7,h:[190,270,330,80][Math.random()*4|0]}))}
+addEventListener('resize',rs);addEventListener('pointermove',e=>{M.x=e.clientX;M.y=e.clientY});rs();
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function fr(){cx.clearRect(0,0,W,H);for(const a of P){const dx=M.x-a.x,dy=M.y-a.y,d=Math.hypot(dx,dy);if(d<160){a.vx+=dx/d*.04;a.vy+=dy/d*.04}a.vx*=.99;a.vy*=.99;if(!rm){a.x+=a.vx;a.y+=a.vy}
+if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;cx.fillStyle=`hsl(${a.h} 100% 65%)`;cx.beginPath();cx.arc(a.x,a.y,2.2,0,7);cx.fill();
+for(const b of P){const l=Math.hypot(a.x-b.x,a.y-b.y);if(l<120){cx.strokeStyle=`hsla(${a.h},100%,65%,${(1-l/120)*.45})`;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}}
+requestAnimationFrame(fr)}fr();
+</script></body></html>

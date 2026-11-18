@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Operations Management Interaktif</title>
+<style>
+:root{--bg:#070d1c;--p:#0e1830;--l:#26324f;--c:#22e3ff;--m:#ff3d8b;--a:#ffc233;--t:#eaf0ff;--d:#9aa8c7}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--t);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+#bg{position:fixed;inset:0;z-index:-1}
+h1,h2,h3{font-family:"Trebuchet MS","Segoe UI",sans-serif;line-height:1.1;margin:0}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:4px;flex-wrap:wrap;align-items:center;padding:10px 5vw;background:#070d1cd9;backdrop-filter:blur(8px);border-bottom:1px solid var(--l)}
+nav b{margin-right:auto;color:var(--c);font-family:"Trebuchet MS",sans-serif}
+a{color:var(--c)}nav a{color:var(--t);text-decoration:none;padding:6px 12px;border-radius:99px}
+nav a:hover{background:var(--l)}a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+section{padding:64px 5vw;max-width:1120px;margin:auto}
+.hero{min-height:86vh;display:flex;flex-direction:column;justify-content:center;gap:24px}
+h1{font-size:clamp(2.5rem,7.5vw,5.2rem);font-weight:900;max-width:15ch;letter-spacing:-.02em}
+.sub{max-width:52ch;color:var(--d);font-size:1.1rem}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;margin-bottom:10px}
+.box{background:#0e1830d9;border:1px solid var(--l);border-radius:14px;padding:20px}
+.live{display:flex;gap:18px;flex-wrap:wrap;align-items:center;max-width:720px}
+.live label{flex:1 1 260px;display:block;color:var(--d)}
+.live input[type=range]{width:100%;accent-color:var(--m)}
+.num{display:flex;gap:22px;flex-wrap:wrap}.num div{min-width:110px}
+.num strong{display:block;font:800 1.9rem "Trebuchet MS",sans-serif;color:var(--a)}
+.num span{color:var(--d);font-size:.85rem}
+.btn{display:inline-block;background:var(--c);color:#04101f;border:0;font:700 1rem "Segoe UI",sans-serif;padding:12px 20px;border-radius:10px;cursor:pointer;text-decoration:none}
+.btn.alt{background:var(--m);color:#fff}.btn:hover{filter:brightness(1.12)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.tab{background:var(--p);color:var(--t);border:1px solid var(--l);padding:9px 14px;border-radius:10px;cursor:pointer;font:600 .95rem "Segoe UI",sans-serif}
+.tab[aria-selected=true]{background:var(--m);border-color:var(--m);color:#fff}
+.pane ul{padding-left:20px;margin:12px 0}.pane li{margin:7px 0;max-width:75ch}
+.extra{border-left:4px solid var(--a);padding:8px 14px;margin-top:14px;background:#ffc2331a;border-radius:0 10px 10px 0;max-width:75ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.calc h3{font-size:1.25rem}.calc small{color:var(--d)}
+.calc .in{display:grid;grid-template-columns:1fr 92px;gap:6px 10px;margin:12px 0;align-items:center;font-size:.9rem}
+.calc input{width:100%;background:#050a16;color:var(--t);border:1px solid var(--l);border-radius:8px;padding:6px 8px;font:inherit}
+.out{border-top:1px dashed var(--l);padding-top:10px;display:grid;gap:4px}
+.out p{margin:0;display:flex;justify-content:space-between;gap:10px}.out b{color:var(--c);text-align:right}
+.out .w{color:var(--a)}.out .bad{color:var(--m)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--l);vertical-align:top;font-size:.93rem}
+th{color:var(--c)}td:first-child{font-weight:700;white-space:nowrap}td code{color:var(--a)}
+footer{padding:40px 5vw;color:var(--d);text-align:center;font-size:.85rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<nav><b>OM Lab</b><a href="#materi">Materi</a><a href="#kalkulator">Kalkulator</a><a href="#analisis">Analisis</a><a href="#unduh">Unduh</a></nav>
+
+<section class="hero">
+<h1>Temukan bottleneck-nya, lalu alirkan.</h1>
+<p class="sub">Ringkasan 8 topik buku Operations Management, kalkulator rumus yang bisa Anda ubah langsung, dan panduan membaca hasilnya. Titik-titik di latar adalah unit kerja yang antre di satu gerbang sempit.</p>
+<div class="box live">
+<label>Kapasitas gerbang (bottleneck): <b id="capv">3.0</b> unit/detik
+<input id="cap" type="range" min="0.5" max="8" step="0.1" value="3" aria-label="Kapasitas gerbang"></label>
+<div class="num"><div><strong id="thr">0</strong><span>throughput terukur /detik</span></div><div><strong id="wip">0</strong><span>antrean (WIP)</span></div><div><strong id="wt">0</strong><span>waktu tunggu (detik)</span></div></div>
+<p style="margin:0;color:var(--d);flex-basis:100%">Little’s Law: WIP = throughput × waktu alir. Naikkan kapasitas gerbang dan antrean menyusut. Gerakkan kursor untuk mengacak titik-titik.</p>
+</div>
+<div><a class="btn" href="#materi">Mulai belajar</a> <a class="btn alt" href="#unduh">Unduh spreadsheet</a></div>
+</section>
+
+<section id="materi"><h2>Materi 8 topik</h2><p class="sub">Pilih topik. Isi diambil dari PDF Anda; kotak kuning memuat teori tambahan dari sumber lain.</p>
+<div class="tabs" id="tabs" role="tablist"></div><div class="box pane" id="pane" role="tabpanel"></div></section>
+
+<section id="kalkulator"><h2>Kalkulator interaktif</h2><p class="sub">Angka awal diambil dari contoh di buku. Ubah nilainya dan hasil langsung berubah.</p><div class="grid" id="calcs"></div></section>
+
+<section id="analisis"><h2>Cara membaca hasil</h2><p class="sub">Rumus saja belum cukup. Tabel ini menjelaskan apa arti angkanya dan keputusan yang biasanya mengikuti.</p>
+<div class="box tw"><table><thead><tr><th>Metrik</th><th>Rumus</th><th>Interpretasi</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="sub" style="margin-top:14px">Sumber tambahan: ringkasan rumus OM (Scribd), RemNote Operations Management Study Guide, Fatskills OM 101, dan soal ujian Cambridge Engineering Tripos IIA. Patokan seperti OEE 85% adalah acuan umum industri, bukan aturan mutlak.</p></section>
+
+<section id="unduh"><h2>Unduh</h2>
+<div class="box"><p>Spreadsheet berisi 6 lembar dengan rumus aktif: Kapasitas, Waktu_Alir, Forecast, EOQ_ROP, OEE_KPI, dan MRP. Sel kuning adalah input.</p>
+<a class="btn" href="OM_Toolkit_Spreadsheet.xlsx" download>Unduh spreadsheet (.xlsx)</a> <button class="btn alt" id="save">Simpan halaman ini (.html)</button>
+<p style="color:var(--d);font-size:.85rem;margin-bottom:0">Tombol spreadsheet bekerja jika file .xlsx berada satu folder dengan halaman ini.</p></div></section>
+<footer>Berdasarkan modul OPERATIONS MANAGEMENT. Dibuat untuk belajar dan latihan.</footer>
+
+<script>
+/* ===== Latar: unit kerja antre di bottleneck ===== */
+const cv=document.getElementById("bg"),x=cv.getContext("2d"),rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+let W,H,cap=3,last=0,mx=-999,my=-999,P=[],st=[];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;x.fillStyle="#070d1c";x.fillRect(0,0,W,H)}
+addEventListener("resize",rs);rs();
+addEventListener("pointermove",e=>{mx=e.clientX;my=e.clientY});
+for(let i=0;i<190;i++){const y=Math.random()*H;P.push({x:Math.random()*W*.62,y,y0:y,v:1+Math.random()*1.3})}
+let queue=0;
+function step(t){
+ x.fillStyle="rgba(7,13,28,.22)";x.fillRect(0,0,W,H);
+ const g=W*.62,c=H*.5,h=(18+cap*9)/2;queue=0;
+ x.lineWidth=3;x.strokeStyle="#26324f";x.beginPath();x.moveTo(g,0);x.lineTo(g,c-h);x.moveTo(g,c+h);x.lineTo(g,H);x.stroke();
+ x.strokeStyle="#ff3d8b";x.beginPath();x.moveTo(g,c-h);x.lineTo(g,c+h);x.stroke();
+ for(const p of P){
+  const nx=g-p.x;
+  if(nx>0&&nx<230)p.y+=(c-p.y)*.03;else if(nx<=0&&nx>-280)p.y+=(p.y0-p.y)*.015;
+  let b=false;
+  for(const o of P)if(o!==p&&o.x>p.x&&o.x-p.x<8&&Math.abs(o.y-p.y)<7){b=true;break}
+  if(nx>0&&nx<12&&(t-last<1000/cap||Math.abs(p.y-c)>h))b=true;
+  if(!b){const ox=p.x;p.x+=p.v;if(ox<g&&p.x>=g){last=t;st.push(t)}}
+  const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy);if(d<90&&d>0){p.x+=dx/d*2.5;p.y+=dy/d*2.5}
+  if(p.x>W+10){p.x=-10;p.y0=Math.random()*H;p.y=p.y0}
+  const q=nx>0&&nx<260&&b;if(nx>0&&nx<260)queue++;
+  x.fillStyle=q?"#ffc233":"#22e3ff";x.beginPath();x.arc(p.x,p.y,q?3:2.4,0,6.3);x.fill();
+ }
+ if(!rm)requestAnimationFrame(step)
+}
+requestAnimationFrame(step);
+setInterval(()=>{const n=performance.now();st=st.filter(s=>n-s<4000);const r=st.length/4;
+ thr.textContent=r.toFixed(1);wip.textContent=queue;wt.textContent=r>0?(queue/r).toFixed(0):"-"},400);
+document.getElementById("cap").oninput=e=>{cap=+e.target.value;capv.textContent=cap.toFixed(1)};
+
+/* ===== Materi ===== */
+const T=[
+["1 Strategi bisnis",["Kata strategi berasal dari Yunani strategos (pemimpin pasukan). Akar militernya ada di The Art of War karya Sun Tzu, lalu masuk ke bisnis sejak Revolusi Industri.","Game theory (von Neumann dan Morgenstern, 1944) menjelaskan keputusan saling bergantung, dengan prisoner’s dilemma sebagai contoh utama.","Alat analisis: Porter’s Five Forces, SWOT, matriks BCG, dan Blue Ocean Strategy. Strategi internasional dijalankan bertahap.","Jenis strategi: korporasi, bisnis (kompetitif), dan fungsional."],"Strategi generik Porter: kepemimpinan biaya, diferensiasi, dan fokus. Matriks BCG membagi unit bisnis menjadi Star, Cash Cow, Question Mark, dan Dog."],
+["2 Manajemen operasi",["Operasi mengubah input menjadi output (barang atau jasa) yang bernilai bagi pelanggan.","Manajer operasi perlu kompetensi teknis, analitis, dan kepemimpinan, serta mengelola fungsi dari perencanaan sampai pengendalian.","Operasi menentukan biaya, kualitas, dan waktu penyerahan, jadi langsung memengaruhi daya saing.","Elemen sistem operasi: input, proses, output, umpan balik, dan lingkungan."],"Lima sasaran kinerja operasi: kualitas, kecepatan, keandalan, fleksibilitas, dan biaya. Model 4V (volume, variasi, variabilitas, visibilitas) membedakan barang dan jasa."],
+["3 Permintaan",["Perencanaan permintaan menjadi dasar estimasi biaya, kapasitas, dan anggaran. Kelemahannya: bisa meleset bila data buruk.","Metode kuantitatif: analisis pasar dan data historis. Kualitatif: survei konsumen, tenaga penjualan, dan pakar.","Excel punya FORECAST.LINEAR, FORECAST.ETS, FORECAST.ETS.CONFINT, dan FORECAST.ETS.STATISTICS.","Anggaran penjualan dan panel kontrol dipakai untuk mendeteksi deviasi dari rencana."],"Ukur kualitas ramalan dengan MAD dan MAPE. Gabungkan beberapa metode karena kesalahan tiap metode berbeda."],
+["4 Pengembangan produk",["Siklus: identifikasi peluang, desain konsep, pengembangan, prototipe, uji, lalu peluncuran.","Pengembangan produk harus selaras dengan pemasaran dan standar ISO 9001:2015 tentang desain dan pengembangan.","Prototipe mengurangi risiko sebelum produksi massal. Paten dan kekayaan intelektual melindungi hasil inovasi.","Tren terbaru menempatkan faktor manusia di pusat desain."],"Stage-Gate memberi titik keputusan lanjut atau berhenti di tiap tahap. QFD (House of Quality) menerjemahkan suara pelanggan menjadi spesifikasi teknis."],
+["5 Sistem operasi",["Throughput adalah laju produksi aktual; kapasitas adalah laju maksimum. Kapasitas sistem ditentukan processor dengan kapasitas individu terkecil (bottleneck).","Contoh kursi: potong 40, rakit 20, varnish 80 unit/hari, jadi sistem hanya 20. Tiga pekerja rakit hanya menaikkan sistem ke 40 karena bottleneck pindah ke potong.","Produk ganda bergantung bauran; batch besar mengurangi waktu setup. Cacat 8% berarti perlu produksi 100/0,92 ≈ 109 unit untuk 100 yang lolos.","ToC (Goldratt): identifikasi, eksploitasi, subordinasi, lalu tingkatkan bottleneck. Ingat flow time, cycle time, takt time, lead time, dan WIP."],"Little’s Law (WIP = throughput × flow time) dan Overall Equipment Effectiveness (OEE) adalah dua alat standar untuk menganalisis sistem ini."],
+["6 Proses dan mutu",["Manajemen berbasis proses: petakan proses, tetapkan pemilik, indikator, dan kartu proses (misi, batas, sumber daya, rekaman).","Proses berbeda dari prosedur: proses mengubah input menjadi output, prosedur adalah cara spesifik menjalankannya.","Mutu mengacu ISO 9001: fokus pelanggan, kepemimpinan, pendekatan proses, perbaikan, dan keputusan berbasis bukti.","KPI logistik: utilisasi, yield, kepatuhan pemasok, biaya simpan per unit, pengiriman tepat waktu, rasio biaya logistik."],"PDCA, SIPOC, dan Six Sigma (DMAIC) adalah kerangka perbaikan proses yang paling sering dipakai."],
+["7 Perencanaan operasional",["SPCO mengatur perencanaan dan pengendalian pada horizon pendek, menengah, dan panjang.","MRP (sistem dorong) menghitung kebutuhan dependen dari BOM, rencana induk, ukuran lot, safety stock, dan lead time.","JIT, lean, dan Kanban (model Toyota) adalah sistem tarik: produksi baru dimulai bila stasiun berikutnya meminta lewat kartu.","TOC menjadwalkan berdasarkan bottleneck. Buku membandingkan ketiga model untuk menentukan kecocokan tiap lingkungan."],"Kartu Kanban: N = d × L × (1 + α) ÷ c. Tujuh pemborosan lean (muda): produksi berlebih, menunggu, transportasi, proses berlebih, stok, gerakan, cacat."],
+["8 Faktor manusia",["Sumber daya manusia adalah pembeda utama antarperusahaan.","Seleksi berbasis kompetensi: pengetahuan, keterampilan, dan sikap.","Pelatihan berkelanjutan menjaga adaptasi terhadap teknologi dan proses baru.","Kompensasi, insentif, pengembangan karier, dan desain tugas yang berpusat pada pekerja meningkatkan kinerja."],"Pekerja multitugas (cross-trained) terbukti menaikkan kapasitas: pada contoh kursi, tiga pekerja multitugas mencapai 34,29 unit/hari dengan okupasi 100%."]];
+const tabs=document.getElementById("tabs"),pane=document.getElementById("pane");
+function show(i){[...tabs.children].forEach((b,j)=>b.setAttribute("aria-selected",i==j));
+ const d=T[i];pane.innerHTML="<h3>"+d[0].slice(2)+"</h3><ul>"+d[1].map(s=>"<li>"+s+"</li>").join("")+"</ul><div class=extra><b>Teori tambahan:</b> "+d[2]+"</div>"}
+T.forEach((d,i)=>{const b=document.createElement("button");b.className="tab";b.role="tab";b.textContent=d[0];b.onclick=()=>show(i);tabs.append(b)});show(0);
+
+/* ===== Kalkulator ===== */
+const f2=n=>isFinite(n)?(+n).toLocaleString("id-ID",{maximumFractionDigits:2}):"-",pc=n=>isFinite(n)?(n*100).toFixed(1)+"%":"-";
+const CALC=[
+{t:"Kapasitas dan bottleneck",s:"Topik 5, pabrik kursi",i:[["a","Jam/unit potong",.2],["b","Jam/unit rakit",.4],["c","Jam/unit varnish",.1],["na","Jumlah processor potong",1],["nb","Jumlah processor rakit",1],["nc","Jumlah processor varnish",1],["h","Jam kerja/hari",8]],
+ f:v=>{const k=[v.na*v.h/v.a,v.nb*v.h/v.b,v.nc*v.h/v.c],m=Math.min(...k),n=["Potong","Rakit","Varnish"];
+  return [["Kapasitas sistem",f2(m)+" unit/hari"],["Bottleneck",n[k.indexOf(m)],"bad"],...k.map((q,i)=>["Okupasi "+n[i],pc(m/q)]),["Tafsir","Tambah processor hanya di bottleneck.","w"]]}},
+{t:"Takt time dan Little’s Law",s:"Topik 5",i:[["w","Waktu tersedia (menit/hari)",480],["d","Permintaan (unit/hari)",20],["ct","Cycle time bottleneck (menit)",24],["ft","Flow time (menit)",42]],
+ f:v=>{const tk=v.w/v.d,ok=v.ct<=tk;return [["Takt time",f2(tk)+" menit/unit"],["Throughput",f2(60/v.ct)+" unit/jam"],["WIP (R × T)",f2(v.ft/v.ct)+" unit"],["Status",ok?"Mampu memenuhi permintaan":"Cycle time melebihi takt",ok?"":"bad"],["Output harian maks.",f2(v.w/v.ct)+" unit"]]}},
+{t:"EOQ, ROP, dan safety stock",s:"Persediaan",i:[["D","Permintaan tahunan",5000],["S","Biaya pesan/order",100],["H","Biaya simpan/unit/tahun",2],["L","Lead time (hari)",5],["sd","Simpangan baku harian",12],["z","Faktor z (95% = 1,645)",1.645]],
+ f:v=>{const q=Math.sqrt(2*v.D*v.S/v.H),d=v.D/250,ss=v.z*v.sd*Math.sqrt(v.L);return [["EOQ",f2(q)+" unit"],["Order per tahun",f2(v.D/q)],["Safety stock",f2(ss)],["Reorder point",f2(d*v.L+ss)+" unit"],["Biaya pesan+simpan",f2(v.D/q*v.S+q/2*v.H)]]}},
+{t:"Peramalan exponential smoothing",s:"Topik 3",i:[["data","Data aktual (pisah koma)","120,135,128,142,150,147,160,158"],["al","Alpha (0 sampai 1)",.3]],
+ f:v=>{const a=String(v.data).split(",").map(Number).filter(isFinite),al=+v.al;if(a.length<3)return [["Info","Isi minimal 3 data","bad"]];let F=a[0],e=0;for(let i=1;i<a.length;i++){e+=Math.abs(a[i]-F)/a[i];F=al*a[i]+(1-al)*F}
+  const m=e/(a.length-1);return [["Forecast periode berikut",f2(F)],["MAPE",pc(m)],["Tafsir",m<.1?"Sangat akurat":m<.2?"Baik":m<.5?"Cukup":"Buruk",m<.2?"":"w"]]}},
+{t:"OEE",s:"Topik 6, efektivitas mesin",i:[["p","Waktu terjadwal (menit)",480],["dt","Downtime (menit)",45],["ic","Ideal cycle (menit/unit)",1],["tot","Total unit",380],["bad","Unit cacat",12]],
+ f:v=>{const A=(v.p-v.dt)/v.p,P=v.ic*v.tot/(v.p-v.dt),Q=(v.tot-v.bad)/v.tot,o=A*P*Q;return [["Availability",pc(A)],["Performance",pc(P)],["Quality",pc(Q)],["OEE",pc(o)],["Tafsir",o>=.85?"Kelas dunia":o>=.6?"Wajar, masih bisa dinaikkan":"Rendah, jadi prioritas","w"]]}}];
+const cb=document.getElementById("calcs");
+CALC.forEach((c,n)=>{const el=document.createElement("div");el.className="box calc";
+ el.innerHTML="<h3>"+c.t+"</h3><small>"+c.s+"</small><div class=in>"+c.i.map(r=>"<label for=c"+n+r[0]+">"+r[1]+"</label><input id=c"+n+r[0]+" value=\""+r[2]+"\" "+(typeof r[2]=="string"?"":"type=number step=any")+">").join("")+"</div><div class=out></div>";
+ const run=()=>{const v={};c.i.forEach(r=>{const e=el.querySelector("#c"+n+r[0]);v[r[0]]=typeof r[2]=="string"?e.value:+e.value});
+  el.querySelector(".out").innerHTML=c.f(v).map(r=>"<p><span>"+r[0]+"</span><b class="+(r[2]||"")+">"+r[1]+"</b></p>").join("")};
+ el.addEventListener("input",run);cb.append(el);run()});
+
+/* ===== Tabel interpretasi ===== */
+const R=[["Utilisasi","kapasitas terpakai ÷ kapasitas tersedia","Bottleneck wajar mendekati 100%. Utilisasi tinggi di semua stasiun justru memperpanjang antrean."],
+["Takt time","waktu tersedia ÷ permintaan","Cycle time ≤ takt berarti aman. Jika lebih besar, tambah kapasitas atau kurangi waktu proses."],
+["Little’s Law","WIP = throughput × flow time","Menurunkan WIP tanpa mengurangi throughput memperpendek lead time. Dasar logika kartu Kanban."],
+["EOQ","√(2DS ÷ H)","Pada titik optimal biaya pesan sama dengan biaya simpan. Permintaan naik 4 kali, EOQ hanya naik 2 kali."],
+["Reorder point","d × L + safety stock","Pesan ulang saat stok menyentuh ROP. Safety stock = z × σ × √L, naik bila ketidakpastian atau service level naik."],
+["OEE","availability × performance × quality","Sekitar 85% dianggap kelas dunia, sekitar 60% umum, di bawah 40% rendah. Cari kerugian terbesar dari ketiga faktor."],
+["MAPE","rata-rata |aktual − ramalan| ÷ aktual","Di bawah 10% sangat akurat, 10–20% baik, 20–50% cukup, di atas 50% buruk."],
+["Cp dan Cpk","(USL − LSL) ÷ 6σ","Cp ≥ 1,33 mampu, ≥ 1,67 sangat baik. Cpk jauh di bawah Cp berarti proses tidak berada di tengah spesifikasi."],
+["Margin per waktu bottleneck","margin kontribusi ÷ menit di bottleneck","Pada bauran produk, utamakan produk dengan margin per menit bottleneck tertinggi."],
+["MRP","kebutuhan netto = kotor − stok + safety stock","Pesanan dibulatkan ke kelipatan lot, lalu digeser mundur sebesar lead time (sum, split, shift)."]];
+document.getElementById("tb").innerHTML=R.map(r=>"<tr><td>"+r[0]+"</td><td><code>"+r[1]+"</code></td><td>"+r[2]+"</td></tr>").join("");
+
+document.getElementById("save").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["<!DOCTYPE html>"+document.documentElement.outerHTML],{type:"text/html"}));a.download="Operations_Management_Interaktif.html";a.click()};
+</script></body></html>

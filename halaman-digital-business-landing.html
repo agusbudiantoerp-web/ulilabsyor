@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Business – Belajar Interaktif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04111f;--bg2:#0b2a44;--ink:#eafcff;--mute:#8fb4c9;--gn:#19f0a0;--bl:#3d8bff;--am:#ffb938;--co:#ff5d73;--vi:#9b6bff;--line:rgba(255,255,255,.15);--card:rgba(8,28,48,.78);color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 Figtree,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.08;letter-spacing:-.02em}
+#bg{position:fixed;inset:0;z-index:-2;width:100%;height:100%}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--gn),var(--bl),var(--vi));z-index:50}
+nav{position:sticky;top:4px;z-index:40;margin:0 auto;max-width:1100px;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:rgba(4,17,31,.84);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:99px;scrollbar-width:none}
+nav a{color:var(--mute);text-decoration:none;padding:6px 14px;border-radius:99px;white-space:nowrap;font-weight:500;font-size:15px;transition:.2s}
+nav a:hover,nav a.on{background:var(--gn);color:#02170f}
+section{max-width:1100px;margin:0 auto;padding:84px 20px 20px}
+h2{font-size:clamp(30px,5vw,52px);margin-bottom:12px}
+h3{font-size:24px}
+.lead{color:var(--mute);max-width:62ch;margin-bottom:26px}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
+.hero h1{font-size:clamp(46px,10vw,124px);font-weight:800}
+.hero h1 span{display:block;background:linear-gradient(95deg,var(--gn),var(--bl) 50%,var(--vi));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.hero p{max-width:56ch;font-size:19px;color:#cfeaf5;margin:22px 0 28px}
+.btn{display:inline-block;padding:14px 26px;border-radius:14px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font:700 16px Figtree,sans-serif;transition:transform .15s}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.pri{background:var(--am);color:#2a1a00;animation:pu 2.2s infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(255,185,56,.6)}70%{box-shadow:0 0 0 18px rgba(255,185,56,0)}}
+.sec{color:var(--ink);border:1.5px solid var(--gn);margin-left:8px;background:transparent}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.stat{padding:12px 18px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.stat b{font:800 30px 'Bricolage Grotesque';color:var(--gn);display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;backdrop-filter:blur(8px)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tabs button,.chip{background:var(--card);color:var(--ink);border:1px solid var(--line);padding:10px 16px;border-radius:12px;cursor:pointer;font:600 15px Figtree;transition:.2s}
+.tabs button:hover,.chip:hover{border-color:var(--gn)}
+.tabs button.on,.chip.on{background:var(--bl);border-color:var(--bl);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.wide{grid-column:1/-1}
+.pt{border-left:4px solid var(--bl);padding:4px 0 4px 14px;margin:10px 0}
+.pt h4{font:700 17px Figtree;color:var(--bl)}
+.net{border-left-color:var(--gn)}.net h4{color:var(--gn)}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:2px 10px;border-radius:99px;background:var(--gn);color:#02170f;margin-bottom:6px}
+.tag.pdf{background:var(--bl);color:#fff}
+label{display:block;font-size:14px;color:var(--mute);margin:12px 0 4px}
+input[type=range]{width:100%;accent-color:var(--gn)}
+input:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--am);outline-offset:2px}
+.out{font:800 clamp(24px,4vw,36px) 'Bricolage Grotesque';color:var(--am);margin-top:8px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.kv div{padding:10px 12px;border:1px solid var(--line);border-radius:12px;font-size:14px;color:var(--mute)}
+.kv b{display:block;font:800 20px 'Bricolage Grotesque';color:var(--ink)}
+.bar{height:26px;border-radius:8px;background:linear-gradient(90deg,var(--gn),var(--bl));transition:width .4s;color:#02170f;font:700 13px/26px Figtree;padding-left:8px;white-space:nowrap;overflow:hidden;margin-top:6px}
+.steps{display:flex;gap:6px;flex-wrap:wrap}
+.steps button{flex:1;min-width:110px;padding:12px 8px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:700 14px Figtree;cursor:pointer;transition:.25s}
+.steps button.on{background:linear-gradient(90deg,var(--gn),var(--bl));color:#02170f;transform:translateY(-4px)}
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin-top:12px}
+.tg button{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14px Figtree;cursor:pointer;text-align:left;transition:.2s}
+.tg button.on{background:var(--gn);color:#02170f;border-color:var(--gn)}
+.tg small{display:block;font-weight:500;opacity:.8}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--gn)}
+.q button{display:block;width:100%;text-align:left;margin:6px 0;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 16px Figtree;cursor:pointer}
+.q button:hover{border-color:var(--gn)}.q .ok{background:#1f7a35;border-color:var(--gn)}.q .no{background:#8a1f3f;border-color:var(--co)}
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}
+.dl div{padding:16px;border:1px dashed var(--gn);border-radius:16px}
+svg text{fill:var(--ink);font:600 11px Figtree}
+footer{max-width:1100px;margin:80px auto 40px;padding:0 20px;color:var(--mute);font-size:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas><div id="prog"></div>
+<nav id="nav"><a href="#home">Mulai</a><a href="#beda">E-business vs Digital</a><a href="#materi">Materi</a><a href="#lab">Lab Bisnis</a><a href="#exo">Skor ExO</a><a href="#model">Model Digital</a><a href="#kuis">Kuis</a><a href="#unduh">Unduh</a></nav>
+
+<section id="home" class="hero">
+<h1>Digital<span>Business</span></h1>
+<p>Dari e-commerce, e-procurement, e-fulfillment, marketplace, dan last mile sampai organisasi eksponensial. Pelajari 7 topik modul, mainkan kalkulatornya, lalu unduh spreadsheet rumusnya. Gerakkan kursor atau klik layar untuk membuka hub baru di jaringan pengiriman.</p>
+<div><a class="btn pri" href="#unduh">Unduh toolkit</a><a class="btn sec" href="#materi">Mulai belajar</a></div>
+<div class="stats"><div class="stat"><b data-n="7">0</b>topik modul</div><div class="stat"><b data-n="10">0</b>atribut ExO</div><div class="stat"><b data-n="8">0</b>ciri bisnis digital sukses</div><div class="stat"><b data-n="159">0</b>halaman sumber</div></div>
+</section>
+
+<section id="beda">
+<h2>E-business atau bisnis digital?</h2>
+<p class="lead">Mirip tetapi berbeda. Beda utamanya ada pada cara teknologi dipakai (Topik 7).</p>
+<div class="tabs" id="bt"><button class="on" data-b="e">E-business</button><button data-b="d">Bisnis digital</button></div><div class="card" id="bb"></div>
+</section>
+
+<section id="materi">
+<h2>Isi modul per topik</h2>
+<p class="lead">Label biru dari PDF Anda, label hijau tambahan teori dari internet.</p>
+<div class="tabs" id="tabs"></div><div class="card" id="tabbody"></div>
+</section>
+
+<section id="lab">
+<h2>Lab bisnis digital</h2>
+<p class="lead">Geser slider dan lihat angkanya berubah. Semua angka hanya ilustrasi.</p>
+<div class="grid">
+<div class="card"><h3>Funnel e-commerce</h3>
+<label>Kunjungan per bulan: <b id="fv1"></b></label><input type="range" id="f1" min="10000" max="300000" step="5000" value="80000">
+<label>Conversion rate: <b id="fv2"></b></label><input type="range" id="f2" min="0.2" max="8" step="0.1" value="2.8">
+<label>Nilai order rata-rata: <b id="fv3"></b></label><input type="range" id="f3" min="50000" max="1000000" step="10000" value="400000">
+<label>Biaya iklan bulanan: <b id="fv4"></b></label><input type="range" id="f4" min="10000000" max="400000000" step="5000000" value="120000000">
+<div class="kv"><div>Order<b id="fo1"></b></div><div>Pendapatan<b id="fo2"></b></div><div>ROAS<b id="fo3"></b></div><div>CAC per order<b id="fo4"></b></div></div><small style="color:var(--mute)">Margin kotor 35% dan biaya kirim Rp 32.000 per order (sama dengan spreadsheet).</small><div class="out" id="fo5"></div></div>
+<div class="card"><h3>LTV dan CAC</h3>
+<label>ARPU bulanan: <b id="uv1"></b></label><input type="range" id="u1" min="20000" max="500000" step="5000" value="150000">
+<label>Margin kotor: <b id="uv2"></b></label><input type="range" id="u2" min="10" max="90" value="60">
+<label>Churn bulanan: <b id="uv3"></b></label><input type="range" id="u3" min="1" max="15" step="0.5" value="4">
+<label>CAC: <b id="uv4"></b></label><input type="range" id="u4" min="50000" max="2000000" step="25000" value="600000">
+<div class="kv"><div>LTV<b id="uo1"></b></div><div>Rasio LTV:CAC<b id="uo2"></b></div><div>Payback<b id="uo3"></b></div><div>Umur pelanggan<b id="uo4"></b></div></div><div class="out" id="uo5"></div></div>
+<div class="card"><h3>Marketplace: GMV dan take rate</h3>
+<label>GMV per bulan: <b id="mv1"></b></label><input type="range" id="m1" min="1" max="100" value="10">
+<label>Take rate: <b id="mv2"></b></label><input type="range" id="m2" min="1" max="40" value="20">
+<div class="kv"><div>Net revenue<b id="mo1"></b></div><div>Setara dengan<b id="mo2"></b></div></div>
+<p class="lead" style="margin-top:12px;font-size:15px">GMV Rp 10 miliar dengan take rate 20% menghasilkan pendapatan sama dengan GMV Rp 40 miliar pada take rate 5%. Pendapatan marketplace ditentukan oleh GMV dan komisi sekaligus.</p></div>
+<div class="card"><h3>Biaya last mile</h3>
+<label>Biaya kurir per rute: <b id="lv1"></b></label><input type="range" id="l1" min="100000" max="1000000" step="10000" value="400000">
+<label>Paket per rute: <b id="lv2"></b></label><input type="range" id="l2" min="5" max="120" value="40">
+<label>Tingkat gagal kirim: <b id="lv3"></b></label><input type="range" id="l3" min="0" max="30" value="8">
+<div class="kv"><div>Transport per paket<b id="lo1"></b></div><div>Biaya per order<b id="lo2"></b></div><div>% dari AOV Rp 400 rb<b id="lo3"></b></div><div>Penilaian<b id="lo4"></b></div></div><small style="color:var(--mute)">Komponen tetap per order: penanganan 6.000, persiapan 3.000, konsolidasi 2.000, kemasan 5.000.</small></div>
+<div class="card wide"><h3>Alur e-fulfillment</h3><p class="lead" style="margin:6px 0 12px">Dari pesanan sampai notifikasi ke pelanggan (Topik 3). Klik tahap untuk detailnya.</p><div class="steps" id="fl"></div><p id="fli" style="margin-top:14px"></p></div>
+<div class="card wide"><h3>Jelajahi tipe marketplace dan e-procurement</h3><div class="tabs"><button class="chip on" data-g="mp">Marketplace</button><button class="chip" data-g="ep">E-procurement</button><button class="chip" data-g="ec">Tipe e-commerce</button></div><div class="tg" id="tg"></div><p id="tgi" style="margin-top:14px"></p></div>
+<div class="card wide"><h3>Pertumbuhan eksponensial vs linear</h3><label>Pertumbuhan per periode: <b id="gv"></b></label><input type="range" id="gr" min="5" max="60" value="30"><svg id="gsvg" viewBox="0 0 600 220" width="100%" role="img" aria-label="Grafik eksponensial vs linear"></svg><small id="gn" style="color:var(--mute)"></small></div>
+</div>
+</section>
+
+<section id="exo">
+<h2>Skor Exponential Organization</h2>
+<p class="lead">Syarat menurut modul: punya MTP yang jelas dan minimal 4 atribut SCALE atau IDEAS. Nyalakan atribut yang dimiliki organisasi Anda.</p>
+<div class="card"><div class="tabs"><button class="chip" id="mtp">Punya MTP (Massive Transformative Purpose)</button></div><div class="tg" id="exg"></div><div class="bar" id="exb" style="margin-top:14px"></div><div class="out" id="exo2"></div><p id="exn" style="color:var(--mute)"></p></div>
+</section>
+
+<section id="model">
+<h2>Model bisnis digital</h2>
+<p class="lead">Tambahan dari internet: cara umum perusahaan digital menghasilkan uang.</p>
+<div class="card"><div class="tabs" id="mt"></div><div id="mi"></div></div>
+<div class="card" style="margin-top:16px"><h3>Delapan ciri bisnis digital yang sukses</h3><p class="lead" style="margin:6px 0">Menurut modul, perusahaan yang berhasil bertransformasi memiliki sedikitnya delapan ciri. Dua yang pasti disebut: keputusan berbasis data dan tidak takut bereksperimen.</p><p>Fokuskan juga pada pelanggan, bekerja lintas fungsi, dan melibatkan seluruh perusahaan, karena perubahan bukan hanya soal proses tetapi cara memandang model bisnis.</p></div>
+</section>
+
+<section id="kuis"><h2>Uji pemahaman</h2><p class="lead">Enam soal. Skor tampil di akhir.</p><div class="card q" id="quiz"></div></section>
+
+<section id="unduh">
+<h2>Unduh toolkit</h2>
+<p class="lead">Spreadsheet berisi 116 rumus aktif. Sel kuning berisi input yang boleh Anda ubah.</p>
+<div class="card"><a class="btn pri" href="Digital_Business_Toolkit.xlsx" download>Unduh Digital_Business_Toolkit.xlsx</a>
+<div class="dl"><div><b>1. Funnel E-commerce</b><br>Conversion, ROAS, titik impas</div><div><b>2. Unit Economics</b><br>LTV, CAC, payback</div><div><b>3. Marketplace</b><br>GMV, take rate, laba kontribusi</div><div><b>4. Last Mile</b><br>Biaya per order dan on-time rate</div><div><b>5. E-procurement</b><br>Penghematan dan HHI pemasok</div><div><b>6. Skor ExO</b><br>MTP + SCALE/IDEAS</div><div><b>7. Pertumbuhan</b><br>Eksponensial vs linear, efek jaringan</div></div>
+<p style="margin-top:16px;color:var(--mute)">Simpan file xlsx di folder yang sama dengan halaman ini agar tombol unduh berfungsi. Untuk menyimpan halaman, tekan Ctrl+S (Cmd+S di Mac).</p></div>
+</section>
+<footer>Sumber: modul PDF "Digital Business – Operations" (Topik 1–7) dan tambahan dari artikel tentang unit economics marketplace, GMV, take rate, dan rasio LTV:CAC. Patokan seperti LTV:CAC 3x adalah praktik umum, bukan aturan. Angka simulasi hanya ilustrasi.</footer>
+
+<script>
+const $=id=>document.getElementById(id),f=n=>Math.round(n).toLocaleString('id-ID'),rp=n=>n>=1e9?'Rp '+(n/1e9).toFixed(1).replace('.',',')+' M':n>=1e6?'Rp '+(n/1e6).toFixed(1).replace('.',',')+' jt':'Rp '+f(n);
+// ===== Latar: jaringan pengiriman =====
+const cv=$('bg'),cx=cv.getContext('2d'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let W,H,N=[],K=[],M={x:-999,y:-999};
+const COL=['#19f0a0','#3d8bff','#ffb938','#ff5d73','#9b6bff'];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;const n=Math.min(60,Math.floor(W*H/24000));N=Array.from({length:n},()=>mk(Math.random()*W,Math.random()*H));K=[]}
+function mk(x,y){return{x,y,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:2+Math.random()*2.5,c:COL[Math.random()*5|0],p:0}}
+addEventListener('resize',rs);rs();
+addEventListener('pointermove',e=>{M.x=e.clientX;M.y=e.clientY});
+addEventListener('pointerdown',e=>{const h=mk(e.clientX,e.clientY);h.p=1;h.r=5;N.push(h);if(N.length>80)N.shift();N.forEach(n=>{if(n!==h&&Math.hypot(n.x-h.x,n.y-h.y)<260){n.p=1;for(let i=0;i<3;i++)K.push({a:h,b:n,t:i*-.15,c:h.c,s:.014+Math.random()*.01})}})});
+function nb(a){return N.filter(b=>b!==a&&Math.hypot(a.x-b.x,a.y-b.y)<190)}
+function frame(){cx.clearRect(0,0,W,H);
+for(const a of N){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;a.p*=.96}
+for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++){const a=N[i],b=N[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<190){cx.strokeStyle='rgba(90,170,255,'+(1-d/190)*.28+')';cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}
+if(Math.random()<.18&&K.length<90){const a=N[Math.random()*N.length|0],l=a&&nb(a);if(l&&l.length)K.push({a,b:l[Math.random()*l.length|0],t:0,c:a.c,s:.008+Math.random()*.012})}
+for(let i=K.length-1;i>=0;i--){const k=K[i];k.t+=k.s;if(k.t>=1){k.b.p=Math.min(1,k.b.p+.6);K.splice(i,1);continue}if(k.t<0)continue;const x=k.a.x+(k.b.x-k.a.x)*k.t,y=k.a.y+(k.b.y-k.a.y)*k.t;cx.fillStyle=k.c;cx.shadowColor=k.c;cx.shadowBlur=12;cx.fillRect(x-3,y-3,6,6);cx.shadowBlur=0}
+for(const a of N){const d=Math.hypot(a.x-M.x,a.y-M.y),g=Math.max(a.p,d<170?1-d/170:0);if(d<170){cx.strokeStyle='rgba(25,240,160,'+(1-d/170)*.7+')';cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(M.x,M.y);cx.stroke()}
+cx.fillStyle=a.c;cx.shadowColor=a.c;cx.shadowBlur=6+g*22;cx.beginPath();cx.arc(a.x,a.y,a.r+g*4,0,7);cx.fill();cx.shadowBlur=0}
+if(!RM)requestAnimationFrame(frame)}
+frame();
+// ===== Progress, nav, counters =====
+const pr=$('prog'),links=[...document.querySelectorAll('#nav a')];
+addEventListener('scroll',()=>{pr.style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%';let cur=links[0];links.forEach(a=>{const s=document.querySelector(a.hash);if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=a});links.forEach(a=>a.classList.toggle('on',a===cur))},{passive:true});
+document.querySelectorAll('[data-n]').forEach(el=>{const t=+el.dataset.n;let v=0;const s=()=>{v+=Math.ceil(t/40);if(v>=t)v=t;el.textContent=v;if(v<t)setTimeout(s,35)};s()});
+// ===== E-business vs digital =====
+const BD={e:['E-business','Bisa berupa toko tradisional yang juga menjual online, lalu mengelola dan mengirim pesanan dengan cara tradisional.',['Internet dipakai sebagai saluran penjualan tambahan','Bisnis tetap ada walau tanpa teknologi baru','Proses dalam bisnis banyak yang masih manual']],d:['Bisnis digital','Selain menjual online, memakai teknologi untuk memberi nilai tambah dan pengalaman yang lebih baik bagi pelanggan.',['Menyiapkan pesanan lebih cepat dan melacak paket secara real time','Tanpa teknologi, bisnisnya tidak bisa ada','Investasi lebih kecil, tanpa batas wilayah, buka 24 jam sehari 7 hari seminggu']]};
+function bd(k){document.querySelectorAll('#bt button').forEach(b=>b.classList.toggle('on',b.dataset.b==k));const x=BD[k];$('bb').innerHTML=`<h3>${x[0]}</h3><p style="margin:8px 0">${x[1]}</p><ul style="padding-left:20px">${x[2].map(i=>`<li>${i}</li>`).join('')}</ul>`}
+document.querySelectorAll('#bt button').forEach(b=>b.onclick=()=>bd(b.dataset.b));bd('e');
+// ===== Materi =====
+const T=[
+{n:'1. E-commerce',s:[['pdf','Definisi','Pertukaran produk atau jasa melalui internet; varian dari perdagangan tradisional. Banyak perusahaan kini hanya memakai saluran ini.'],['pdf','Tipe','B2B (bisnis ke bisnis, pasar grosir), B2C (bisnis ke konsumen, paling dikenal publik), C2C (antar individu).'],['pdf','Untung dan rugi','Toko buka 24/7, pembeli tidak perlu bepergian, reputasi online mudah dipantau. Tetapi bergantung pada pihak ketiga (hosting, software, logistik) dan butuh tenaga ahli (SEO, SEM, PPC, Analytics).'],['pdf','Strategi','Tambah nilai, jangan perang harga. Buat konten sesuai kanal penjualan dan selaraskan dengan tampilan toko agar pengunjung tidak pergi.'],['net','Tambahan: funnel','Kunjungan, keranjang, pembelian. Perhatikan conversion rate dan keranjang yang ditinggalkan. Lihat lab Funnel.']]},
+{n:'2. E-procurement',s:[['pdf','Definisi','Pengelolaan pesanan dan pengadaan barang secara otomatis lewat teknologi, terutama internet, sehingga mengurangi kertas dan tindakan fisik.'],['pdf','Tujuh tipe','Web-based ERP, e-MRO, e-sourcing, e-tendering, e-reverse auctioning, e-informing, dan e-marketsites.'],['pdf','Manfaat banyak pemasok','Mendiversifikasi risiko (stok habis, kapasitas satu pabrik), memperbaiki produksi, dan membuka akses pemasok inovatif.'],['net','Tambahan: HHI','Ukur konsentrasi pemasok dengan indeks Herfindahl. Coba di sheet 5 spreadsheet.']]},
+{n:'3. E-fulfillment',s:[['pdf','Definisi','Pemenuhan pesanan secara menyeluruh dari sisi logistik sesuai kesepakatan penjualan dengan pelanggan. Ciri utama: kelincahan pengiriman.'],['pdf','Tiga operasi','Back-office, logistik, dan notifikasi pelanggan.'],['pdf','Alih daya','Perusahaan yang kurang sumber daya dapat menyerahkan operasi ke operator logistik untuk memperbaiki proses dan mengoptimalkan laba.'],['net','Tambahan: OTIF','Ukur On Time In Full: persentase pesanan yang tiba tepat waktu dan lengkap.']]},
+{n:'4. Marketplace',s:[['pdf','Definisi','Jenis e-commerce tempat banyak penjual berbagi ruang di satu situs. Perantara antara pemasok dan konsumen yang menarik biaya dari pemasok.'],['pdf','Klasifikasi','Asal: buy-side, sell-side, pihak ketiga netral. Karakter: vertikal, horizontal, publik, privat. Model: on demand, managed, community driven, SaaS, terdesentralisasi.'],['pdf','Keunggulan','Penghematan biaya dan jangkauan lebih luas.'],['net','Tambahan: ekonomi marketplace','Net revenue = GMV x take rate. GMV saja bisa menyesatkan bila take rate turun. Patokan umum LTV:CAC 3x atau lebih.']]},
+{n:'5. Last mile',s:[['pdf','Definisi','Pengiriman akhir paket dari rantai pasok ke tangan pelanggan. Proses yang harus dikendalikan ketat oleh bisnis online.'],['pdf','Komponen biaya','Penanganan, persiapan, konsolidasi, pengemasan, dan transportasi.'],['pdf','Strategi','Software transportasi berbasis ponsel untuk pemantauan, ekonomi kolaboratif (Glovo, Uber, Deliveroo) dengan kendaraan kecil, serta robotika, AI, dan drone seperti yang dikembangkan Amazon.'],['net','Tambahan: titik ambil','Loker dan pickup point mengurangi gagal kirim karena paket dikonsolidasi di satu lokasi.']]},
+{n:'6. Organisasi eksponensial',s:[['pdf','ExO','Dampak organisasi jauh melebihi pesaing langsung berkat teknologi eksponensial dan strategi organisasi disruptif.'],['pdf','MTP','Massive Transformative Purpose: versi misi dan visi ExO yang berpotensi mengubah dunia secara masif.'],['pdf','Prinsip kelimpahan','Berbeda dengan organisasi linear yang bersumber daya terbatas, ExO diatur oleh asumsi kelimpahan.'],['pdf','SCALE dan IDEAS','SCALE (eksternal): staff on demand, community and crowd, algorithms, leveraged assets, engagement. IDEAS (internal): interfaces, dashboards, experimentation, autonomy, social technologies. Perlu MTP dan minimal 4 atribut.'],['net','Tambahan: efek jaringan','Nilai jaringan tumbuh lebih cepat dari jumlah penggunanya. Hukum Metcalfe memperkirakan nilai sebanding n(n-1)/2.']]},
+{n:'7. Bisnis digital',s:[['pdf','Beda dengan e-business','Bisnis digital memakai teknologi untuk nilai tambah dan pengalaman pelanggan, dan menggantungkan keberadaannya pada teknologi.'],['pdf','Keunggulan','Investasi lebih kecil dan bersifat biaya yang skalabel, tanpa batas wilayah, dan buka 24/7. Kendalanya bisa berupa regulasi negara, seperti pengalaman Uber di Spanyol.'],['pdf','Ciri yang sukses','Keputusan berbasis data, tidak takut bereksperimen, dan melibatkan seluruh perusahaan dalam transformasi.'],['net','Tambahan: model bisnis','Lihat bagian Model bisnis digital di bawah.']]}];
+const tb=$('tabs'),tbd=$('tabbody');
+T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.onclick=()=>{[...tb.children].forEach((x,j)=>x.classList.toggle('on',i==j));tbd.innerHTML=t.s.map(x=>`<div class="pt ${x[0]=='net'?'net':''}"><span class="tag ${x[0]}">${x[0]=='net'?'Internet':'Dari PDF'}</span><h4>${x[1]}</h4>${x[2]}</div>`).join('')};tb.append(b)});tb.children[0].click();
+// ===== Lab: funnel =====
+function fun(){const g=i=>+$('f'+i).value,v=g(1),cr=g(2)/100,a=g(3),ad=g(4),o=v*cr,rev=o*a;
+$('fv1').textContent=f(v);$('fv2').textContent=g(2)+'%';$('fv3').textContent=rp(a);$('fv4').textContent=rp(ad);
+$('fo1').textContent=f(o);$('fo2').textContent=rp(rev);$('fo3').textContent=(ad?rev/ad:0).toFixed(1)+'x';$('fo4').textContent=rp(o?ad/o:0);
+const pf=rev*.35-o*32000-ad;$('fo5').textContent=(pf>=0?'Laba sebelum biaya tetap: ':'Rugi sebelum biaya tetap: ')+rp(Math.abs(pf))}
+['f1','f2','f3','f4'].forEach(i=>$(i).oninput=fun);fun();
+// ===== LTV =====
+function ltv(){const g=i=>+$('u'+i).value,ar=g(1),m=g(2)/100,ch=g(3)/100,cac=g(4),l=ar*m/ch,r=l/cac,pb=cac/(ar*m);
+$('uv1').textContent=rp(ar);$('uv2').textContent=g(2)+'%';$('uv3').textContent=g(3)+'%';$('uv4').textContent=rp(cac);
+$('uo1').textContent=rp(l);$('uo2').textContent=r.toFixed(1)+'x';$('uo3').textContent=pb.toFixed(1)+' bln';$('uo4').textContent=(1/ch).toFixed(0)+' bln';
+$('uo5').textContent=r>=3&&pb<12?'Sehat':r>=1?'Perlu perbaikan':'Merugi per pelanggan'}
+['u1','u2','u3','u4'].forEach(i=>$(i).oninput=ltv);ltv();
+// ===== Marketplace =====
+function mp(){const g=+$('m1').value,t=+$('m2').value,rev=g*1e9*t/100;$('mv1').textContent='Rp '+g+' miliar';$('mv2').textContent=t+'%';$('mo1').textContent=rp(rev);$('mo2').textContent=t<40?'GMV '+'Rp '+(rev/1e9/.05).toFixed(0)+' M @5%':'-'}
+$('m1').oninput=mp;$('m2').oninput=mp;mp();
+// ===== Last mile =====
+function lm(){const c=+$('l1').value,p=+$('l2').value,fl=+$('l3').value/100,tr=c/p,tot=16000+tr+tr*fl,pc=tot/400000;
+$('lv1').textContent=rp(c);$('lv2').textContent=p;$('lv3').textContent=(fl*100)+'%';$('lo1').textContent=rp(tr);$('lo2').textContent=rp(tot);$('lo3').textContent=(pc*100).toFixed(1)+'%';$('lo4').textContent=pc<=.1?'Efisien':pc<=.15?'Perlu optimasi':'Terlalu mahal'}
+['l1','l2','l3'].forEach(i=>$(i).oninput=lm);lm();
+// ===== E-fulfillment =====
+const FL=[['Pesanan masuk','Pelanggan membayar di toko online. Sistem mengonfirmasi stok dan membuat pesanan.'],['Back-office','Verifikasi pembayaran, penagihan, pengelolaan stok, dan pengaturan pesanan.'],['Logistik','Picking, packing, konsolidasi, dan penyerahan ke operator pengiriman (bisa dialihdayakan).'],['Last mile','Pengiriman akhir ke alamat pelanggan: tahap termahal dan paling berisiko.'],['Notifikasi','Pelanggan diberi tahu status dan lokasi paket secara real time, dan menerima konfirmasi tiba.']];
+FL.forEach((s,i)=>{const b=document.createElement('button');b.textContent=(i+1)+'. '+s[0];b.onclick=()=>{[...$('fl').children].forEach((x,j)=>x.classList.toggle('on',i==j));$('fli').innerHTML=`<b>${s[0]}.</b> ${s[1]}`};$('fl').append(b)});$('fl').children[0].click();
+// ===== Tipe =====
+const TG={mp:[['Buy-side','Dibentuk gabungan pembeli untuk mendapat syarat lebih baik dari pemasok.'],['Sell-side','Penjual berkelompok untuk memperluas penjualan dan pelanggan.'],['Pihak ketiga netral','Perantara yang mempertemukan pembeli dan penjual.'],['Vertikal','Fokus pada satu sektor sehingga spesialis dan dipercaya.'],['Horizontal','Generalis, banyak kategori dan trafik tinggi.'],['Publik','Terbuka bagi banyak pemasok yang membayar biaya.'],['On demand / Managed / SaaS','Model bisnis: layanan sesuai permintaan, dikelola ketat, atau berbasis perangkat lunak.']],
+ep:[['Web-based ERP','Permintaan, pesanan, dan penerimaan barang lewat ERP berbasis web.'],['e-MRO','Seperti ERP web tetapi untuk pemeliharaan, perbaikan, dan operasi.'],['e-sourcing','Mencari dan menilai pemasok baru secara online.'],['e-tendering','Mengelola tender dan penawaran elektronik.'],['e-reverse auctioning','Pemasok bersaing menurunkan harga secara online.'],['e-informing','Berbagi informasi pembelian dan pemasok.'],['e-marketsites','Pasar elektronik tempat pembeli dan pemasok bertransaksi.']],
+ec:[['B2B','Antar perusahaan, pasar grosir. Contoh: Ford menjual suku cadang online ke bengkel.'],['B2C','Perusahaan ke konsumen akhir, tipe yang paling dikenal.'],['C2C','Antar individu, biasanya lewat platform perantara.']]};
+function tg(k){document.querySelectorAll('[data-g]').forEach(b=>b.classList.toggle('on',b.dataset.g==k));$('tg').innerHTML='';TG[k].forEach((x,i)=>{const b=document.createElement('button');b.innerHTML=x[0];b.onclick=()=>{[...$('tg').children].forEach((y,j)=>y.classList.toggle('on',i==j));$('tgi').innerHTML=`<b>${x[0]}.</b> ${x[1]}`};$('tg').append(b)});$('tg').children[0].click()}
+document.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>tg(b.dataset.g));tg('mp');
+// ===== Pertumbuhan =====
+function gr(){const r=+$('gr').value/100;$('gv').textContent=(r*100)+'%';let e=[],l=[];for(let k=0;k<=12;k++){e.push(1000*Math.pow(1+r,k));l.push(1000+500*k)}const mx=Math.max(...e,...l),X=k=>30+k*45,Y=v=>200-v/mx*180;
+$('gsvg').innerHTML=`<polyline fill="none" stroke="#19f0a0" stroke-width="3" points="${e.map((v,k)=>X(k)+','+Y(v)).join(' ')}"/><polyline fill="none" stroke="#ffb938" stroke-width="3" stroke-dasharray="6" points="${l.map((v,k)=>X(k)+','+Y(v)).join(' ')}"/><line x1="30" x2="580" y1="200" y2="200" stroke="#557" /><text x="40" y="30" fill="#19f0a0">Eksponensial: ${f(e[12])}</text><text x="40" y="48">Linear (+500 per periode): ${f(l[12])}</text>`;
+const c=e.findIndex((v,k)=>v>l[k]);$('gn').textContent=c>0?`Eksponensial melewati linear di periode ${c}. Pada periode 12 selisihnya ${f(e[12]-l[12])} pengguna.`:'Pada tingkat ini eksponensial belum melewati linear dalam 12 periode.'}
+$('gr').oninput=gr;gr();
+// ===== ExO =====
+const EX=[['Staff on demand','S'],['Community & crowd','C'],['Algorithms','A'],['Leveraged assets','L'],['Engagement','E'],['Interfaces','I'],['Dashboards (OKR)','D'],['Experimentation','E'],['Autonomy','A'],['Social technologies','S']];let on=new Set(),mt=false;
+EX.forEach((e,i)=>{const b=document.createElement('button');b.innerHTML=`${e[0]}<small>${i<5?'SCALE (eksternal)':'IDEAS (internal)'}</small>`;b.onclick=()=>{on.has(i)?on.delete(i):on.add(i);b.classList.toggle('on');exo()};$('exg').append(b)});
+$('mtp').onclick=()=>{mt=!mt;$('mtp').classList.toggle('on',mt);exo()};
+function exo(){const n=on.size;$('exb').style.width=Math.max(n*10,4)+'%';$('exb').textContent=n+' dari 10 atribut';const ok=mt&&n>=4;$('exo2').textContent=ok?'Memenuhi syarat ExO':'Belum memenuhi syarat';$('exn').textContent=ok?'Anda punya MTP dan '+n+' atribut. Gunakan ExO Canvas untuk melihat celahnya.':(!mt?'Syarat pertama: tetapkan MTP yang jelas. ':'')+(n<4?'Butuh minimal 4 atribut (kini '+n+').':'')}exo();
+// ===== Model digital =====
+const MD=[['Langganan','Pelanggan membayar berkala. Pendapatan = pelanggan x ARPU. Kunci: churn rendah dan LTV tinggi.'],['Freemium','Fitur dasar gratis, fitur lanjut berbayar. Kunci: persentase yang naik ke berbayar.'],['Marketplace','Komisi dari transaksi. Net revenue = GMV x take rate. Perlu menyeimbangkan penjual dan pembeli.'],['Iklan','Konten menarik pengunjung lalu iklan dimonetisasi. Kunci: trafik dan keterlibatan.'],['SaaS','Perangkat lunak berbasis cloud dengan biaya skalabel, sesuai pembahasan modul tentang biaya yang bisa diskalakan.'],['Afiliasi','Komisi dari rekomendasi pembelian. Cocok untuk pembuat konten dan situs ulasan.']];
+MD.forEach((m,i)=>{const b=document.createElement('button');b.textContent=m[0];b.onclick=()=>{[...$('mt').children].forEach((x,j)=>x.classList.toggle('on',i==j));$('mi').innerHTML=`<p><b>${m[0]}.</b> ${m[1]}</p>`};$('mt').append(b)});$('mt').children[0].click();
+// ===== Kuis =====
+const Q=[['C2C berarti transaksi antara...',['Dua perusahaan','Perusahaan dan konsumen','Individu dengan individu','Pemerintah dan bisnis'],2],['Marketplace berperan sebagai...',['Produsen tunggal','Perantara antara pemasok dan konsumen','Operator logistik saja','Penyedia hosting'],1],['Komponen biaya last mile menurut modul adalah...',['Hanya transportasi','Penanganan, persiapan, konsolidasi, kemasan, transportasi','Hanya kemasan','Iklan dan promosi'],1],['MTP dalam organisasi eksponensial singkatan dari...',['Market Trade Plan','Massive Transformative Purpose','Main Technology Platform','Minimum Task Process'],1],['Selain MTP, ExO perlu minimal berapa atribut SCALE atau IDEAS?',['2','4','6','10'],1],['Apa beda utama bisnis digital dan e-business?',['Bisnis digital tak memakai internet','Bisnis digital bergantung pada teknologi untuk eksis dan memberi nilai tambah','E-business pasti lebih murah','Tidak ada beda'],1]];
+let qi=0,sc=0;const qz=$('quiz');
+function rq(){if(qi>=Q.length){qz.innerHTML=`<h3>Skor Anda: ${sc} / ${Q.length}</h3><p style="margin:10px 0">${sc==Q.length?'Sempurna. Lanjut ke spreadsheet.':'Baca lagi topik yang meleset, lalu coba ulang.'}</p><button class="btn pri" id="rt" style="width:auto">Ulangi</button>`;$('rt').onclick=()=>{qi=0;sc=0;rq()};return}
+const q=Q[qi];qz.innerHTML=`<p><b>Soal ${qi+1} dari ${Q.length}</b></p><h3 style="margin:8px 0 12px">${q[0]}</h3>`;q[1].forEach((o,i)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>{[...qz.querySelectorAll('button')].forEach((x,j)=>{x.disabled=true;if(j==q[2])x.classList.add('ok')});if(i==q[2])sc++;else b.classList.add('no');setTimeout(()=>{qi++;rq()},1100)};qz.append(b)})}
+rq();
+</script>
+</body>
+</html>

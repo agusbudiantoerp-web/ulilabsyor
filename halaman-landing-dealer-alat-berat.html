@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pusat Pertumbuhan Bisnis & Intelijen Dealer Alat Berat</title>
+<style>
+:root{--navy:#0a1a2f;--char:#12161c;--or:#ff6a13;--yel:#ffc21a;--steel:#4682b4;--cy:#19d3e6;--w:#f4f7fa;--card:#14233a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;color:var(--w);background:var(--char);line-height:1.5}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:repeating-linear-gradient(135deg,#0a1a2f 0 40px,#0d2038 40px 80px);background-size:113px 113px;animation:mv 18s linear infinite;opacity:.9}
+@keyframes mv{to{background-position:113px 0}}
+nav{position:sticky;top:0;z-index:9;background:#0a1a2fee;border-bottom:2px solid var(--or);display:flex;gap:4px;overflow-x:auto;padding:6px 10px}
+nav a{color:var(--w);text-decoration:none;font-size:12px;padding:6px 10px;border-radius:4px;white-space:nowrap}nav a:hover{background:var(--or);color:#000}
+header{padding:48px 20px 24px;text-align:center}
+h1{margin:0;font-size:clamp(24px,4vw,44px);letter-spacing:1px}h1 span{color:var(--yel)}
+.sub{color:var(--cy);margin-top:8px}
+.note{max-width:900px;margin:14px auto 0;background:#ffc21a1f;border:1px solid var(--yel);border-radius:6px;padding:8px 12px;font-size:13px}
+section{max-width:1180px;margin:28px auto;padding:0 16px}
+h2{border-left:6px solid var(--or);padding-left:12px;font-size:22px}h2 small{display:block;color:var(--cy);font-size:12px;font-weight:400}
+.g{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.c{background:var(--card);border:1px solid #24405f;border-radius:8px;padding:14px;transition:.2s}.c:hover{transform:translateY(-3px);border-color:var(--or)}
+.k{font-size:26px;font-weight:700;color:var(--yel)}.l{font-size:12px;color:#9fb4cc;text-transform:uppercase}
+.bar{height:12px;background:#0006;border-radius:6px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--or),var(--yel));width:0;transition:width .8s}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card)}th{background:#0c2a4a;color:var(--cy);text-align:left}th,td{padding:7px 9px;border-bottom:1px solid #24405f}
+.sc{overflow-x:auto}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.tabs button{background:#0c2a4a;color:var(--w);border:1px solid var(--steel);padding:6px 12px;border-radius:5px;cursor:pointer}.tabs button.on{background:var(--or);color:#000;border-color:var(--or)}
+label{display:block;font-size:12px;color:#9fb4cc;margin-top:8px}input[type=range]{width:100%;accent-color:var(--or)}input[type=number],select{width:100%;padding:4px;background:#0a1a2f;color:var(--w);border:1px solid var(--steel);border-radius:4px}
+.out{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:12px}.out div{background:#0006;border-radius:6px;padding:8px}.out b{display:block;color:var(--cy);font-size:18px}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.tag{display:inline-block;font-size:11px;background:var(--steel);color:#000;border-radius:3px;padding:1px 6px;margin-right:4px}
+footer{text-align:center;color:#9fb4cc;font-size:12px;padding:30px}
+.cols{display:flex;align-items:flex-end;gap:10px;height:150px}.cols div{flex:1;background:linear-gradient(0deg,var(--or),var(--yel));border-radius:4px 4px 0 0;position:relative;transition:height .6s;min-height:2px}.cols span{position:absolute;top:-18px;font-size:11px;left:0;right:0;text-align:center}.cols em{position:absolute;bottom:-18px;font-size:11px;left:0;right:0;text-align:center;font-style:normal;color:#9fb4cc}
+</style></head><body><canvas id="bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
+<nav id="nav"></nav>
+<header><h1>PUSAT <span>PERTUMBUHAN BISNIS</span> & INTELIJEN DEALER ALAT BERAT</h1>
+<div class="sub">Dasbor strategi dan keputusan dealer alat berat merek China di Indonesia: truk, crane, launching gantry, container crane, ship unloader, alat tambang</div>
+<div class="note"><b>Catatan data:</b> semua angka di halaman ini adalah <b>asumsi ilustrasi yang dapat diubah</b>, bukan data perusahaan, pangsa pasar, harga kompetitor, atau ramalan. Hasil simulator adalah estimasi skenario, bukan jaminan. Ganti dengan data Anda di Modul 10.</div></header>
+
+<section id="m1"><h2>1 · Pusat Komando Eksekutif<small>Digerakkan oleh asumsi di Modul 10</small></h2>
+<div class="g" id="kpis"></div><div class="c" style="margin-top:12px"><div class="l">Total pendapatan per tahun (Rp miliar)</div><div class="cols" id="revChart" style="margin:24px 0 24px"></div></div></section>
+
+<section id="m2"><h2>2 · Intelijen Pasar Indonesia<small>Skor daya tarik adalah placeholder penilaian (1–10): ganti dengan data ESDM, BPS, dan industri yang terverifikasi</small></h2>
+<div class="two"><div class="c"><div class="l">Wilayah</div><div id="regions"></div></div><div class="c"><div class="l">Segmen pelanggan</div><div class="sc"><table id="segs"></table></div></div></div>
+<p style="font-size:12px;color:#9fb4cc">Peta interaktif tidak disertakan agar file bisa jalan offline; batang wilayah menjadi penggantinya.</p></section>
+
+<section id="m3"><h2>3 · Intelijen Kompetitif<small>Ubah skor (1–5) atau bobot; total dihitung ulang. Skor bersifat ilustrasi, bukan fakta kompetitor</small></h2>
+<div class="sc"><table id="comp"></table></div></section>
+
+<section id="m4"><h2>4 · Mesin Pertumbuhan Strategis<small>Setiap kerangka kerja diubah menjadi inisiatif, KPI, dan target</small></h2>
+<div class="tabs" id="ftabs"></div><div class="c" id="fbody"></div></section>
+
+<section id="m5"><h2>5 · Pusat Akselerasi Penjualan<small>Angka konversi adalah target untuk dikalibrasi dengan data CRM</small></h2>
+<div class="two"><div class="c"><div class="l">Corong akun target</div><div id="funnel"></div></div>
+<div class="c"><div class="l">Kategori evaluasi penjualan gagal (catat alasan tiap deal)</div><div id="lost"></div><div class="l" style="margin-top:12px">Tingkat akun kunci</div><p style="font-size:13px">Tier 1: pemilik tambang dan kontraktor besar, KAM khusus dan sponsor direksi. Tier 2: kontraktor regional, KAM bersama. Tier 3: pembeli kecil dan rental, inside sales dan distributor.</p></div></div></section>
+
+<section id="m6"><h2>6 · Portofolio Produk & Pasar</h2><div class="g" id="port"></div></section>
+
+<section id="m7"><h2>7 · Purna Jual & Layanan<small>Dihitung dari asumsi Modul 10</small></h2><div class="g" id="as"></div>
+<div class="c" style="margin-top:12px;font-size:13px"><b>KPI ketersediaan dan respons:</b> ketersediaan alat ≥ 90% (disepakati per kontrak) · respons kerusakan kritis ≤ 4 jam di lokasi · fill rate suku cadang ≥ 90% · first-time fix ≥ 80% · kepatuhan PM ≥ 95% · perpanjangan kontrak servis ≥ 85%.</div></section>
+
+<section id="m8"><h2>8 · Kinerja Keuangan<small>Proyeksi 5 tahun, Rp juta, dari asumsi Modul 10</small></h2><div class="sc"><table id="fin"></table></div></section>
+
+<section id="m9"><h2>9 · Peta Jalan Strategis</h2><div class="g" id="road"></div></section>
+
+<section id="m10"><h2>10 · Pusat Keputusan Manajemen<small>Ubah asumsi; semua modul di atas langsung ikut berubah</small></h2>
+<div class="two"><div class="c" id="ctl"></div><div class="c"><div class="l">Hasil langsung (Tahun 1 dan Tahun 5)</div><div class="out" id="dec"></div></div></div></section>
+
+<section id="sim"><h2>Simulator Bisnis<small>Estimasi skenario, bukan hasil yang dijamin</small></h2>
+<div class="tabs" id="stabs"></div><div class="c"><div id="sctl"></div><div class="out" id="sout"></div></div></section>
+<footer>Model ilustrasi · tidak ada pangsa pasar, harga kompetitor, atau angka penjualan asli di halaman ini · berjalan offline</footer>
+
+<script>
+const $=id=>document.getElementById(id),fm=n=>Math.round(n).toLocaleString("id-ID"),pc=n=>(n*100).toFixed(1)+"%";
+const mods=["Komando","Pasar","Kompetisi","Strategi","Penjualan","Portofolio","Purna jual","Keuangan","Peta jalan","Keputusan","Simulator"];
+$("nav").innerHTML=mods.map((m,i)=>`<a href="#${i==10?"sim":"m"+(i+1)}">${i<10?i+1+" · ":""}${m}</a>`).join("");
+/* ---------- Model (Rp juta) ---------- */
+const P={units:30,g:25,asp:2500,gm:12,fix:4000,var:3,apu:45,asgm:35,tax:22,wc:15};
+const ctl=[["units","Unit terjual Tahun 1",5,150,1],["g","Pertumbuhan unit per tahun %",0,60,1],["asp","Harga jual rata-rata gabungan (Rp juta)",300,8000,50],["gm","Margin kotor alat %",3,25,.5],["fix","Biaya operasional tetap (Rp juta/tahun)",1000,15000,250],["var","Biaya operasional variabel % pendapatan",0,10,.5],["apu","Pendapatan purna jual per unit terpasang (Rp juta/tahun)",5,150,1],["asgm","Margin kotor purna jual %",15,60,1],["tax","Tarif pajak %",0,30,1],["wc","Modal kerja % pendapatan",0,40,1]];
+function model(p){let r=[],cum=0,prevWC=0;for(let y=0;y<5;y++){const u=p.units*Math.pow(1+p.g/100,y),eq=u*p.asp,as=(cum+u/2)*p.apu,rev=eq+as,gp=eq*p.gm/100+as*p.asgm/100,ox=p.fix+rev*p.var/100,ebit=gp-ox,np=ebit-Math.max(0,ebit)*p.tax/100,wc=rev*p.wc/100,cf=np-(wc-prevWC);r.push({u,eq,as,rev,gp,gm:gp/rev,ox,ebit,np,cf,wc});cum+=u;prevWC=wc}return r}
+function drawAll(){const m=model(P),a=m[0],e=m[4];
+$("kpis").innerHTML=[["Pendapatan Tahun 1","Rp "+(a.rev/1000).toFixed(1)+" M"],["Pendapatan Tahun 5","Rp "+(e.rev/1000).toFixed(1)+" M"],["Margin kotor gabungan Y1",pc(a.gm)],["Laba bersih Y1","Rp "+fm(a.np)+" jt"],["Porsi purna jual Y5",pc(e.as/e.rev)],["Unit Y1 → Y5",fm(a.u)+" → "+fm(e.u)]].map(x=>`<div class="c"><div class="l">${x[0]}</div><div class="k">${x[1]}</div></div>`).join("");
+const mx=Math.max(...m.map(x=>x.rev));$("revChart").innerHTML=m.map((x,i)=>`<div style="height:${x.rev/mx*100}%"><span>${(x.rev/1000).toFixed(1)}</span><em>Y${i+1}</em></div>`).join("");
+$("fin").innerHTML="<tr><th>Rp juta</th>"+m.map((_,i)=>`<th>Y${i+1}</th>`).join("")+"</tr>"+[["Pendapatan alat","eq"],["Pendapatan purna jual","as"],["Total pendapatan","rev"],["Laba kotor","gp"],["Biaya operasional","ox"],["EBIT","ebit"],["Laba bersih","np"],["Arus kas (LB – ΔMK)","cf"],["Modal kerja","wc"]].map(r=>`<tr><td>${r[0]}</td>${m.map(x=>`<td>${fm(x[r[1]])}</td>`).join("")}</tr>`).join("")+`<tr><td>Margin kotor</td>${m.map(x=>`<td>${pc(x.gm)}</td>`).join("")}</tr>`;
+$("as").innerHTML=[["Pendapatan purna jual Y1","Rp "+fm(a.as)+" jt"],["Pendapatan purna jual Y5","Rp "+fm(e.as)+" jt"],["Y5 share of revenue",pc(e.as/e.rev)],["After-sales gross profit Y5","Rp "+fm(e.as*P.asgm/100)+" jt"]].map(x=>`<div class="c"><div class="l">${x[0]}</div><div class="k">${x[1]}</div></div>`).join("");
+const be=P.fix/Math.max(.001,P.asp*P.gm/100-P.asp*P.var/100);
+$("dec").innerHTML=[["Pendapatan Y1","Rp "+fm(a.rev)+" jt"],["Pendapatan Y5","Rp "+fm(e.rev)+" jt"],["Margin kotor Y1",pc(a.gm)],["Laba bersih Y5","Rp "+fm(e.np)+" jt"],["Arus kas Y5","Rp "+fm(e.cf)+" jt"],["Unit titik impas/tahun (alat saja)",be>0?fm(be):"n/a"],["Unit Y5",fm(e.u)],["Pendapatan per sales Y1 (6 orang)","Rp "+fm(a.rev/6)+" jt"]].map(x=>`<div><span class="l">${x[0]}</span><b>${x[1]}</b></div>`).join("")}
+$("ctl").innerHTML=ctl.map(c=>`<label>${c[1]}: <b id="v_${c[0]}">${P[c[0]]}</b><input type="range" min="${c[2]}" max="${c[3]}" step="${c[4]}" value="${P[c[0]]}" oninput="P.${c[0]}=+this.value;$('v_${c[0]}').textContent=this.value;drawAll()"></label>`).join("");
+/* ---------- Market ---------- */
+const reg=[["Kalimantan (batubara, kontraktor tambang)",9],["Sulawesi (nikel, infrastruktur)",8],["Sumatra (batubara, perkebunan, pelabuhan)",7],["Papua (emas, tembaga, logistik berat)",6],["Jawa (konstruksi, industri, pelabuhan)",7],["Maluku Utara (nikel, pelabuhan smelter)",6]];
+$("regions").innerHTML=reg.map(r=>`<div>${r[0]} <b style="float:right">${r[1]}/10</b><div class="bar"><i data-w="${r[1]*10}"></i></div></div>`).join("");
+$("segs").innerHTML="<tr><th>Segmen</th><th>Armada</th><th>Siklus</th><th>Pendekatan</th></tr>"+[["Pemilik tambang","Besar","12–24 bln","KAM, uji coba, bukti TCO"],["Kontraktor tambang","Besar–menengah","3–9 bln","Paket armada, jaminan ketersediaan"],["Subkontraktor","Kecil–menengah","1–3 bln","Pembiayaan, akses suku cadang"],["Pelabuhan / logistik","Menengah","6–18 bln","Container crane, ship unloader, crane"],["Infrastruktur","Menengah–besar","6–18 bln","Launching gantry, crane, dukungan tender"],["Rental","Menengah","1–4 bln","Buy-back, nilai sisa, volume"],["Proyek pemerintah","Bervariasi","6–18 bln","Tender, cek TKDN"]].map(r=>"<tr>"+r.map(x=>`<td>${x}</td>`).join("")+"</tr>").join("");
+/* ---------- Competition ---------- */
+const dims=[["Harga",15],["Suku cadang",15],["Purna jual",15],["Garansi",10],["Pembiayaan",10],["Kecepatan kirim",10],["Keahlian teknis",10],["Fokus tambang",15]];
+const comps={"Perusahaan kita (target)":[3,4,5,4,4,4,5,5],"Dealer China lain":[4,2,2,3,3,3,2,2],"Merek internasional mapan":[1,5,5,4,4,4,5,4],"Distributor lokal independen":[3,2,2,2,2,3,2,2],"Pemasok alat bekas":[5,2,1,1,2,5,2,2]};
+function drawComp(){let h="<tr><th>Bobot % →</th>"+dims.map((d,i)=>`<th>${d[0]}<br><input type="number" value="${d[1]}" style="width:56px" onchange="dims[${i}][1]=+this.value;drawComp()"></th>`).join("")+"<th>Skor tertimbang</th></tr>";
+const ws=dims.reduce((s,d)=>s+d[1],0)||1;for(const k in comps){const t=comps[k].reduce((s,v,i)=>s+v*dims[i][1],0)/ws;h+=`<tr><td>${k}</td>${comps[k].map((v,i)=>`<td><input type="number" min="1" max="5" value="${v}" style="width:56px" onchange="comps['${k}'][${i}]=+this.value;drawComp()"></td>`).join("")}<td><b style="color:var(--yel)">${t.toFixed(2)}</b></td></tr>`}$("comp").innerHTML=h}
+/* ---------- Frameworks ---------- */
+const F={"SWOT":[["SO","Gunakan harga kompetitif + fokus tambang untuk paket armada kontraktor. KPI: 5 kontrak kerangka armada dalam 12 bulan"],["WO","Bangun hub suku cadang regional dan stok bersama. KPI: fill rate ≥ 90%"],["ST","Lawan perang harga dengan proposal TCO dan kontrak servis berbasis ketersediaan. KPI: win rate non-termurah ≥ 25%"],["WT","Batasi risiko kredit dan kurs dengan skoring kredit dan klausul harga. KPI: piutang > 90 hari < 5%"]],
+"PESTEL":[["Politik / Hukum","Pantau aturan izin tambang, bea masuk, TKDN, pengadaan (ESDM, Kemenperin, Kemendag). Pemilik: Kepatuhan; tinjau per kuartal"],["Ekonomi","Siklus komoditas, kurs rupiah, suku bunga menentukan capex pelanggan; pantau bulanan"],["Sosial / Lingkungan","Tuntutan K3, emisi, reklamasi; tawarkan alat patuh dan pelatihan operator"],["Teknologi","Telematik, monitoring armada, uji coba elektrifikasi; pilot satu paket monitoring"]],
+"Porter":[["Persaingan: tinggi","Banyak dealer produk mirip → beda di ketersediaan dan servis"],["Pembeli: tinggi","Harga mudah dibandingkan → TCO dan kontrak menyulitkan perbandingan"],["Pemasok: menengah-tinggi","Bergantung syarat pabrikan → negosiasi eksklusivitas, stok, garansi"],["Pendatang baru / substitusi","Alat bekas dan sewa jadi substitusi → buy-back dan paket rental"]],
+"Ansoff":[["Penetrasi pasar","Tambah pangsa di kontraktor tambang Kalimantan"],["Pengembangan pasar","Koridor nikel Sulawesi, emas Papua, pelabuhan"],["Pengembangan produk","Kontrak servis, monitoring armada, paket pembiayaan"],["Diversifikasi","Armada sewa, perdagangan alat bekas (uji skala kecil)"]],
+"Blue Ocean":[["Hapus","Tawaran yang hanya bersaing harga"],["Kurangi","Risiko downtime dan keterlambatan suku cadang pelanggan"],["Tingkatkan","Ketersediaan suku cadang, waktu respons, kompetensi teknisi"],["Ciptakan","Kontrak jaminan ketersediaan, kalkulator TCO, laporan kesehatan armada"]],
+"BCG":[["Bintang","Truk tambang dan excavator: pasar tumbuh, bangun pangsa"],["Sapi perah","Suku cadang dan servis: margin stabil, lindungi"],["Tanda tanya","Crane, launching gantry, container crane, ship unloader: berbasis proyek, pilih selektif"],["Anjing","Model volume rendah, stok lambat: habiskan atau hentikan"]],
+"Rantai nilai":[["Masuk","Syarat pabrikan, logistik impor, inspeksi. KPI: selisih biaya landed"],["Operasi","PDI, kecepatan kirim. KPI: hari order-ke-kirim"],["Penjualan","KAM dan disiplin corong. KPI: win rate"],["Layanan","Suku cadang, teknisi lapangan. KPI: respons, ketersediaan"]],
+"PDCA / Kaizen":[["Plan","Tinjau corong dan kekurangan suku cadang tiap minggu; tetapkan satu perbaikan per area"],["Do","Uji coba 30 hari di satu wilayah atau akun"],["Check","Bandingkan KPI sebelum dan sesudah"],["Act","Standarkan jika berhasil; jika tidak, sesuaikan"]],
+"SMART":[["Win rate","Naik 5 poin dari baseline dalam 12 bulan"],["Fill rate suku cadang","≥ 90% pada bulan ke-9"],["Porsi purna jual","≥ 20% laba kotor di tahun ke-3"],["DSO","≤ 75 hari dalam 12 bulan"]],
+"Menang tanpa perang harga":[["Harga","Tetapkan batas margin minimum; persetujuan direksi di bawahnya"],["Nilai","Tawarkan TCO: BBM, suku cadang, downtime, nilai sisa"],["Termin","Menu pembayaran (tunai, DP+cicilan, leasing, dukungan pabrikan) dengan biaya dana dan risiko kredit dihitung"],["Hubungan","ABM dan KAM untuk 20 akun teratas; sponsor direksi; uji coba di lokasi tambang"]]};
+$("ftabs").innerHTML=Object.keys(F).map((k,i)=>`<button class="${i?"":"on"}" onclick="showF('${k}',this)">${k}</button>`).join("");
+function showF(k,b){document.querySelectorAll("#ftabs button").forEach(x=>x.classList.remove("on"));b.classList.add("on");$("fbody").innerHTML=F[k].map(x=>`<p><span class="tag">${x[0]}</span>${x[1]}</p>`).join("")}showF("SWOT",document.querySelector("#ftabs button"));
+/* ---------- Sales ---------- */
+const fun=[["Lead terkualifikasi",100],["Kunjungan lokasi / presentasi teknis",60],["Demo / uji coba",35],["Proposal komersial",25],["Negosiasi",15],["Purchase order",10]];
+$("funnel").innerHTML=fun.map((f,i)=>`<div>${f[0]}<b style="float:right">${f[1]}%${i?" · konversi "+Math.round(f[1]/fun[i-1][1]*100)+"%":""}</b><div class="bar"><i data-w="${f[1]}"></i></div></div>`).join("");
+$("lost").innerHTML=["Harga","Termin pembayaran","Waktu kirim","Kepercayaan merek","Ragu suku cadang / servis","Spesifikasi tidak cocok","Pelanggan menunda"].map(x=>`<span class="tag">${x}</span>`).join(" ");
+const pf=[["Truk tambang (rigid / ADT)","Volume inti; kontraktor dan pemilik tambang; jual dengan TCO dan ketersediaan"],["Excavator / wheel loader / alat tambang","Persaingan paling padat; menang di suku cadang dan servis"],["Mobile / crawler / tower crane","Berbasis proyek; konstruksi, industri; pembiayaan penting"],["Launching gantry / alat jembatan","Niche bernilai tinggi; tender dan penjualan teknis"],["Container crane (STS/RTG)","Proyek pelabuhan; nilai besar, siklus panjang; pembiayaan proyek, referensi, dukungan komisioning"],["Ship unloader","Pelabuhan batubara, nikel, semen, curah; penjualan konsultatif; kinerja bongkar (t/jam) dan perawatan jadi kunci"],["Skid steer / alat kecil","Siklus cepat; jalur distributor dan rental"]];
+$("port").innerHTML=pf.map(p=>`<div class="c"><b>${p[0]}</b><p style="font-size:13px">${p[1]}</p></div>`).join("");
+const rd=[["90 hari","Baseline win rate dan pipeline; stok suku cadang kritis; daftar 20 akun target; SLA servis; kebijakan kredit"],["12 bulan","3 kontrak kerangka kontraktor; kontrak servis; hub suku cadang; disiplin CRM"],["3 tahun","Purna jual ≥ 20% laba kotor; hadir di 3 wilayah tambang; program pembiayaan dealer"],["5 tahun","Posisi terdepan di segmen terpilih (target dari data pangsa pasar terverifikasi)"]];
+$("road").innerHTML=rd.map(r=>`<div class="c"><div class="k" style="font-size:18px">${r[0]}</div><p style="font-size:13px">${r[1]}</p></div>`).join("");
+/* ---------- Simulators ---------- */
+const S=[
+{n:"A Pertumbuhan penjualan",i:[["u","Unit",1,200,1,30],["p","Harga (Rp juta)",300,8000,50,2500],["m","Margin kotor %",3,25,.5,12]],f:v=>[["Pendapatan (Rp juta)",fm(v.u*v.p)],["Laba kotor (Rp juta)",fm(v.u*v.p*v.m/100)]]},
+{n:"B Strategi harga",i:[["p","Harga list (Rp juta)",300,8000,50,2500],["c","Biaya landed (Rp juta)",250,7500,50,2200],["w","Peluang menang dasar % di harga pasar",5,60,1,20],["e","Tambahan peluang per 1% diskon (poin)",0,3,.1,1.2],["pw","Tambahan peluang dari paket nilai premium (poin)",0,30,1,8]],f:v=>{const o=(d,val)=>{const pr=v.p*(1+d/100),w=Math.min(95,Math.max(1,v.w-d*v.e+val))/100;return[pr,w,w*(pr-v.c)]};const a=o(-8,0),b=o(0,0),c=o(5,v.pw);return[["Harga rendah: peluang",pc(a[1])],["Harga rendah: laba kotor diharapkan",fm(a[2])],["Harga pasar: peluang",pc(b[1])],["Harga pasar: laba kotor diharapkan",fm(b[2])],["Nilai premium: peluang",pc(c[1])],["Nilai premium: laba kotor diharapkan",fm(c[2])]]}},
+{n:"C Termin pembayaran",i:[["p","Harga (Rp juta)",300,8000,50,2500],["c","Biaya landed (Rp juta)",250,7500,50,2200],["dp","Uang muka %",0,100,5,30],["t","Tenor (bulan)",3,48,1,24],["k","Biaya dana dealer % p.a.",3,20,.5,9],["u","Kenaikan harga untuk kredit %",0,15,.5,4]],f:v=>{const cashGP=v.p-v.c,tp=v.p*(1+v.u/100),rec=tp*(1-v.dp/100),fc=rec*v.k/100*v.t/12*.5,gp=tp-v.c-fc;return[["Laba kotor penjualan tunai",fm(cashGP)],["Laba kredit setelah biaya dana",fm(gp)],["Biaya dana",fm(fc)],["Eksposur kredit awal",fm(rec)],["Opsi lebih baik",gp>cashGP?"Kredit (cek risiko kredit)":"Tunai"]]}},
+{n:"D Ekspansi pasar",i:[["a","Akun potensial",5,200,1,40],["w","Win rate %",1,40,1,10],["u","Unit per akun menang",1,10,1,3],["p","Harga (Rp juta)",300,8000,50,2500],["m","Margin kotor %",3,25,.5,12],["e","Biaya masuk (Rp juta)",500,15000,250,4000]],f:v=>{const gp=v.a*v.w/100*v.u*v.p*v.m/100;return[["Unit menang",(v.a*v.w/100*v.u).toFixed(1)],["Laba kotor",fm(gp)],["Setelah biaya masuk",fm(gp-v.e)]]}},
+{n:"E Purna jual",i:[["b","Unit terpasang",5,500,5,60],["a","Kontrak servis % unit",0,100,5,50],["s","Biaya kontrak (Rp juta/unit/tahun)",5,100,1,25],["pt","Suku cadang per unit (Rp juta/tahun)",5,100,1,30],["m","Margin gabungan %",15,60,1,35]],f:v=>{const r=v.b*(v.a/100*v.s+v.pt);return[["Pendapatan purna jual",fm(r)],["Laba kotor",fm(r*v.m/100)]]}},
+{n:"F Peluang menang",i:[["pr","Daya saing harga 1–10",1,10,1,6],["wa","Garansi 1–10",1,10,1,6],["de","Pengiriman 1–10",1,10,1,6],["fi","Pembiayaan 1–10",1,10,1,6],["sv","Layanan 1–10",1,10,1,7]],f:v=>{const s=(v.pr*.3+v.wa*.15+v.de*.15+v.fi*.2+v.sv*.2),w=1/(1+Math.exp(-(s-6.5)*.9));return[["Skor tertimbang",s.toFixed(2)],["Estimasi daya saing",pc(w)]]}}];
+let cur=0;$("stabs").innerHTML=S.map((s,i)=>`<button class="${i?"":"on"}" onclick="cur=${i};document.querySelectorAll('#stabs button').forEach((b,j)=>b.classList.toggle('on',j==${i}));rs()">${s.n}</button>`).join("");
+function rs(){const s=S[cur];$("sctl").innerHTML=s.i.map(x=>`<label>${x[1]}: <b id="s_${x[0]}">${x[5]}</b><input type="range" id="r_${x[0]}" min="${x[2]}" max="${x[3]}" step="${x[4]}" value="${x[5]}" oninput="uo()"></label>`).join("");uo()}
+function uo(){const s=S[cur],v={};s.i.forEach(x=>{v[x[0]]=+$("r_"+x[0]).value;$("s_"+x[0]).textContent=v[x[0]]});$("sout").innerHTML=s.f(v).map(o=>`<div><span class="l">${o[0]}</span><b>${o[1]}</b></div>`).join("")}
+rs();drawComp();drawAll();
+setTimeout(()=>document.querySelectorAll(".bar i").forEach(e=>e.style.width=e.dataset.w+"%"),100);
+const cv=$("bg"),cx=cv.getContext("2d");let W,Hh,mx_=-999,my_=-999;const pts=[],cols=["#ff6a13","#ffc21a","#19d3e6","#4682b4"];
+function rz(){W=cv.width=innerWidth;Hh=cv.height=innerHeight}rz();addEventListener("resize",rz);
+addEventListener("mousemove",e=>{mx_=e.clientX;my_=e.clientY});addEventListener("touchmove",e=>{mx_=e.touches[0].clientX;my_=e.touches[0].clientY});
+for(let i=0;i<90;i++)pts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.8,vy:(Math.random()-.5)*.8,c:cols[i%4]});
+function an(){cx.clearRect(0,0,W,Hh);for(const p of pts){const dx=mx_-p.x,dy=my_-p.y,d=Math.hypot(dx,dy);if(d<160){p.vx+=dx/d*.04;p.vy+=dy/d*.04}p.vx*=.995;p.vy*=.995;if(Math.abs(p.vx)<.15)p.vx*=1.02;p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>Hh)p.vy*=-1;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,2.2,0,6.3);cx.fill()}
+for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);if(d<110){cx.strokeStyle=`rgba(255,170,40,${.35*(1-d/110)})`;cx.beginPath();cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.stroke()}}requestAnimationFrame(an)}an();
+</script></body></html>

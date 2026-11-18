@@ -368,6 +368,54 @@
   "kb": 91
  },
  {
+  "judul": "AI Business Lab: Strategi AI dan AI in Business",
+  "jenis": "Modul belajar",
+  "kategori": "Data & AI",
+  "deskripsi": "Strategi AI dan penerapan AI in Business.",
+  "href": "halaman-ai-business-strategy.html",
+  "kb": 26
+ },
+ {
+  "judul": "AI for Business",
+  "jenis": "Landing page",
+  "kategori": "Data & AI",
+  "deskripsi": "Ubah AI jadi keuntungan bisnis nyata.",
+  "href": "halaman-ai-for-business.html",
+  "kb": 16
+ },
+ {
+  "judul": "Data Analysis and Interpretation",
+  "jenis": "Modul belajar",
+  "kategori": "Data & AI",
+  "deskripsi": "Dari data mentah ke keputusan yang bisa dipercaya.",
+  "href": "halaman-data-analysis-landing.html",
+  "kb": 19
+ },
+ {
+  "judul": "Data Management",
+  "jenis": "Modul belajar",
+  "kategori": "Data & AI",
+  "deskripsi": "Belajar interaktif pengelolaan data.",
+  "href": "halaman-data-management-landing.html",
+  "kb": 27
+ },
+ {
+  "judul": "Digital Business",
+  "jenis": "Modul belajar",
+  "kategori": "Data & AI",
+  "deskripsi": "Belajar interaktif bisnis digital.",
+  "href": "halaman-digital-business-landing.html",
+  "kb": 32
+ },
+ {
+  "judul": "Digital Transformation Operations",
+  "jenis": "Landing page",
+  "kategori": "Data & AI",
+  "deskripsi": "Transformasi digital operasional, bukan sekadar teknologi.",
+  "href": "halaman-digital-transformation.html",
+  "kb": 23
+ },
+ {
   "judul": "EQUIP: Software Bisnis Terintegrasi",
   "jenis": "Landing page",
   "kategori": "Alat & dashboard",
@@ -552,11 +600,123 @@
   "kb": 32
  },
  {
+  "judul": "Pusat Pertumbuhan Bisnis & Intelijen Dealer Alat Berat",
+  "jenis": "Landing page",
+  "kategori": "Alat & dashboard",
+  "deskripsi": "Pusat pertumbuhan bisnis dan intelijen untuk dealer alat berat.",
+  "href": "halaman-landing-dealer-alat-berat.html",
+  "kb": 24
+ },
+ {
+  "judul": "Heavy Equipment Business Growth & Intelligence Center",
+  "jenis": "Landing page",
+  "kategori": "Alat & dashboard",
+  "deskripsi": "Versi bahasa Inggris pusat pertumbuhan dan intelijen bisnis dealer alat berat.",
+  "href": "halaman-heavy-equipment-dealer.html",
+  "kb": 22
+ },
+ {
+  "judul": "Platform KTT",
+  "jenis": "Dashboard",
+  "kategori": "Alat & dashboard",
+  "deskripsi": "Dasbor KTT: kepatuhan, keselamatan, teknis, dan koordinasi wilayah IUP dalam satu layar. Data tersimpan di browser, impor dan ekspor via Excel.",
+  "href": "halaman-platform-ktt.html",
+  "kb": 39
+ },
+ {
   "judul": "ERP Project Control: Seri Planner",
   "jenis": "Aplikasi",
   "kategori": "Project control & manajemen",
   "deskripsi": "Forecast, peluang selesai, rencana pemulihan, dan action plan dari data proyek mingguan. Data tersimpan di browser.",
   "href": "halaman-erp-project-control-planner.html",
   "kb": 21
+ },
+ {
+  "judul": "Strategy Toolkit: 13 Kerangka Strategi Korporat",
+  "jenis": "Toolkit",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "13 kerangka strategi korporat untuk keputusan bisnis yang tajam.",
+  "href": "halaman-strategy-toolkit.html",
+  "kb": 26
+ },
+ {
+  "judul": "Business Plan Management",
+  "jenis": "Modul belajar",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Panduan interaktif menyusun, menghitung, dan menguji rencana bisnis.",
+  "href": "halaman-business-plan-landing.html",
+  "kb": 16
+ },
+ {
+  "judul": "Decision Making",
+  "jenis": "Modul belajar",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Belajar interaktif pengambilan keputusan bisnis.",
+  "href": "halaman-decision-making-landing.html",
+  "kb": 31
+ },
+ {
+  "judul": "Management Skills",
+  "jenis": "Landing page",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Keterampilan manajemen: memimpin orang, bukan hanya tugas.",
+  "href": "halaman-management-skills.html",
+  "kb": 20
+ },
+ {
+  "judul": "Commercial Distribution",
+  "jenis": "Modul belajar",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Panduan interaktif alur distribusi komersial dari pabrik ke konsumen.",
+  "href": "halaman-commercial-distribution-landing.html",
+  "kb": 16
+ },
+ {
+  "judul": "E-Commerce & Digital Marketing",
+  "jenis": "Landing page",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "E-commerce dan pemasaran digital: dari pengunjung jadi pembeli.",
+  "href": "halaman-e-commerce.html",
+  "kb": 23
+ },
+ {
+  "judul": "Operations Management",
+  "jenis": "Modul belajar",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Temukan bottleneck, lalu alirkan. Pembelajaran interaktif manajemen operasi.",
+  "href": "halaman-operations-management-interaktif.html",
+  "kb": 19
+ },
+ {
+  "judul": "Process Quality",
+  "jenis": "Modul belajar",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Kendalikan variasi proses agar mutu ikut stabil.",
+  "href": "halaman-process-quality-interaktif.html",
+  "kb": 22
+ },
+ {
+  "judul": "Project Management",
+  "jenis": "Modul belajar",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Manajemen proyek berbasis jalur kritis, interaktif.",
+  "href": "halaman-project-management-interaktif.html",
+  "kb": 19
+ },
+ {
+  "judul": "Supply Chain & Logistik for Business",
+  "jenis": "Landing page",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Kendalikan setiap mata rantai dari pemasok sampai pelanggan.",
+  "href": "halaman-supply-chain.html",
+  "kb": 16
+ },
+ {
+  "judul": "Agile Methodologies",
+  "jenis": "Landing page",
+  "kategori": "Project control & manajemen",
+  "deskripsi": "Kirim nilai lebih cepat dan belajar di setiap sprint.",
+  "href": "halaman-agile-methodologies.html",
+  "kb": 16
  }
 ]

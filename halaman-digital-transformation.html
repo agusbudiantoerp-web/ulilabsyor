@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Transformation Operations — Landing Page Interaktif</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060a1c;--ink:#eaf0ff;--mut:#9aa8d0;--c:#22e3ff;--pn:rgba(14,20,48,.72);--ln:rgba(140,160,255,.22)}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+h1,h2,h3{font-family:Sora,"Segoe UI",sans-serif;line-height:1.15}
+#bg{position:fixed;inset:0;z-index:-1}
+a{color:inherit}
+nav{position:sticky;top:0;z-index:9;display:flex;gap:6px;align-items:center;padding:10px 4vw;background:rgba(6,10,28,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);overflow-x:auto}
+nav b{font-family:Sora;margin-right:auto;white-space:nowrap;color:var(--c)}
+nav a{text-decoration:none;padding:6px 14px;border-radius:99px;white-space:nowrap;font-size:14px}
+nav a:hover{background:var(--c);color:#04101c}
+section{padding:80px 4vw;max-width:1180px;margin:auto}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(40px,7.5vw,92px);font-weight:800;letter-spacing:-.03em}
+.hero h1 span{background:linear-gradient(90deg,#22e3ff,#ff3d9a,#b6ff3b,#22e3ff);background-size:300%;-webkit-background-clip:text;color:transparent;animation:fl 6s linear infinite}
+@keyframes fl{to{background-position:300%}}
+.hero p{max-width:640px;color:var(--mut);font-size:19px;margin:22px 0 30px}
+.btn{display:inline-block;padding:13px 26px;border-radius:12px;background:var(--c);color:#04101c;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:16px;transition:transform .15s}
+.btn:hover{transform:translateY(-3px) scale(1.03)}.btn.o{background:none;color:var(--ink);border:1px solid var(--ln);margin-left:10px}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:46px}
+.stats div{font-family:Sora;font-size:34px;font-weight:800;color:var(--c)}.stats small{display:block;font:13px "Segoe UI";color:var(--mut)}
+h2{font-size:clamp(28px,4vw,46px);margin-bottom:12px}.sub{color:var(--mut);max-width:680px;margin-bottom:34px}
+.panel{background:var(--pn);border:1px solid var(--ln);border-radius:18px;padding:26px;backdrop-filter:blur(10px)}
+.lab{display:grid;grid-template-columns:250px 1fr;gap:20px}
+.rail{display:flex;flex-direction:column;gap:8px}
+.rail button{all:unset;cursor:pointer;padding:12px 16px;border-radius:12px;border:1px solid var(--ln);background:var(--pn);transition:.2s}
+.rail button:hover{transform:translateX(6px)}
+.rail button.on{background:var(--c);color:#04101c;font-weight:700;border-color:var(--c);box-shadow:0 0 28px -4px var(--c)}
+.rail span{display:block;font-size:12px;opacity:.75;font-weight:400}
+#tp h3{font-size:30px;color:var(--c);margin-bottom:6px}#tp .pg{color:var(--mut);font-size:14px;margin-bottom:14px}
+#tp li{margin:0 0 10px 20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.chips i{font-style:normal;font-size:13px;padding:5px 12px;border-radius:99px;border:1px solid var(--c);cursor:pointer;transition:.15s}
+.chips i:hover{background:var(--c);color:#04101c}
+.net{border-left:4px solid var(--c);background:rgba(255,255,255,.05);padding:14px 18px;border-radius:0 12px 12px 0;margin-top:18px}
+.net h4{color:var(--c);margin-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{cursor:pointer;transition:.25s}.card:hover,.card.on{transform:translateY(-6px);border-color:var(--c);box-shadow:0 14px 40px -14px var(--c)}
+.card h3{font-size:19px;margin-bottom:6px;color:var(--c)}.card p{font-size:14.5px;color:var(--mut)}
+.bar{height:12px;border-radius:9px;background:rgba(255,255,255,.1);overflow:hidden;margin:6px 0 16px}
+.bar u{display:block;height:100%;width:0;background:linear-gradient(90deg,#22e3ff,#ff3d9a);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.tool{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.row{display:grid;grid-template-columns:1fr 120px 46px;gap:10px;align-items:center;font-size:14px;margin-bottom:6px}
+input[type=range]{width:100%;accent-color:var(--c)}
+input[type=number]{width:100%;padding:8px;border-radius:8px;border:1px solid var(--ln);background:#0a1030;color:var(--ink);font-size:15px}
+label{font-size:13px;color:var(--mut);display:block;margin:10px 0 3px}
+.big{font-family:Sora;font-size:46px;font-weight:800;color:var(--c)}
+.res b{color:var(--c)}.res p{margin:6px 0}
+.tl{display:flex;gap:10px;flex-wrap:wrap}.tl button{flex:1;min-width:150px;all:unset;box-sizing:border-box;cursor:pointer;padding:14px;border:1px solid var(--ln);border-radius:14px;background:var(--pn);text-align:center;font-weight:700;transition:.2s}
+.tl button.on{background:var(--c);color:#04101c}.tl button b{display:block;font:800 26px Sora}
+#ph{margin-top:16px}
+footer{text-align:center;padding:50px 4vw;color:var(--mut);border-top:1px solid var(--ln);font-size:14px}
+@media(max-width:800px){.lab,.tool{grid-template-columns:1fr}.rail{flex-direction:row;overflow-x:auto}.rail button{white-space:nowrap}.btn.o{margin:10px 0 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:3px solid #fff;outline-offset:2px}
+</style></head><body>
+<canvas id="bg"></canvas>
+<nav><b>DX Operations</b><a href="#materi">Materi PDF</a><a href="#teori">Teori Tambahan</a><a href="#alat">Kalkulator</a><a href="#roadmap">Roadmap</a></nav>
+
+<section class="hero">
+<h1>Transformasi digital,<br><span>bukan sekadar teknologi.</span></h1>
+<p>Delapan bab dari materi <i>Digital Transformation Operations</i> — digitalisasi bisnis, AI, IoT, blockchain, big data, cloud, otomasi, dan keamanan siber — ditambah teori global dan kalkulator yang bisa langsung dipakai. Gerakkan kursor: jaringan di belakang ikut merespons.</p>
+<div><a class="btn" href="#materi">Mulai belajar</a><a class="btn o" href="#alat">Coba kalkulator</a></div>
+<div class="stats"><div data-n="8">0<small>bab materi</small></div><div data-n="172">0<small>halaman PDF</small></div><div data-n="3">0<small>kalkulator interaktif</small></div><div data-n="14">0<small>% DX berhasil bertahan (McKinsey)</small></div></div>
+</section>
+
+<section id="materi"><h2>Materi dari PDF</h2><p class="sub">Pilih bab. Warna halaman dan jaringan latar berubah mengikuti topik. Klik label isi bab untuk melihat catatannya.</p>
+<div class="lab"><div class="rail" id="rail"></div><div class="panel" id="tp"></div></div></section>
+
+<section id="teori"><h2>Teori tambahan dari literatur &amp; riset</h2><p class="sub">Kerangka yang melengkapi PDF. Klik kartu untuk membuka penjelasannya.</p>
+<div class="grid" id="th"></div><div class="panel" id="thd" style="margin-top:16px;min-height:90px"></div>
+<div class="panel" style="margin-top:26px" id="st"><h3 style="margin-bottom:14px">Mengapa banyak transformasi digital gagal?</h3>
+<div>Transformasi tradisional yang berhasil (riset McKinsey)<span style="float:right">&lt;30%</span></div><div class="bar"><u data-w="30"></u></div>
+<div>Transformasi digital dengan kinerja membaik &amp; bertahan<span style="float:right">14–16%</span></div><div class="bar"><u data-w="15"></u></div>
+<div>Industri tradisional (migas, infrastruktur, otomotif, farmasi)<span style="float:right">4–11%</span></div><div class="bar"><u data-w="8"></u></div>
+<p style="font-size:14px;color:var(--mut)">Faktor sukses menurut survei McKinsey: pemimpin yang melek digital, pembangunan kapabilitas, pemberdayaan pekerja, perkakas baru, dan komunikasi (cerita perubahan yang jelas membuat peluang sukses lebih dari tiga kali lipat). Organisasi kecil (&lt;100 karyawan) 2,7× lebih mungkin sukses dibanding yang &gt;50.000 karyawan.</p></div></section>
+
+<section id="alat"><h2>Kalkulator interaktif</h2><p class="sub">Rumus yang sama tersedia di file Excel (Digital_Transformation_Rumus.xlsx).</p>
+<div class="panel tool" style="margin-bottom:22px"><div><h3 style="margin-bottom:10px">Indeks kematangan digital</h3><div id="mat"></div></div>
+<div class="res"><div class="big" id="mi">0%</div><p id="ml"></p><p style="color:var(--mut);font-size:14px">Indeks = Σ(bobot × skor) ÷ 5. Skor 0–5 per dimensi.</p><div id="mw"></div></div></div>
+<div class="tool"><div class="panel"><h3>ROI &amp; NPV proyek digital</h3>
+<label>Investasi awal (Rp juta)</label><input type="number" id="i1" value="2000">
+<label>Manfaat per tahun (Rp juta)</label><input type="number" id="i2" value="1100">
+<label>Biaya operasi per tahun (Rp juta)</label><input type="number" id="i3" value="300">
+<label>Diskonto (%)</label><input type="number" id="i4" value="12">
+<label>Umur proyek (tahun)</label><input type="number" id="i5" value="5">
+<div class="res" id="ro" style="margin-top:14px"></div></div>
+<div class="panel"><h3>Penghematan RPA</h3>
+<label>Transaksi per bulan</label><input type="number" id="r1" value="4000">
+<label>Menit per transaksi manual</label><input type="number" id="r2" value="6">
+<label>Biaya per jam karyawan (Rp)</label><input type="number" id="r3" value="60000">
+<label>Otomatisasi yang tercapai (%)</label><input type="number" id="r4" value="70">
+<div class="res" id="rr" style="margin-top:14px"></div></div></div></section>
+
+<section id="roadmap"><h2>Lima fase transformasi (dari PDF)</h2><p class="sub">Urutan ini berurutan: klik tiap fase.</p>
+<div class="tl" id="tl"></div><div class="panel" id="ph"></div></section>
+<footer>Disusun untuk Ir. Agus Budianto Ulil Absyor, S.T., M.M., M.LSCM., M.AIB.<br>Sumber: DIGITAL_TRANSFORMATION.pdf (Digital Transformation Operations) + riset McKinsey, Westerman/Bonnet/McAfee, Rogers, NIST.</footer>
+
+<script>
+const T=[
+{n:"Digitalisasi Bisnis",p:"hlm 7–37",c:"#22e3ff",l:"Serangkaian proses yang mengorganisasi ulang strategi agar perusahaan lebih berdaya saing, tahan banting, dan lebih untung melalui teknologi dan digitalisasi pengalaman pelanggan.",k:["Manfaat: produktivitas naik, biaya dan waktu turun, relasi pelanggan membaik, lini bisnis baru, analitik dan keputusan lebih efisien, kerja terdesentralisasi.","Dijalankan bertahap: kesadaran dan pelatihan, strategi digital, transformasi organisasi, proyek kunci, lalu rencana perbaikan.","Budaya digital sehat termasuk hak atas diskoneksi digital."],t:{"Apa itu digitalisasi bisnis":"Reorganisasi strategi dengan teknologi untuk daya saing.","Manfaat":"Produktivitas, penghematan, bisnis baru, analitik.","Ledakan digitalisasi":"Ekosistem digital membuka cara baru berkomunikasi dengan pelanggan.","Cara memulai":"Dimulai dari kesadaran staf dan strategi yang selaras dengan budaya.","Telework":"Kerja jarak jauh bertumpu pada alat digital.","Pelatihan karyawan":"Kompetensi ditulis dengan rumus: Kata kerja + Objek + Tujuan.","Hak diskoneksi":"Batas sehat antara kerja dan waktu pribadi."},i:"Ukur dengan KPI sebelum-sesudah (waktu siklus, biaya per transaksi, NPS) agar manfaat tidak sebatas klaim."},
+{n:"Artificial Intelligence",p:"hlm 41–63",c:"#ff3d9a",l:"Sistem buatan kompleks yang belajar dan melatih dirinya untuk mengambil keputusan serta beradaptasi dengan perubahan lingkungan.",k:["Empat tipe menurut Arend Hintze: reactive machines, limited memory, theory of mind, self-awareness.","Machine learning: supervised, unsupervised, reinforcement learning.","Deep learning memakai jaringan saraf tiruan dan menjadi sumber keunggulan kompetitif."],t:{"Awal mula AI":"Dari gagasan mesin berpikir hingga era data besar.","Program vs AI":"Program mengikuti aturan tetap, AI belajar dari data.","Tipe AI":"Hintze: empat tingkat kemampuan.","Machine learning":"Tiga pendekatan belajar.","Deep learning":"Neural network berlapis.","AI di perusahaan":"Keunggulan kompetitif dan inovasi."},i:"AI generatif (LLM) mempercepat pembuatan konten, kode, dan layanan pelanggan; tata kelolanya mengacu NIST AI RMF dan EU AI Act."},
+{n:"Internet of Things",p:"hlm 65–81",c:"#b6ff3b",l:"Jaringan global jutaan perangkat dan objek terhubung internet yang mengumpulkan data dunia fisik menjadi informasi bernilai bagi perusahaan.",k:["Arsitektur empat fase: data dari perangkat mengalir hingga dimanfaatkan perusahaan di pusat data.","Manfaat: efisiensi proses, otomasi produksi, produktivitas, data, dan pengalaman pelanggan lebih baik.","Risiko IoT dibahas di bab 3.5, terutama keamanan perangkat."],t:{"Apa itu IoT":"Objek sehari-hari yang terhubung dan saling bertukar data.","Cara kerja":"Perangkat, konektivitas, pemrosesan, pemanfaatan.","Manfaat":"Proses lebih ramping dan terukur.","IoT di perusahaan":"Sumber keunggulan kompetitif.","Risiko":"Celah keamanan dan privasi."},i:"Edge computing dan digital twin memperluas IoT; di tambang dipakai untuk predictive maintenance alat berat dan pemantauan lereng."},
+{n:"Blockchain",p:"hlm 83–97",c:"#ffb020",l:"Teknologi rantai blok untuk mencatat dan memvalidasi transaksi di ekosistem digital, dilindungi mekanisme keamanan pada basis data publiknya.",k:["Transaksi dicatat, divalidasi penambang (miners), lalu ditambahkan ke rantai dan disegel hash.","Manfaat: desentralisasi, biaya transaksi lebih rendah, hemat waktu, privasi.","Blockchain adalah teknologinya; kripto adalah mata uang virtual yang memakainya."],t:{"Definisi":"Buku besar terdistribusi berantai.","Mengapa penting":"Kepercayaan tanpa perantara tunggal.","Cara kerja":"Catat, validasi, segel dengan hash.","Manfaat":"Desentralisasi dan biaya rendah.","Blockchain vs kripto":"Teknologi vs aset.","Aplikasi":"Keuangan, logistik, pemerintahan."},i:"Smart contract dan konsensus (PoW/PoS) membuka ketertelusuran rantai pasok, termasuk asal komoditas tambang."},
+{n:"Big Data & BI",p:"hlm 101–115",c:"#8a7bff",l:"Big data mengumpulkan data mentah berskala besar secara real time lalu menemukan pola; BI memakai data terolah untuk menjadi pengetahuan bagi keputusan.",k:["Tiga kunci big data: volume, kecepatan, dan variasi data terstruktur maupun tidak.","Alat BI tiga jenis: manajemen data, aplikasi penemuan data, dan pelaporan (contoh: Power BI).","Big data mengubah data menjadi informasi; BI mengubah informasi menjadi pengetahuan."],t:{"Apa itu big data":"Data besar, cepat, dan beragam.","Tantangan":"Kualitas, privasi, dan biaya.","Apa itu BI":"Informasi menjadi pengetahuan.","Alat BI":"Data management, discovery, reporting.","Power BI":"Solusi BI unggulan Microsoft.","Big data vs BI":"Arah transformasi berlawanan."},i:"Piramida DIKW (Data–Informasi–Pengetahuan–Kebijaksanaan) dan arsitektur data lakehouse menjadi acuan modern."},
+{n:"Cloud Computing",p:"hlm 117–133",c:"#3d8bff",l:"Cara baru menyediakan layanan teknologi melalui infrastruktur otomatis dan dinamis yang terhubung ke pusat data terpusat.",k:["Cloud publik, privat, atau hibrida; semuanya butuh infrastruktur TI.","Level layanan: IaaS, PaaS, SaaS.","Keamanan memakai tanggung jawab bersama: penyedia menjaga infrastruktur, pengguna menjaga data, OS, aplikasi, dan akses."],t:{"Apa itu cloud":"Layanan TI sesuai kebutuhan lewat jaringan.","Cara kerja":"Arsitektur client-server dan pusat data.","Karakteristik":"Elastis, terukur, mandiri.","Jenis cloud":"Publik, privat, hibrida.","Layanan":"IaaS, PaaS, SaaS.","Keamanan":"Shared responsibility."},i:"FinOps mengendalikan biaya cloud; multi-cloud dan serverless mengurangi ketergantungan pada satu vendor."},
+{n:"Otomasi & Robotika",p:"hlm 135–151",c:"#ff6b3d",l:"Mesin cerdas di Industri 4.0 berkomunikasi dan berinteraksi, mengoptimalkan produksi serta mengotomasi pengelolaan barang dan pasokan.",k:["Tiga tipe otomasi: perangkat lunak/tetap, terprogram, dan fleksibel.","Langkah otomasi: analisis awal, tentukan tujuan, pilih mentor teknologi, evaluasi hasil.","RPA mengotomasi tugas yang dapat diprediksi, dikonfigurasi, dan diukur."],t:{"Pengantar":"Industri 4.0 dan mesin yang saling terhubung.","Robotika vs otomasi":"Berkaitan namun beda karakter operasi.","Keuntungan":"Fleksibel, produksi kontinu, minim kesalahan dan kecelakaan.","Tipe otomasi":"Tetap, terprogram, fleksibel.","Proses otomasi":"Empat langkah.","RPA":"Robot perangkat lunak untuk tugas berulang."},i:"Hyperautomation menggabungkan RPA, AI, dan process mining; ukur dengan OEE = Ketersediaan × Kinerja × Kualitas (ada di Excel)."},
+{n:"Keamanan Siber",p:"hlm 153–171",c:"#ff3d5a",l:"Melindungi kerahasiaan, ketersediaan, dan integritas informasi lewat langkah, sumber daya, dan alat pengendali keamanan sistem digital.",k:["Memahami siklus hidup serangan memudahkan pencegahan, deteksi, penghentian, dan pemulihan.","Cybersecurity Mesh Architecture (CSMA): alat keamanan bekerja lebih efisien bila dipadukan.","Contoh di PDF: 71% perusahaan Spanyol pernah terkena serangan ransomware."],t:{"Apa itu cybersecurity":"Triad CIA: kerahasiaan, integritas, ketersediaan.","Jenis ancaman":"Beragam dan makin canggih.","Metode serangan":"Phishing, malware, ransomware, dsb.","Tips":"Kebiasaan aman dan kontrol teknis.","CSMA":"Keamanan holistik terintegrasi."},i:"NIST CSF 2.0 punya enam fungsi: Govern, Identify, Protect, Detect, Respond, Recover; Zero Trust: jangan percaya, selalu verifikasi."}];
+const TH=[
+["Digitization → Digitalization → DX","Digitization mengubah analog jadi digital. Digitalization memakai data digital untuk memperbaiki proses. Digital transformation mengubah model bisnis, budaya, dan proposisi nilai."],
+["Lima domain DX (Rogers)","Pelanggan, kompetisi, data, inovasi, dan nilai. Transformasi dimulai dari cara berpikir tentang kelima domain ini, bukan dari alat."],
+["Kematangan digital (Westerman, Bonnet, McAfee)","Kombinasi kapabilitas digital dan kepemimpinan yang kuat. Kematangan tinggi berkaitan dengan kinerja keuangan yang lebih baik."],
+["Mengelola perubahan (Kotter &amp; ADKAR)","Kotter: ciptakan urgensi, bentuk koalisi, visi, kemenangan cepat. ADKAR: Awareness, Desire, Knowledge, Ability, Reinforcement."],
+["Strategi, bukan proyek TI","Fokus pada beberapa tema digital terkait hasil kinerja, penyesuaian rencana tiap bulan, dan kepemilikan yang jelas atas tiap inisiatif."]];
+const D=["Strategi &amp; kepemimpinan:15","Budaya &amp; SDM:15","Data &amp; BI:15","Cloud &amp; infrastruktur:10","AI &amp; RPA:15","IoT &amp; otomasi:10","Keamanan siber:15","Pengalaman pelanggan:5"];
+const PH=[["Kesadaran &amp; pelatihan","Staf memahami urgensi transformasi dan dilatih kompetensi digital."],["Strategi digital","Teknologi diselaraskan dengan perubahan budaya."],["Transformasi organisasi","SDM merancang rencana pelatihan dan struktur baru."],["Proyek kunci","Implementasi proyek transformasi prioritas."],["Evaluasi &amp; perbaikan","Menyusun rencana perbaikan dari hasil evaluasi."]];
+const $=s=>document.querySelector(s),rp=n=>"Rp "+Math.round(n).toLocaleString("id-ID");
+let hue="#22e3ff";const root=document.documentElement;
+function sel(i){const o=T[i];root.style.setProperty("--c",o.c);hue=o.c;
+document.querySelectorAll("#rail button").forEach((b,j)=>b.classList.toggle("on",j==i));
+$("#tp").innerHTML=`<h3>${o.n}</h3><div class="pg">${o.p}</div><p>${o.l}</p><ul style="margin-top:12px">${o.k.map(x=>`<li>${x}</li>`).join("")}</ul><div class="chips">${Object.keys(o.t).map(x=>`<i tabindex=0 data-k="${x}">${x}</i>`).join("")}</div><div class="net" id="cn"><h4>Catatan bab</h4>Klik salah satu label isi bab.</div><div class="net"><h4>Tambahan dari literatur</h4>${o.i}</div>`;
+$("#tp").querySelectorAll(".chips i").forEach(e=>{const f=()=>{$("#cn").innerHTML=`<h4>${e.dataset.k}</h4>${o.t[e.dataset.k]}`};e.onclick=f;e.onkeydown=ev=>ev.key=="Enter"&&f()})}
+$("#rail").innerHTML=T.map((o,i)=>`<button onclick="sel(${i})">${o.n}<span>${o.p}</span></button>`).join("");sel(0);
+$("#th").innerHTML=TH.map((x,i)=>`<div class="panel card" tabindex=0 onclick="th(${i})"><h3>${x[0]}</h3><p>Klik untuk detail</p></div>`).join("");
+function th(i){document.querySelectorAll("#th .card").forEach((c,j)=>c.classList.toggle("on",i==j));$("#thd").innerHTML=`<b>${TH[i][0]}</b><p>${TH[i][1]}</p>`}th(0);
+$("#mat").innerHTML=D.map((d,i)=>{const[a,w]=d.split(":");return`<div class="row"><span>${a}</span><input type="range" min="0" max="5" step="1" value="2" data-w="${w}"><b id="v${i}">2</b></div>`}).join("");
+function mat(){let s=0;document.querySelectorAll("#mat input").forEach((e,i)=>{$("#v"+i).textContent=e.value;s+=e.dataset.w*e.value});const x=s/5;$("#mi").textContent=x.toFixed(0)+"%";
+$("#ml").innerHTML="Level: <b>"+(x<25?"Pemula":x<50?"Berkembang":x<75?"Maju":"Pemimpin digital")+"</b>"}
+document.querySelectorAll("#mat input").forEach(e=>e.oninput=mat);mat();
+function roi(){const I=+$("#i1").value,B=+$("#i2").value,C=+$("#i3").value,r=+$("#i4").value/100,n=Math.max(1,+$("#i5").value),N=B-C;let v=-I;for(let t=1;t<=n;t++)v+=N/Math.pow(1+r,t);
+$("#ro").innerHTML=`<p>Arus kas bersih/tahun: <b>${rp(N)} juta</b></p><p>NPV: <b>${rp(v)} juta</b></p><p>ROI: <b>${((N*n-I)/I*100).toFixed(1)}%</b></p><p>Payback: <b>${N>0?(I/N).toFixed(1)+" tahun":"tidak balik modal"}</b></p><p>${v>0?"Layak: NPV positif.":"Belum layak: NPV negatif."}</p>`}
+function rpa(){const h=$("#r1").value*$("#r2").value/60*($("#r4").value/100),s=h*$("#r3").value;
+$("#rr").innerHTML=`<p>Jam terhemat/bulan: <b>${h.toFixed(0)}</b> (≈ ${(h/160).toFixed(1)} FTE)</p><p>Hemat/bulan: <b>${rp(s)}</b></p><p>Hemat/tahun: <b>${rp(s*12)}</b></p>`}
+document.querySelectorAll("#alat input[type=number]").forEach(e=>e.oninput=()=>{roi();rpa()});roi();rpa();
+$("#tl").innerHTML=PH.map((p,i)=>`<button onclick="ph(${i})"><b>${i+1}</b>${p[0]}</button>`).join("");
+function ph(i){document.querySelectorAll("#tl button").forEach((b,j)=>b.classList.toggle("on",i==j));$("#ph").innerHTML=`<h3>Fase ${i+1}: ${PH[i][0]}</h3><p>${PH[i][1]}</p>`}ph(0);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll("[data-w]").forEach(u=>u.tagName=="U"&&(u.style.width=u.dataset.w*3+"%"))}}),{threshold:.3});io.observe($("#st"));
+document.querySelectorAll(".stats div").forEach(d=>{const n=+d.dataset.n,s=d.querySelector("small");let k=0;const m=setInterval(()=>{k+=Math.ceil(n/40);if(k>=n){k=n;clearInterval(m)}d.firstChild.textContent=k},35)});
+const cv=$("#bg"),x=cv.getContext("2d");let W,H,P=[],M={x:-999,y:-999};
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(110,W/13|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6}))}
+rs();addEventListener("resize",rs);addEventListener("pointermove",e=>{M.x=e.clientX;M.y=e.clientY});
+let pulse=0;addEventListener("pointerdown",()=>pulse=1);
+const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
+function fr(){x.clearRect(0,0,W,H);x.fillStyle="#060a1c";x.fillRect(0,0,W,H);
+const g=x.createRadialGradient(M.x,M.y,0,M.x,M.y,320);g.addColorStop(0,hue+"33");g.addColorStop(1,"transparent");x.fillStyle=g;x.fillRect(0,0,W,H);
+x.strokeStyle=hue;x.fillStyle=hue;
+for(const p of P){if(!still){p.x+=p.vx;p.y+=p.vy;const dx=p.x-M.x,dy=p.y-M.y,d=Math.hypot(dx,dy);if(d<170){p.vx+=dx/d*.04*(1+pulse*8);p.vy+=dy/d*.04*(1+pulse*8)}
+p.vx*=.995;p.vy*=.995;const s=Math.hypot(p.vx,p.vy);if(s<.2){p.vx*=1.05;p.vy*=1.05}if(s>2){p.vx*=.9;p.vy*=.9}
+if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1}
+x.globalAlpha=.9;x.beginPath();x.arc(p.x,p.y,2,0,6.3);x.fill()}
+for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const a=P[i],b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<135){x.globalAlpha=(1-d/135)*.4;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+pulse*=.92;x.globalAlpha=1;if(!still)requestAnimationFrame(fr)}
+fr();
+</script></body></html>

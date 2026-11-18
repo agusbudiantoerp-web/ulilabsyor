@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Plan Management: Panduan Interaktif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#10143f;--bg2:#1a2070;--ink:#f4f6ff;--mute:#aab3ef;--pink:#ff2e88;--cyan:#19d3f3;--sun:#ffd23f;--card:rgba(255,255,255,.08);--line:rgba(255,255,255,.18)}
+@media (prefers-color-scheme:light){:root{--bg:#eef1ff;--bg2:#dfe5ff;--ink:#141a52;--mute:#4a54a8;--card:rgba(255,255,255,.7);--line:rgba(20,26,82,.2)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(160deg,var(--bg),var(--bg2));color:var(--ink);font:400 17px/1.6 Figtree,system-ui,sans-serif;min-height:100vh}
+#fx{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+main,header,footer{position:relative;z-index:1}
+h1,h2,h3{font-family:'Bricolage Grotesque',Impact,sans-serif;line-height:1.05;margin:0 0 .5em}
+h1{font-size:clamp(2.6rem,8vw,6rem);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800}
+h3{font-size:1.25rem;font-weight:500}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;padding:.7rem;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 70%,transparent)}
+nav a{color:var(--ink);text-decoration:none;padding:.35rem .9rem;border-radius:99px;border:1px solid var(--line);font-size:.9rem}
+nav a:hover,a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+section{max-width:1080px;margin:0 auto;padding:4.5rem 1.2rem}
+.hero{min-height:88vh;display:grid;align-content:center;gap:1.5rem;max-width:1080px;margin:0 auto;padding:3rem 1.2rem}
+.hero p{max-width:60ch;color:var(--mute);font-size:1.15rem}
+.btn{display:inline-block;background:var(--pink);color:#fff;border:0;border-radius:14px;padding:.8rem 1.4rem;font:600 1rem Figtree,sans-serif;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-3px) rotate(-1deg)}.btn.alt{background:var(--cyan);color:#071046}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.4rem;backdrop-filter:blur(10px)}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.tabs button{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:.5rem 1rem;font:600 .95rem Figtree;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--sun);color:#1b1b1b;border-color:var(--sun)}
+.tag{display:inline-block;font-size:.8rem;padding:.1rem .6rem;border-radius:99px;background:var(--cyan);color:#071046;margin-bottom:.5rem}
+.tag.net{background:var(--pink);color:#fff}
+ul{padding-left:1.1rem}li{margin:.35rem 0}
+label{display:block;font-size:.9rem;color:var(--mute);margin-top:.7rem}
+input[type=number]{width:100%;padding:.55rem .7rem;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.1);color:var(--ink);font:inherit}
+input[type=range]{width:100%;accent-color:var(--pink)}
+.out{font:800 2rem 'Bricolage Grotesque',sans-serif;color:var(--sun)}
+.out small{display:block;font:400 .85rem Figtree;color:var(--mute)}
+.cv{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
+.cv button{min-height:96px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:.6rem;font:600 .85rem Figtree;cursor:pointer;text-align:left}
+.cv button.on{background:var(--pink);color:#fff}
+.cv .w2{grid-column:span 5}
+@media(max-width:700px){.cv{grid-template-columns:repeat(2,1fr)}.cv .w2{grid-column:span 2}}
+#tip{margin-top:1rem;min-height:3.5rem}
+.mx{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;aspect-ratio:1;max-width:340px}
+.mx div{border-radius:10px;position:relative}
+.dot{position:absolute;width:26px;height:26px;border-radius:50%;background:#fff;border:4px solid #111;transition:all .35s;transform:translate(-50%,-50%)}
+canvas.ch{width:100%;height:220px;display:block}
+footer{text-align:center;color:var(--mute);padding:3rem 1rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style></head><body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header class="hero">
+<h1>Rencana bisnis yang bisa Anda sentuh, hitung, dan uji.</h1>
+<p>Ringkasan 5 topik modul Business Plan Management (184 halaman) ditambah teori dari sumber terbuka, kalkulator rumus langsung, dan spreadsheet siap unduh. Gerakkan kursor atau klik layar untuk memicu ledakan partikel.</p>
+<div><a class="btn" href="#lab">Coba kalkulator</a> <a class="btn alt" href="Business_Plan_Toolkit.xlsx" download>Unduh spreadsheet</a></div>
+</header>
+<nav aria-label="Navigasi"><a href="#materi">Materi</a><a href="#lab">Lab rumus</a><a href="#canvas">Canvas</a><a href="#risk">Risk map</a><a href="#kuis">Kuis</a></nav>
+<main>
+<section id="materi"><h2>Lima topik inti</h2>
+<div class="tabs" role="tablist" id="tabs"></div><div id="pane" class="grid"></div></section>
+
+<section id="lab"><h2>Lab rumus</h2><p style="color:var(--mute)">Ubah angka, hasil berubah seketika. Contoh awal diambil dari modul (break-even 7.500 dan YoY −24,42%).</p>
+<div class="grid">
+<div class="card"><h3>Break-even point</h3>
+<label>Penjualan <input type="number" id="b1" value="10000"></label><label>Biaya langsung <input type="number" id="b2" value="6000"></label><label>Biaya tetap <input type="number" id="b3" value="3000"></label>
+<div class="out" id="bo"></div><canvas class="ch" id="bc"></canvas></div>
+<div class="card"><h3>Profitabilitas &amp; YoY</h3>
+<label>Pendapatan <input type="number" id="p1" value="500000"></label><label>HPP <input type="number" id="p2" value="300000"></label><label>Biaya lain + bunga + penyusutan <input type="number" id="p3" value="108000"></label><label>Pajak (%) <input type="number" id="p4" value="22"></label>
+<div class="out" id="po"></div>
+<label>Penjualan bulan ini <input type="number" id="y1" value="672900"></label><label>Bulan sama tahun lalu <input type="number" id="y2" value="890432.6"></label><div class="out" id="yo"></div></div>
+<div class="card"><h3>NPV, IRR, Payback</h3>
+<label>Investasi awal <input type="number" id="n0" value="200000"></label>
+<label>Arus kas tahun 1 sampai 5 (pisahkan dengan koma) <input type="text" id="n1" value="50000,70000,90000,100000,110000" style="width:100%;padding:.55rem;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.1);color:var(--ink)"></label>
+<label>Diskonto: <b id="rv">12</b>% <input type="range" id="n2" min="1" max="40" value="12"></label>
+<div class="out" id="no"></div></div></div>
+<p><a class="btn alt" href="Business_Plan_Toolkit.xlsx" download>Unduh spreadsheet (6 sheet, rumus aktif)</a></p></section>
+
+<section id="canvas"><h2>Business Model Canvas</h2><p style="color:var(--mute)">Klik tiap blok untuk melihat pertanyaan pemandu (Osterwalder, modul hal. 75).</p>
+<div class="cv" id="cv"></div><div class="card" id="tip">Pilih satu blok.</div></section>
+
+<section id="risk"><h2>Risk map</h2>
+<div class="grid"><div class="card"><label>Probabilitas: <b id="pv">3</b>/3<input type="range" id="rp" min="1" max="3" value="2"></label><label>Dampak: <b id="dv">3</b>/3<input type="range" id="rd" min="1" max="3" value="2"></label><div class="out" id="ro"></div></div>
+<div class="card"><div class="mx" id="mx"></div></div></div>
+<p style="color:var(--mute)">Strategi modul: terima (dampak rendah), kelola (menengah), minimalkan (kritis), lalu susun rencana kontingensi dengan siklus PDCA.</p></section>
+
+<section id="kuis"><h2>Kuis kilat</h2><div class="card" id="qz"></div></section>
+</main>
+<footer>Sumber: modul BUSINESS PLAN MANAGEMENT (PDF unggahan) dan referensi terbuka tentang struktur rencana bisnis, Lean Canvas (Ash Maurya), serta NPV/IRR/payback.</footer>
+<script>
+const T=[
+{n:"1. Visi, misi, nilai",p:["Misi adalah alasan perusahaan ada; contoh Kellogg’s: pertumbuhan lewat orang dan merek.","Visi lebih aspiratif dan jangka panjang dibanding misi.","Nilai, keputusan, dan perilaku harus selaras; koneksi emosional menguatkan budaya.","Komunikasi budaya perusahaan adalah faktor nilai utama."],w:["Rumusan visi yang baik: ringkas, menginspirasi, dan terukur arah besarnya.","Uji nilai inti: apakah dipakai saat merekrut, memberi bonus, dan memecat?"]},
+{n:"2. Rencana strategis",p:["Tujuan dibagi strategis, taktis, dan operasional.","Pasar dan saluran sasaran harus didefinisikan jelas.","Dampak ke laba rugi: studi penjualan (YoY), kontrol stok, analisis item, biaya, margin kotor dan bersih.","Ringkasan eksekutif menutup rencana."],w:["Tujuan SMART: Specific, Measurable, Achievable, Relevant, Time-bound.","Ringkasan eksekutif ditulis terakhir: masalah, solusi, pasar, keunggulan, tim, tujuan."]},
+{n:"3. Model bisnis",p:["Canvas 9 blok dalam 4 area: klien, penawaran, infrastruktur, kelayakan ekonomi.","Rencana pemasaran dan penjualan, operasi (mutu total), SDM, dan keuangan.","Break-even: biaya tetap dibagi % margin kotor.","Peta risiko dan rencana kontingensi mengikuti siklus PDCA."],w:["Lean Canvas (Ash Maurya) mengganti 4 blok dengan Problem, Solution, Key Metrics, Unfair Advantage.","Rencana tradisional ±9 bagian; format lean cukup satu halaman untuk internal."]},
+{n:"4. Analisis strategis",p:["Analisis internal, PESTEL (faktor eksternal), konsumen, dan kompetitor.","Porter’s Five Forces (1979) untuk intensitas persaingan.","SWOT merangkum kekuatan, kelemahan, peluang, ancaman.","Rantai nilai mengurai aktivitas penciptaan nilai."],w:["TOWS: silangkan SWOT menjadi strategi SO, WO, ST, WT.","Pasar: TAM, SAM, SOM untuk mengukur ukuran peluang."]},
+{n:"5. Pemantauan",p:["Penerapan model dan sistem pengukuran.","KPI mengukur strategi yang berjalan; harus dikomunikasikan dan bisa diperbarui.","OKR: objektif ambisius dengan hasil kunci terukur; KPI lebih pasti, OKR lebih kreatif."],w:["Balanced Scorecard: perspektif keuangan, pelanggan, proses internal, pembelajaran.","Tinjau KPI bulanan, OKR per kuartal."]}];
+const tabs=document.getElementById('tabs'),pane=document.getElementById('pane');
+T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.role='tab';b.onclick=()=>show(i);tabs.append(b)});
+function show(i){[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',i==j));const t=T[i];
+pane.innerHTML=`<div class="card"><span class="tag">Dari modul PDF</span><ul>${t.p.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="card"><span class="tag net">Teori tambahan</span><ul>${t.w.map(x=>`<li>${x}</li>`).join('')}</ul></div>`}
+show(0);
+const f=(x,d=0)=>isFinite(x)?x.toLocaleString('id-ID',{maximumFractionDigits:d}):'-',g=id=>+document.getElementById(id).value;
+function calc(){
+const s=g('b1'),v=g('b2'),F=g('b3'),mb=(s-v)/s,bep=F/mb;
+bo.innerHTML=`${f(bep)}<small>Margin kotor ${f(mb*100,1)}% · BEP = biaya tetap / % margin kotor</small>`;
+const c=document.getElementById('bc'),x=c.getContext('2d'),W=c.width=c.clientWidth*2,H=c.height=440;x.clearRect(0,0,W,H);
+const mx=Math.max(s,bep)*1.3,X=q=>q/mx*W,Y=q=>H-20-q/(mx)*(H-40);
+const ln=(fn,col)=>{x.beginPath();x.strokeStyle=col;x.lineWidth=5;x.moveTo(0,Y(fn(0)));x.lineTo(W,Y(fn(mx)));x.stroke()};
+ln(q=>q,'#19d3f3');ln(q=>F+q*(v/s),'#ff2e88');
+if(isFinite(bep)){x.fillStyle='#ffd23f';x.beginPath();x.arc(X(bep),Y(bep),14,0,7);x.fill()}
+const gp=s-g('p2'),rev=g('p1'),cg=rev-g('p2'),net=(cg-g('p3'))*(1-g('p4')/100);
+po.innerHTML=`${f(cg/rev*100,1)}%<small>Margin kotor · laba bersih ${f(net)} (${f(net/rev*100,1)}%)</small>`;
+const yy=(g('y1')/g('y2')-1)*100;yo.innerHTML=`${f(yy,2)}%<small>YoY = (sekarang / tahun lalu − 1) × 100</small>`;
+const cf=n1.value.split(',').map(Number),r=g('n2')/100,I=g('n0');rv.textContent=g('n2');
+const npv=q=>cf.reduce((a,c,i)=>a+c/Math.pow(1+q,i+1),-I);
+let lo=-.9,hi=5;for(let k=0;k<80;k++){const m=(lo+hi)/2;npv(m)>0?lo=m:hi=m}
+let cum=-I,pb='belum balik modal';for(let i=0;i<cf.length;i++){if(cum+cf[i]>=0){pb=f(i+(-cum)/cf[i],2)+' tahun';break}cum+=cf[i]}
+no.innerHTML=`${f(npv(r))}<small>NPV · IRR ${f(lo*100,1)}% · Payback ${pb} · ${npv(r)>0?'layak':'tidak layak'}</small>`}
+document.querySelectorAll('input').forEach(e=>e.oninput=calc);calc();
+const CV=[["Mitra utama","Siapa yang membantu Anda? Pemasok dan sekutu apa yang tak tergantikan?"],["Aktivitas utama","Apa yang harus dilakukan setiap hari agar nilai terkirim?"],["Proposisi nilai","Masalah pelanggan apa yang Anda selesaikan, dan kenapa Anda, bukan pesaing?"],["Hubungan pelanggan","Bagaimana Anda berinteraksi dan mempertahankan pelanggan?"],["Segmen pasar","Siapa yang paling Anda bantu? Gambarkan satu orang nyata."],["Sumber daya utama","Apa yang Anda miliki: orang, aset, teknologi, merek?"],["Saluran","Bagaimana pelanggan tahu tentang Anda dan menerima produk?"],["Struktur biaya","Apa biaya terbesar? Mana yang tetap, mana yang variabel?"],["Sumber pendapatan","Apa yang pelanggan bayar, berapa, dan bagaimana caranya?"]];
+const cv=document.getElementById('cv');CV.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c[0];if(i>6)b.className='w2';b.onclick=()=>{[...cv.children].forEach(k=>k.classList.remove('on'));b.classList.add('on');tip.innerHTML=`<b>${c[0]}</b><br>${c[1]}`};cv.append(b)});
+const mxEl=document.getElementById('mx'),col=['#2fbf71','#2fbf71','#ffd23f','#2fbf71','#ffd23f','#ff7b3a','#ffd23f','#ff7b3a','#ff2e88'];
+for(let r=0;r<3;r++)for(let c=0;c<3;c++){const d=document.createElement('div'),sc=(3-r)*(c+1);d.style.background=sc>=6?'#ff2e88':sc>=3?'#ffd23f':'#2fbf71';mxEl.append(d)}
+const dot=document.createElement('div');dot.className='dot';mxEl.append(dot);
+function rk(){const p=+rp.value,d=+rd.value;pv.textContent=p;dv.textContent=d;dot.style.left=((d-.5)/3*100)+'%';dot.style.top=((3-p+.5)/3*100)+'%';const s=p*d;ro.innerHTML=s>=6?'Minimalkan<small>Kritis: buat rencana kontingensi</small>':s>=3?'Kelola<small>Sedang: pantau dan mitigasi</small>':'Terima<small>Rendah: cukup dipantau</small>'}
+rp.oninput=rd.oninput=rk;rk();
+const Q=[["Rumus break-even (nilai penjualan)?",["Biaya tetap / % margin kotor","Penjualan × pajak","Aset / utang"],0],["Kerangka Canvas punya berapa blok?",["5","9","12"],1],["NPV positif berarti?",["Proyek melampaui biaya modal","Proyek merugi","Tidak ada arti"],0]];
+let qi=0,sc=0;function rq(){const q=document.getElementById('qz');if(qi>=Q.length){q.innerHTML=`<h3>Skor Anda ${sc}/${Q.length}</h3><button class="btn" onclick="qi=0;sc=0;rq()">Ulangi</button>`;return}
+const z=Q[qi];q.innerHTML=`<h3>${z[0]}</h3>`;z[1].forEach((o,i)=>{const b=document.createElement('button');b.className='btn alt';b.style.margin='.3rem .3rem 0 0';b.textContent=o;b.onclick=()=>{if(i==z[2]){sc++;burst(innerWidth/2,innerHeight/2)}qi++;rq()};q.append(b)})}rq();
+// background
+const cn=document.getElementById('fx'),cx=cn.getContext('2d');let P=[],M={x:-999,y:-999};
+function rs(){cn.width=innerWidth;cn.height=innerHeight}rs();addEventListener('resize',rs);
+const cols=['#ff2e88','#19d3f3','#ffd23f'];
+for(let i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.8,vy:(Math.random()-.5)*.8,c:cols[i%3],r:2+Math.random()*3});
+function burst(x,y){for(let i=0;i<24;i++){const a=Math.random()*6.28,s=2+Math.random()*5;P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,c:cols[i%3],r:3,life:60})}}
+addEventListener('pointermove',e=>{M.x=e.clientX;M.y=e.clientY});addEventListener('pointerdown',e=>burst(e.clientX,e.clientY));
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function tick(){cx.clearRect(0,0,cn.width,cn.height);
+P=P.filter(p=>!(p.life&&--p.life<=0));
+for(const p of P){const dx=p.x-M.x,dy=p.y-M.y,d=Math.hypot(dx,dy);if(d<140&&d>0){p.vx+=dx/d*.15;p.vy+=dy/d*.15}
+p.vx*=.995;p.vy*=.995;p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cn.width)p.vx*=-1;if(p.y<0||p.y>cn.height)p.vy*=-1;
+cx.fillStyle=p.c;cx.globalAlpha=.85;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}
+cx.lineWidth=1;for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i].x-P[j].x,P[i].y-P[j].y);if(d<120){cx.globalAlpha=(1-d/120)*.35;cx.strokeStyle=P[i].c;cx.beginPath();cx.moveTo(P[i].x,P[i].y);cx.lineTo(P[j].x,P[j].y);cx.stroke()}}
+if(P.length>260)P.splice(70,P.length-260);if(!rm)requestAnimationFrame(tick)}
+tick();
+</script></body></html>

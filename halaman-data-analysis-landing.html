@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Analysis and Interpretation: Panduan Interaktif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14072e;--bg2:#2a0f5c;--ink:#f6f1ff;--mute:#b9a9e6;--li:#b6ff3b;--ma:#ff3df0;--bl:#4a90ff;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.2)}
+@media (prefers-color-scheme:light){:root{--bg:#f4eeff;--bg2:#e3d6ff;--ink:#22095a;--mute:#5d46a3;--li:#4c8a00;--card:rgba(255,255,255,.78);--line:rgba(34,9,90,.22)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(155deg,var(--bg),var(--bg2));color:var(--ink);font:400 17px/1.6 Manrope,system-ui,sans-serif;min-height:100vh}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+header,nav,main,footer{position:relative;z-index:1}
+h1,h2,h3{font-family:Syne,Impact,sans-serif;margin:0 0 .5em;line-height:1.08}
+h1{font-size:clamp(2.4rem,7vw,5.2rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800}h3{font-size:1.1rem;font-weight:600}
+.hero{min-height:86vh;max-width:1080px;margin:0 auto;padding:3rem 1.2rem;display:grid;align-content:center;gap:1.4rem}
+.hero p{max-width:58ch;color:var(--mute);font-size:1.12rem}
+#live{font:600 1rem Manrope;color:var(--li)}
+nav{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;padding:.7rem;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 70%,transparent)}
+nav a{color:var(--ink);text-decoration:none;font-size:.88rem;padding:.35rem .9rem;border:1px solid var(--line);border-radius:99px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--li);outline-offset:2px}
+section{max-width:1080px;margin:0 auto;padding:4rem 1.2rem}
+.btn{display:inline-block;border:0;border-radius:12px;background:var(--ma);color:#fff;font:600 1rem Manrope;padding:.8rem 1.4rem;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-3px) rotate(1deg)}.btn.alt{background:var(--li);color:#112200}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.3rem;backdrop-filter:blur(10px)}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tabs button{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:.45rem .95rem;font:600 .88rem Manrope;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--li);color:#112200;border-color:var(--li)}
+.tag{display:inline-block;font-size:.78rem;padding:.1rem .65rem;border-radius:99px;background:var(--bl);color:#fff;margin-bottom:.5rem}.tag.w{background:var(--ma)}
+ul{padding-left:1.1rem}li{margin:.35rem 0}
+label{display:block;font-size:.88rem;color:var(--mute);margin-top:.65rem}
+input[type=number],textarea{width:100%;padding:.5rem .7rem;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.1);color:var(--ink);font:inherit}
+input[type=range]{width:100%;accent-color:var(--ma)}
+.out{font:800 1.5rem Syne,sans-serif;color:var(--li);margin-top:.7rem}.out small{display:block;font:400 .83rem Manrope;color:var(--mute)}
+canvas.ch{width:100%;height:230px;display:block;border-radius:12px;background:rgba(0,0,0,.18);cursor:crosshair}
+footer{text-align:center;color:var(--mute);padding:3rem 1rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style></head><body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header class="hero"><h1>Dari data mentah ke keputusan yang bisa dipercaya.</h1>
+<p>Ringkasan 8 topik modul Data Analysis and Interpretation (176 halaman), teori tambahan, kalkulator statistik langsung, dan spreadsheet siap unduh. Di latar, titik data bergerak mengikuti kursor dan garis regresi dihitung ulang saat itu juga.</p>
+<div id="live">Memuat…</div>
+<div><a class="btn" href="#lab">Coba laboratorium</a> <a class="btn alt" href="Data_Analysis_Toolkit.xlsx" download>Unduh spreadsheet</a></div></header>
+<nav aria-label="Navigasi"><a href="#materi">Materi</a><a href="#desk">Deskriptif</a><a href="#reg">Regresi</a><a href="#norm">Normal</a><a href="#uji">Uji hipotesis</a><a href="#bayes">Bayes</a><a href="#kuis">Kuis</a></nav>
+<main>
+<section id="materi"><h2>Delapan topik inti</h2><div class="tabs" id="tabs" role="tablist"></div><div class="grid" id="pane"></div></section>
+
+<section id="desk"><h2 id="lab">Statistik deskriptif dan outlier</h2>
+<div class="grid"><div class="card"><label for="dt">Data (pisahkan dengan koma atau spasi)</label><textarea id="dt" rows="3">22,25,27,28,30,31,33,35,36,38,40,41,43,45,300</textarea><div class="out" id="do"></div></div>
+<div class="card"><canvas class="ch" id="dc"></canvas><p style="color:var(--mute);margin:.6rem 0 0">Titik magenta adalah outlier menurut aturan Tukey (di luar Q1 − 1,5 IQR atau Q3 + 1,5 IQR).</p></div></div></section>
+
+<section id="reg"><h2>Korelasi dan regresi</h2>
+<div class="grid"><div class="card"><p style="margin-top:0;color:var(--mute)">Klik kotak plot untuk menambah titik. Klik kanan atau tahan Shift untuk menghapus titik terdekat.</p><canvas class="ch" id="rc" style="height:280px"></canvas></div>
+<div class="card"><div class="out" id="ro"></div><button class="btn alt" id="rr" style="margin-top:1rem">Acak data</button> <a class="btn" href="Data_Analysis_Toolkit.xlsx" download style="margin-top:1rem">Unduh spreadsheet</a></div></div></section>
+
+<section id="norm"><h2>Distribusi normal</h2>
+<div class="grid"><div class="card"><label>Rata-rata μ: <b id="mv">100</b><input type="range" id="mu" min="50" max="150" value="100"></label><label>Simpangan baku σ: <b id="sv">15</b><input type="range" id="sg" min="5" max="40" value="15"></label><label>Batas x: <b id="xv">120</b><input type="range" id="xx" min="20" max="200" value="120"></label><div class="out" id="no"></div></div>
+<div class="card"><canvas class="ch" id="nc"></canvas></div></div></section>
+
+<section id="uji"><h2>Uji hipotesis rata-rata</h2>
+<div class="grid"><div class="card"><label>Rata-rata sampel <input type="number" id="h1" value="52" step="any"></label><label>Nilai hipotesis μ0 <input type="number" id="h2" value="50" step="any"></label><label>Simpangan baku sampel <input type="number" id="h3" value="8" step="any"></label><label>n <input type="number" id="h4" value="36"></label><label>Alfa <input type="number" id="h5" value="0.05" step="0.01"></label></div>
+<div class="card"><div class="out" id="ho"></div><p style="color:var(--mute)">p-value kecil (kurang dari alfa) berarti data sulit dijelaskan oleh H0, sehingga H0 ditolak. Gagal menolak H0 bukan berarti H0 terbukti benar.</p></div></div></section>
+
+<section id="bayes"><h2>Teorema Bayes</h2>
+<div class="grid"><div class="card"><label>Prevalensi P(A): <b id="bv1">2</b>%<input type="range" id="b1" min="1" max="50" value="2"></label><label>Sensitivitas P(B|A): <b id="bv2">95</b>%<input type="range" id="b2" min="50" max="100" value="95"></label><label>Positif palsu P(B|bukan A): <b id="bv3">8</b>%<input type="range" id="b3" min="1" max="40" value="8"></label></div>
+<div class="card"><div class="out" id="bo"></div><div id="bg" style="display:grid;grid-template-columns:repeat(25,1fr);gap:3px;margin-top:1rem"></div></div></div></section>
+
+<section id="kuis"><h2>Kuis kilat</h2><div class="card" id="qz"></div></section>
+</main>
+<footer>Sumber: modul DATA ANALYSIS AND INTERPRETATION (PDF unggahan) dan teori statistika standar (Tukey, Pearson, Bayes, CLT, p-value).</footer>
+<script>
+const T=[
+{n:"1. Representasi data",p:["Data direpresentasikan lewat tabel dan grafik agar pola mudah dibaca.","Populasi berbeda dari sampel; contoh: seluruh warga kota versus satu lingkungan."],w:["Pilih grafik sesuai jenis data: batang (kategori), histogram (kontinu), sebar (dua variabel).","Hindari sumbu terpotong yang menyesatkan."]},
+{n:"2. Ukuran statistik",p:["Pemusatan (rata-rata, median), posisi (kuartil), dan dispersi (varians, simpangan baku, koefisien variasi).","Outlier diuji dengan aturan Tukey: ringan di luar 1,5 IQR, ekstrem di luar 3 IQR.","Ukuran robust tidak banyak terpengaruh outlier."],w:["Gunakan median saat data miring.","Kemiringan (skewness) dan kurtosis melengkapi gambaran bentuk distribusi."]},
+{n:"3. Regresi & korelasi",p:["Korelasi Pearson mengukur kekuatan hubungan linear.","R-squared adalah persentase variasi respons yang dijelaskan model, bukan jaminan model sempurna.","Regresi linear sederhana dan jenis-jenisnya."],w:["Korelasi tidak sama dengan sebab-akibat.","Periksa residual: pola melengkung berarti hubungan tidak linear."]},
+{n:"4. Probabilitas",p:["Teori probabilitas dan probabilitas bersyarat.","Teorema Bayes menghubungkan P(A|B) dengan P(B|A)."],w:["Kesalahan umum: mengabaikan prevalensi (base rate), seperti pada simulator Bayes di halaman ini.","Aturan penjumlahan dan perkalian untuk kejadian gabungan."]},
+{n:"5. Distribusi",p:["Diskret: Bernoulli, binomial, hipergeometrik, Poisson, dan konvergensi binomial-Poisson.","Kontinu: seragam, eksponensial, normal."],w:["Teorema limit pusat: rata-rata sampel mendekati normal saat n besar.","Aturan 68-95-99,7 untuk distribusi normal."]},
+{n:"6. Interval kepercayaan",p:["Interval untuk rata-rata (σ diketahui atau tidak), proporsi, varians, dan selisih rata-rata.","Rumus rata-rata: x̄ ± z·σ/√n atau x̄ ± t·s/√n."],w:["Interval 95% berarti prosedur menangkap parameter sebenarnya pada 95% pengulangan, bukan peluang 95% untuk satu interval.","Ukuran sampel: n = (z·s/E)²."]},
+{n:"7. Uji hipotesis",p:["Galat tipe I (alfa) dan tipe II; kuasa uji adalah komplemen galat tipe II.","H0 ditolak jika p-value kurang dari alfa.","Uji rata-rata, proporsi, dan varians, satu atau dua sisi."],w:["Signifikan secara statistik belum tentu bermakna secara praktis; laporkan ukuran efek.","Pengujian berganda butuh koreksi (Bonferroni)."]},
+{n:"8. Statistik dengan R",p:["Instalasi R dan RStudio, eksplorasi, visualisasi, dan transformasi data.","Fungsi t.test untuk interval dan uji; lm() untuk regresi linear.","Contoh lm(dist ~ speed, data=cars) menghasilkan R-squared sekitar 0,65."],w:["Paket tidyverse (dplyr, ggplot2) memudahkan alur analisis.","Gunakan summary(model) untuk koefisien dan p-value."]}];
+const tabs=document.getElementById('tabs'),pane=document.getElementById('pane');
+T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.role='tab';b.onclick=()=>sh(i);tabs.append(b)});
+function sh(i){[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',i==j));const t=T[i];
+pane.innerHTML=`<div class="card"><span class="tag">Dari modul PDF</span><ul>${t.p.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="card"><span class="tag w">Teori tambahan</span><ul>${t.w.map(x=>`<li>${x}</li>`).join('')}</ul></div>`}sh(0);
+const g=id=>+document.getElementById(id).value,$=id=>document.getElementById(id),f=(x,d=2)=>isFinite(x)?x.toLocaleString('id-ID',{maximumFractionDigits:d}):'-';
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function setup(c){const w=c.clientWidth,h=c.clientHeight,r=devicePixelRatio||1;c.width=w*r;c.height=h*r;const x=c.getContext('2d');x.setTransform(r,0,0,r,0,0);x.clearRect(0,0,w,h);return[x,w,h]}
+const q=(a,p)=>{const i=(a.length-1)*p,l=Math.floor(i);return a[l]+(a[Math.min(l+1,a.length-1)]-a[l])*(i-l)};
+function desc(){const a=$('dt').value.split(/[\s,;]+/).map(Number).filter(v=>isFinite(v)&&v!==null&&$('dt').value.trim()!=='').sort((x,y)=>x-y);if(a.length<3){$('do').textContent='Masukkan minimal 3 angka';return}
+const n=a.length,m=a.reduce((s,v)=>s+v,0)/n,sd=Math.sqrt(a.reduce((s,v)=>s+(v-m)**2,0)/(n-1)),Q1=q(a,.25),Q3=q(a,.75),I=Q3-Q1,lo=Q1-1.5*I,hi=Q3+1.5*I,out=a.filter(v=>v<lo||v>hi);
+$('do').innerHTML=`Rata-rata ${f(m)} · Median ${f(q(a,.5))}<small>SD ${f(sd)} · CV ${f(sd/m*100,1)}% · Q1 ${f(Q1)} · Q3 ${f(Q3)} · IQR ${f(I)}<br>Outlier: ${out.length?out.join(', '):'tidak ada'}</small>`;
+const[x,w,h]=setup($('dc')),mn=a[0],mx=a[n-1],X=v=>20+(v-mn)/(mx-mn||1)*(w-40);
+x.strokeStyle=css('--mute');x.beginPath();x.moveTo(20,h/2);x.lineTo(w-20,h/2);x.stroke();
+x.fillStyle='rgba(182,255,59,.25)';x.fillRect(X(Q1),h/2-30,X(Q3)-X(Q1),60);
+a.forEach((v,i)=>{const o=v<lo||v>hi;x.fillStyle=o?css('--ma'):css('--li');x.beginPath();x.arc(X(v),h/2+((i%3)-1)*14,o?9:6,0,7);x.fill()});
+x.fillStyle=css('--ink');x.font='12px Manrope';x.fillText(mn,12,h-10);x.fillText(mx,w-40,h-10)}
+$('dt').oninput=desc;
+// regresi
+let PT=[[4,2],[4,10],[7,4],[7,22],[8,16],[9,10],[10,18],[10,26],[10,34],[11,17]];const rc=$('rc');
+function reg(){const[x,w,h]=setup(rc),n=PT.length;const X=v=>30+v/15*(w-50),Y=v=>h-25-v/45*(h-45);
+x.strokeStyle=css('--line');x.strokeRect(30,10,w-50,h-35);
+PT.forEach(p=>{x.fillStyle=css('--bl');x.beginPath();x.arc(X(p[0]),Y(p[1]),6,0,7);x.fill()});
+if(n<3){$('ro').textContent='Tambah titik';return}
+const mx=PT.reduce((s,p)=>s+p[0],0)/n,my=PT.reduce((s,p)=>s+p[1],0)/n;let sxy=0,sxx=0,syy=0;PT.forEach(p=>{sxy+=(p[0]-mx)*(p[1]-my);sxx+=(p[0]-mx)**2;syy+=(p[1]-my)**2});
+const b=sxy/sxx,a=my-b*mx,r=sxy/Math.sqrt(sxx*syy);x.strokeStyle=css('--ma');x.lineWidth=3;x.beginPath();x.moveTo(X(0),Y(a));x.lineTo(X(15),Y(a+15*b));x.stroke();x.lineWidth=1;
+$('ro').innerHTML=`r = ${f(r,3)} · R² = ${f(r*r,3)}<small>y = ${f(a,2)} + ${f(b,2)}x · hubungan ${Math.abs(r)>=.7?'kuat':Math.abs(r)>=.4?'sedang':'lemah'}</small>`}
+rc.onclick=e=>{const b=rc.getBoundingClientRect(),w=b.width,h=b.height;const px=((e.clientX-b.left)-30)/(w-50)*15,py=(h-25-(e.clientY-b.top))/(h-45)*45;
+if(e.shiftKey&&PT.length){let k=0,d=1e9;PT.forEach((p,i)=>{const z=Math.hypot(p[0]-px,(p[1]-py)/3);if(z<d){d=z;k=i}});PT.splice(k,1)}else PT.push([px,py]);reg()};
+rc.oncontextmenu=e=>{e.preventDefault();e.shiftKey=true;rc.onclick(e)};
+$('rr').onclick=()=>{PT=[];for(let i=0;i<12;i++){const x=1+Math.random()*13;PT.push([x,Math.max(1,x*2.5+(Math.random()-.5)*20)])}reg()};
+// normal
+const erf=z=>{const t=1/(1+.3275911*Math.abs(z)),y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-.284496736)*t+.254829592)*t*Math.exp(-z*z);return z>=0?y:-y},Phi=z=>.5*(1+erf(z/Math.SQRT2));
+function nrm(){const m=g('mu'),s=g('sg'),xv=g('xx');$('mv').textContent=m;$('sv').textContent=s;$('xv').textContent=xv;const z=(xv-m)/s;
+$('no').innerHTML=`P(X ≤ x) = ${f(Phi(z)*100,2)}%<small>z = ${f(z,3)} · P(X > x) = ${f((1-Phi(z))*100,2)}% · 95% data di ${f(m-1.96*s,1)} sampai ${f(m+1.96*s,1)}</small>`;
+const[x,w,h]=setup($('nc')),X=v=>(v-20)/180*w,pdf=v=>Math.exp(-.5*((v-m)/s)**2)/(s*2.5066),mp=pdf(m)*1.15,Y=v=>h-20-pdf(v)/mp*(h-40);
+x.beginPath();x.moveTo(X(20),h-20);for(let v=20;v<=xv;v+=.5)x.lineTo(X(v),Y(v));x.lineTo(X(xv),h-20);x.fillStyle='rgba(255,61,240,.45)';x.fill();
+x.beginPath();for(let v=20;v<=200;v+=.5)v==20?x.moveTo(X(v),Y(v)):x.lineTo(X(v),Y(v));x.strokeStyle=css('--li');x.lineWidth=3;x.stroke();x.lineWidth=1}
+// t
+const lg=z=>{const c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,.001208650973866179,-.000005395239384953];let y=z,t=z+5.5;t-=(z+.5)*Math.log(t);let s=1.000000000190015;for(const k of c)s+=k/++y;return-t+Math.log(2.5066282746310005*s/z)};
+const tcdfUpper=(t,v)=>{const c=Math.exp(lg((v+1)/2)-lg(v/2))/Math.sqrt(v*Math.PI),N=2000,hh=(Math.abs(t))/N;let s=0;for(let i=0;i<=N;i++){const u=i*hh,wt=i==0||i==N?1:i%2?4:2;s+=wt*Math.pow(1+u*u/v,-(v+1)/2)}return .5-c*s*hh/3};
+function ht(){const m=g('h1'),m0=g('h2'),s=g('h3'),n=g('h4'),a=g('h5'),t=(m-m0)/(s/Math.sqrt(n)),p=2*tcdfUpper(t,n-1),crit=(()=>{let lo=0,hi=20;for(let i=0;i<50;i++){const k=(lo+hi)/2;2*tcdfUpper(k,n-1)>a?lo=k:hi=k}return lo})();
+$('ho').innerHTML=`t = ${f(t,3)} · p = ${f(p,4)}<small>${p<a?'Tolak H0 (signifikan pada alfa '+a+')':'Gagal menolak H0'} · t kritis ±${f(crit,3)} · CI 95% ${f(m-crit*s/Math.sqrt(n),2)} sampai ${f(m+crit*s/Math.sqrt(n),2)}</small>`}
+// bayes
+function by(){const a=g('b1')/100,se=g('b2')/100,fp=g('b3')/100;$('bv1').textContent=g('b1');$('bv2').textContent=g('b2');$('bv3').textContent=g('b3');
+const pb=se*a+fp*(1-a),post=se*a/pb;$('bo').innerHTML=`P(A|B) = ${f(post*100,1)}%<small>Dari 1.000 orang, ${f(1000*se*a,0)} positif benar dan ${f(1000*fp*(1-a),0)} positif palsu.</small>`;
+const tp=Math.round(post*100);$('bg').innerHTML=Array.from({length:100},(_,i)=>`<div style="aspect-ratio:1;border-radius:3px;background:${i<tp?css('--li'):css('--ma')}"></div>`).join('')}
+document.querySelectorAll('input').forEach(e=>{if(e.id.startsWith('h'))e.oninput=ht;else if(e.id.startsWith('b'))e.oninput=by;else if(['mu','sg','xx'].includes(e.id))e.oninput=nrm});
+const Q=[["Kapan nilai disebut outlier ringan (Tukey)?",["Di luar Q1 − 1,5 IQR atau Q3 + 1,5 IQR","Di atas rata-rata","Di bawah median"],0],["R-squared mengukur?",["Proporsi variasi respons yang dijelaskan model","Jumlah data","Nilai p"],0],["p-value lebih kecil dari alfa berarti?",["Gagal menolak H0","Tolak H0","Data pasti salah"],1],["Teorema Bayes menghitung?",["P(A|B) dari P(B|A) dan P(A)","Rata-rata sampel","Varians"],0]];
+let qi=0,sc=0;function rq(){const e=$('qz');if(qi>=Q.length){e.innerHTML=`<h3>Skor ${sc}/${Q.length}</h3>`;const b=document.createElement('button');b.className='btn';b.textContent='Ulangi';b.onclick=()=>{qi=0;sc=0;rq()};e.append(b);return}
+const z=Q[qi];e.innerHTML=`<h3>${z[0]}</h3>`;z[1].forEach((o,i)=>{const b=document.createElement('button');b.className='btn alt';b.style.margin='.3rem .3rem 0 0';b.textContent=o;b.onclick=()=>{if(i==z[2]){sc++;burst(innerWidth/2,innerHeight/2)}qi++;rq()};e.append(b)})}
+// background: titik data + garis regresi hidup
+const cn=$('fx'),cx=cn.getContext('2d');let W,Hh,P=[],M={x:-999,y:-999};
+function rs(){W=cn.width=innerWidth;Hh=cn.height=innerHeight}rs();addEventListener('resize',rs);
+const cols=['#b6ff3b','#ff3df0','#4a90ff'];
+for(let i=0;i<90;i++){const x=Math.random()*innerWidth;P.push({x,y:innerHeight-x*innerHeight/innerWidth*.8+(Math.random()-.5)*300,vx:0,vy:0,c:cols[i%3],r:3+Math.random()*3})}
+function burst(x,y){for(let i=0;i<16;i++){const a=Math.random()*6.28;P.push({x,y,vx:Math.cos(a)*4,vy:Math.sin(a)*4,c:cols[i%3],r:4})}if(P.length>200)P.splice(0,P.length-200)}
+addEventListener('pointermove',e=>{M.x=e.clientX;M.y=e.clientY});addEventListener('pointerdown',e=>{if(!e.target.closest('canvas.ch,button,a,input,textarea'))burst(e.clientX,e.clientY)});
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function tick(){cx.clearRect(0,0,W,Hh);const n=P.length;let sx=0,sy=0;P.forEach(p=>{sx+=p.x;sy+=p.y});const mx=sx/n,my=sy/n;let sxy=0,sxx=0,syy=0;
+P.forEach(p=>{const dx=p.x-M.x,dy=p.y-M.y,d=Math.hypot(dx,dy);if(d<160&&d>0){p.vx+=dx/d*.4;p.vy+=dy/d*.4}p.vx+=(Math.random()-.5)*.1;p.vy+=(Math.random()-.5)*.1;p.vx*=.96;p.vy*=.96;p.x+=p.vx;p.y+=p.vy;
+if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>Hh)p.vy*=-1;sxy+=(p.x-mx)*(p.y-my);sxx+=(p.x-mx)**2;syy+=(p.y-my)**2;
+cx.globalAlpha=.9;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()});
+const b=sxy/sxx,a=my-b*mx,r=sxy/Math.sqrt(sxx*syy);cx.globalAlpha=.8;cx.strokeStyle='#ff3df0';cx.lineWidth=3;cx.beginPath();cx.moveTo(0,a);cx.lineTo(W,a+b*W);cx.stroke();
+$('live').textContent=`Garis regresi latar: r = ${f(r,2)} · R² = ${f(r*r,2)} · n = ${n} titik`;
+if(!rm)requestAnimationFrame(tick)}
+desc();reg();nrm();ht();by();rq();tick();addEventListener('resize',()=>{desc();reg();nrm()});
+</script></body></html>

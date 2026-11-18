@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Management Interaktif</title>
+<style>
+:root{--bg:#090a1a;--p:#12132b;--l:#2b2d55;--c:#19d3ff;--o:#ff6b2c;--v:#8a6bff;--t:#eef0ff;--d:#a2a6cf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--t);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+#bg{position:fixed;inset:0;z-index:-1}
+h1,h2,h3{font-family:"Trebuchet MS","Segoe UI",sans-serif;line-height:1.1;margin:0}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:4px;flex-wrap:wrap;align-items:center;padding:10px 5vw;background:#090a1ad9;backdrop-filter:blur(8px);border-bottom:1px solid var(--l)}
+nav b{margin-right:auto;color:var(--o);font-family:"Trebuchet MS",sans-serif}
+a{color:var(--c)}nav a{color:var(--t);text-decoration:none;padding:6px 12px;border-radius:99px}nav a:hover{background:var(--l)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+section{padding:64px 5vw;max-width:1120px;margin:auto}
+.hero{min-height:86vh;display:flex;flex-direction:column;justify-content:center;gap:24px}
+h1{font-size:clamp(2.5rem,7.5vw,5.2rem);font-weight:900;max-width:15ch;letter-spacing:-.02em}
+.sub{max-width:54ch;color:var(--d);font-size:1.08rem}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;margin-bottom:10px}
+.box{background:#12132bdb;border:1px solid var(--l);border-radius:14px;padding:20px}
+.live{display:flex;gap:18px;flex-wrap:wrap;align-items:center;max-width:740px}
+.live label{flex:1 1 260px;color:var(--d)}.live input[type=range]{width:100%;accent-color:var(--o)}
+.num{display:flex;gap:22px;flex-wrap:wrap}.num div{min-width:110px}
+.num strong{display:block;font:800 1.9rem "Trebuchet MS",sans-serif;color:var(--c)}.num span{color:var(--d);font-size:.85rem}
+.btn{display:inline-block;background:var(--o);color:#1a0a02;border:0;font:700 1rem "Segoe UI",sans-serif;padding:12px 20px;border-radius:10px;cursor:pointer;text-decoration:none}
+.btn.alt{background:var(--v);color:#fff}.btn:hover{filter:brightness(1.12)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.tab{background:var(--p);color:var(--t);border:1px solid var(--l);padding:9px 14px;border-radius:10px;cursor:pointer;font:600 .95rem "Segoe UI",sans-serif}
+.tab[aria-selected=true]{background:var(--v);border-color:var(--v);color:#fff}
+.pane ul{padding-left:20px;margin:12px 0}.pane li{margin:7px 0;max-width:75ch}
+.extra{border-left:4px solid var(--o);padding:8px 14px;margin-top:14px;background:#ff6b2c1c;border-radius:0 10px 10px 0;max-width:75ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.calc small{color:var(--d)}.calc h3{font-size:1.25rem}
+.calc .in{display:grid;grid-template-columns:1fr 100px;gap:6px 10px;margin:12px 0;align-items:center;font-size:.9rem}
+.calc input{width:100%;background:#05060f;color:var(--t);border:1px solid var(--l);border-radius:8px;padding:6px 8px;font:inherit}
+.out{border-top:1px dashed var(--l);padding-top:10px;display:grid;gap:4px}
+.out p{margin:0;display:flex;justify-content:space-between;gap:10px}.out b{color:var(--c);text-align:right}
+.out .w{color:#ffc233}.out .bad{color:#ff4d6d}.out .ok{color:#52f0a0}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--l);vertical-align:top;font-size:.93rem}
+th{color:var(--c)}td:first-child{font-weight:700;white-space:nowrap}td code{color:#ffc233}
+footer{padding:40px 5vw;color:var(--d);text-align:center;font-size:.85rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<nav><b>PM Lab</b><a href="#materi">Materi</a><a href="#kalkulator">Kalkulator</a><a href="#analisis">Analisis</a><a href="#unduh">Unduh</a></nav>
+
+<section class="hero">
+<h1>Proyek tepat waktu dimulai dari jalur kritisnya.</h1>
+<p class="sub">Ringkasan 4 topik buku Project Management, kalkulator EVM, PERT, CPM, dan risiko yang bisa Anda ubah langsung, serta panduan membaca hasilnya. Di latar, paket kerja mengalir melintasi jaringan tugas.</p>
+<div class="box live">
+<label>Risiko keterlambatan tiap tugas: <b id="dv">20</b>%
+<input id="dl" type="range" min="0" max="90" step="1" value="20" aria-label="Risiko keterlambatan"></label>
+<div class="num"><div><strong id="spi">1.00</strong><span>SPI simulasi</span></div><div><strong id="wip">0</strong><span>paket kerja berjalan</span></div><div><strong id="dn">0</strong><span>paket selesai</span></div></div>
+<p style="margin:0;color:var(--d);flex-basis:100%">SPI = durasi rencana ÷ durasi aktual. Di bawah 1 berarti terlambat. Klik di mana saja untuk meluncurkan paket kerja baru; kursor menarik tugas di dekatnya.</p>
+</div>
+<div><a class="btn" href="#materi">Mulai belajar</a> <a class="btn alt" href="#unduh">Unduh spreadsheet</a></div>
+</section>
+
+<section id="materi"><h2>Materi 4 topik</h2><p class="sub">Isi diambil dari PDF Anda. Kotak oranye memuat teori tambahan dari sumber lain.</p>
+<div class="tabs" id="tabs" role="tablist"></div><div class="box pane" id="pane" role="tabpanel"></div></section>
+
+<section id="kalkulator"><h2>Kalkulator interaktif</h2><p class="sub">Angka awal diambil dari contoh di buku. Ubah nilainya dan hasil langsung berubah.</p><div class="grid" id="calcs"></div></section>
+
+<section id="analisis"><h2>Cara membaca hasil</h2><p class="sub">Angka baru berguna bila Anda tahu artinya. Tabel ini menjelaskan tafsir dan tindakan yang biasanya mengikuti.</p>
+<div class="box tw"><table><thead><tr><th>Metrik</th><th>Rumus</th><th>Interpretasi</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="sub" style="margin-top:14px">Sumber tambahan: ringkasan rumus PMP (Master of Project, Techademy, DCM Learning, NovelVista) dan rujukan PMBOK. Ambang seperti stabilitas velocity 15% adalah patokan praktik, bukan aturan baku.</p></section>
+
+<section id="unduh"><h2>Unduh</h2>
+<div class="box"><p>Spreadsheet berisi 6 lembar dengan rumus aktif: Panduan, EVM (plus kurva-S), PERT, CPM, Risiko, dan Agile. Sel kuning adalah input.</p>
+<a class="btn" href="PM_Toolkit_Spreadsheet.xlsx" download>Unduh spreadsheet (.xlsx)</a> <button class="btn alt" id="save">Simpan halaman ini (.html)</button>
+<p style="color:var(--d);font-size:.85rem;margin-bottom:0">Tombol spreadsheet bekerja jika file .xlsx berada satu folder dengan halaman ini.</p></div></section>
+<footer>Berdasarkan modul PROJECT MANAGEMENT. Dibuat untuk belajar dan latihan.</footer>
+
+<script>
+/* ===== Latar: jaringan tugas, paket kerja mengalir ===== */
+const cv=document.getElementById("bg"),x=cv.getContext("2d"),rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+let W,H,N=[],U=[],dl=.2,mx=-999,my=-999,fr=0,spiV=1,done=0;
+const COLS=7,HOP=70;
+function build(){W=cv.width=innerWidth;H=cv.height=innerHeight;N=[];const rows=Math.max(3,Math.min(6,Math.round(H/150)));
+ for(let c=0;c<COLS;c++)for(let r=0;r<rows;r++)N.push({c,ax:W*(.06+.88*c/(COLS-1)),ay:H*(.12+.76*r/(rows-1))+(Math.random()-.5)*40,ph:Math.random()*6.3,hold:0,e:[],x:0,y:0});
+ for(const n of N)if(n.c<COLS-1){const nx=N.filter(m=>m.c==n.c+1).sort((a,b)=>Math.abs(a.ay-n.ay)-Math.abs(b.ay-n.ay));n.e=nx.slice(0,2)}
+ x.fillStyle="#090a1a";x.fillRect(0,0,W,H)}
+addEventListener("resize",build);build();
+addEventListener("pointermove",e=>{mx=e.clientX;my=e.clientY});
+const starts=()=>N.filter(n=>n.c==0);
+function spawn(){if(U.length>70)return;const s=starts(),n=s[Math.random()*s.length|0];U.push({a:n,b:n.e[Math.random()*n.e.length|0],p:0,w:0,born:fr,hops:0})}
+addEventListener("pointerdown",e=>{if(e.target.closest("a,button,input,.box,nav"))return;for(let i=0;i<6;i++)spawn()});
+function step(){
+ fr++;const t=fr*16;
+ x.fillStyle="rgba(9,10,26,.3)";x.fillRect(0,0,W,H);
+ for(const n of N){n.x=n.ax+Math.sin(t/1500+n.ph)*14;n.y=n.ay+Math.cos(t/1700+n.ph)*14;
+  const dx=mx-n.x,dy=my-n.y,d=Math.hypot(dx,dy);if(d<150){const k=(1-d/150)*22;n.x+=dx/d*k;n.y+=dy/d*k}
+  if(n.hold>0)n.hold--}
+ x.lineWidth=1;x.strokeStyle="rgba(138,107,255,.25)";x.beginPath();
+ for(const n of N)for(const m of n.e){x.moveTo(n.x,n.y);x.lineTo(m.x,m.y)}x.stroke();
+ for(const n of N){const dx=mx-n.x,dy=my-n.y;if(dx*dx+dy*dy<150*150){x.strokeStyle="rgba(25,211,255,.35)";x.beginPath();x.moveTo(n.x,n.y);x.lineTo(mx,my);x.stroke()}
+  x.fillStyle=n.hold>0?"#ff4d6d":"#19d3ff";x.beginPath();x.arc(n.x,n.y,n.hold>0?7+Math.sin(fr/4)*2:4,0,6.3);x.fill()}
+ if(fr%14==0)spawn();
+ for(let i=U.length-1;i>=0;i--){const u=U[i];
+  if(u.w>0){u.w--;}else{u.p+=1/HOP}
+  if(u.p>=1){u.a=u.b;u.p=0;u.hops++;
+   if(!u.a.e.length){const act=fr-u.born,nom=(COLS-1)*HOP;spiV+=(Math.min(1.2,nom/act)-spiV)*.15;done++;U.splice(i,1);continue}
+   if(Math.random()<dl*.6){u.w=40+Math.random()*90;u.a.hold=u.w}
+   u.b=u.a.e[Math.random()*u.a.e.length|0]}
+  const px=u.a.x+(u.b.x-u.a.x)*u.p,py=u.a.y+(u.b.y-u.a.y)*u.p;
+  x.fillStyle=u.w>0?"#ff4d6d":"#ff6b2c";x.beginPath();x.arc(px,py,u.w>0?4.5:3.5,0,6.3);x.fill();
+  x.fillStyle="rgba(255,107,44,.18)";x.beginPath();x.arc(px,py,9,0,6.3);x.fill()}
+ if(!rm)requestAnimationFrame(step)}
+requestAnimationFrame(step);
+setInterval(()=>{spi.textContent=spiV.toFixed(2);wip.textContent=U.length;dn.textContent=done;spi.style.color=spiV>=.95?"#52f0a0":spiV>=.8?"#ffc233":"#ff4d6d"},400);
+document.getElementById("dl").oninput=e=>{dl=e.target.value/100;dv.textContent=e.target.value};
+
+/* ===== Materi ===== */
+const T=[
+["1 Figur manajemen proyek",["Proyek menurut PMI adalah upaya sementara untuk menghasilkan produk, layanan, atau hasil yang unik, terikat waktu, lingkup, dan sumber daya. Contoh buku: pergantian citra 2.000+ kantor Bankia menjadi CaixaBank dalam 8 minggu.","Siklus hidup: inisiasi, perencanaan, eksekusi dan pemantauan, lalu penutupan. Tiap fase biasanya berakhir dengan deliverable yang disetujui.","Lingkup dan konteks: model Cynefin dan hukum Conway, metode Waterfall, serta Work Breakdown Structure (WBS) untuk memecah lingkup.","Jadwal: Gantt chart, PERT (TE = (O + 4M + P)/6), dan CPM untuk jalur kritis. Kinerja diukur dengan Earned Value Analysis: CV, SV, CPI, SPI, EAC, ETC, TCPI."],"Segitiga kendala (lingkup, waktu, biaya) saling bertukar: mengubah satu hampir selalu memengaruhi yang lain, dan mutu berada di tengahnya. PMBOK 7 menggeser fokus dari proses ke domain kinerja dan nilai."],
+["2 Manajemen tim",["Mengenal tim lewat DISC (Dominance, Influence, Steadiness, Conscientiousness) untuk memahami perilaku dan menyelaraskan gaya komunikasi.","Coaching (menggali potensi), mentoring (hubungan guru dan murid), dan training (menutup kekurangan pengetahuan) dipakai pada situasi berbeda.","Penilaian kompetensi dan roda kompetensi; komunikasi, penanganan konflik, delegasi, dan matriks tanggung jawab (RACI).","Tim jarak jauh: tata kelola dinamis, metode Kaizen, dan alat tugas seperti Jira. Pemangku kepentingan dikelola lewat proses dan matriks materialitas."],"Tahap perkembangan tim Tuckman: forming, storming, norming, performing. Kepemimpinan situasional menyesuaikan gaya (mengarahkan, melatih, mendukung, mendelegasikan) dengan kesiapan anggota."],
+["3 Biaya, mutu, komunikasi",["Rencana manajemen biaya menetapkan cara memperkirakan, menganggarkan, dan mengendalikan biaya.","Mutu direncanakan sejak awal. Gold plating (menambah fitur yang tidak diminta) membuang biaya. Pencegahan lebih baik daripada inspeksi.","Metrik mutu dan variabilitasnya dipantau agar proses stabil.","Komunikasi dibagi tiga: merencanakan, mengelola, dan mengendalikan. Flowchart menyederhanakan proses dan memperjelas alur kerja."],"Biaya mutu terdiri dari biaya pencegahan, penilaian, dan kegagalan (internal dan eksternal). Diagram Pareto (80/20) membantu memilih penyebab masalah terbesar. Akurasi estimasi membaik seiring fase: perkiraan awal bisa −25% sampai +75%, anggaran −10% sampai +25%, definitif −5% sampai +10%."],
+["4 Manajemen proyek agile",["Agile Manifesto adalah pernyataan nilai dan prinsip. Manfaatnya: adaptif terhadap perubahan dan hasil bernilai muncul lebih sering.","Scrum: sprint, product backlog, sprint backlog; tim 3 sampai 9 orang dengan Product Owner dan Scrum Master. Acara: sprint planning, daily scrum, sprint review, retrospective.","Metrik: estimasi relatif lewat planning poker (story points), velocity (story points selesai per iterasi), dan burndown chart.","Kanban dan XP sebagai kerangka lain. Siklus Deming (PDCA) dan business agility menjaga perbaikan berkelanjutan."],"Story point bersifat khusus tiap tim dan tidak untuk dibandingkan antartim. Kanban membatasi WIP; lead time dan cumulative flow diagram menunjukkan kemacetan. Hubungan agile dan EVM: nilai sprint = story point × biaya per story point."]];
+const tabs=document.getElementById("tabs"),pane=document.getElementById("pane");
+function show(i){[...tabs.children].forEach((b,j)=>b.setAttribute("aria-selected",i==j));
+ const d=T[i];pane.innerHTML="<h3>"+d[0].slice(2)+"</h3><ul>"+d[1].map(s=>"<li>"+s+"</li>").join("")+"</ul><div class=extra><b>Teori tambahan:</b> "+d[2]+"</div>"}
+T.forEach((d,i)=>{const b=document.createElement("button");b.className="tab";b.role="tab";b.textContent=d[0];b.onclick=()=>show(i);tabs.append(b)});show(0);
+
+/* ===== Kalkulator ===== */
+const f2=n=>isFinite(n)?(+n).toLocaleString("id-ID",{maximumFractionDigits:2}):"-",pc=n=>isFinite(n)?(n*100).toFixed(1)+"%":"-";
+const cdf=z=>{const t=1/(1+.2316419*Math.abs(z)),d=.3989423*Math.exp(-z*z/2),p=d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-p:p};
+const CALC=[
+{t:"Earned Value (EVM)",s:"Topik 1, contoh buku",i:[["bac","BAC (anggaran total)",10000],["pv","PV (nilai rencana)",7000],["ev","EV (nilai hasil)",6000],["ac","AC (biaya aktual)",8000]],
+ f:v=>{const cpi=v.ev/v.ac,spi=v.ev/v.pv,eac=v.bac/cpi;return [["CV = EV − AC",f2(v.ev-v.ac),v.ev>=v.ac?"ok":"bad"],["SV = EV − PV",f2(v.ev-v.pv),v.ev>=v.pv?"ok":"bad"],["CPI",f2(cpi),cpi>=1?"ok":"bad"],["SPI",f2(spi),spi>=1?"ok":"bad"],["EAC = BAC ÷ CPI",f2(eac)],["ETC = EAC − AC",f2(eac-v.ac)],["VAC = BAC − EAC",f2(v.bac-eac)],["TCPI",f2((v.bac-v.ev)/(v.bac-v.ac)),"w"],["Tafsir",cpi<1&&spi<1?"Boros dan terlambat":cpi<1?"Boros":spi<1?"Terlambat":"Sehat",cpi<1||spi<1?"bad":"ok"]]}},
+{t:"PERT satu aktivitas",s:"Estimasi tiga titik",i:[["o","Optimistis (O)",6],["m","Paling mungkin (M)",9],["p","Pesimistis (P)",18],["tg","Target durasi",12]],
+ f:v=>{const te=(v.o+4*v.m+v.p)/6,sd=(v.p-v.o)/6,pr=cdf((v.tg-te)/sd);return [["TE = (O+4M+P)/6",f2(te)],["SD = (P−O)/6",f2(sd)],["Varians",f2(sd*sd)],["Rentang 68%",f2(te-sd)+" – "+f2(te+sd)],["Peluang ≤ target",pc(pr),pr>=.85?"ok":pr>=.5?"w":"bad"]]}},
+{t:"Float dan jalur kritis",s:"Topik 1, CPM",i:[["es","Early Start (ES)",7],["d","Durasi",5],["ls","Late Start (LS)",9]],
+ f:v=>{const fl=v.ls-v.es;return [["EF = ES + durasi",f2(v.es+v.d)],["LF = LS + durasi",f2(v.ls+v.d)],["Float = LS − ES",f2(fl),fl==0?"bad":fl<0?"bad":"ok"],["Status",fl==0?"Di jalur kritis":fl<0?"Sudah terlambat":"Boleh ditunda "+fl+" hari",fl<=0?"bad":"ok"]]}},
+{t:"Risiko (EMV)",s:"Probabilitas × dampak",i:[["p1","Probabilitas risiko 1 (0–1)",.3],["i1","Dampak risiko 1",-20000],["p2","Probabilitas risiko 2",.5],["i2","Dampak risiko 2",-12000],["p3","Probabilitas peluang",.2],["i3","Dampak peluang",8000]],
+ f:v=>{const a=v.p1*v.i1,b=v.p2*v.i2,c=v.p3*v.i3,t=a+b+c;return [["EMV risiko 1",f2(a)],["EMV risiko 2",f2(b)],["EMV peluang",f2(c)],["EMV total",f2(t),t<0?"bad":"ok"],["Cadangan kontingensi",t<0?f2(-t):"0"]]}},
+{t:"Velocity dan komunikasi",s:"Topik 4 (agile)",i:[["vel","Velocity per sprint (koma)","21,18,24,20,23"],["rem","Story point tersisa",100],["n","Anggota tim",8]],
+ f:v=>{const a=String(v.vel).split(",").map(Number).filter(isFinite);if(!a.length)return [["Info","Isi velocity","bad"]];const m=a.reduce((s,q)=>s+q,0)/a.length,sd=Math.sqrt(a.reduce((s,q)=>s+(q-m)**2,0)/Math.max(1,a.length-1)),cv=sd/m;
+  return [["Velocity rata-rata",f2(m)],["Sprint tersisa",Math.ceil(v.rem/m)],["Stabilitas (SD/rata-rata)",pc(cv),cv<.15?"ok":"w"],["Saluran komunikasi",f2(v.n*(v.n-1)/2)],["Jika tim +2",f2((v.n+2)*(v.n+1)/2),"w"]]}}];
+const cb=document.getElementById("calcs");
+CALC.forEach((c,n)=>{const el=document.createElement("div");el.className="box calc";
+ el.innerHTML="<h3>"+c.t+"</h3><small>"+c.s+"</small><div class=in>"+c.i.map(r=>"<label for=c"+n+r[0]+">"+r[1]+"</label><input id=c"+n+r[0]+" value=\""+r[2]+"\" "+(typeof r[2]=="string"?"":"type=number step=any")+">").join("")+"</div><div class=out></div>";
+ const run=()=>{const v={};c.i.forEach(r=>{const e=el.querySelector("#c"+n+r[0]);v[r[0]]=typeof r[2]=="string"?e.value:+e.value});
+  el.querySelector(".out").innerHTML=c.f(v).map(r=>"<p><span>"+r[0]+"</span><b class="+(r[2]||"")+">"+r[1]+"</b></p>").join("")};
+ el.addEventListener("input",run);cb.append(el);run()});
+
+/* ===== Tabel interpretasi ===== */
+const R=[["CPI","EV ÷ AC","Di atas 1 hemat, di bawah 1 boros. Pada contoh buku 0,75: tiap 1 yang dibelanjakan hanya menghasilkan 0,75 nilai."],
+["SPI","EV ÷ PV","Di bawah 1 terlambat. Contoh buku 0,86. Hati-hati: pada akhir proyek SPI selalu mendekati 1, jadi gunakan juga float."],
+["CV dan SV","EV − AC dan EV − PV","Negatif berarti tidak menguntungkan (boros atau terlambat). Persentase CV% dan SV% memudahkan membandingkan proyek."],
+["EAC","BAC ÷ CPI, atau AC + (BAC − EV)","Rumus pertama dipakai bila inefisiensi berlanjut; yang kedua bila penyimpangan hanya terjadi sekali. Pada contoh 13.333 vs 12.000."],
+["TCPI","(BAC − EV) ÷ (BAC − AC)","Efisiensi yang dibutuhkan sisa pekerjaan agar sesuai BAC. Jauh di atas 1 (contoh buku: 2) berarti hampir mustahil tanpa perubahan rencana."],
+["PERT","TE = (O + 4M + P) ÷ 6; SD = (P − O) ÷ 6","TE adalah rata-rata tertimbang. Rentang TE ± 1 SD mencakup sekitar 68%, ± 2 SD sekitar 95%. Untuk jalur: jumlahkan TE, SD = akar jumlah varians."],
+["Float","LS − ES atau LF − EF","Float 0 berarti jalur kritis. Float negatif berarti proyek terlambat. Pantau jalur kritis dulu, lalu jalur near-critical."],
+["EMV","probabilitas × dampak","Jumlah EMV ancaman menjadi dasar cadangan kontingensi. Risiko berdampak besar tetapi probabilitas kecil tetap perlu rencana respons."],
+["Saluran komunikasi","n(n − 1) ÷ 2","Tim 8 orang punya 28 saluran, tim 10 orang 45. Tambahan orang memperbesar beban koordinasi secara kuadratik."],
+["Velocity","rata-rata story point per sprint","Dipakai meramal sisa sprint = backlog tersisa ÷ velocity. Velocity yang fluktuatif (SD/rata-rata di atas sekitar 15%) membuat prakiraan kurang pasti."]];
+document.getElementById("tb").innerHTML=R.map(r=>"<tr><td>"+r[0]+"</td><td><code>"+r[1]+"</code></td><td>"+r[2]+"</td></tr>").join("");
+document.getElementById("save").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["<!DOCTYPE html>"+document.documentElement.outerHTML],{type:"text/html"}));a.download="Project_Management_Interaktif.html";a.click()};
+</script></body></html>

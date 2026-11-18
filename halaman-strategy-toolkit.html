@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strategy Toolkit – 13 Kerangka Strategi Korporat</title>
+<style>
+:root{--bg:#050d1f;--card:#0b1a38cc;--line:#1d3a6e;--tx:#e8eefc;--mu:#9db0d6;--cy:#22d3ee;--gd:#f5b82e;--rd:#fb7185;--gr:#4ade80}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 "Segoe UI",Roboto,Arial,sans-serif;overflow-x:hidden}
+#bg{position:fixed;inset:0;z-index:-1;width:100%;height:100%}
+.glow{position:fixed;inset:0;z-index:-2;background:radial-gradient(60% 50% at 15% 10%,#0e3a8a55,transparent),radial-gradient(50% 40% at 90% 80%,#f5b82e22,transparent)}
+header{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:6vw 6vw 3vw;max-width:1200px;margin:auto}
+h1{font:700 clamp(2.4rem,7vw,5.2rem)/1.05 Georgia,serif;letter-spacing:-.02em}
+h1 span{background:linear-gradient(90deg,var(--cy),var(--gd));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{max-width:640px;color:var(--mu);margin:1.2rem 0 2rem;font-size:1.1rem}
+.stats{display:flex;gap:2rem;flex-wrap:wrap}.stats b{display:block;font:700 2.2rem Georgia,serif;color:var(--gd)}.stats small{color:var(--mu)}
+.btn{display:inline-block;margin-top:2rem;padding:.8rem 1.6rem;border-radius:8px;background:var(--cy);color:#04202a;font-weight:700;text-decoration:none;width:fit-content;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px #22d3ee55}
+main{max-width:1200px;margin:auto;padding:0 4vw 4rem}
+#nav{display:flex;flex-wrap:wrap;gap:.5rem;position:sticky;top:0;z-index:5;padding:.8rem 0;background:linear-gradient(var(--bg) 70%,transparent)}
+#nav button{background:#0b1a38;border:1px solid var(--line);color:var(--mu);padding:.45rem .9rem;border-radius:99px;cursor:pointer;font:inherit;font-size:.88rem;transition:.2s}
+#nav button:hover{border-color:var(--cy);color:var(--tx)}
+#nav button.on{background:var(--cy);color:#04202a;border-color:var(--cy);font-weight:700}
+.panel{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:14px;padding:clamp(1.2rem,3vw,2.2rem);margin-top:1rem;animation:in .4s}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.panel h2{font:700 clamp(1.8rem,4vw,2.8rem) Georgia,serif}.tag{color:var(--gd);font-size:.9rem}
+h3{color:var(--cy);margin:1.8rem 0 .6rem;font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem}
+.tile{border:1px solid var(--line);border-radius:10px;padding:.9rem;background:#0a1630;transition:.2s}.tile:hover{border-color:var(--gd);transform:translateY(-3px)}
+.tile b{color:var(--gd);display:block}.tile span{color:var(--mu);font-size:.9rem}
+.formula{background:#020813;border-left:3px solid var(--gd);padding:.7rem 1rem;margin:.5rem 0;font:.95rem Consolas,monospace;color:#ffe9b0;border-radius:0 8px 8px 0;overflow-x:auto}
+.box{background:#0a1630;border-radius:10px;padding:1rem;border:1px dashed var(--line);color:#cfdcf7}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.92rem}th{background:#12306a;text-align:left}th,td{padding:.55rem .8rem;border-bottom:1px solid var(--line)}tr:hover td{background:#0e2250}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}.st{background:#0e2a5c;border:1px solid var(--cy);border-radius:8px;padding:.5rem .8rem;font-size:.88rem}
+.st.d{background:#3a2a05;border-color:var(--gd);border-radius:30px}.ar{color:var(--gd)}
+.calc input[type=number]{width:70px;background:#020813;border:1px solid var(--line);color:var(--tx);padding:.3rem;border-radius:6px}
+.calc input[type=text]{width:100%;min-width:140px;background:transparent;border:0;color:var(--tx);font:inherit}
+.res{margin-top:1rem;font:700 1.6rem Georgia,serif}.bar{height:12px;background:#020813;border-radius:9px;overflow:hidden;margin-top:.5rem}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rd),var(--gd),var(--gr));transition:width .5s}
+footer{text-align:center;color:var(--mu);padding:2rem 1rem;font-size:.85rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="glow"></div><canvas id="bg"></canvas>
+<header>
+<p class="tag">Corporate Strategy Playbook · Gaya konsultan McKinsey</p>
+<h1>Strategy Toolkit:<br><span>13 kerangka</span> untuk keputusan bisnis yang tajam</h1>
+<p class="sub">Teori, rumus, contoh soal, studi kasus, diagram, tabel, dan flowchart untuk SWOT hingga McKinsey 7S. Setiap kerangka dilengkapi kalkulator interaktif.</p>
+<div class="stats"><div><b data-n="13">0</b><small>Kerangka</small></div><div><b data-n="13">0</b><small>Kalkulator</small></div><div><b data-n="13">0</b><small>Studi kasus</small></div></div>
+<a class="btn" href="#nav">Mulai belajar</a>
+</header>
+<main><div id="nav"></div><div id="p"></div></main>
+<footer>Disusun oleh Ir. Agus Budianto Ulil Absyor, S.T., M.M., M.LSCM., M.AIB. · Pasangan file: Strategy_Toolkit.xlsx</footer>
+<script>
+const D=[
+{n:"SWOT",k:"Analisis situasi",t:"SWOT memetakan faktor internal (Strengths, Weaknesses) dan eksternal (Opportunities, Threats). Hasilnya dipakai merumuskan strategi SO, WO, ST, WT. Versi kuantitatif memakai bobot dan rating (IFAS/EFAS).",
+f:["Skor IFAS = Σ (bobot × rating) semua faktor internal; Σ bobot = 1","Skor EFAS = Σ (bobot × rating) semua faktor eksternal","Rating 1–4; rata-rata acuan = 2,5"],
+ex:"Kontraktor hauling: S1 bobot 0,25×rating 4 = 1,00; S2 0,20×3 = 0,60; W1 0,30×2 = 0,60; W2 0,25×1 = 0,25. IFAS = 2,45 (&lt; 2,5) → posisi internal sedikit lemah, perbaiki kelemahan dulu.",
+cs:"Kontraktor hauling batubara Kaltim: kekuatan armada baru dan kontrak jangka panjang; kelemahan ketergantungan pada satu pemilik tambang. Peluang: ekspansi ke komoditas andesit. Ancaman: fluktuasi harga batubara. Strategi WO: diversifikasi klien lewat kontrak andesit.",
+dg:[["Strengths","Internal, positif"],["Weaknesses","Internal, negatif"],["Opportunities","Eksternal, positif"],["Threats","Eksternal, negatif"]],
+tb:[["Strategi","Kombinasi","Arti"],["SO","Strength + Opportunity","Agresif: manfaatkan peluang"],["WO","Weakness + Opportunity","Turn-around"],["ST","Strength + Threat","Diversifikasi"],["WT","Weakness + Threat","Defensif"]],
+fl:["Tetapkan tujuan","Daftar faktor internal","Daftar faktor eksternal","?Faktor terukur?","Beri bobot &amp; rating","Hitung IFAS/EFAS","Rumuskan SO/WO/ST/WT"],
+cl:[["Armada baru",25,4],["Kontrak jangka panjang",20,3],["Ketergantungan 1 klien",30,2],["Biaya perawatan tinggi",25,1]],u:"Skor 1–4 per faktor"},
+{n:"PESTEL",k:"Analisis lingkungan makro",t:"PESTEL meninjau enam faktor makro: Political, Economic, Social, Technological, Environmental, Legal. Tujuannya mengantisipasi perubahan eksternal yang tidak bisa dikendalikan perusahaan.",
+f:["Skor risiko = Probabilitas (1–5) × Dampak (1–5)","Kritis ≥ 15; Tinggi 10–14; Sedang 5–9; Rendah &lt; 5"],
+ex:"Larangan ekspor 4×5 = 20 (kritis); harga BBM 5×4 = 20 (kritis); kenaikan royalti 3×4 = 12 (tinggi); isu reklamasi 3×3 = 9 (sedang).",
+cs:"Hilirisasi nikel: kebijakan larangan ekspor bijih (Political/Legal) memaksa perusahaan tambang membangun smelter, mengubah kebutuhan modal, teknologi, dan tenaga kerja.",
+dg:[["Political","Kebijakan, stabilitas"],["Economic","Kurs, inflasi, harga komoditas"],["Social","Demografi, tenaga kerja, CSR"],["Technological","Otomasi, AI, digitalisasi"],["Environmental","Iklim, reklamasi, emisi"],["Legal","UU Minerba, K3, pajak"]],
+tb:[["Faktor","Isu","P","I","P×I"],["Political","Larangan ekspor","4","5","20"],["Economic","Harga BBM","5","4","20"],["Legal","Royalti","3","4","12"],["Environmental","Reklamasi","3","3","9"]],
+fl:["Daftar isu makro","Kelompokkan P-E-S-T-E-L","Nilai probabilitas &amp; dampak","?Skor ≥ 15?","Buat rencana mitigasi","Pantau triwulanan"],
+cl:[["Larangan ekspor",20,4],["Harga BBM",20,5],["Royalti",12,3],["Reklamasi",9,3]],u:"Skor 1–5 = tingkat tekanan (pakai sebagai risiko)",inv:1},
+{n:"Porter's Five Forces",k:"Analisis industri",t:"Michael Porter: daya tarik industri ditentukan lima kekuatan: ancaman pendatang baru, kekuatan tawar pemasok, kekuatan tawar pembeli, ancaman produk substitusi, dan rivalitas pesaing.",
+f:["Intensitas rata-rata = Σ skor 5 kekuatan ÷ 5 (skala 1–5)","Daya tarik industri = 6 − intensitas rata-rata"],
+ex:"Skor: pendatang baru 3, pemasok 4, pembeli 5, substitusi 2, rivalitas 4. Rata-rata = 3,6 → daya tarik = 2,4 (rendah–sedang).",
+cs:"Dealer alat berat merek China di Indonesia: pembeli (kontraktor tambang) sangat sensitif harga, rivalitas antarmerek tinggi, sehingga diferensiasi purna jual dan ketersediaan suku cadang jadi kunci.",
+dg:[["Pendatang baru","Hambatan masuk, modal"],["Pemasok","Pabrikan, suku cadang"],["Pembeli","Daya tawar harga"],["Substitusi","Sewa, alat bekas"],["Rivalitas","Jumlah pesaing, diskon"]],
+tb:[["Kekuatan","Indikator","Skor"],["Pendatang baru","Modal, izin","3"],["Pemasok","Pabrikan terbatas","4"],["Pembeli","Konsentrasi pelanggan","5"],["Substitusi","Alat bekas, rental","2"],["Rivalitas","Perang harga","4"]],
+fl:["Definisikan industri","Nilai 5 kekuatan","Hitung rata-rata","?Intensitas &gt; 3,5?","Cari posisi pertahanan / niche","Tentukan strategi generik"],
+cl:[["Pendatang baru",20,3],["Pemasok",20,4],["Pembeli",20,5],["Substitusi",20,2],["Rivalitas",20,4]],u:"Skor 1–5 = intensitas tekanan",inv:1},
+{n:"VRIO Framework",k:"Analisis sumber daya",t:"Jay Barney: sumber daya menghasilkan keunggulan bersaing berkelanjutan bila Valuable, Rare, Inimitable (sulit ditiru), dan Organized (didukung organisasi).",
+f:["V = tidak → Competitive disadvantage","V ya, R tidak → Parity","V, R ya, I tidak → Temporary advantage","V, R, I ya, O tidak → Unused advantage","V, R, I, O semua ya → Sustained advantage"],
+ex:"Data fleet management real-time: bernilai (ya), langka (ya), sulit ditiru (tidak, vendor lain bisa membeli), organisasi siap (ya) → Temporary advantage.",
+cs:"Toyota Production System: bernilai, langka, sulit ditiru karena budaya kerja puluhan tahun, dan didukung struktur → keunggulan berkelanjutan.",
+dg:[["Valuable","Menambah nilai / menekan biaya?"],["Rare","Dimiliki sedikit pesaing?"],["Inimitable","Mahal / sulit ditiru?"],["Organized","Organisasi siap memanfaatkan?"]],
+tb:[["Sumber daya","V","R","I","O","Hasil"],["Armada standar","Ya","Tidak","-","-","Parity"],["Data real-time","Ya","Ya","Tidak","Ya","Temporary"],["Budaya K3 kuat","Ya","Ya","Ya","Ya","Sustained"]],
+fl:["Pilih sumber daya","?Valuable?","?Rare?","?Inimitable?","?Organized?","Sustained advantage"],vrio:1,
+cl:[["Armada standar",0,0],["Data real-time",0,0],["Budaya K3 kuat",0,0]]},
+{n:"Business Strategy",k:"Strategi tingkat unit bisnis",t:"Strategi unit bisnis menjawab 'bagaimana bersaing di satu pasar'. Tiga strategi generik Porter: cost leadership, differentiation, dan focus. Hindari 'stuck in the middle'.",
+f:["Biaya per ton = Biaya tetap ÷ Volume + Biaya variabel per ton","Margin = Harga − Biaya per ton","Margin % = Margin ÷ Harga"],
+ex:"Tetap Rp1,2 M/bulan, variabel Rp18.000/ton, volume 100.000 ton → 12.000 + 18.000 = Rp30.000/ton. Harga Rp36.000 → margin Rp6.000 (16,7%). Volume naik ke 150.000 ton → biaya Rp26.000/ton.",
+cs:"Kontraktor hauling memilih cost leadership: utilisasi unit tinggi, PA &gt; 90%, perawatan terjadwal. Pesaing premium memilih differentiation lewat keselamatan dan pelaporan real-time.",
+dg:[["Cost leadership","Biaya terendah di industri"],["Differentiation","Nilai unik, harga premium"],["Focus","Segmen sempit, biaya atau diferensiasi"]],
+tb:[["Strategi","Sumber keunggulan","Risiko"],["Cost leadership","Skala, efisiensi","Perang harga"],["Differentiation","Kualitas, layanan","Ditiru, biaya tinggi"],["Focus","Ceruk pasar","Pasar terlalu kecil"]],
+fl:["Pahami pelanggan","Analisis industri","?Menang di biaya?","Cost leadership","Differentiation / Focus","Eksekusi &amp; ukur"],
+cl:[["Efisiensi biaya",40,3],["Diferensiasi layanan",30,4],["Fokus segmen",30,3]],u:"Skor 1–5 kesiapan strategi"},
+{n:"Corporate Strategy",k:"Strategi tingkat grup",t:"Strategi korporat menentukan bisnis apa yang dimasuki dan bagaimana sumber daya dialokasikan. Alat: matriks BCG, matriks Ansoff, diversifikasi, merger dan akuisisi.",
+f:["Pangsa relatif = Pangsa pasar kita ÷ Pangsa pesaing terbesar","BCG: Star (RMS ≥ 1, growth ≥ 10%); Cash cow (RMS ≥ 1, growth &lt; 10%); Question mark (RMS &lt; 1, growth ≥ 10%); Dog (keduanya rendah)"],
+ex:"Hauling: RMS 1,5 growth 12% → Star. Crusher: 0,4 dan 15% → Question mark. Sewa alat: 2,0 dan 3% → Cash cow. Trading: 0,3 dan 2% → Dog.",
+cs:"Grup tambang dan hauling: laba dari cash cow (sewa alat) dibiayai ke question mark (crusher) agar tumbuh jadi star.",
+dg:[["Star","Investasi untuk tumbuh"],["Cash cow","Panen kas"],["Question mark","Seleksi, tumbuhkan atau lepas"],["Dog","Divestasi / restrukturisasi"]],
+tb:[["Unit","RMS","Growth","Kategori"],["Hauling","1,5","12%","Star"],["Crusher","0,4","15%","Question mark"],["Sewa alat","2,0","3%","Cash cow"],["Trading","0,3","2%","Dog"]],
+fl:["Petakan portofolio","Hitung RMS &amp; growth","?RMS ≥ 1?","?Growth ≥ 10%?","Tetapkan peran unit","Alokasi modal"],
+cl:[["Hauling",40,4],["Crusher",25,3],["Sewa alat",25,4],["Trading",10,1]],u:"Skor 1–5 daya tarik unit"},
+{n:"Strategic Planning",k:"Proses perencanaan",t:"Proses menerjemahkan visi menjadi rencana: visi, misi, analisis lingkungan, sasaran, strategi, program, anggaran, dan monitoring evaluasi.",
+f:["Gap = Target − Baseline","Gap tertutup % = (Aktual − Baseline) ÷ (Target − Baseline)","NPV inisiatif = Σ CFt ÷ (1 + r)^t − Investasi"],
+ex:"PA baseline 82%, target 90% → gap 8 poin. Setelah tahun 1 PA 86% → gap tertutup (86−82)÷8 = 50%.",
+cs:"Pabrikan global menetapkan visi 2030, memecahnya jadi sasaran 3 tahun dan program tahunan dengan KPI; review triwulanan menyesuaikan strategi.",
+dg:[["Visi &amp; misi","Arah jangka panjang"],["Analisis","SWOT, PESTEL, Porter"],["Sasaran &amp; strategi","Gap dan pilihan"],["Eksekusi","Program, anggaran, KPI"]],
+tb:[["Tahap","Output","Pemilik"],["Visi","Pernyataan 5–10 tahun","Direksi"],["Analisis","Isu strategis","Strategy office"],["Sasaran","Target terukur","Direksi"],["Program","Inisiatif + anggaran","Divisi"],["Monitoring","Laporan KPI","PMO"]],
+fl:["Visi &amp; misi","Analisis lingkungan","Sasaran strategis","Pilih strategi","Program &amp; anggaran","?Target tercapai?","Review &amp; revisi"],
+cl:[["Kejelasan visi",20,4],["Kualitas analisis",20,3],["Sasaran terukur",20,4],["Anggaran selaras",20,3],["Disiplin monitoring",20,2]],u:"Skor 1–5 kesiapan"},
+{n:"KPI &amp; Balanced Scorecard",k:"Pengukuran kinerja",t:"Kaplan &amp; Norton: BSC menerjemahkan strategi ke empat perspektif: Finansial, Pelanggan, Proses Internal, Pembelajaran dan Pertumbuhan, dihubungkan lewat strategy map.",
+f:["Pencapaian = Aktual ÷ Target (semakin tinggi semakin baik)","Pencapaian = Target ÷ Aktual (semakin rendah semakin baik)","Skor BSC = Σ (bobot × pencapaian)"],
+ex:"EBITDA 20/22 = 90,9% (bobot 40%); on-time 92/95 = 96,8% (20%); cycle time 60/66 = 90,9% (30%); jam pelatihan 40/40 = 100% (10%). Skor = 36,4 + 19,4 + 27,3 + 10 = 93,0%.",
+cs:"Kontraktor hauling menautkan pelatihan operator (learning) → cycle time (proses) → kepuasan klien → EBITDA margin (finansial).",
+dg:[["Finansial","EBITDA margin, cost/ton"],["Pelanggan","On-time, kepuasan"],["Proses internal","Cycle time, PA, MTBF"],["Pembelajaran","Jam pelatihan, retensi"]],
+tb:[["Perspektif","KPI","Target","Aktual","%"],["Finansial","EBITDA margin","22%","20%","90,9%"],["Pelanggan","On-time delivery","95%","92%","96,8%"],["Proses","Cycle time (mnt)","60","66","90,9%"],["Pembelajaran","Jam pelatihan","40","40","100%"]],
+fl:["Terjemahkan strategi","Pilih 4 perspektif","Tetapkan KPI &amp; target","Beri bobot","Ukur bulanan","?Skor &lt; 90%?","Tindakan korektif"],
+cl:[["Finansial",40,4],["Pelanggan",20,5],["Proses internal",30,4],["Pembelajaran",10,5]],u:"Skor 1–5 (5 = pencapaian terbaik)"},
+{n:"MECE Principle",k:"Struktur berpikir",t:"Mutually Exclusive, Collectively Exhaustive: memecah masalah menjadi bagian yang tidak tumpang tindih dan lengkap menutupi seluruh persoalan. Dasar issue tree McKinsey.",
+f:["Σ sub-cabang = induk (collectively exhaustive)","Irisan antar-cabang = ∅ (mutually exclusive)","Laba = Pendapatan − Biaya; Pendapatan = Volume × Harga"],
+ex:"Biaya hauling = BBM + Ban + Suku cadang + Gaji + Overhead. Rp: 4 + 1 + 2 + 1,5 + 0,5 = 9 M. Jika total aktual 10 M, ada gap 1 M (belum exhaustive).",
+cs:"Penurunan laba kontraktor: pohon masalah dipecah ke Volume (jam operasi, produktivitas), Harga (kontrak, eskalasi), Biaya (tetap, variabel). Hasilnya: akar masalah ada pada biaya BBM.",
+dg:[["Laba turun","Akar masalah"],["Pendapatan","Volume × Harga"],["Biaya","Tetap + Variabel"],["Cek MECE","Tidak tumpang tindih, tidak ada celah"]],
+tb:[["Cabang","Nilai (M)","Cek"],["BBM","4,0","OK"],["Ban","1,0","OK"],["Suku cadang","2,0","OK"],["Gaji","1,5","OK"],["Overhead","0,5","OK"],["Total","9,0","Gap 1,0 dari aktual 10,0"]],
+fl:["Rumuskan masalah","Pilih dimensi pemecahan","?Tumpang tindih?","?Ada celah?","Isi data per cabang","Prioritaskan cabang besar"],
+cl:[["Tidak tumpang tindih",50,4],["Lengkap",50,3]],u:"Skor 1–5 kualitas struktur"},
+{n:"McKinsey Three Horizons",k:"Portofolio pertumbuhan",t:"H1: perluas dan pertahankan inti bisnis. H2: bisnis baru yang sedang tumbuh. H3: opsi masa depan (riset, pilot). Perusahaan perlu mengelola ketiganya sekaligus.",
+f:["Alokasi acuan H1 : H2 : H3 = 70 : 20 : 10","eNPV = Probabilitas sukses × NPV","Total eNPV portofolio = Σ eNPV semua inisiatif"],
+ex:"Dana Rp10 M: H1 Rp7 M (efisiensi, p=0,9, NPV 9 M) → 8,1; H2 Rp2 M (crusher, p=0,5, NPV 6 M) → 3,0; H3 Rp1 M (AI, p=0,1, NPV 10 M) → 1,0. Total eNPV = Rp12,1 M.",
+cs:"Perusahaan alat berat: H1 penjualan unit, H2 layanan purna jual, H3 platform telematik dan AI.",
+dg:[["Horizon 1","0–2 tahun, inti bisnis"],["Horizon 2","2–5 tahun, bisnis berkembang"],["Horizon 3","5+ tahun, opsi masa depan"]],
+tb:[["Horizon","Dana (M)","p","NPV (M)","eNPV (M)"],["H1","7","0,9","9","8,1"],["H2","2","0,5","6","3,0"],["H3","1","0,1","10","1,0"],["Total","10","","","12,1"]],
+fl:["Daftar inisiatif","Kelompokkan H1/H2/H3","Estimasi p &amp; NPV","?Porsi sesuai 70/20/10?","Realokasi dana","Review tahunan"],
+cl:[["Horizon 1",70,4],["Horizon 2",20,3],["Horizon 3",10,2]],u:"Skor 1–5 kematangan portofolio"},
+{n:"OKR",k:"Penetapan sasaran",t:"Objectives and Key Results: Objective bersifat inspiratif dan kualitatif, 3–5 Key Result terukur. Target OKR sengaja ambisius (stretch); skor 0,7 dianggap sukses.",
+f:["Skor KR = (Aktual − Awal) ÷ (Target − Awal)","Skor O = rata-rata skor KR","Zona: 0–0,3 merah; 0,4–0,6 kuning; 0,7–1,0 hijau"],
+ex:"O: hauling paling efisien di Kaltim. KR1 cost/ton 32.000→30.000, aktual 31.000 → 0,5. KR2 PA 80→90, aktual 87 → 0,7. KR3 insiden 5→0, aktual 2 → 0,6. Skor O = 0,6.",
+cs:"Google memakai OKR kuartalan: tim menetapkan objective berani, mengukur mingguan, lalu belajar dari skor, bukan dipakai langsung untuk bonus.",
+dg:[["Objective","Inspiratif, jelas"],["Key Result 1","Angka terukur"],["Key Result 2","Angka terukur"],["Key Result 3","Angka terukur"]],
+tb:[["KR","Awal","Target","Aktual","Skor"],["Cost/ton","32.000","30.000","31.000","0,5"],["PA %","80","90","87","0,7"],["Insiden","5","0","2","0,6"],["Skor O","","","","0,6"]],
+fl:["Tetapkan Objective","Susun 3–5 KR","Selaraskan atasan–tim","Check-in mingguan","Skoring akhir kuartal","?Skor ≥ 0,7?","Retrospektif"],
+cl:[["KR1 cost/ton",34,3],["KR2 PA",33,4],["KR3 insiden",33,3]],u:"Skor 1–5 (≈ 0–1 setelah dikonversi)"},
+{n:"Blue Ocean Strategy",k:"Inovasi nilai",t:"Kim &amp; Mauborgne: ciptakan ruang pasar baru (blue ocean) lewat value innovation, yaitu menaikkan nilai bagi pembeli sambil menurunkan biaya. Alat: Strategy Canvas dan ERRC.",
+f:["Value innovation = Nilai pembeli ↑ + Biaya ↓","ERRC: Eliminate, Reduce, Raise, Create","Gap kurva nilai = |Skor kita − Skor industri| per faktor"],
+ex:"Dealer alat berat: Eliminate diskon agresif; Reduce stok unit; Raise kecepatan suku cadang; Create paket 'uptime-as-a-service'. Skor industri harga 4, kita 3 → gap 1.",
+cs:"Cirque du Soleil menghapus hewan dan bintang sirkus, menambah tema dan musik teater, sehingga menarik orang dewasa dengan harga tiket tinggi.",
+dg:[["Eliminate","Faktor yang dibuang"],["Reduce","Dikurangi di bawah standar"],["Raise","Dinaikkan di atas standar"],["Create","Faktor baru"]],
+tb:[["Faktor","Industri","Kita","Gap"],["Harga","4","3","1"],["Stok unit","4","2","2"],["Suku cadang","3","5","2"],["Layanan uptime","1","5","4"]],
+fl:["Gambar strategy canvas","Isi ERRC","?Ada faktor baru?","Rancang value curve","Uji pasar (pilot)","Skalakan"],
+cl:[["Harga",25,3],["Stok unit",25,2],["Suku cadang",25,5],["Layanan uptime",25,5]],u:"Skor 1–5 nilai di mata pembeli"},
+{n:"McKinsey 7S",k:"Keselarasan organisasi",t:"Tujuh elemen yang harus selaras: Hard S (Strategy, Structure, Systems) dan Soft S (Shared values, Skills, Style, Staff). Shared values berada di pusat model.",
+f:["Skor keselarasan = Σ skor 7S ÷ 7 (skala 1–5)","Elemen kritis jika skor &lt; 3","Selaras jika rata-rata ≥ 3,5 dan tidak ada elemen &lt; 3"],
+ex:"Strategy 4, Structure 3, Systems 2, Shared values 4, Skills 3, Style 3, Staff 3 → 22 ÷ 7 = 3,14. Systems (2) kritis, perlu perbaikan.",
+cs:"Merger dua perusahaan tambang gagal karena Hard S selaras (strategi dan struktur) namun Style dan Shared values berbeda; integrasi budaya jadi prioritas.",
+dg:[["Strategy","Arah &amp; keunggulan"],["Structure","Hierarki, pembagian kerja"],["Systems","Proses, ERP, prosedur"],["Shared values","Inti budaya"],["Skills","Kompetensi"],["Style","Gaya kepemimpinan"],["Staff","Orang, talenta"]],
+tb:[["Elemen","Jenis","Skor"],["Strategy","Hard","4"],["Structure","Hard","3"],["Systems","Hard","2"],["Shared values","Soft","4"],["Skills","Soft","3"],["Style","Soft","3"],["Staff","Soft","3"]],
+fl:["Nilai 7 elemen","Hitung rata-rata","?Elemen &lt; 3?","Prioritaskan perbaikan","Selaraskan Hard–Soft","Ukur ulang"],
+cl:[["Strategy",1,4],["Structure",1,3],["Systems",1,2],["Shared values",1,4],["Skills",1,3],["Style",1,3],["Staff",1,3]],u:"Skor 1–5 per elemen"}
+];
+const $=s=>document.querySelector(s),nav=$("#nav"),P=$("#p");let cur=0;
+D.forEach((d,i)=>{const b=document.createElement("button");b.innerHTML=(i+1)+". "+d.n;b.onclick=()=>show(i);nav.appendChild(b)});
+function vr(c){const[v,r,i,o]=c;return !v?"Competitive disadvantage":!r?"Parity":!i?"Temporary advantage":!o?"Unused advantage":"Sustained advantage"}
+function show(i){cur=i;const d=D[i];[...nav.children].forEach((b,j)=>b.classList.toggle("on",j==i));
+const tb=d.tb,fl=d.fl.map(s=>s[0]=="?"?`<span class="st d">${s.slice(1)}</span>`:`<span class="st">${s}</span>`).join('<span class="ar">▶</span>');
+let calc;
+if(d.vrio){calc=`<div class="scroll"><table><tr><th>Sumber daya</th><th>V</th><th>R</th><th>I</th><th>O</th><th>Hasil</th></tr>${d.cl.map((r,k)=>`<tr data-k="${k}"><td><input type="text" value="${r[0]}"></td>${[0,1,2,3].map(()=>'<td><input type="checkbox"></td>').join("")}<td class="vo">Competitive disadvantage</td></tr>`).join("")}</table></div>`}
+else calc=`<div class="scroll"><table><tr><th>Faktor</th><th>Bobot</th><th>Skor</th></tr>${d.cl.map(r=>`<tr><td><input type="text" value="${r[0]}"></td><td><input type="number" class="w" min="0" value="${r[1]}"></td><td><input type="number" class="s" min="1" max="5" step="0.1" value="${r[2]}"></td></tr>`).join("")}</table></div><div class="res" id="res"></div><div class="bar"><i id="bar"></i></div><p id="int" style="color:var(--mu)"></p>`;
+P.innerHTML=`<div class="panel"><span class="tag">${d.k}</span><h2>${d.n}</h2>
+<h3>Teori</h3><p>${d.t}</p><h3>Diagram konsep</h3><div class="grid">${d.dg.map(x=>`<div class="tile"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>
+<h3>Rumus</h3>${d.f.map(x=>`<div class="formula">${x}</div>`).join("")}
+<h3>Contoh soal</h3><div class="box">${d.ex}</div><h3>Studi kasus</h3><div class="box">${d.cs}</div>
+<h3>Tabel</h3><div class="scroll"><table><tr>${tb[0].map(h=>`<th>${h}</th>`).join("")}</tr>${tb.slice(1).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</table></div>
+<h3>Flowchart</h3><div class="flow">${fl}</div>
+<h3>Kalkulator interaktif (${d.u||"centang V, R, I, O"})</h3><div class="calc">${calc}</div></div>`;
+const cp=P.querySelector(".calc");
+function upd(){if(d.vrio){cp.querySelectorAll("tr[data-k]").forEach(tr=>{tr.querySelector(".vo").textContent=vr([...tr.querySelectorAll("input[type=checkbox]")].map(x=>x.checked))});return}
+let sw=0,sx=0;cp.querySelectorAll("tr").forEach(tr=>{const w=tr.querySelector(".w");if(w){const a=+w.value||0,b=+tr.querySelector(".s").value||0;sw+=a;sx+=a*b}});
+const v=sw?sx/sw:0,mx=i==0?4:5,pc=Math.min(100,v/mx*100),g=d.inv?5-v:v;
+$("#res").textContent="Skor tertimbang: "+v.toFixed(2)+" / "+mx;$("#bar").style.width=(d.inv?100-pc:pc)+"%";
+$("#int").textContent=(d.inv?"Tekanan/risiko ":"Kekuatan ")+(v/mx<.5?"rendah":v/mx<.75?"sedang":"tinggi")+(d.inv?" → "+(v/mx<.5?"lingkungan relatif aman":v/mx<.75?"perlu pemantauan":"perlu mitigasi segera"):" → "+(v/mx<.5?"prioritas perbaikan":v/mx<.75?"cukup, terus tingkatkan":"posisi kuat"))}
+cp.addEventListener("input",upd);cp.addEventListener("change",upd);upd()}
+show(0);
+document.querySelectorAll("[data-n]").forEach(e=>{let n=0,t=+e.dataset.n;const iv=setInterval(()=>{e.textContent=++n;if(n>=t)clearInterval(iv)},90)});
+const c=$("#bg"),x=c.getContext("2d");let W,H,pts=[],m={x:-999,y:-999};
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight;pts=Array.from({length:Math.min(90,W/14|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,g:Math.random()<.2}))}
+addEventListener("resize",rs);addEventListener("mousemove",e=>{m.x=e.clientX;m.y=e.clientY});rs();
+const rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+function tick(){x.clearRect(0,0,W,H);pts.forEach((p,i)=>{if(!rm){p.x+=p.vx;p.y+=p.vy}if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+const dx=p.x-m.x,dy=p.y-m.y,dd=Math.hypot(dx,dy);if(dd<140&&!rm){p.x+=dx/dd*1.5;p.y+=dy/dd*1.5}
+x.fillStyle=p.g?"#f5b82e":"#22d3ee";x.beginPath();x.arc(p.x,p.y,p.g?2.6:1.8,0,7);x.fill();
+for(let j=i+1;j<pts.length;j++){const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle=`rgba(34,211,238,${.22*(1-d/130)})`;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});requestAnimationFrame(tick)}
+tick();
+</script></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI for Business — Landing Page Interaktif</title>
+<style>
+:root{--bg:#070b1f;--p:#101a3d;--gold:#ffc83d;--cy:#22e1ff;--mg:#ff3d8b;--tx:#e8ecff;--mu:#8e9acb}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{font:16px/1.6 "Segoe UI",Trebuchet MS,Arial,sans-serif;background:var(--bg);color:var(--tx)}
+#bg{position:fixed;inset:0;z-index:-1}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:18px;align-items:center;padding:12px 5vw;background:#070b1fcc;backdrop-filter:blur(8px);border-bottom:1px solid #ffffff14}
+nav b{color:var(--gold);margin-right:auto}nav a{color:var(--tx);text-decoration:none;font-size:14px}nav a:hover{color:var(--cy)}
+section{padding:70px 5vw;max-width:1150px;margin:auto}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+h1{font:800 clamp(38px,7vw,84px)/1.02 Georgia,serif;letter-spacing:-1px}
+h1 span{background:linear-gradient(90deg,var(--gold),var(--mg),var(--cy));-webkit-background-clip:text;color:transparent;background-size:200%;animation:sh 5s linear infinite}
+@keyframes sh{to{background-position:200%}}
+.sub{max-width:640px;color:var(--mu);margin:18px 0 26px;font-size:18px}
+.btn{display:inline-block;padding:12px 22px;border-radius:30px;background:var(--gold);color:#1a1300;font-weight:700;text-decoration:none;border:0;cursor:pointer;margin:4px 8px 4px 0;transition:transform .2s}
+.btn:hover{transform:translateY(-3px) scale(1.04)}.btn.o{background:none;color:var(--cy);border:2px solid var(--cy)}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:40px}.stats div{font-size:13px;color:var(--mu)}.stats b{display:block;font-size:34px;color:var(--gold)}
+h2{font:700 clamp(26px,4vw,42px) Georgia,serif;margin-bottom:6px}.lead{color:var(--mu);margin-bottom:26px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tab{padding:8px 15px;border-radius:20px;border:1px solid #ffffff30;background:#ffffff0a;color:var(--tx);cursor:pointer;font-size:14px}
+.tab.on,.tab:hover{background:var(--cy);color:#00222b;border-color:var(--cy)}
+.card{background:linear-gradient(135deg,#16214aee,#0c1432ee);border:1px solid #ffffff1c;border-radius:18px;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card h3{color:var(--gold);margin-bottom:8px}.card ul{padding-left:18px}.card li{margin:5px 0}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:10px;background:var(--mg);color:#fff;margin-bottom:8px}
+.tag.n{background:var(--cy);color:#00222b}
+.calc label{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-top:9px;color:var(--mu)}
+.calc input[type=range]{width:100%;accent-color:var(--gold)}.calc input[type=number]{width:110px;background:#0007;color:var(--tx);border:1px solid #fff3;border-radius:8px;padding:4px 8px}
+.out{margin-top:14px;padding:12px;border-radius:12px;background:#000a;border-left:4px solid var(--gold)}.out b{color:var(--cy);font-size:20px}
+.f{font-family:Consolas,monospace;font-size:13px;color:var(--gold);margin:6px 0}
+.bar{height:10px;border-radius:6px;background:#ffffff18;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cy),var(--mg));transition:width .4s}
+.q button{display:block;width:100%;text-align:left;margin:6px 0;padding:10px;border-radius:10px;border:1px solid #fff3;background:#ffffff0a;color:var(--tx);cursor:pointer}
+.q button:hover{border-color:var(--gold)}.ok{background:#1fa05a!important}.no{background:#b5263f!important}
+footer{text-align:center;padding:40px;color:var(--mu);font-size:13px}
+@media(prefers-reduced-motion:reduce){h1 span{animation:none}*{transition:none!important}}
+</style></head><body>
+<canvas id="bg"></canvas>
+<nav><b>AI for Business</b><a href="#materi">Materi</a><a href="#lab">Lab Rumus</a><a href="#kuis">Kuis</a><a href="#unduh">Unduh</a></nav>
+
+<section class="hero">
+<h1>Ubah AI jadi <span>keuntungan bisnis</span> nyata.</h1>
+<p class="sub">Ringkasan interaktif dari modul <i>AI for Business</i> (9 modul, 487 halaman), diperkaya kerangka kerja bisnis AI dan kalkulator rumus yang bisa Anda mainkan langsung.</p>
+<div><a class="btn" href="#materi">Mulai belajar</a><a class="btn o" href="#lab">Coba kalkulator</a></div>
+<div class="stats"><div><b id="c1">0</b>modul</div><div><b id="c2">0</b>kalkulator</div><div><b id="c3">0</b>halaman sumber</div></div>
+<p class="sub" style="font-size:13px">Tip: gerakkan mouse di latar belakang; klik untuk meledakkan neuron.</p>
+</section>
+
+<section id="materi"><h2>Peta Materi</h2><p class="lead">Pilih modul. Tag <span class="tag">PDF</span> = isi dari dokumen Anda, <span class="tag n">Tambahan</span> = teori pelengkap.</p>
+<div class="tabs" id="tabs"></div><div class="grid" id="mod"></div></section>
+
+<section id="lab"><h2>Laboratorium Rumus</h2><p class="lead">Geser slider dan lihat hasil langsung. Semua rumus ada juga di file Excel.</p>
+<div class="grid">
+<div class="card calc" id="k1"><h3>1. Neuron Buatan</h3><div class="f">z = Σ(wᵢ·xᵢ) + b &nbsp; σ(z)=1/(1+e⁻ᶻ) &nbsp; ReLU=max(0,z)</div></div>
+<div class="card calc" id="k2"><h3>2. Metrik Model (Deteksi Fraud)</h3><div class="f">Precision=TP/(TP+FP) · Recall=TP/(TP+FN)<br>F1=2PR/(P+R)</div></div>
+<div class="card calc" id="k3"><h3>3. ROI &amp; NPV Proyek AI</h3><div class="f">ROI=(Manfaat−Biaya)/Biaya · NPV=Σ(Nₜ/(1+r)ᵗ)−I</div></div>
+<div class="card calc" id="k4"><h3>4. Penghematan Otomasi (RPA)</h3><div class="f">Jam hemat = tugas × menit/60 × %otomasi</div></div>
+<div class="card calc" id="k5"><h3>5. Gradient Descent</h3><div class="f">w ← w − η·dL/dw , L=(w−3)²</div></div>
+</div></section>
+
+<section id="kuis"><h2>Kuis Cepat</h2><p class="lead">Uji pemahaman Anda.</p><div class="card q" id="quiz"></div></section>
+
+<section id="unduh"><h2>Unduh Spreadsheet</h2><p class="lead">Semua rumus dalam Excel dengan formula hidup: <b>AI_for_Business_Rumus.xlsx</b> (simpan di folder yang sama dengan halaman ini).</p>
+<a class="btn" href="AI_for_Business_Rumus.xlsx" download>Unduh Excel</a></section>
+<footer>Sumber: modul PDF AI for Business + kerangka umum (CRISP-DM, NIST AI RMF, EU AI Act, RAG, AI agent).</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const M=[
+{n:"1. Pengantar AI",p:["AI = sistem komputer yang meniru tugas kecerdasan manusia: ML, NLP, computer vision, robotika.","Pekerjaan tidak hanya hilang: ada yang tergeser (manufaktur, customer service, transportasi), tercipta (data, keamanan, etika AI), dan bertransformasi (dokter, guru).","Sejarah AI, jaringan saraf tiruan, dan dampak sosial serta tantangan etika (bias, privasi)."],t:["Gelombang AI: simbolik → ML → deep learning → generative AI → agen otonom.","Prinsip: manusia di dalam proses (human-in-the-loop) untuk keputusan berisiko tinggi."]},
+{n:"2. AI Sehari-hari",p:["Generasi teks: ChatGPT vs Gemini; GPT-4, GPT-3, BERT.","Gambar: DALL-E vs Midjourney; Stable Diffusion vs RunwayML.","Pengenalan gambar: TensorFlow vs PyTorch, Keras. Analisis data: RapidMiner vs KNIME. Terjemahan: Google Translate vs DeepL."],t:["Rumus prompt: Peran + Konteks + Tugas + Format + Batasan.","RAG: model menjawab dari dokumen perusahaan Anda sehingga halusinasi berkurang."]},
+{n:"3. AI di Tempat Kerja",p:["Business Intelligence dan peramalan tren pasar.","Model prediktif, algoritma rekomendasi, dan penilaian risiko.","Etika dan hukum: privasi data, transparansi dan keterjelasan algoritma."],t:["CRISP-DM: Business understanding → Data → Modeling → Evaluation → Deployment.","Regulasi: UU PDP Indonesia, EU AI Act (berbasis tingkat risiko), NIST AI RMF."]},
+{n:"4. AI untuk Keuangan",p:["Deteksi fraud: pola perilaku dan transaksi tidak wajar.","Optimasi arus kas lewat prediksi penerimaan dan pembayaran.","Rekonsiliasi, pelaporan, dan input data otomatis."],t:["Anomaly detection: Isolation Forest, autoencoder. Pantau Precision-Recall, bukan akurasi saja (data fraud sangat tidak seimbang).","Cash forecast: ARIMA/Prophet + skenario Monte Carlo."]},
+{n:"5. AI untuk Pemasaran",p:["Segmentasi pelanggan dan personalisasi 1-ke-1.","Personalisasi prediktif sepanjang customer lifecycle.","Analisis sentimen dan opini pelanggan."],t:["CLV = margin × retensi / (1 + diskon − retensi).","Segmentasi RFM + K-Means; uji A/B untuk validasi kampanye."]},
+{n:"6. AI untuk SDM",p:["Rekrutmen: screening CV, penjadwalan wawancara, prediksi keberhasilan.","Penilaian kinerja dan pelatihan yang dipersonalisasi.","Risiko: bias algoritma, perubahan budaya, perlindungan data."],t:["Audit fairness: bandingkan tingkat seleksi antar kelompok (aturan 4/5).","Prediksi turnover dari data keterlibatan dan masa kerja."]},
+{n:"7. AI untuk Operasi",p:["Identifikasi tugas yang bisa diotomasi: berulang, berbasis aturan.","Alat RPA, asisten virtual, chatbot, manajemen kalender dan tugas.","Manfaat: efisiensi, biaya turun, kualitas naik."],t:["Matriks prioritas: Dampak × Kelayakan. Mulai dari kuadran impact tinggi, effort rendah.","Predictive maintenance dan optimasi rantai pasok."]},
+{n:"8. Studi Kasus",p:["SDM: optimasi rekrutmen, pemutusan hubungan kerja dengan ChatGPT di Tesla, hubungan karyawan.","Keuangan: deteksi fraud, laporan keuangan di Repsol.","Pemasaran: kampanye personal, newsletter ChatGPT + DALL-E, sentimen. Operasi: rantai pasok, laporan Bentley, stok retail. Keputusan: risiko dan analisis pasar."],t:["Kerangka jawaban kasus: Masalah → Data → Model → Metrik → Risiko → Rencana 90 hari."]},
+{n:"9. Masa Depan AI",p:["Deep learning, hardware AI, arsitektur baru, AGI.","AI + komputasi kuantum, AI + IoT, AI di kesehatan, keberlanjutan, pendidikan.","Etika, regulasi, sains, serta inovasi dan kewirausahaan berbasis AI."],t:["Tren bisnis: agen AI, model kecil di perangkat (edge), data sintetis, AI governance sebagai fungsi korporat."]}];
+const tb=$("#tabs");M.forEach((m,i)=>{const b=document.createElement("button");b.className="tab";b.textContent=m.n;b.onclick=()=>show(i);tb.append(b)});
+function show(i){[...tb.children].forEach((b,j)=>b.classList.toggle("on",i==j));const m=M[i];
+$("#mod").innerHTML=`<div class="card"><span class="tag">PDF</span><h3>${m.n}</h3><ul>${m.p.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="card"><span class="tag n">Tambahan</span><h3>Teori pelengkap</h3><ul>${m.t.map(x=>`<li>${x}</li>`).join("")}</ul></div>`}
+show(0);
+function field(id,rows,fn){const el=$(id);const w=document.createElement("div");
+w.innerHTML=rows.map(r=>`<label>${r[1]}<span><input type="${r[5]||'range'}" data-k="${r[0]}" min="${r[2]}" max="${r[3]}" step="${r[6]||'any'}" value="${r[4]}"> <b class="v"></b></span></label>`).join("")+'<div class="out"></div><div class="bar"><i></i></div>';
+el.append(w);const run=()=>{const v={};w.querySelectorAll("input").forEach(i=>{v[i.dataset.k]=+i.value;if(i.type=="range")i.parentNode.querySelector(".v").textContent=(+i.value).toFixed(2)});const r=fn(v);w.querySelector(".out").innerHTML=r[0];w.querySelector(".bar i").style.width=Math.max(0,Math.min(100,r[1]))+"%"};w.oninput=run;run()}
+const rp=n=>"Rp"+Math.round(n).toLocaleString("id-ID");
+field("#k1",[["x1","x₁",0,1,.8],["x2","x₂",0,1,.4],["x3","x₃",0,1,.6],["w1","w₁",-2,2,1.2],["w2","w₂",-2,2,-.7],["w3","w₃",-2,2,.9],["b","bias b",-2,2,-.3]],v=>{const z=v.w1*v.x1+v.w2*v.x2+v.w3*v.x3+v.b,s=1/(1+Math.exp(-z));return[`z = <b>${z.toFixed(3)}</b><br>Sigmoid = <b>${s.toFixed(3)}</b> · ReLU = <b>${Math.max(0,z).toFixed(3)}</b>`,s*100]});
+field("#k2",[["tp","TP (fraud terdeteksi)",0,1e5,80,"number",1],["fp","FP (alarm palsu)",0,1e5,20,"number",1],["fn","FN (fraud lolos)",0,1e5,40,"number",1],["tn","TN (normal benar)",0,1e6,9860,"number",1]],v=>{const P=v.tp/(v.tp+v.fp||1),R=v.tp/(v.tp+v.fn||1),F=2*P*R/(P+R||1),A=(v.tp+v.tn)/((v.tp+v.fp+v.fn+v.tn)||1);return[`Precision <b>${(P*100).toFixed(1)}%</b> · Recall <b>${(R*100).toFixed(1)}%</b><br>F1 <b>${(F*100).toFixed(1)}%</b> · Akurasi ${(A*100).toFixed(1)}%<br><small>Akurasi tinggi bisa menipu pada data tidak seimbang.</small>`,F*100]});
+field("#k3",[["inv","Investasi awal (Rp juta)",0,1e5,500,"number",1],["ben","Manfaat/tahun (Rp juta)",0,1e5,300,"number",1],["cost","Biaya operasi/tahun (Rp juta)",0,1e5,80,"number",1],["yr","Umur proyek (tahun)",1,10,5,"range",1],["r","Diskonto",0,.3,.12]],v=>{let npv=-v.inv;for(let t=1;t<=v.yr;t++)npv+=(v.ben-v.cost)/Math.pow(1+v.r,t);const n=v.ben-v.cost,roi=(n*v.yr-v.inv)/(v.inv||1),pb=n>0?v.inv/n:Infinity;return[`ROI <b>${(roi*100).toFixed(0)}%</b> · Payback <b>${isFinite(pb)?pb.toFixed(1)+" th":"-"}</b><br>NPV <b>Rp${npv.toFixed(0)} juta</b>`,npv>0?60+Math.min(40,roi*10):15]});
+field("#k4",[["n","Tugas per bulan",0,1e5,2000,"number",1],["m","Menit per tugas",1,120,12,"range",1],["a","% otomasi",0,1,.7],["c","Biaya per jam (Rp)",0,1e6,60000,"number",1],["ai","Biaya AI/bulan (Rp)",0,1e9,8000000,"number",1]],v=>{const h=v.n*v.m/60*v.a,s=h*v.c,net=s-v.ai;return[`Jam hemat <b>${h.toFixed(0)}/bln</b><br>Hemat <b>${rp(s)}</b> · Bersih <b>${rp(net)}</b>`,net>0?70:20]});
+field("#k5",[["w","w awal",-10,10,8],["lr","learning rate η",0.01,1,.2],["st","jumlah langkah",1,30,6,"range",1]],v=>{let w=v.w,p=[w.toFixed(2)];for(let i=0;i<v.st;i++){w-=v.lr*2*(w-3);p.push(w.toFixed(2))}return[`w akhir <b>${w.toFixed(3)}</b> (optimum 3)<br><small>${p.slice(0,8).join(" → ")}</small>`,100-Math.min(100,Math.abs(w-3)*10)]});
+const Q=[["Metrik apa yang paling penting bila fraud sangat jarang?",["Akurasi","Precision dan Recall","Jumlah data"],1],["Fungsi activation yang mengeluarkan max(0,z)?",["ReLU","Sigmoid","Softmax"],0],["Langkah pertama CRISP-DM?",["Modeling","Deployment","Business understanding"],2],["Prioritas otomasi terbaik?",["Dampak tinggi, upaya rendah","Dampak rendah, upaya tinggi","Semua sekaligus"],0]];
+let sc=0,an=0;$("#quiz").innerHTML=Q.map((q,i)=>`<div class="qq"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button data-i="${i}" data-j="${j}">${o}</button>`).join("")}</div>`).join("")+'<h3 id="sc"></h3>';
+$("#quiz").onclick=e=>{const b=e.target;if(b.tagName!="BUTTON"||b.parentNode.dataset.d)return;b.parentNode.dataset.d=1;const ok=+b.dataset.j==Q[b.dataset.i][2];b.classList.add(ok?"ok":"no");sc+=ok;an++;if(ok)boom(innerWidth/2,innerHeight/2);$("#sc").textContent=`Skor: ${sc}/${Q.length}`};
+function cnt(id,to){let n=0;const t=setInterval(()=>{n+=Math.ceil(to/30);if(n>=to){n=to;clearInterval(t)}$(id).textContent=n},40)}
+cnt("#c1",9);cnt("#c2",5);cnt("#c3",487);
+const cv=$("#bg"),cx=cv.getContext("2d");let W,H,P=[],mx=-9e3,my=-9e3,B=[];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(110,W*H/14000|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:Math.random()-.5,vy:Math.random()-.5,c:["#ffc83d","#22e1ff","#ff3d8b"][Math.random()*3|0]}))}
+addEventListener("resize",rs);addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});addEventListener("click",e=>boom(e.clientX,e.clientY));
+function boom(x,y){for(let i=0;i<24;i++){const a=Math.random()*6.28,s=2+Math.random()*4;B.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:60,c:["#ffc83d","#22e1ff","#ff3d8b"][i%3]})}}
+rs();(function f(){cx.clearRect(0,0,W,H);const g=cx.createRadialGradient(W/2,0,0,W/2,0,H);g.addColorStop(0,"#1a2766");g.addColorStop(1,"#070b1f");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+for(const p of P){const dx=mx-p.x,dy=my-p.y,d=Math.hypot(dx,dy);if(d<180){p.vx+=dx/d*.04;p.vy+=dy/d*.04}p.vx*=.99;p.vy*=.99;p.x=(p.x+p.vx+W)%W;p.y=(p.y+p.vy+H)%H;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,2.2,0,6.28);cx.fill()}
+for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i].x-P[j].x,P[i].y-P[j].y);if(d<130){cx.strokeStyle=`rgba(34,225,255,${.25*(1-d/130)})`;cx.beginPath();cx.moveTo(P[i].x,P[i].y);cx.lineTo(P[j].x,P[j].y);cx.stroke()}}
+B=B.filter(b=>b.l-->0);for(const b of B){b.x+=b.vx;b.y+=b.vy;b.vy+=.06;cx.globalAlpha=b.l/60;cx.fillStyle=b.c;cx.fillRect(b.x,b.y,3,3)}cx.globalAlpha=1;requestAnimationFrame(f)})();
+</script></body></html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Management – Belajar Interaktif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e2a;--bg2:#121846;--ink:#eef1ff;--mute:#9aa4d6;--cy:#22e4ff;--mg:#ff3d9a;--li:#b6ff3b;--am:#ffb020;--line:rgba(255,255,255,.14);--card:rgba(18,24,70,.72);color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 Figtree,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.08;letter-spacing:-.02em}
+#bg{position:fixed;inset:0;z-index:-2;width:100%;height:100%}
+.blob{position:fixed;z-index:-3;border-radius:50%;filter:blur(90px);opacity:.45;animation:fl 14s ease-in-out infinite alternate}
+.b1{width:46vw;height:46vw;background:#5b2bff;top:-12vw;left:-10vw}.b2{width:38vw;height:38vw;background:var(--mg);bottom:-10vw;right:-8vw;animation-delay:-5s}.b3{width:28vw;height:28vw;background:#00b8d9;top:40vh;left:50vw;animation-delay:-9s;opacity:.3}
+@keyframes fl{to{transform:translate(6vw,8vh) scale(1.2)}}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--cy),var(--mg),var(--li));z-index:50}
+nav{position:sticky;top:4px;z-index:40;margin:0 auto;max-width:1100px;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:rgba(10,14,42,.78);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:99px;scrollbar-width:none}
+nav a{color:var(--mute);text-decoration:none;padding:6px 14px;border-radius:99px;white-space:nowrap;font-weight:500;font-size:15px;transition:.2s}
+nav a:hover,nav a.on{background:var(--cy);color:#04122a}
+section{max-width:1100px;margin:0 auto;padding:84px 20px 20px}
+h2{font-size:clamp(30px,5vw,52px);margin-bottom:12px}
+.lead{color:var(--mute);max-width:62ch;margin-bottom:28px}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
+.hero h1{font-size:clamp(46px,10vw,124px);font-weight:800}
+.hero h1 span{display:block;background:linear-gradient(95deg,var(--cy),var(--mg) 55%,var(--am));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.hero p{max-width:56ch;font-size:19px;color:#cfd6ff;margin:22px 0 28px}
+.btn{display:inline-block;padding:14px 26px;border-radius:14px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font:700 16px Figtree,sans-serif;transition:transform .15s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.pri{background:var(--li);color:#10200a;box-shadow:0 0 0 0 rgba(182,255,59,.6);animation:pu 2.2s infinite}
+@keyframes pu{70%{box-shadow:0 0 0 18px rgba(182,255,59,0)}}
+.sec{background:transparent;color:var(--ink);border:1.5px solid var(--cy);margin-left:8px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.stat{padding:12px 18px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.stat b{font:800 30px 'Bricolage Grotesque';color:var(--cy);display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;backdrop-filter:blur(8px)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tabs button{background:var(--card);color:var(--ink);border:1px solid var(--line);padding:10px 16px;border-radius:12px;cursor:pointer;font:600 15px Figtree;transition:.2s}
+.tabs button:hover{border-color:var(--cy)}
+.tabs button.on{background:var(--mg);border-color:var(--mg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.pt{border-left:4px solid var(--cy);padding:4px 0 4px 14px;margin:10px 0}
+.pt h4{font:700 17px Figtree;color:var(--cy)}
+.net{border-left-color:var(--li)}.net h4{color:var(--li)}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:2px 10px;border-radius:99px;background:var(--li);color:#10200a;margin-bottom:6px}
+.tag.pdf{background:var(--cy);color:#04122a}
+ul{padding-left:20px}li{margin:4px 0}
+.stars{display:flex;flex-direction:column;gap:8px}
+.stars button{display:flex;justify-content:space-between;align-items:center;text-align:left;gap:10px;padding:14px 18px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 16px Figtree;cursor:pointer;transition:.25s}
+.stars button.on{background:linear-gradient(90deg,var(--am),var(--mg));color:#1a0610;transform:translateX(10px)}
+.stars i{font-style:normal;letter-spacing:2px}
+#wheel{position:relative;width:min(100%,440px);aspect-ratio:1;margin:auto}
+#wheel button{position:absolute;transform:translate(-50%,-50%);width:27%;padding:6px 4px;font:600 11.5px/1.2 Figtree;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);cursor:pointer;transition:.2s}
+#wheel button:hover,#wheel button.on{background:var(--cy);color:#04122a;transform:translate(-50%,-50%) scale(1.12);z-index:3}
+#wheel .core{left:50%;top:50%;width:30%;aspect-ratio:1;border-radius:50%;background:radial-gradient(var(--mg),#6a1bff);font-size:13px;animation:pu2 2.5s infinite}
+@keyframes pu2{50%{box-shadow:0 0 40px var(--mg)}}
+label{display:block;font-size:14px;color:var(--mute);margin:10px 0 4px}
+input[type=number],input[type=text]{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--ink);font:500 16px Figtree}
+input:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--am);outline-offset:2px}
+.out{font:800 clamp(26px,4vw,40px) 'Bricolage Grotesque';color:var(--li);margin-top:8px;word-break:break-all}
+.hash{font:600 15px ui-monospace,Consolas,monospace;color:var(--cy);word-break:break-all}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0}
+.flow span{padding:8px 12px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);font-weight:600;font-size:14px}
+.flow em{color:var(--am);font-style:normal;font-weight:800;animation:mv 1.2s infinite}
+@keyframes mv{50%{transform:translateX(5px)}}
+.q button{display:block;width:100%;text-align:left;margin:6px 0;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 16px Figtree;cursor:pointer}
+.q button:hover{border-color:var(--cy)}.q .ok{background:#1f7a35;border-color:var(--li)}.q .no{background:#8a1f3f;border-color:var(--mg)}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--cy)}
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px}
+.dl div{padding:16px;border:1px dashed var(--cy);border-radius:16px}
+footer{max-width:1100px;margin:80px auto 40px;padding:0 20px;color:var(--mute);font-size:14px}
+@media(max-width:640px){body{font-size:16px}#wheel button{font-size:10px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div id="prog"></div>
+<nav id="nav"><a href="#home">Mulai</a><a href="#materi">Materi</a><a href="#dama">Roda DAMA</a><a href="#lab">Lab Interaktif</a><a href="#arsitektur">Arsitektur Modern</a><a href="#kuis">Kuis</a><a href="#unduh">Unduh</a></nav>
+
+<section id="home" class="hero">
+<h1>Data<span>Management</span></h1>
+<p>Dari open data sampai strategi pemasaran berbasis big data. Belajar dari 5 topik modul, mainkan simulasinya, lalu unduh spreadsheet rumusnya. Gerakkan kursor atau klik layar untuk memicu jaringan data.</p>
+<div><a class="btn pri" href="#unduh">Unduh toolkit</a><a class="btn sec" href="#materi">Mulai belajar</a></div>
+<div class="stats"><div class="stat"><b data-n="5">0</b>topik modul</div><div class="stat"><b data-n="11">0</b>area pengetahuan DAMA</div><div class="stat"><b data-n="5">0</b>level bintang open data</div><div class="stat"><b data-n="125">0</b>halaman sumber</div></div>
+</section>
+
+<section id="materi">
+<h2>Lima topik inti</h2>
+<p class="lead">Pilih topik. Label biru berasal dari PDF Anda, label hijau adalah tambahan teori dari internet.</p>
+<div class="tabs" id="tabs"></div>
+<div class="card" id="tabbody"></div>
+</section>
+
+<section id="bintang">
+<h2>Tangga 5 bintang open data</h2>
+<p class="lead">Klasifikasi Tim Berners-Lee. Klik setiap tingkat untuk melihat syarat dan contoh formatnya.</p>
+<div class="grid"><div class="stars" id="stars"></div><div class="card" id="starinfo"></div></div>
+</section>
+
+<section id="dama">
+<h2>Roda DAMA-DMBOK</h2>
+<p class="lead">Kerangka standar industri: Data Governance di pusat, 10 area lain mengelilinginya. Klik area untuk penjelasan singkat.</p>
+<div class="grid"><div id="wheel"></div><div class="card" id="wheelinfo"></div></div>
+</section>
+
+<section id="lab">
+<h2>Lab interaktif</h2>
+<p class="lead">Empat simulasi yang memakai konsep dari modul. Angka bisa Anda ubah sendiri.</p>
+<div class="grid">
+<div class="card"><h3>Denda GDPR</h3><p class="lead" style="margin:6px 0">Denda maksimum: nilai terbesar antara €20 juta dan 4% omzet global tahunan.</p><label for="om">Omzet global tahunan (juta euro)</label><input id="om" type="number" value="2500" min="0"><div class="out" id="fine"></div><small id="fbase" style="color:var(--mute)"></small></div>
+<div class="card"><h3>Sidik jari hash</h3><p class="lead" style="margin:6px 0">Hash mengubah data menjadi kode tetap yang tak bisa dibalik. Ubah satu huruf dan lihat kodenya berubah total.</p><label for="hin">Data asli</label><input id="hin" type="text" value="Budi, 1990-05-14, Jakarta"><label>Sidik jari (demo non-kriptografis, 53 bit)</label><div class="hash" id="hout"></div></div>
+<div class="card"><h3>Nilai pelanggan (CLV)</h3><label for="aov">Nilai order rata-rata (Rp)</label><input id="aov" type="number" value="350000"><label for="ord">Order per tahun</label><input id="ord" type="number" value="4"><label for="mar">Margin kotor (%)</label><input id="mar" type="number" value="40"><label for="yrs">Lama jadi pelanggan (tahun)</label><input id="yrs" type="number" value="3"><label for="cac">Biaya akuisisi / CAC (Rp)</label><input id="cac" type="number" value="100000"><div class="out" id="clv"></div><small id="clvn" style="color:var(--mute)"></small></div>
+<div class="card"><h3>Kimball atau Inmon?</h3><div class="tabs"><button class="on" data-m="k">Kimball (bottom-up)</button><button data-m="i">Inmon (top-down)</button></div><div id="km"></div></div>
+</div>
+</section>
+
+<section id="arsitektur">
+<h2>Arsitektur data modern</h2>
+<p class="lead">Tambahan dari internet: tiga pola yang sering dibandingkan perusahaan saat ini.</p>
+<div class="card" style="overflow-x:auto"><table><tr><th>Kriteria</th><th>Data warehouse</th><th>Lakehouse</th><th>Data mesh</th><th>Data fabric</th></tr>
+<tr><td>Filosofi</td><td>Terpusat, skema dirancang dulu</td><td>Menyatukan lake dan warehouse</td><td>Desentralisasi per domain</td><td>Virtualisasi dan abstraksi</td></tr>
+<tr><td>Jenis</td><td>Teknologi</td><td>Teknologi</td><td>Model organisasi</td><td>Teknologi</td></tr>
+<tr><td>Cocok untuk</td><td>BI dan laporan terstruktur</td><td>Semua jenis data, termasuk ML</td><td>Perusahaan besar, tim pusat jadi bottleneck</td><td>Sumber data tersebar</td></tr>
+<tr><td>Risiko</td><td>Kaku, mahal untuk data tak terstruktur</td><td>Jadi "data swamp" tanpa pemilik</td><td>Butuh tim lintas fungsi yang matang</td><td>Kinerja bergantung sistem sumber</td></tr></table>
+<div class="pt net" style="margin-top:16px"><h4>Data mesh punya empat prinsip</h4>Kepemilikan per domain, data sebagai produk, infrastruktur swalayan, dan tata kelola terfederasi. Banyak perusahaan memakai lakehouse sebagai platform lalu menerapkan prinsip mesh di atasnya.</div>
+<div class="pt net"><h4>Prinsip FAIR</h4>Findable, Accessible, Interoperable, Reusable: data mudah ditemukan, diakses lewat protokol standar, bisa saling terhubung, dan dapat dipakai ulang.</div></div>
+</section>
+
+<section id="kuis">
+<h2>Uji pemahaman</h2>
+<p class="lead">Lima soal. Skor tampil di akhir.</p>
+<div class="card q" id="quiz"></div>
+</section>
+
+<section id="unduh">
+<h2>Unduh toolkit</h2>
+<p class="lead">Spreadsheet berisi 111 rumus aktif. Sel kuning berisi input yang boleh Anda ubah.</p>
+<div class="card"><a class="btn pri" href="Data_Management_Toolkit.xlsx" download>Unduh Data_Management_Toolkit.xlsx</a>
+<div class="dl"><div><b>1. Open Data 5 Star</b><br>Skor kematangan tiap dataset</div><div><b>2. Kualitas Data</b><br>Completeness, uniqueness, validity</div><div><b>3. GDPR dan k-Anonymity</b><br>Denda dan ukuran kelompok dengan COUNTIFS</div><div><b>4. DW Sizing</b><br>Proyeksi ukuran warehouse 5 tahun</div><div><b>5. Marketing KPI</b><br>CAC, CLV, ROI, churn, segmentasi RFM</div></div>
+<p style="margin-top:16px;color:var(--mute)">Simpan file xlsx di folder yang sama dengan halaman ini agar tombol unduh berfungsi. Untuk menyimpan halaman, gunakan Ctrl+S (Cmd+S di Mac) di browser.</p></div>
+</section>
+
+<footer>Sumber: modul PDF "Data Management – Big Data &amp; Analytics" (Topik 1–5) dan tambahan dari DAMA International (DMBOK2), Fivetran, LatentView, dan Databricks. Angka pada simulasi hanya ilustrasi. Bukan nasihat hukum.</footer>
+
+<script>
+// ===== Background: jaringan data interaktif =====
+const cv=document.getElementById('bg'),cx=cv.getContext('2d');let W,H,P=[],M={x:-999,y:-999},RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const COL=['#22e4ff','#ff3d9a','#b6ff3b','#ffb020'];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;const n=Math.min(110,Math.floor(W*H/14000));P=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.8,vy:(Math.random()-.5)*.8,c:COL[Math.random()*4|0],r:1.5+Math.random()*2}))}
+addEventListener('resize',rs);rs();
+addEventListener('pointermove',e=>{M.x=e.clientX;M.y=e.clientY});
+addEventListener('pointerdown',e=>{P.forEach(p=>{const dx=p.x-e.clientX,dy=p.y-e.clientY,d=Math.hypot(dx,dy)||1;if(d<260){p.vx+=dx/d*5;p.vy+=dy/d*5}})});
+function draw(){cx.clearRect(0,0,W,H);
+for(let i=0;i<P.length;i++){const p=P[i];p.x+=p.vx;p.y+=p.vy;p.vx*=.99;p.vy*=.99;if(Math.abs(p.vx)<.25)p.vx+=(Math.random()-.5)*.1;if(Math.abs(p.vy)<.25)p.vy+=(Math.random()-.5)*.1;
+if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+const dm=Math.hypot(p.x-M.x,p.y-M.y);if(dm<170){p.vx+=(M.x-p.x)*.0006;p.vy+=(M.y-p.y)*.0006;cx.strokeStyle='rgba(255,255,255,'+(1-dm/170)*.6+')';cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(M.x,M.y);cx.stroke()}
+cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill();
+for(let j=i+1;j<P.length;j++){const q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<120){cx.strokeStyle='rgba(120,160,255,'+(1-d/120)*.35+')';cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(q.x,q.y);cx.stroke()}}}
+if(!RM)requestAnimationFrame(draw)}
+draw();
+// ===== Progress + nav + counters =====
+const pr=document.getElementById('prog'),links=[...document.querySelectorAll('#nav a')];
+addEventListener('scroll',()=>{pr.style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%';let cur=links[0];links.forEach(a=>{const s=document.querySelector(a.hash);if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=a});links.forEach(a=>a.classList.toggle('on',a===cur))},{passive:true});
+document.querySelectorAll('[data-n]').forEach(el=>{const t=+el.dataset.n;let v=0;const s=()=>{v+=Math.ceil(t/40);if(v>=t)v=t;el.textContent=v;if(v<t)setTimeout(s,35)};s()});
+// ===== Topik =====
+const T=[
+{n:'1. Open Data',s:[['pdf','Definisi','Data yang bebas digunakan, digunakan ulang, dan didistribusikan siapa pun, dengan syarat paling jauh atribusi dan berbagi serupa (Open Knowledge Foundation). Era open data dimulai 2009 saat Inggris meluncurkan data.gov.uk.'],['pdf','Tiga syarat data terbuka','Tersedia utuh dalam bentuk nyaman, dapat dipakai ulang dan didistribusikan, serta diakses universal tanpa pembatasan, termasuk pembatasan komersial atau sektor. Tujuan utamanya interoperabilitas. Data pribadi dan keamanan nasional dikecualikan.'],['pdf','Cara membuka data','Tiga aturan: sederhana (mulai dari sedikit data), jaga kontak dengan pengguna, pahami regulasi. Langkahnya: pilih data, buka secara legal dengan lisensi terbuka, buka secara teknis dengan format yang mudah diakses (API), lalu publikasikan dan sosialisasikan.'],['pdf','Teknologi: CKAN dan Socrata','CKAN adalah perangkat lunak open source untuk portal data, ditulis dengan Python, menyimpan data di PostgreSQL, dan memakai Solr untuk pencarian.'],['pdf','Web scraping','Bot yang mengambil data dari situs. Sah selama hanya mengakses data yang memang disediakan penyedia, dan tidak masuk ke data privat. Situs juga perlu tahu cara menahan bot yang tidak diinginkan.'],['net','Tambahan: prinsip FAIR','Findable, Accessible, Interoperable, Reusable. Prinsip ini melengkapi 5 bintang dengan fokus pada metadata dan protokol standar.']]},
+{n:'2. Tata Kelola Data',s:[['pdf','Mengapa perlu tata kelola','Data adalah elemen utama keputusan perusahaan, sehingga keamanan dan kontrolnya harus direncanakan, dipantau, dan dikendalikan.'],['pdf','Dewan tata kelola','Terdiri dari Chief Data Officer (CDO, mengelola data dan transformasi digital), Data Protection Officer (DPO, perlindungan), Chief Marketing Officer (CMO), dan analis data (CDA).'],['pdf','Budaya berbasis data','Keputusan berdasarkan data membawa risiko bila tidak dilakukan dengan disiplin. Dokumen menyebut 65% perusahaan sudah punya CDO dan diperkirakan 90% pada 2025.'],['net','Tambahan: 11 area DAMA-DMBOK','Governance, Architecture, Modeling, Storage, Security, Integration, Document &amp; Content, Reference &amp; Master Data, DW &amp; BI, Metadata, Data Quality. Lihat Roda DAMA di bawah.'],['net','Tambahan: tetapkan pemilik data lebih awal','Praktik terbaik: tentukan siapa pemilik sebuah data sebelum sistem bergantung padanya, bukan sesudahnya.']]},
+{n:'3. Privasi Data',s:[['pdf','Tiga konsep berbeda','Perlindungan data (menjaga data secara fisik), keamanan data (memastikan kebenaran data), dan privasi data (menjaga agar informasi tidak terungkap) menurut modul.'],['pdf','GDPR Eropa','Berlaku bagi penduduk UE dan mengikat perusahaan di luar UE. Denda €20 juta atau 4% omzet global. Hak: persetujuan, portabilitas, diberi informasi, hapus atau ubah data. Ada controller dan processor.'],['pdf','Privacy by design (6 prinsip)','Proaktif, privasi sebagai default, risiko yang dapat diterima, fungsionalitas penuh, privasi sepanjang siklus hidup, serta informasi dan pelatihan.'],['pdf','Teknik anonimisasi','Hashing (sidik jari tak bisa dibalik, HMAC untuk kerahasiaan), enkripsi, time stamp, dan lapisan anonimisasi.'],['net','Tambahan: k-anonymity','Setiap kombinasi atribut pengenal semu (usia, kota) harus dimiliki minimal k orang. Coba hitung di spreadsheet sheet 3.'],['net','Tambahan: UU PDP Indonesia','Indonesia memiliki UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi dengan semangat serupa GDPR.']]},
+{n:'4. Penyimpanan Data',s:[['pdf','Data warehouse (DW)','Sistem penyimpanan digital untuk volume besar dari berbagai sumber. Arsitektur terdiri dari lapisan data, semantik, dan analitik. Normalisasi menghapus data berulang agar hemat ruang.'],['pdf','Kimball','Model dimensional tidak ternormalisasi, berpusat pada pengguna dan iteratif. Mulai dari fakta (misalnya penjualan) dan dimensi (produk, toko, waktu), lalu ETL.'],['pdf','Inmon','Bapak data warehousing: DW itu terorientasi subjek, terintegrasi, non-volatile, dan berubah menurut waktu. Dibangun dari seluruh perusahaan lalu turun ke data mart (CIF).'],['pdf','Tren terbaru','AI, otomasi proses, dan penyimpanan cloud mengubah cara data disimpan.'],['net','Tambahan: lakehouse, mesh, fabric','Lihat tabel Arsitektur modern. Lakehouse menyatukan lake dan warehouse; mesh adalah model organisasi.']]},
+{n:'5. Strategi dan Data',s:[['pdf','Pemasaran strategis','Pemasaran mencakup penjualan dan iklan. Teknologi memudahkan segmentasi dan penargetan audiens di setiap kampanye.'],['pdf','Jenis segmentasi','Geografis, demografis (usia, pekerjaan, gender), psikografis (gaya hidup), perilaku, dan pasar bisnis ke bisnis.'],['pdf','Big data dan hasil','Analisis masif dan respons real-time mendekatkan perusahaan ke pelanggan. Contoh kasus dalam modul: penjualan naik 23% dan biaya turun hampir 30%.'],['net','Tambahan: RFM','Segmentasi pelanggan dari Recency, Frequency, Monetary. Lihat sheet 5 untuk contoh skor otomatis.'],['net','Tambahan: rasio CLV:CAC','Praktik umum: CLV sekitar 3 kali CAC atau lebih dianggap sehat. Coba di kalkulator CLV.']]}];
+const tb=document.getElementById('tabs'),tbd=document.getElementById('tabbody');
+T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.onclick=()=>show(i);tb.append(b)});
+function show(i){[...tb.children].forEach((b,j)=>b.classList.toggle('on',i===j));tbd.innerHTML=T[i].s.map(x=>`<div class="pt ${x[0]=='net'?'net':''}"><span class="tag ${x[0]}">${x[0]=='net'?'Internet':'Dari PDF'}</span><h4>${x[1]}</h4>${x[2]}</div>`).join('')}
+show(0);
+// ===== Bintang =====
+const S=[['Lisensi terbuka','Data tersedia dalam format apa pun dengan lisensi terbuka, misalnya PDF atau gambar. Mudah dilihat dan dibagikan, sulit dibaca mesin.','PDF, gambar'],['Terstruktur','Data terstruktur, misalnya tabel Excel. Bisa diolah, tetapi butuh perangkat lunak berformat proprietary.','XLSX'],['Non-proprietary','Format terbuka yang dapat dibuka siapa saja tanpa lisensi berbayar.','CSV, ODS, JSON'],['Linked','Memakai URL dan standar seperti RDF sehingga data bisa ditunjuk dan diberi anotasi.','RDF, ATOM'],['Terhubung ke data lain','Data ditautkan ke data milik pihak lain, jadi saling melengkapi di web.','Linked Open Data']];
+const st=document.getElementById('stars'),si=document.getElementById('starinfo');
+S.forEach((s,i)=>{const b=document.createElement('button');b.innerHTML=`<span>${s[0]}</span><i>${'★'.repeat(i+1)}</i>`;b.onclick=()=>{[...st.children].forEach((x,j)=>x.classList.toggle('on',j<=i&&j==i));si.innerHTML=`<h3>${i+1} bintang: ${s[0]}</h3><p style="margin:10px 0">${s[1]}</p><p><b>Contoh format:</b> ${s[2]}</p>`};st.prepend(b)});
+st.lastChild.click();
+// ===== Roda DAMA =====
+const D=[['Data Architecture','Struktur dan aliran data: di mana data berada dan bergerak.'],['Data Modeling &amp; Design','Merancang model konseptual, logis, dan fisik.'],['Storage &amp; Operations','Mengelola basis data dan operasinya.'],['Data Security','Menjaga kerahasiaan, integritas, dan ketersediaan.'],['Integration &amp; Interop.','Memindahkan dan menggabungkan data antar sistem (ETL).'],['Document &amp; Content','Mengelola data tak terstruktur seperti dokumen.'],['Reference &amp; Master Data','Data bersama yang konsisten: pelanggan, produk, kode.'],['DW &amp; BI','Data warehouse dan business intelligence.'],['Metadata','Data tentang data: katalog, kamus, lineage.'],['Data Quality','Akurasi, kelengkapan, konsistensi, dan kelayakan pakai.']];
+const wh=document.getElementById('wheel'),wi=document.getElementById('wheelinfo');
+function wset(t,d){wi.innerHTML=`<h3>${t}</h3><p style="margin-top:10px">${d}</p>`}
+const core=document.createElement('button');core.className='core';core.innerHTML='Data Governance';core.style.cssText='left:50%;top:50%;width:30%;aspect-ratio:1;border-radius:50%;background:radial-gradient(#ff3d9a,#6a1bff);color:#fff;border:0';core.onclick=()=>wset('Data Governance','Pusat roda: perencanaan, pengawasan, dan kontrol atas pengelolaan dan penggunaan data. Menentukan siapa memutuskan apa.');wh.append(core);
+D.forEach((d,i)=>{const a=i/D.length*Math.PI*2-Math.PI/2,b=document.createElement('button');b.innerHTML=d[0];b.style.left=50+38*Math.cos(a)+'%';b.style.top=50+38*Math.sin(a)+'%';b.onclick=()=>{[...wh.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');wset(d[0],d[1])};wh.append(b)});
+core.click();
+// ===== Lab =====
+const f=n=>n.toLocaleString('id-ID',{maximumFractionDigits:0}),$=id=>document.getElementById(id);
+function gd(){const o=+$('om').value||0,a=.04*o,m=Math.max(20,a);$('fine').textContent='€'+f(m)+' juta';$('fbase').textContent=a>20?'Dasar: 4% omzet (€'+f(a)+' juta)':'Dasar: batas tetap €20 juta (4% omzet hanya €'+f(a)+' juta)'}
+$('om').oninput=gd;gd();
+function h53(s){let h1=0xdeadbeef,h2=0x41c6ce57;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^h1>>>16,2246822507)^Math.imul(h2^h2>>>13,3266489909);h2=Math.imul(h2^h2>>>16,2246822507)^Math.imul(h1^h1>>>13,3266489909);return(4294967296*(2097151&h2)+(h1>>>0)).toString(16).padStart(14,'0')}
+$('hin').oninput=()=>$('hout').textContent=h53($('hin').value);$('hout').textContent=h53($('hin').value);
+function cl(){const c=+$('aov').value*+$('ord').value*(+$('mar').value/100)*+$('yrs').value,k=+$('cac').value||1,r=c/k;$('clv').textContent='Rp '+f(c);$('clvn').textContent='CLV : CAC = '+r.toFixed(1)+'x. '+(r>=3?'Sehat (3x atau lebih).':r>=1?'Tipis, perlu efisiensi.':'Merugi.')}
+['aov','ord','mar','yrs','cac'].forEach(i=>$(i).oninput=cl);cl();
+const KM={k:{t:'Mulai dari kebutuhan satu area bisnis, bangun data mart dimensional, lalu gabungkan.',fl:['Identifikasi fakta (penjualan)','Dimensi (produk, toko, waktu)','Desain ETL','Data mart','Gabung jadi DW'],p:'Cepat memberi hasil, berpusat pada pengguna, iteratif. Model tidak ternormalisasi.'},i:{t:'Mulai dari DW perusahaan yang ternormalisasi, lalu turunkan ke data mart per subjek (CIF).',fl:['Sumber data','ETL','DW terpusat (ternormalisasi)','Data mart tematik','Pengguna'],p:'Kuat dan tahan perubahan bisnis, tetapi butuh waktu dan ETL tambahan.'}};
+const kb=document.querySelectorAll('[data-m]');function km(m){kb.forEach(b=>b.classList.toggle('on',b.dataset.m==m));const x=KM[m];$('km').innerHTML=`<p>${x.t}</p><div class="flow">${x.fl.map(a=>`<span>${a}</span>`).join('<em>›</em>')}</div><p style="color:var(--mute)">${x.p}</p>`}
+kb.forEach(b=>b.onclick=()=>km(b.dataset.m));km('k');
+// ===== Kuis =====
+const Q=[['Dalam skema 5 bintang, format CSV masuk bintang ke berapa?',['1','2','3','5'],2],['Siapa yang mengelola transformasi digital dan "memasak" data untuk departemen lain?',['DPO','CDO','CMO','Controller'],1],['Denda maksimum GDPR adalah...',['Selalu €20 juta','Selalu 4% omzet','Yang lebih besar antara €20 juta dan 4% omzet','€4 juta'],2],['Pendekatan mana yang membangun DW perusahaan dulu, baru data mart?',['Kimball','Inmon','Web scraping','CKAN'],1],['Segmentasi menurut gaya hidup disebut...',['Geografis','Demografis','Psikografis','Perilaku'],2]];
+let qi=0,sc=0;const qz=$('quiz');
+function rq(){if(qi>=Q.length){qz.innerHTML=`<h3>Skor Anda: ${sc} / ${Q.length}</h3><p style="margin:10px 0">${sc==Q.length?'Sempurna. Lanjut ke spreadsheet.':'Baca lagi topik yang meleset, lalu coba ulang.'}</p><button class="btn pri" id="rt" style="width:auto">Ulangi</button>`;$('rt').onclick=()=>{qi=0;sc=0;rq()};return}
+const q=Q[qi];qz.innerHTML=`<p><b>Soal ${qi+1} dari ${Q.length}</b></p><h3 style="margin:8px 0 12px">${q[0]}</h3>`;q[1].forEach((o,i)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>{[...qz.querySelectorAll('button')].forEach((x,j)=>{x.disabled=true;if(j==q[2])x.classList.add('ok')});if(i==q[2])sc++;else b.classList.add('no');setTimeout(()=>{qi++;rq()},1100)};qz.append(b)})}
+rq();
+</script>
+</body>
+</html>

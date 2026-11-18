@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agile Methodologies — Landing Page Interaktif</title>
+<style>
+:root{--bg:#0a0918;--lm:#b6ff3b;--vi:#8b5cff;--co:#ff5e7e;--cy:#31d8ff;--tx:#ebe9fb;--mu:#948fb8}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{font:16px/1.6 "Segoe UI",Trebuchet MS,Arial,sans-serif;background:var(--bg);color:var(--tx)}
+#bg{position:fixed;inset:0;z-index:-1}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:18px;align-items:center;padding:12px 5vw;background:#0a0918d9;backdrop-filter:blur(8px);border-bottom:1px solid #ffffff14}
+nav b{color:var(--lm);margin-right:auto}nav a{color:var(--tx);text-decoration:none;font-size:14px}nav a:hover{color:var(--cy)}
+section{padding:70px 5vw;max-width:1150px;margin:auto}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+h1{font:800 clamp(38px,7vw,82px)/1.02 Georgia,serif;letter-spacing:-1px}
+h1 span{background:linear-gradient(90deg,var(--lm),var(--cy),var(--co));-webkit-background-clip:text;color:transparent;background-size:200%;animation:sh 5s linear infinite}
+@keyframes sh{to{background-position:200%}}
+.sub{max-width:650px;color:var(--mu);margin:18px 0 26px;font-size:18px}
+.btn{display:inline-block;padding:12px 22px;border-radius:30px;background:var(--lm);color:#14200a;font-weight:700;text-decoration:none;cursor:pointer;margin:4px 8px 4px 0;transition:transform .2s}
+.btn:hover{transform:translateY(-3px) scale(1.04)}.btn.o{background:none;color:var(--cy);border:2px solid var(--cy)}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:40px}.stats div{font-size:13px;color:var(--mu)}.stats b{display:block;font-size:34px;color:var(--lm)}
+h2{font:700 clamp(26px,4vw,42px) Georgia,serif;margin-bottom:6px}.lead{color:var(--mu);margin-bottom:26px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tab{padding:8px 15px;border-radius:20px;border:1px solid #ffffff30;background:#ffffff0a;color:var(--tx);cursor:pointer;font-size:14px}
+.tab.on,.tab:hover{background:var(--vi);color:#fff;border-color:var(--vi)}
+.card{background:linear-gradient(135deg,#1b1740ee,#0e0c26ee);border:1px solid #ffffff1c;border-radius:18px;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.card h3{color:var(--lm);margin-bottom:8px}.card ul{padding-left:18px}.card li{margin:5px 0}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:10px;background:var(--co);color:#fff;margin-bottom:8px}.tag.n{background:var(--cy);color:#00222b}
+.calc label{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-top:9px;color:var(--mu)}
+.calc input[type=range]{width:100%;accent-color:var(--lm)}.calc input[type=number]{width:100px;background:#0007;color:var(--tx);border:1px solid #fff3;border-radius:8px;padding:4px 8px}
+.out{margin-top:14px;padding:12px;border-radius:12px;background:#000a;border-left:4px solid var(--lm)}.out b{color:var(--cy);font-size:19px}
+.f{font-family:Consolas,monospace;font-size:13px;color:var(--lm);margin:6px 0}
+.bar{height:10px;border-radius:6px;background:#ffffff18;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--vi),var(--lm));transition:width .4s}
+.q button{display:block;width:100%;text-align:left;margin:6px 0;padding:10px;border-radius:10px;border:1px solid #fff3;background:#ffffff0a;color:var(--tx);cursor:pointer}
+.q button:hover{border-color:var(--lm)}.ok{background:#1fa05a!important}.no{background:#b5263f!important}
+footer{text-align:center;padding:40px;color:var(--mu);font-size:13px}
+@media(prefers-reduced-motion:reduce){h1 span{animation:none}*{transition:none!important}}
+</style></head><body>
+<canvas id="bg"></canvas>
+<nav><b>Agile Methodologies</b><a href="#materi">Materi</a><a href="#lab">Lab Rumus</a><a href="#kuis">Kuis</a><a href="#unduh">Unduh</a></nav>
+
+<section class="hero">
+<h1>Kirim nilai lebih cepat, <span>belajar di setiap sprint.</span></h1>
+<p class="sub">Ringkasan interaktif modul <i>Metodologi Agile</i> (3 topik, 91 halaman: manajemen produk, lean startup, manajemen agile), diperkaya teori dan kalkulator untuk tim Anda.</p>
+<div><a class="btn" href="#materi">Mulai belajar</a><a class="btn o" href="#lab">Coba kalkulator</a></div>
+<div class="stats"><div><b id="c1">0</b>topik</div><div><b id="c2">0</b>kalkulator</div><div><b id="c3">0</b>halaman sumber</div></div>
+<p class="sub" style="font-size:13px">Tip: kartu di latar bergerak dari To Do sampai Done. Dekatkan mouse untuk mempercepatnya, klik untuk menambah kartu dan konfeti.</p>
+</section>
+
+<section id="materi"><h2>Peta Materi</h2><p class="lead">Tag <span class="tag">PDF</span> = isi dokumen Anda, <span class="tag n">Tambahan</span> = teori pelengkap.</p>
+<div class="tabs" id="tabs"></div><div class="grid" id="mod"></div></section>
+
+<section id="lab"><h2>Laboratorium Rumus</h2><p class="lead">Geser slider atau ubah angka. Semua rumus ada juga di file Excel.</p>
+<div class="grid">
+<div class="card calc" id="k1"><h3>1. Velocity &amp; Prakiraan Sprint</h3><div class="f">Velocity = rata² poin 3 sprint terakhir<br>Sprint tersisa = ⌈Backlog / Velocity⌉</div></div>
+<div class="card calc" id="k2"><h3>2. Burndown Sprint</h3><div class="f">Ideal sisa = Total × (1 − hari/durasi)</div></div>
+<div class="card calc" id="k3"><h3>3. Prioritas RICE (Tambahan)</h3><div class="f">Skor = Reach × Impact × Confidence / Effort<br><small>Beda dari RICE Blue Ocean di PDF (Reduce-Increase-Create-Eliminate).</small></div></div>
+<div class="card calc" id="k4"><h3>4. Kanban: Hukum Little</h3><div class="f">Lead time = WIP / Throughput</div></div>
+<div class="card calc" id="k5"><h3>5. Mesin Pertumbuhan Lean Startup</h3><div class="f">k = undangan × konversi &nbsp; LTV = ARPU×margin/churn</div></div>
+<div class="card calc" id="k6"><h3>6. Kapasitas Sprint</h3><div class="f">Jam = (anggota×hari − cuti) × jam/hari × faktor fokus</div></div>
+</div></section>
+
+<section id="kuis"><h2>Kuis Cepat</h2><p class="lead">Uji pemahaman Anda.</p><div class="card q" id="quiz"></div></section>
+
+<section id="unduh"><h2>Unduh Spreadsheet</h2><p class="lead">Rumus hidup: velocity, burndown, skor RICE, Little's Law, LTV/CAC, kapasitas: <b>Agile_Rumus.xlsx</b> (simpan satu folder dengan halaman ini).</p>
+<a class="btn" href="Agile_Rumus.xlsx" download>Unduh Excel</a></section>
+<footer>Sumber: modul PDF Metodologi Agile + Agile Manifesto, Scrum Guide, Kanban, Lean Startup, SAFe.</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const M=[
+{n:"1. Manajemen Produk",p:["Manajemen produk = mengelola siklus hidup produk: deteksi kebutuhan, validasi, desain, peluncuran, evolusi. Titik temu bisnis, UX, dan teknologi.","Ideasi dari mendengarkan pelanggan (mendengarkan aktif), berpikir visual, peta empati, persona pengguna.","MVP dan siklus Build-Measure-Learn, matriks prioritas. Peran product manager dan product owner.","Kurva nilai dan matriks RICE ala Blue Ocean (Reduce, Increase, Create, Eliminate); dasar UX/UI."],t:["User story: 'Sebagai [peran], saya ingin [fitur] agar [manfaat]'. Uji dengan INVEST.","Kano model: kebutuhan dasar, kinerja, dan pembeda. Value proposition canvas."]},
+{n:"2. Lean Startup",p:["Visi produk, tim terbaik, tanggung jawab, prioritas, motivasi.","Validated learning dan pemborosan; desain sprint; manajemen dengan pengukuran (innovation accounting).","Tiga mesin pertumbuhan: sticky (retensi), viral (koefisien viral), paid (LTV vs biaya akuisisi).","Inovasi berkelanjutan vs inovasi disruptif; mempercepat lewat umpan balik."],t:["Pivot atau persevere: putuskan berdasarkan metrik, bukan perasaan.","Metrik pembuktian (actionable) vs metrik pajangan (vanity)."]},
+{n:"3. Dasar Agile",p:["4 nilai Manifesto: individu dan interaksi di atas proses dan alat; produk berfungsi di atas dokumentasi lengkap; kolaborasi pelanggan di atas negosiasi kontrak; respons terhadap perubahan di atas mengikuti rencana.","12 prinsip Agile Manifesto dan keuntungan agile."],t:["Manifesto lahir Februari 2001 (17 penanda tangan, Snowbird, Utah).","Mindset: iteratif, inkremental, transparansi, inspeksi, adaptasi."]},
+{n:"4. Framework Agile",p:["Scrum: product backlog, sprint, tiga peran (Product Owner, Scrum Master, tim pengembang), review dan retrospektif, bagan burndown.","Kanban papan visual; XP (pair programming, iterasi cepat); Crystal Clear; DSDM; FDD; SAFe.","Agile vs Waterfall (linier tanpa iterasi), serta Agile vs Scrum."],t:["Event Scrum: Sprint Planning, Daily (15 menit), Review, Retrospective; sprint maks. 1 bulan.","Artefak: Product Backlog, Sprint Backlog, Increment; komitmen: Product Goal, Sprint Goal, Definition of Done."]},
+{n:"5. Agile vs Waterfall",p:["Waterfall: urutan linier, perubahan mahal, umpan balik di akhir.","Agile: iterasi pendek, umpan balik berkelanjutan, perubahan disambut."],t:["Cocok Waterfall: scope tetap dan regulasi ketat (mis. konstruksi tertentu). Cocok Agile: ketidakpastian tinggi.","Hibrida: perencanaan Waterfall di level program, eksekusi Agile di level tim."]},
+{n:"6. Metrik & Kematangan",p:["Model kematangan agile dan metrik: laporan velocity, burn up/down, Cumulative Flow Diagram (CFD), kolom progres kumulatif.","Prinsip: metrik harus berdasarkan roadmap."],t:["Flow metrics: lead time, cycle time, WIP, throughput; Hukum Little.","DORA: deployment frequency, lead time for changes, change failure rate, MTTR."]},
+{n:"Tambahan: Skala",p:["Pengantar SAFe dalam modul (metrik SAFe di Azure Boards)."],t:["Kerangka skala: SAFe, LeSS, Scrum@Scale, Spotify model.","OKR menyelaraskan tujuan; PI Planning di SAFe tiap 8-12 minggu."]}];
+const tb=$("#tabs");M.forEach((m,i)=>{const b=document.createElement("button");b.className="tab";b.textContent=m.n;b.onclick=()=>show(i);tb.append(b)});
+function show(i){[...tb.children].forEach((b,j)=>b.classList.toggle("on",i==j));const m=M[i];
+$("#mod").innerHTML=`<div class="card"><span class="tag">PDF</span><h3>${m.n}</h3><ul>${m.p.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="card"><span class="tag n">Tambahan</span><h3>Teori pelengkap</h3><ul>${m.t.map(x=>`<li>${x}</li>`).join("")}</ul></div>`}
+show(0);
+function field(id,rows,fn){const el=$(id);const w=document.createElement("div");
+w.innerHTML=rows.map(r=>`<label>${r[1]}<span><input type="${r[5]||'range'}" data-k="${r[0]}" min="${r[2]}" max="${r[3]}" step="${r[6]||'any'}" value="${r[4]}"> <b class="v"></b></span></label>`).join("")+'<div class="out"></div><div class="bar"><i></i></div>';
+el.append(w);const run=()=>{const v={};w.querySelectorAll("input").forEach(i=>{v[i.dataset.k]=+i.value;if(i.type=="range")i.parentNode.querySelector(".v").textContent=(+i.value).toFixed(+i.step>=1?0:2)});const r=fn(v);w.querySelector(".out").innerHTML=r[0];w.querySelector(".bar i").style.width=Math.max(0,Math.min(100,r[1]))+"%"};w.oninput=run;run()}
+const N=(x,d=1)=>(+x).toLocaleString("id-ID",{minimumFractionDigits:d,maximumFractionDigits:d});
+field("#k1",[["a","Poin sprint -3",0,500,28,"number",1],["b","Poin sprint -2",0,500,32,"number",1],["c","Poin sprint -1",0,500,30,"number",1],["bl","Backlog tersisa (poin)",0,5000,240,"number",1]],v=>{const av=(v.a+v.b+v.c)/3,mx=Math.max(v.a,v.b,v.c),mn=Math.min(v.a,v.b,v.c);return[`Velocity = <b>${N(av)}</b> poin/sprint<br>Perkiraan: <b>${Math.ceil(v.bl/(av||1))} sprint</b> (optimis ${Math.ceil(v.bl/(mx||1))}, pesimis ${Math.ceil(v.bl/(mn||1))})`,Math.min(100,av/mx*100)]});
+field("#k2",[["t","Total poin sprint",1,1000,60,"number",1],["d","Durasi sprint (hari)",5,20,10,"range",1],["n","Hari ke-",1,20,5,"range",1],["x","Poin selesai",0,1000,24,"number",1]],v=>{const n=Math.min(v.n,v.d),id=v.t*(1-n/v.d),ac=v.t-v.x,df=ac-id;return[`Ideal sisa <b>${N(id)}</b> · Aktual sisa <b>${N(ac)}</b><br>Status: <b>${df>1?"TERTINGGAL "+N(df)+" poin":df<-1?"LEBIH CEPAT "+N(-df)+" poin":"SESUAI JALUR"}</b>`,v.x/v.t*100]});
+field("#k3",[["r","Reach (pengguna/kuartal)",0,1e6,2000,"number",1],["i","Impact (0,25-3)",0.25,3,2,"range",0.25],["c","Confidence",0.1,1,0.8],["e","Effort (orang-bulan)",0.1,100,4,"number"]],v=>{const s=v.r*v.i*v.c/(v.e||1);return[`Skor RICE = <b>${N(s,0)}</b><br><small>Makin tinggi, makin diprioritaskan.</small>`,Math.min(100,s/20)]});
+field("#k4",[["w","WIP (item sedang dikerjakan)",0,500,18,"number",1],["tp","Throughput (item/minggu)",0.1,200,6,"number"],["tg","Target lead time (hari kerja)",1,60,10,"range",1]],v=>{const lt=v.w/v.tp,mw=v.tg/5*v.tp;return[`Lead time = <b>${N(lt)} minggu</b> (${N(lt*5,0)} hari)<br>WIP maks untuk target = <b>${N(mw,0)}</b> item`,Math.max(0,100-lt*5/v.tg*50)]});
+field("#k5",[["i","Undangan per pengguna",0,20,2.5,"number"],["c","Konversi undangan",0,1,0.3],["u","Pengguna awal",0,1e6,1000,"number",1],["ar","ARPU/bulan",0,1e6,50000,"number",1],["m","Margin",0,1,0.7],["ch","Churn bulanan",0.01,1,0.08],["cac","CAC",0,1e7,400000,"number",1]],v=>{const k=v.i*v.c,ltv=v.ar*v.m/v.ch,tot=k<1?v.u/(1-k):Infinity;return[`k = <b>${N(k,2)}</b> ${k>=1?"(viral!)":"(belum viral)"} · Total pengguna ≈ ${isFinite(tot)?N(tot,0):"tak terbatas"}<br>LTV = <b>${N(ltv,0)}</b> · LTV/CAC = <b>${N(ltv/(v.cac||1))}x</b> ${ltv/v.cac>=3?"(sehat ≥3)":"(di bawah 3)"}`,Math.min(100,ltv/(v.cac||1)*25)]});
+field("#k6",[["p","Anggota tim",1,30,6,"range",1],["d","Hari kerja sprint",5,20,10,"range",1],["h","Jam kerja/hari",4,10,8,"range",1],["f","Faktor fokus",0.3,1,0.7],["l","Total hari cuti",0,60,3,"number",1]],v=>{const hr=(v.p*v.d-v.l)*v.h*v.f;return[`Kapasitas = <b>${N(hr,0)} jam</b><br>Per orang ≈ ${N(hr/v.p,0)} jam`,Math.min(100,hr/(v.p*v.d*v.h)*100)]});
+const Q=[["Siapa yang memegang prioritas product backlog di Scrum?",["Scrum Master","Product Owner","Tim pengembang"],1],["Apa tujuan MVP dalam Lean Startup?",["Merilis produk sempurna","Belajar secepat mungkin dengan upaya minimum","Mengurangi dokumentasi"],1],["Nilai Manifesto Agile yang benar?",["Dokumentasi lengkap di atas produk berfungsi","Respons terhadap perubahan di atas mengikuti rencana","Kontrak di atas kolaborasi"],1],["Hukum Little: lead time =?",["WIP / Throughput","Throughput / WIP","WIP × Throughput"],0]];
+let sc=0;$("#quiz").innerHTML=Q.map((q,i)=>`<div><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button data-i="${i}" data-j="${j}">${o}</button>`).join("")}</div>`).join("")+'<h3 id="sc"></h3>';
+$("#quiz").onclick=e=>{const b=e.target;if(b.tagName!="BUTTON"||b.parentNode.dataset.d)return;b.parentNode.dataset.d=1;const ok=+b.dataset.j==Q[b.dataset.i][2];b.classList.add(ok?"ok":"no");sc+=ok;$("#sc").textContent=`Skor: ${sc}/${Q.length}`;if(ok)pop(innerWidth/2,innerHeight/2)};
+function cnt(id,to){let n=0;const t=setInterval(()=>{n+=Math.ceil(to/30);if(n>=to){n=to;clearInterval(t)}$(id).textContent=n},40)}
+cnt("#c1",3);cnt("#c2",6);cnt("#c3",91);
+// latar: papan kanban hidup
+const cv=$("#bg"),cx=cv.getContext("2d");let W,H,K=[],F=[],mx=-9e3,my=-9e3;const LN=["To Do","Doing","Review","Done"],LC=["#ff5e7e","#31d8ff","#8b5cff","#b6ff3b"];
+const rnd=(a,b)=>a+Math.random()*(b-a);
+function card(x,y){return{x:x??rnd(0,W),y:y??rnd(70,H-30),w:rnd(70,110),h:rnd(26,40),v:rnd(.25,.7),b:0}}
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;K=Array.from({length:Math.min(30,W/45|0)},()=>card())}
+function pop(x,y){for(let i=0;i<5;i++)K.push(card(x+rnd(-60,60),y+rnd(-40,40)));for(let i=0;i<40;i++){const a=rnd(0,6.28),s=rnd(2,6);F.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-2,l:70,c:LC[i%4]})}if(K.length>70)K.splice(0,K.length-70)}
+addEventListener("resize",rs);addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});addEventListener("click",e=>pop(e.clientX,e.clientY));
+rs();(function f(){cx.fillStyle="#0a0918";cx.fillRect(0,0,W,H);const g=cx.createLinearGradient(0,0,W,H);g.addColorStop(0,"#1a1245");g.addColorStop(1,"#0a0918");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+cx.font="600 13px Segoe UI,sans-serif";for(let i=0;i<4;i++){const x=i*W/4;cx.fillStyle=LC[i]+"12";cx.fillRect(x,0,W/4,H);cx.fillStyle=LC[i]+"88";cx.fillText(LN[i],x+14,34);cx.strokeStyle="#ffffff14";cx.setLineDash([6,8]);cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke()}cx.setLineDash([]);
+for(const k of K){const d=Math.hypot(k.x+k.w/2-mx,k.y+k.h/2-my);k.b=d<160?Math.min(k.b+.3,3):k.b*.96;k.x+=k.v+k.b;if(k.x>W){k.x=-k.w;k.y=rnd(70,H-30)}
+const l=Math.min(3,Math.max(0,k.x/(W/4)|0));cx.shadowColor=LC[l];cx.shadowBlur=d<160?22:6;cx.fillStyle=LC[l]+"cc";cx.beginPath();cx.roundRect(k.x,k.y,k.w,k.h,6);cx.fill();cx.shadowBlur=0;cx.fillStyle="#0a091866";cx.fillRect(k.x+8,k.y+9,k.w*.55,3);cx.fillRect(k.x+8,k.y+16,k.w*.35,3)}
+F=F.filter(p=>p.l-->0);for(const p of F){p.x+=p.vx;p.y+=p.vy;p.vy+=.12;cx.globalAlpha=p.l/70;cx.fillStyle=p.c;cx.fillRect(p.x,p.y,5,5)}cx.globalAlpha=1;requestAnimationFrame(f)})();
+</script></body></html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Management Skills — Landing Page Interaktif</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04130f;--ink:#effff8;--mut:#9fc4b6;--c:#2dffb0;--pn:rgba(6,32,26,.74);--ln:rgba(120,255,200,.22)}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+h1,h2,h3{font-family:Sora,"Segoe UI",sans-serif;line-height:1.15}
+#bg{position:fixed;inset:0;z-index:-1}
+nav{position:sticky;top:0;z-index:9;display:flex;gap:6px;align-items:center;padding:10px 4vw;background:rgba(4,19,15,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);overflow-x:auto}
+nav b{font-family:Sora;margin-right:auto;white-space:nowrap;color:var(--c)}
+nav a{text-decoration:none;color:inherit;padding:6px 14px;border-radius:99px;white-space:nowrap;font-size:14px}
+nav a:hover{background:var(--c);color:#02140d}
+section{padding:80px 4vw;max-width:1180px;margin:auto}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(40px,7.5vw,92px);font-weight:800;letter-spacing:-.03em}
+.hero h1 span{background:linear-gradient(90deg,#2dffb0,#ffd23f,#ff6b6b,#4cc9ff,#2dffb0);background-size:300%;-webkit-background-clip:text;color:transparent;animation:fl 6s linear infinite}
+@keyframes fl{to{background-position:300%}}
+.hero p{max-width:650px;color:var(--mut);font-size:19px;margin:22px 0 30px}
+.btn{display:inline-block;padding:13px 26px;border-radius:12px;background:var(--c);color:#02140d;font-weight:700;text-decoration:none;font-size:16px;transition:transform .15s}
+.btn:hover{transform:translateY(-3px) scale(1.04)}.btn.o{background:none;color:var(--ink);border:1px solid var(--ln);margin-left:10px}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:46px}
+.stats div{font-family:Sora;font-size:34px;font-weight:800;color:var(--c)}.stats small{display:block;font:13px "Segoe UI";color:var(--mut)}
+h2{font-size:clamp(28px,4vw,46px);margin-bottom:12px}.sub{color:var(--mut);max-width:700px;margin-bottom:34px}
+.panel{background:var(--pn);border:1px solid var(--ln);border-radius:18px;padding:26px;backdrop-filter:blur(10px)}
+.lab{display:grid;grid-template-columns:260px 1fr;gap:20px}
+.rail{display:flex;flex-direction:column;gap:8px}
+.rail button{all:unset;cursor:pointer;padding:12px 16px;border-radius:12px;border:1px solid var(--ln);background:var(--pn);transition:.2s}
+.rail button:hover{transform:translateX(6px)}
+.rail button.on{background:var(--c);color:#02140d;font-weight:700;border-color:var(--c);box-shadow:0 0 28px -4px var(--c)}
+.rail span{display:block;font-size:12px;opacity:.75;font-weight:400}
+#tp h3{font-size:30px;color:var(--c);margin-bottom:6px}#tp .pg{color:var(--mut);font-size:14px;margin-bottom:14px}
+#tp li{margin:0 0 10px 20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.chips i{font-style:normal;font-size:13px;padding:5px 12px;border-radius:99px;border:1px solid var(--c);cursor:pointer;transition:.15s}
+.chips i:hover{background:var(--c);color:#02140d}
+.net{border-left:4px solid var(--c);background:rgba(255,255,255,.06);padding:14px 18px;border-radius:0 12px 12px 0;margin-top:18px}
+.net h4{color:var(--c);margin-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{cursor:pointer;transition:.25s}.card:hover,.card.on{transform:translateY(-6px);border-color:var(--c);box-shadow:0 14px 40px -14px var(--c)}
+.card h3{font-size:19px;margin-bottom:6px;color:var(--c)}.card p{font-size:14.5px;color:var(--mut)}
+.tool{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.row{display:grid;grid-template-columns:1fr 130px 40px;gap:10px;align-items:center;font-size:14px;margin-bottom:6px}
+input[type=range]{width:100%;accent-color:var(--c)}
+input[type=number]{width:100%;padding:8px;border-radius:8px;border:1px solid var(--ln);background:#06241d;color:var(--ink);font-size:15px}
+label{font-size:13px;color:var(--mut);display:block;margin:10px 0 3px}
+.big{font-family:Sora;font-size:46px;font-weight:800;color:var(--c)}
+.res b{color:var(--c)}.res p{margin:6px 0}
+.mb{height:10px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden;margin:4px 0 12px}.mb u{display:block;height:100%;background:linear-gradient(90deg,#2dffb0,#ffd23f);transition:width .4s}
+.tl{display:flex;gap:10px;flex-wrap:wrap}.tl button{flex:1;min-width:130px;all:unset;box-sizing:border-box;cursor:pointer;padding:14px;border:1px solid var(--ln);border-radius:14px;background:var(--pn);text-align:center;font-weight:700;transition:.2s}
+.tl button:hover{transform:translateY(-3px)}.tl button.on{background:var(--c);color:#02140d}.tl button b{display:block;font:800 26px Sora}
+.sd{margin-top:16px}
+footer{text-align:center;padding:50px 4vw;color:var(--mut);border-top:1px solid var(--ln);font-size:14px}
+@media(max-width:800px){.lab,.tool{grid-template-columns:1fr}.rail{flex-direction:row;overflow-x:auto}.rail button{white-space:nowrap}.btn.o{margin:10px 0 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:3px solid #fff;outline-offset:2px}
+</style></head><body>
+<canvas id="bg"></canvas>
+<nav><b>Management Skills</b><a href="#materi">Materi PDF</a><a href="#model">Model</a><a href="#teori">Teori Tambahan</a><a href="#alat">Kalkulator</a></nav>
+
+<section class="hero">
+<h1>Memimpin orang,<br><span>bukan hanya tugas.</span></h1>
+<p>Lima bab materi <i>Management Skills — Human Resources</i>: kepemimpinan, komunikasi efektif, coaching, pemberdayaan tim, dan manajemen perubahan, plus teori global dan tiga alat ukur. Gerakkan kursor: kawanan di latar mengikuti Anda sebagai pemimpin. Klik untuk mengacaukan lalu lihat mereka berkumpul lagi.</p>
+<div><a class="btn" href="#materi">Mulai belajar</a><a class="btn o" href="#alat">Ukur kemampuan saya</a></div>
+<div class="stats"><div data-n="5">0<small>bab materi</small></div><div data-n="156">0<small>halaman PDF</small></div><div data-n="6">0<small>level Leadership Pipeline</small></div><div data-n="10">0<small>peran manajer (Mintzberg)</small></div></div>
+</section>
+
+<section id="materi"><h2>Materi dari PDF</h2><p class="sub">Pilih bab; warna halaman dan kawanan ikut berubah. Klik label isi bab untuk catatannya.</p>
+<div class="lab"><div class="rail" id="rail"></div><div class="panel" id="tp"></div></div></section>
+
+<section id="model"><h2>Model interaktif dari PDF</h2><p class="sub">Dua kerangka utama bab 1 dan 3. Klik tiap langkah.</p>
+<h3 style="margin-bottom:10px">Leadership Pipeline: enam transisi</h3><div class="tl" id="t1"></div><div class="panel sd" id="d1"></div>
+<h3 style="margin:34px 0 10px">Model GROW untuk coaching</h3><div class="tl" id="t2"></div><div class="panel sd" id="d2"></div></section>
+
+<section id="teori"><h2>Teori tambahan dari literatur</h2><p class="sub">Kerangka yang melengkapi PDF. Klik kartu untuk detail.</p>
+<div class="grid" id="th"></div><div class="panel" id="thd" style="margin-top:16px;min-height:90px"></div></section>
+
+<section id="alat"><h2>Alat ukur interaktif</h2><p class="sub">Rumus yang sama ada di Excel (Management_Skills_Rumus.xlsx).</p>
+<div class="panel tool" style="margin-bottom:22px"><div><h3 style="margin-bottom:10px">Penilaian diri keterampilan manajemen (skor 1–5)</h3><div id="sk"></div></div>
+<div class="res"><div class="big" id="si">0%</div><p id="sl"></p><div id="sb"></div></div></div>
+<div class="tool"><div class="panel"><h3>Kesiapan perubahan (ADKAR, skor 1–5)</h3><div id="ad"></div><div class="res" id="ar" style="margin-top:12px"></div></div>
+<div class="panel"><h3>Nilai delegasi</h3>
+<label>Jam tugas yang didelegasikan per minggu</label><input type="number" id="d_1" value="8">
+<label>Biaya per jam manajer (Rp)</label><input type="number" id="d_2" value="250000">
+<label>Biaya per jam anggota tim (Rp)</label><input type="number" id="d_3" value="90000">
+<label>Biaya pelatihan sekali jalan (Rp)</label><input type="number" id="d_4" value="3000000">
+<div class="res" id="dr" style="margin-top:14px"></div></div></div></section>
+<footer>Disusun untuk Ir. Agus Budianto Ulil Absyor, S.T., M.M., M.LSCM., M.AIB.<br>Sumber: MANAGEMENT_SKILLS.pdf (Management Skills — Human Resources) + literatur Katz, Mintzberg, Hersey-Blanchard, Kotter, ADKAR.</footer>
+
+<script>
+const T=[
+{n:"Kepemimpinan",p:"hlm 7–33",c:"#2dffb0",l:"Kepemimpinan adalah kumpulan kemampuan seseorang (bawaan dan hasil belajar) untuk memengaruhi cara orang lain bersikap dan bertindak.",k:["Berevolusi dari kepemimpinan transaksional (ganjaran dan hukuman) ke transformasional (dorongan lewat nilai bersama).","Tak ada gaya terbaik: gaya yang tepat bergantung pada konteks, orang, dan situasi.","Model Pipeline: enam level yang harus dilalui berurutan tanpa melompat. Alat penilaian: DISC, MBTI, dan roda kompetensi, untuk memantau kemajuan, bukan menghakimi."],t:{"Skill kepemimpinan":"Kemampuan yang berubah mengikuti zaman.","Model Pipeline":"Enam transisi dari memimpin diri sampai GM perusahaan.","DISC":"Model perilaku berbasis empat elemen.","MBTI":"Tipologi kepribadian.","Roda kompetensi":"Peta kompetensi untuk menilai diri.","Apple vs Patagonia":"Studi kasus dua gaya kepemimpinan."},i:"Katz: keterampilan teknis, manusiawi, dan konseptual. Makin tinggi level, makin besar porsi konseptual; keterampilan manusiawi penting di semua level."},
+{n:"Komunikasi Efektif",p:"hlm 35–67",c:"#ffd23f",l:"Komunikasi bisnis menyampaikan pesan agar tujuan dan peluang perbaikan dipahami semua orang; harus dua arah.",k:["Komunikasi efektif: pesan dipahami sama oleh penerima. Kuncinya: kejelasan, empati, asertivitas, mendengarkan.","Negosiasi: pisahkan orang dari masalah, fokus pada kepentingan bukan posisi, ciptakan opsi saling menguntungkan, pakai kriteria objektif; ada tiga hambatan.","Persuasi bertumpu pada ethos (kredibilitas), pathos (emosi), logos (logika). Umpan balik: ada berbagai tipe, dan teknik Sandwich untuk percakapan sulit."],t:{"Karakteristik":"Jelas, ringkas, dua arah.","Negosiasi":"Empat prinsip + tiga hambatan.","Persuasi":"Ethos, pathos, logos.","Umpan balik":"Konstruktif dan efektif.","Teknik Sandwich":"Positif, koreksi, positif."},i:"BATNA (alternatif terbaik tanpa kesepakatan) menentukan daya tawar; semakin kuat BATNA, semakin besar posisi tawar Anda."},
+{n:"Coaching",p:"hlm 71–101",c:"#ff6b6b",l:"Coaching adalah pendampingan reflektif dan kreatif yang memaksimalkan potensi pribadi dan profesional.",k:["Setara: coach memberi sumber daya, coachee yang menentukan tujuan. Berbeda dari terapi, mentoring, dan pelatihan.","Executive coaching melibatkan tiga pihak: coach, perusahaan, dan coachee, dengan kesepakatan yang jelas.","GROW: tujuan, realitas, opsi, rencana aksi, digerakkan oleh pertanyaan yang kuat."],t:{"Dasar coaching":"Prinsip dan kompetensi coach.","Executive coaching":"Kontrak tiga pihak.","Model GROW":"Empat fase lewat pertanyaan.","Coaching dan perubahan":"Mengatasi hambatan dan tingkat belajar."},i:"Model 70-20-10: sekitar 70% belajar dari pengalaman kerja, 20% dari orang lain (coaching, mentoring), 10% dari pelatihan formal."},
+{n:"Memberdayakan Tim",p:"hlm 103–127",c:"#4cc9ff",l:"Empowerment memindahkan kekuasaan dan otonomi agar orang dapat mengambil keputusan penting.",k:["Teknik: delegasi, rotasi, swakelola, tanggung jawab bersama, disesuaikan dengan kematangan tiap orang.","Penerapan bertahap: deteksi hambatan dan resistensi lalu alihkan kuasa sedikit demi sedikit.","Model ini memperkuat kepemimpinan, bukan menguranginya; budaya tim dan sinergi adalah prasyarat."],t:{"Strategi empowerment":"Apa itu dan teknik utamanya.","Pelatihan manajemen":"Proses dan nilai kepemimpinan.","Model empowerment":"Prinsip, tujuan, kompetensi kepemimpinan baru."},i:"Kepemimpinan situasional (Hersey-Blanchard): arahkan, jual, ikutsertakan, delegasikan, sesuai kesiapan anggota."},
+{n:"Manajemen Perubahan",p:"hlm 130–153",c:"#b48cff",l:"Manajemen perubahan: proses transformasi menuju tujuan yang jelas, memperhitungkan orang, proses, strategi, dan teknologi.",k:["Unsur utama: change manager, stakeholder, sponsor, dan pihak terdampak.","Perusahaan butuh orang yang gesit dan mau belajar, bukan hanya yang jago teknis.","Tiga fase: mobilize (sadar dan merencanakan), commit (komunikasi dan komitmen), popularize (mengonsolidasikan perubahan)."],t:{"Perubahan":"Dimensi, intensitas, dan asalnya.","Soft skills":"Fleksibel dan adaptif.","Unsur":"Change manager, stakeholder, sponsor, terdampak.","Mobilize":"Menyadarkan dan merencanakan.","Commit":"Eksekusi dan komitmen.","Popularize":"Menyebarkan dan mengukuhkan."},i:"Kotter: 8 langkah dari menciptakan urgensi sampai menanamkan perubahan di budaya. ADKAR: Awareness, Desire, Knowledge, Ability, Reinforcement."}];
+const P=[["Kelola diri → orang lain","Dari memprioritaskan tugas sendiri menjadi membuat orang lain berhasil: memotivasi, melatih, menilai hasil."],["Orang lain → manajer","Satu-satunya fungsi adalah mengelola; mengukur kemajuan dan menilai kinerja para manajer."],["Manajer → manajer fungsional","Memimpin satu fungsi, berpikir strategis lintas tim."],["Fungsional → manajer bisnis","Beralih ke pandangan laba-rugi, menyatukan banyak fungsi."],["Bisnis → manajer grup bisnis","Mengelola portofolio beberapa bisnis."],["Grup bisnis → GM perusahaan","Memimpin seluruh perusahaan: visi, tata kelola, pemangku kepentingan."]];
+const G=[["Goal","Tujuan","Apa yang ingin Anda capai? Seperti apa hasil yang berhasil?"],["Reality","Realitas","Di mana posisi Anda sekarang? Apa yang sudah dicoba?"],["Options","Opsi","Pilihan apa saja yang ada? Apa yang terjadi jika memilih masing-masing?"],["Will","Rencana aksi","Apa langkah pertama, kapan, dan siapa yang membantu?"]];
+const TH=[["Tiga keterampilan Katz","Teknis (hal), manusiawi (orang), konseptual (ide). Manajer lini pertama butuh teknis lebih banyak, manajer puncak konseptual lebih banyak, manusiawi penting di semua level."],["10 peran Mintzberg","Interpersonal: figurehead, leader, liaison. Informasional: monitor, disseminator, spokesperson. Keputusan: entrepreneur, disturbance handler, resource allocator, negotiator."],["Kepemimpinan situasional","Hersey-Blanchard: gaya arahkan, jual, ikutsertakan, delegasikan, tergantung kompetensi dan komitmen anggota tim."],["Kecerdasan emosional (Goleman)","Kesadaran diri, regulasi diri, motivasi, empati, keterampilan sosial: pembeda pemimpin berkinerja tinggi."],["Matriks Eisenhower","Urgen vs penting: kerjakan, jadwalkan, delegasikan, hapus. Dasar delegasi yang sehat."],["Kotter &amp; ADKAR","Kotter: 8 langkah perubahan organisasi. ADKAR: model perubahan tingkat individu; hambatan ada di elemen berskor terendah."]];
+const SK=["Kepemimpinan","Komunikasi efektif","Negosiasi","Persuasi","Umpan balik","Coaching","Pemberdayaan &amp; delegasi","Manajemen perubahan"];
+const AD=["Awareness (sadar perlu berubah)","Desire (mau berubah)","Knowledge (tahu caranya)","Ability (mampu menjalankan)","Reinforcement (penguatan)"];
+const $=s=>document.querySelector(s),rp=n=>"Rp "+Math.round(n).toLocaleString("id-ID"),v=s=>+$(s).value;
+let hue="#2dffb0";const root=document.documentElement;
+function sel(i){const o=T[i];root.style.setProperty("--c",o.c);hue=o.c;
+document.querySelectorAll("#rail button").forEach((b,j)=>b.classList.toggle("on",j==i));
+$("#tp").innerHTML=`<h3>${o.n}</h3><div class="pg">${o.p}</div><p>${o.l}</p><ul style="margin-top:12px">${o.k.map(x=>`<li>${x}</li>`).join("")}</ul><div class="chips">${Object.keys(o.t).map(x=>`<i tabindex=0 data-k="${x}">${x}</i>`).join("")}</div><div class="net" id="cn"><h4>Catatan bab</h4>Klik salah satu label isi bab.</div><div class="net"><h4>Tambahan dari literatur</h4>${o.i}</div>`;
+$("#tp").querySelectorAll(".chips i").forEach(e=>{const f=()=>{$("#cn").innerHTML=`<h4>${e.dataset.k}</h4>${o.t[e.dataset.k]}`};e.onclick=f;e.onkeydown=ev=>ev.key=="Enter"&&f()})}
+$("#rail").innerHTML=T.map((o,i)=>`<button onclick="sel(${i})">${o.n}<span>${o.p}</span></button>`).join("");sel(0);
+function stp(t,d,arr,fm,fd){$(t).innerHTML=arr.map((a,i)=>`<button data-i="${i}"><b>${fm(a,i)[0]}</b>${fm(a,i)[1]}</button>`).join("");
+const go=i=>{document.querySelectorAll(t+" button").forEach((b,j)=>b.classList.toggle("on",i==j));$(d).innerHTML=fd(arr[i],i)};
+document.querySelectorAll(t+" button").forEach(b=>b.onclick=()=>go(+b.dataset.i));go(0)}
+stp("#t1","#d1",P,(a,i)=>[i+1,a[0]],(a,i)=>`<h3 style="color:var(--c)">Level ${i+1}: ${a[0]}</h3><p>${a[1]}</p>`);
+stp("#t2","#d2",G,(a,i)=>[a[0][0],a[1]],(a,i)=>`<h3 style="color:var(--c)">${a[0]}: ${a[1]}</h3><p>Pertanyaan pemandu: ${a[2]}</p>`);
+$("#th").innerHTML=TH.map((x,i)=>`<div class="panel card" tabindex=0 onclick="th(${i})"><h3>${x[0]}</h3><p>Klik untuk detail</p></div>`).join("");
+function th(i){document.querySelectorAll("#th .card").forEach((c,j)=>c.classList.toggle("on",i==j));$("#thd").innerHTML=`<b>${TH[i][0]}</b><p>${TH[i][1]}</p>`}th(0);
+$("#sk").innerHTML=SK.map((a,i)=>`<div class="row"><span>${a}</span><input type="range" min="1" max="5" value="3" class="s"><b>3</b></div>`).join("");
+$("#ad").innerHTML=AD.map(a=>`<div class="row"><span>${a}</span><input type="range" min="1" max="5" value="3" class="a"><b>3</b></div>`).join("");
+function sc(){const e=[...document.querySelectorAll(".s")];let s=0,m=9,mi=0;e.forEach((r,i)=>{r.nextElementSibling.textContent=r.value;s+=+r.value;if(+r.value<m){m=+r.value;mi=i}});
+const x=(s/e.length-1)/4*100;$("#si").textContent=x.toFixed(0)+"%";$("#sl").innerHTML="Level: <b>"+(x<25?"Pemula":x<50?"Berkembang":x<75?"Kompeten":"Mahir")+"</b>. Prioritas belajar: <b>"+SK[mi]+"</b> (skor "+m+")";
+$("#sb").innerHTML=e.map((r,i)=>`<div style="font-size:13px">${SK[i]}</div><div class="mb"><u style="width:${(r.value-1)/4*100}%"></u></div>`).join("")}
+function ad(){const e=[...document.querySelectorAll(".a")];let m=9,mi=0,s=0;e.forEach((r,i)=>{r.nextElementSibling.textContent=r.value;s+=+r.value;if(+r.value<m){m=+r.value;mi=i}});
+$("#ar").innerHTML=`<p>Skor rata-rata: <b>${(s/5).toFixed(1)}</b> dari 5</p><p>Hambatan utama: <b>${AD[mi]}</b></p><p>${m>=4?"Siap: lanjutkan dan perkuat.":m>=3?"Cukup: tangani hambatan sebelum meluncurkan.":"Belum siap: fokus pada elemen terendah dulu."}</p>`}
+document.querySelectorAll(".s").forEach(r=>r.oninput=sc);document.querySelectorAll(".a").forEach(r=>r.oninput=ad);sc();ad();
+function dl(){const h=v("#d_1"),a=v("#d_2"),b=v("#d_3"),t=v("#d_4"),s=h*4.33*(a-b);
+$("#dr").innerHTML=`<p>Penghematan/bulan: <b>${rp(s)}</b></p><p>Jam manajer yang bebas/bulan: <b>${(h*4.33).toFixed(0)}</b></p><p>Payback pelatihan: <b>${s>0?(t/s).toFixed(1)+" bulan":"tidak balik modal"}</b></p>`}
+document.querySelectorAll("#alat input[type=number]").forEach(e=>e.oninput=dl);dl();
+document.querySelectorAll(".stats div").forEach(d=>{const n=+d.dataset.n;let k=0;const m=setInterval(()=>{k+=Math.ceil(n/40);if(k>=n){k=n;clearInterval(m)}d.firstChild.textContent=k},35)});
+const cv=$("#bg"),x=cv.getContext("2d");let W,H,A=[],M={x:-999,y:-999,on:0},t0=0;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;A=Array.from({length:Math.min(130,W/9|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:Math.random()-.5,vy:Math.random()-.5}))}
+rs();addEventListener("resize",rs);addEventListener("pointermove",e=>{M.x=e.clientX;M.y=e.clientY;M.on=1});
+addEventListener("pointerdown",e=>{for(const a of A){const dx=a.x-e.clientX,dy=a.y-e.clientY,d=Math.hypot(dx,dy)+1;a.vx+=dx/d*14;a.vy+=dy/d*14}});
+const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
+function fr(){t0+=.006;x.fillStyle="rgba(4,19,15,.22)";x.fillRect(0,0,W,H);
+const tx=M.on?M.x:W/2+Math.cos(t0)*W*.3,ty=M.on?M.y:H/2+Math.sin(t0*1.3)*H*.3;
+x.fillStyle=hue;x.strokeStyle=hue;
+for(const a of A){if(!still){const dx=tx-a.x,dy=ty-a.y,d=Math.hypot(dx,dy)+1;a.vx+=dx/d*.05+(Math.random()-.5)*.12;a.vy+=dy/d*.05+(Math.random()-.5)*.12;
+if(d<90){a.vx-=dx/d*.12;a.vy-=dy/d*.12}
+const s=Math.hypot(a.vx,a.vy);if(s>3.2){a.vx*=3.2/s;a.vy*=3.2/s}a.vx*=.985;a.vy*=.985;a.x+=a.vx;a.y+=a.vy;
+if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1}
+x.globalAlpha=.9;x.beginPath();x.arc(a.x,a.y,2.2,0,6.3);x.fill()}
+for(let i=0;i<A.length;i+=2)for(let j=i+1;j<A.length;j+=2){const a=A[i],b=A[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<60){x.globalAlpha=(1-d/60)*.35;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+x.globalAlpha=1;if(!still)requestAnimationFrame(fr)}
+x.fillStyle="#04130f";x.fillRect(0,0,W,H);fr();
+</script></body></html>

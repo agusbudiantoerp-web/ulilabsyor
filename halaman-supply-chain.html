@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supply Chain & Logistik for Business — Landing Page Interaktif</title>
+<style>
+:root{--bg:#061018;--am:#ffb21e;--tl:#1de9b6;--or:#ff6b2c;--tx:#e6f1f5;--mu:#86a0ad}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{font:16px/1.6 "Segoe UI",Trebuchet MS,Arial,sans-serif;background:var(--bg);color:var(--tx)}
+#bg{position:fixed;inset:0;z-index:-1}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:18px;align-items:center;padding:12px 5vw;background:#061018d9;backdrop-filter:blur(8px);border-bottom:1px solid #ffffff14}
+nav b{color:var(--am);margin-right:auto}nav a{color:var(--tx);text-decoration:none;font-size:14px}nav a:hover{color:var(--tl)}
+section{padding:70px 5vw;max-width:1150px;margin:auto}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+h1{font:800 clamp(38px,7vw,82px)/1.02 Georgia,serif;letter-spacing:-1px}
+h1 span{background:linear-gradient(90deg,var(--am),var(--or),var(--tl));-webkit-background-clip:text;color:transparent;background-size:200%;animation:sh 5s linear infinite}
+@keyframes sh{to{background-position:200%}}
+.sub{max-width:650px;color:var(--mu);margin:18px 0 26px;font-size:18px}
+.btn{display:inline-block;padding:12px 22px;border-radius:30px;background:var(--am);color:#241600;font-weight:700;text-decoration:none;cursor:pointer;margin:4px 8px 4px 0;transition:transform .2s}
+.btn:hover{transform:translateY(-3px) scale(1.04)}.btn.o{background:none;color:var(--tl);border:2px solid var(--tl)}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:40px}.stats div{font-size:13px;color:var(--mu)}.stats b{display:block;font-size:34px;color:var(--am)}
+h2{font:700 clamp(26px,4vw,42px) Georgia,serif;margin-bottom:6px}.lead{color:var(--mu);margin-bottom:26px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tab{padding:8px 15px;border-radius:20px;border:1px solid #ffffff30;background:#ffffff0a;color:var(--tx);cursor:pointer;font-size:14px}
+.tab.on,.tab:hover{background:var(--tl);color:#002a22;border-color:var(--tl)}
+.card{background:linear-gradient(135deg,#102838ee,#08161fee);border:1px solid #ffffff1c;border-radius:18px;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.card h3{color:var(--am);margin-bottom:8px}.card ul{padding-left:18px}.card li{margin:5px 0}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:10px;background:var(--or);color:#fff;margin-bottom:8px}.tag.n{background:var(--tl);color:#002a22}
+.calc label{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-top:9px;color:var(--mu)}
+.calc input[type=range]{width:100%;accent-color:var(--am)}.calc input[type=number]{width:110px;background:#0007;color:var(--tx);border:1px solid #fff3;border-radius:8px;padding:4px 8px}
+.out{margin-top:14px;padding:12px;border-radius:12px;background:#000a;border-left:4px solid var(--am)}.out b{color:var(--tl);font-size:19px}
+.f{font-family:Consolas,monospace;font-size:13px;color:var(--am);margin:6px 0}
+.bar{height:10px;border-radius:6px;background:#ffffff18;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--tl),var(--or));transition:width .4s}
+.q button{display:block;width:100%;text-align:left;margin:6px 0;padding:10px;border-radius:10px;border:1px solid #fff3;background:#ffffff0a;color:var(--tx);cursor:pointer}
+.q button:hover{border-color:var(--am)}.ok{background:#1fa05a!important}.no{background:#b5263f!important}
+footer{text-align:center;padding:40px;color:var(--mu);font-size:13px}
+@media(prefers-reduced-motion:reduce){h1 span{animation:none}*{transition:none!important}}
+</style></head><body>
+<canvas id="bg"></canvas>
+<nav><b>Supply Chain for Business</b><a href="#materi">Materi</a><a href="#lab">Lab Rumus</a><a href="#kuis">Kuis</a><a href="#unduh">Unduh</a></nav>
+
+<section class="hero">
+<h1>Dari pemasok ke pelanggan: <span>kendalikan setiap mata rantai.</span></h1>
+<p class="sub">Ringkasan interaktif modul <i>Supply Chain Operations</i> (7 topik, 159 halaman), diperkaya teori logistik dan kalkulator yang langsung menghitung keputusan Anda.</p>
+<div><a class="btn" href="#materi">Mulai belajar</a><a class="btn o" href="#lab">Coba kalkulator</a></div>
+<div class="stats"><div><b id="c1">0</b>topik</div><div><b id="c2">0</b>kalkulator</div><div><b id="c3">0</b>halaman sumber</div></div>
+<p class="sub" style="font-size:13px">Tip: gerakkan mouse di jaringan logistik; klik untuk mengirim paket dari gudang terdekat.</p>
+</section>
+
+<section id="materi"><h2>Peta Materi</h2><p class="lead">Tag <span class="tag">PDF</span> = isi dokumen Anda, <span class="tag n">Tambahan</span> = teori pelengkap.</p>
+<div class="tabs" id="tabs"></div><div class="grid" id="mod"></div></section>
+
+<section id="lab"><h2>Laboratorium Rumus</h2><p class="lead">Geser slider atau ubah angka. Satuan uang bebas (€, Rp). Semua rumus ada di file Excel.</p>
+<div class="grid">
+<div class="card calc" id="k1"><h3>1. Buat atau Beli (Make vs Buy)</h3><div class="f">CC = Pc·Q &nbsp; CP = CF + CVMe·Q &nbsp; Q* = CF/(Pc−CVMe)</div></div>
+<div class="card calc" id="k2"><h3>2. Titik Pemesanan Ulang</h3><div class="f">PP = Safety stock + (konsumsi harian × lead time)</div></div>
+<div class="card calc" id="k3"><h3>3. EOQ (Model Wilson)</h3><div class="f">Q = √(2·K·D/G) &nbsp; TC=(D/Q)K+(Q/2)G</div></div>
+<div class="card calc" id="k4"><h3>4. Safety Stock (Tambahan)</h3><div class="f">SS = Z · σd · √LT</div></div>
+<div class="card calc" id="k5"><h3>5. Biaya Angkut Truk Penuh</h3><div class="f">Biaya = tarif/km × jarak (+ tol, + bongkar muat)</div></div>
+<div class="card calc" id="k6"><h3>6. Perputaran Persediaan (Tambahan)</h3><div class="f">Turnover = HPP/Rata² stok &nbsp; DIO = 365/Turnover</div></div>
+</div></section>
+
+<section id="kuis"><h2>Kuis Cepat</h2><p class="lead">Uji pemahaman Anda.</p><div class="card q" id="quiz"></div></section>
+
+<section id="unduh"><h2>Unduh Spreadsheet</h2><p class="lead">Rumus hidup, termasuk analisis ABC, peramalan, dan FBA vs FBM: <b>Supply_Chain_Rumus.xlsx</b> (simpan satu folder dengan halaman ini).</p>
+<a class="btn" href="Supply_Chain_Rumus.xlsx" download>Unduh Excel</a></section>
+<footer>Sumber: modul PDF Supply Chain Operations + kerangka umum (SCOR, Bullwhip, Kraljic, Incoterms, S&amp;OP, Cash-to-Cash).</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const M=[
+{n:"1. Value Chain",p:["Rantai nilai terdiri dari aktivitas primer (logistik masuk, operasi, logistik keluar, pemasaran, layanan) dan aktivitas pendukung.","Dipakai sebagai alat analisis dan sumber keunggulan kompetitif.","Digitalisasi proses lewat ERP: data terpusat, proses terintegrasi."],t:["Model SCOR: Plan, Source, Make, Deliver, Return, Enable.","Kekuatan pesaing Porter: pemasok dan pembeli menentukan margin rantai Anda."]},
+{n:"2. Purchasing",p:["Purchasing (transaksi) berbeda dari procurement (strategi akuisisi).","Strategi: buat vs beli, satu vs banyak pemasok, low cost country sourcing, PunchOut catalog.","Seleksi dan evaluasi pemasok, negosiasi kontrak, manajemen pesanan, pusat pembelian dan platform logistik."],t:["Matriks Kraljic: strategis, leverage, bottleneck, rutin.","TCO (Total Cost of Ownership): harga + transport + kualitas + risiko, bukan harga termurah saja."]},
+{n:"3. Warehouse",p:["Model stok: Just in Time, Wilson (EOQ), dan ABC (Pareto 80/20).","Reorder point, stok maksimum dan minimum, safety stock; stok fisik, stok neto, dan stok tersedia.","Peramalan permintaan (rata-rata bergerak, exponential smoothing, regresi); SAP dan WMS."],t:["KPI gudang: akurasi stok, dock-to-stock time, picking per jam, utilisasi ruang.","Slotting dan metode FIFO/FEFO untuk barang kedaluwarsa."]},
+{n:"4. Model Logistik",p:["Distribusi tersentralisasi vs terdesentralisasi, bertahap, production against stock, cross-docking, konsolidasi.","Moda transportasi: jalan, udara, laut; biaya tetap dan variabel armada.","Studi kasus: truk penuh Sevilla–Berlin 2.778 km × €1,3665/km = €3.796,14. TMS untuk digitalisasi transportasi."],t:["Incoterms 2020 (EXW, FOB, CIF, DDP) menentukan siapa menanggung biaya dan risiko.","Trade-off: biaya transport vs persediaan vs level layanan."]},
+{n:"5. Reverse Logistics",p:["Arus balik barang: retur, daur ulang, perbaikan, remanufaktur, pembuangan.","Beda logistik langsung dan terbalik; jenis, kelebihan, dan kekurangannya.","Peran dalam rantai nilai dan reverse logistics hijau."],t:["Circular economy: recover value dari barang retur (refurbish dan resale).","KPI: tingkat retur, waktu proses retur, recovery rate."]},
+{n:"6. Model Amazon",p:["FBA: Amazon menyimpan, mengemas, dan mengirim; FBM: penjual mengurus sendiri.","Kelebihan dan kekurangan masing-masing.","Pemilihan model sesuai skala, margin, dan kapasitas logistik perusahaan."],t:["Bandingkan unit economics: harga − COGS − fee platform − fulfilment − storage − retur.","Marketplace Indonesia sejenis: fulfilment oleh platform vs kirim mandiri."]},
+{n:"7. Inovasi & Keberlanjutan",p:["Inovasi operasional memberi keunggulan kompetitif.","Strategi inovasi dan hambatan yang muncul."],t:["Bullwhip effect: variasi pesanan membesar ke hulu; atasi dengan berbagi data permintaan.","Lean, S&OP, control tower, digital twin, dan ketahanan (resilience) rantai pasok."]},
+{n:"Tambahan: KPI",p:["Ringkasan KPI dari modul: stok, biaya transport, lead time."],t:["Perfect Order Rate = pesanan tepat waktu, lengkap, tanpa kerusakan, dokumen benar.","Fill rate, OTIF, Cash-to-Cash = DIO + DSO − DPO, biaya logistik % penjualan."]}];
+const tb=$("#tabs");M.forEach((m,i)=>{const b=document.createElement("button");b.className="tab";b.textContent=m.n;b.onclick=()=>show(i);tb.append(b)});
+function show(i){[...tb.children].forEach((b,j)=>b.classList.toggle("on",i==j));const m=M[i];
+$("#mod").innerHTML=`<div class="card"><span class="tag">PDF</span><h3>${m.n}</h3><ul>${m.p.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="card"><span class="tag n">Tambahan</span><h3>Teori pelengkap</h3><ul>${m.t.map(x=>`<li>${x}</li>`).join("")}</ul></div>`}
+show(0);
+function field(id,rows,fn){const el=$(id);const w=document.createElement("div");
+w.innerHTML=rows.map(r=>`<label>${r[1]}<span><input type="${r[5]||'range'}" data-k="${r[0]}" min="${r[2]}" max="${r[3]}" step="${r[6]||'any'}" value="${r[4]}"> <b class="v"></b></span></label>`).join("")+'<div class="out"></div><div class="bar"><i></i></div>';
+el.append(w);const run=()=>{const v={};w.querySelectorAll("input").forEach(i=>{v[i.dataset.k]=+i.value;if(i.type=="range")i.parentNode.querySelector(".v").textContent=(+i.value).toFixed(i.step&&i.step!="any"&&+i.step>=1?0:3)});const r=fn(v);w.querySelector(".out").innerHTML=r[0];w.querySelector(".bar i").style.width=Math.max(0,Math.min(100,r[1]))+"%"};w.oninput=run;run()}
+const N=(x,d=2)=>(+x).toLocaleString("id-ID",{minimumFractionDigits:d,maximumFractionDigits:d});
+field("#k1",[["pc","Harga beli/unit Pc",0,1e4,7.5,"number"],["cf","Biaya tetap produksi CF/tahun",0,1e7,45000,"number"],["cv","Biaya variabel/unit CVMe",0,1e4,2.5,"number"],["q","Kuantitas Q/tahun",0,1e7,6000,"number",1]],v=>{const cc=v.pc*v.q,cp=v.cf+v.cv*v.q,be=v.pc>v.cv?v.cf/(v.pc-v.cv):Infinity;return[`CC <b>${N(cc)}</b> · CP <b>${N(cp)}</b><br>Keputusan: <b>${cc<cp?"BELI":"BUAT SENDIRI"}</b><br>Titik impas Q* = ${isFinite(be)?N(be,0):"-"} unit`,cc<cp?30:80]});
+field("#k2",[["d","Konsumsi harian",0,1e5,750,"number",1],["lt","Lead time pemasok (hari)",0,60,3,"range",1],["ss","Safety stock",0,1e5,200,"number",1]],v=>{const pp=v.ss+v.d*v.lt;return[`Reorder point = <b>${N(pp,0)} unit</b><br>Pesan ulang saat stok menyentuh angka ini.`,Math.min(100,pp/(v.d*10||1)*100)]});
+field("#k3",[["d","Permintaan tahunan D",0,1e7,6000,"number",1],["k","Biaya per pesanan K",0,1e5,300,"number"],["g","Biaya simpan/unit/tahun G",0.01,1e4,5,"number"]],v=>{const q=Math.sqrt(2*v.k*v.d/v.g),tc=v.d/q*v.k+q/2*v.g;return[`Q* = <b>${N(q)}</b> unit · ${N(v.d/q)} pesanan/tahun<br>Total biaya = <b>${N(tc)}</b>/tahun`,Math.min(100,q/v.d*300)]});
+field("#k4",[["sl","Service level",0.8,0.999,0.95],["sd","σ permintaan harian",0,1e4,120,"number"],["lt","Lead time (hari)",1,60,9,"range",1]],v=>{const p=v.sl,z=4.91*(Math.pow(p,.14)-Math.pow(1-p,.14)),ss=z*v.sd*Math.sqrt(v.lt);return[`Z ≈ <b>${z.toFixed(2)}</b> · Safety stock = <b>${N(ss,0)} unit</b><br><small>Service level naik, stok pengaman naik tajam.</small>`,v.sl*100]});
+field("#k5",[["c","Tarif per km",0,20,1.3665,"number"],["km","Jarak (km)",0,2e4,2778,"number",1],["t","Tol/biaya lain",0,1e5,0,"number"],["b","Bongkar muat",0,1e5,0,"number"]],v=>{const f=v.c*v.km+v.t+v.b;return[`Biaya pengiriman = <b>${N(f)}</b><br>Per km (all-in) = ${N(f/(v.km||1),4)}`,Math.min(100,f/200)]});
+field("#k6",[["h","HPP tahunan",0,1e10,12000000,"number",1],["s0","Stok awal",0,1e10,2000000,"number",1],["s1","Stok akhir",0,1e10,1600000,"number",1]],v=>{const a=(v.s0+v.s1)/2,t=v.h/(a||1),dio=365/(t||1);return[`Turnover = <b>${t.toFixed(2)}x</b> · DIO = <b>${dio.toFixed(0)} hari</b>`,Math.min(100,t*10)]});
+const Q=[["Rumus Reorder Point menurut modul?",["Safety stock + konsumsi harian × lead time","Demand / harga","HPP / stok"],0],["EOQ meminimalkan...?",["Biaya pesan + biaya simpan","Harga beli saja","Jumlah pemasok"],0],["Aturan Pareto ABC?",["50/50","80/20","10/90"],1],["Fulfilment oleh Amazon disebut?",["FBM","FBA","TMS"],1]];
+let sc=0;$("#quiz").innerHTML=Q.map((q,i)=>`<div><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button data-i="${i}" data-j="${j}">${o}</button>`).join("")}</div>`).join("")+'<h3 id="sc"></h3>';
+$("#quiz").onclick=e=>{const b=e.target;if(b.tagName!="BUTTON"||b.parentNode.dataset.d)return;b.parentNode.dataset.d=1;const ok=+b.dataset.j==Q[b.dataset.i][2];b.classList.add(ok?"ok":"no");sc+=ok;$("#sc").textContent=`Skor: ${sc}/${Q.length}`;if(ok)ship(innerWidth/2,innerHeight/2)};
+function cnt(id,to){let n=0;const t=setInterval(()=>{n+=Math.ceil(to/30);if(n>=to){n=to;clearInterval(t)}$(id).textContent=n},40)}
+cnt("#c1",7);cnt("#c2",6);cnt("#c3",159);
+// background: jaringan logistik
+const cv=$("#bg"),cx=cv.getContext("2d");let W,H,Nd=[],E=[],Pk=[],mx=-9e3,my=-9e3;const C=["#ffb21e","#1de9b6","#ff6b2c"];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;const n=Math.min(34,W*H/30000|0)+10;Nd=Array.from({length:n},(_,i)=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:i%7==0?7:3.5,c:C[i%3]}));E=[];Nd.forEach((a,i)=>{Nd.map((b,j)=>[j,Math.hypot(a.x-b.x,a.y-b.y)]).filter(o=>o[0]!=i).sort((p,q)=>p[1]-q[1]).slice(0,2).forEach(o=>E.push([i,o[0]]))});Pk=[]}
+function ship(x,y){let b=0,bd=1e9;Nd.forEach((n,i)=>{const d=Math.hypot(n.x-x,n.y-y);if(d<bd){bd=d;b=i}});E.filter(e=>e[0]==b||e[1]==b).forEach(e=>{for(let k=0;k<4;k++)Pk.push({e,t:-k*.12,s:.012+Math.random()*.01,r:e[1]==b})})}
+addEventListener("resize",rs);addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});addEventListener("click",e=>ship(e.clientX,e.clientY));
+rs();(function f(){cx.fillStyle="#061018";cx.fillRect(0,0,W,H);const g=cx.createRadialGradient(W*.8,0,0,W*.8,0,H);g.addColorStop(0,"#0d3a44");g.addColorStop(1,"#061018");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+for(const n of Nd){n.x=(n.x+n.vx+W)%W;n.y=(n.y+n.vy+H)%H}
+cx.lineWidth=1;for(const[a,b]of E){const A=Nd[a],B=Nd[b];if(Math.hypot(A.x-B.x,A.y-B.y)>W/2)continue;cx.strokeStyle="rgba(29,233,182,.16)";cx.beginPath();cx.moveTo(A.x,A.y);cx.lineTo(B.x,B.y);cx.stroke()}
+for(const n of Nd){const near=Math.hypot(n.x-mx,n.y-my)<150;cx.fillStyle=n.c;cx.shadowColor=n.c;cx.shadowBlur=near?25:6;cx.beginPath();cx.arc(n.x,n.y,near?n.r*1.8:n.r,0,6.28);cx.fill();if(near&&Math.random()<.04)ship(n.x,n.y)}cx.shadowBlur=0;
+if(Math.random()<.08&&E.length){const e=E[Math.random()*E.length|0];Pk.push({e,t:0,s:.008+Math.random()*.01,r:false})}
+Pk=Pk.filter(p=>(p.t+=p.s)<1);for(const p of Pk){if(p.t<0)continue;const A=Nd[p.r?p.e[1]:p.e[0]],B=Nd[p.r?p.e[0]:p.e[1]];if(Math.hypot(A.x-B.x,A.y-B.y)>W/2)continue;cx.fillStyle="#fff";cx.fillRect(A.x+(B.x-A.x)*p.t-2.5,A.y+(B.y-A.y)*p.t-2.5,5,5)}
+requestAnimationFrame(f)})();
+</script></body></html>
