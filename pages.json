@@ -718,5 +718,77 @@
   "deskripsi": "Kirim nilai lebih cepat dan belajar di setiap sprint.",
   "href": "halaman-agile-methodologies.html",
   "kb": 16
+ },
+ {
+  "judul": "Equity Research Analyst Roadmap 2026",
+  "jenis": "Peta belajar",
+  "kategori": "Keuangan & investasi",
+  "deskripsi": "Roadmap 5 langkah analis riset ekuitas: tracker belajar, kalkulator DCF, scorecard tesis, dan jalur karier.",
+  "href": "halaman-equity-research-roadmap.html",
+  "kb": 13
+ },
+ {
+  "judul": "Private Equity & Venture Capital Lab",
+  "jenis": "Landing page",
+  "kategori": "Keuangan & investasi",
+  "deskripsi": "Teori PE vs VC, kalkulator IRR/MOIC, dilusi, LBO, waterfall fund, kuis, dan studi kasus.",
+  "href": "halaman-private-equity-venture-capital.html",
+  "kb": 15
+ },
+ {
+  "judul": "Stochastic Models: Heston, Jump Diffusion & RL",
+  "jenis": "Modul belajar",
+  "kategori": "Trading & kuantitatif",
+  "deskripsi": "11 modul MScFE 622: Heston, Merton, Fourier pricing, kalibrasi, HMM, reinforcement learning, plus simulator lintasan harga.",
+  "href": "halaman-stochastic-models.html",
+  "kb": 12
+ },
+ {
+  "judul": "Mining Budget Planning & Cost Control",
+  "jenis": "Landing page",
+  "kategori": "Tambang & biaya",
+  "deskripsi": "Teori, kalkulator varian interaktif, contoh soal, dan studi kasus untuk 10 komoditas tambang.",
+  "href": "halaman-mining-budget-planning-cost-control.html",
+  "kb": 19
+ },
+ {
+  "judul": "Mining Project Cost Evaluation & Optimization",
+  "jenis": "Landing page",
+  "kategori": "Tambang & biaya",
+  "deskripsi": "Teori, kalkulator interaktif, contoh soal, dan studi kasus evaluasi biaya proyek tambang.",
+  "href": "halaman-mining-project-cost-evaluation.html",
+  "kb": 17
+ },
+ {
+  "judul": "Open Pit Slope Stability & Geotechnical Monitoring",
+  "jenis": "Landing page",
+  "kategori": "Tambang & biaya",
+  "deskripsi": "Kestabilan lereng, monitoring, dan early warning: kalkulator FoS, contoh soal, studi kasus.",
+  "href": "halaman-slope-stability-monitoring.html",
+  "kb": 20
+ },
+ {
+  "judul": "Mining Budgeting, Cost Control & Power BI",
+  "jenis": "Landing page",
+  "kategori": "Tambang & biaya",
+  "deskripsi": "Struktur biaya OB removal-getting-hauling, Budget vs Actual, analisis varians, PDCA, dan dashboard ala Power BI.",
+  "href": "halaman-mining-budgeting-power-bi.html",
+  "kb": 74
+ },
+ {
+  "judul": "Mining Data Analytics: BI & Excel Reporting",
+  "jenis": "Landing page",
+  "kategori": "Tambang & biaya",
+  "deskripsi": "Dari value chain tambang sampai dashboard manajemen: rumus, studi kasus, kalkulator, dan workbook Excel.",
+  "href": "halaman-mining-data-analytics-bi.html",
+  "kb": 49
+ },
+ {
+  "judul": "Mining Project Finance: Investment Evaluation & SHAP",
+  "jenis": "Landing page",
+  "kategori": "Tambang & biaya",
+  "deskripsi": "CAPEX-OPEX, DCF, NPV/IRR, sensitivitas, project financing, hingga SHAP dan simulasi counterfactual.",
+  "href": "halaman-mining-project-finance-shap.html",
+  "kb": 68
  }
 ]

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Equity Research Analyst Roadmap 2026</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--tx:#14213d;--mut:#5b6785;--pri:#1f3864;--acc:#2f6fed;--ok:#2e9e5b;--bd:#dde3f0}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1424;--card:#171f35;--tx:#e8ecf7;--mut:#9aa6c4;--pri:#7fa6ff;--acc:#4d8dff;--bd:#2a3555}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5}
+nav{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--bd);display:flex;gap:4px;padding:8px 12px;overflow-x:auto;z-index:5}
+nav a{color:var(--tx);text-decoration:none;padding:6px 12px;border-radius:16px;font-size:14px;white-space:nowrap}nav a:hover{background:var(--bd)}
+header{background:linear-gradient(135deg,#1f3864,#2f6fed);color:#fff;padding:56px 20px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(28px,6vw,48px)}header p{max-width:640px;margin:0 auto 20px;opacity:.9}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.chips span{background:rgba(255,255,255,.15);padding:6px 12px;border-radius:16px;font-size:13px}
+section{max-width:980px;margin:0 auto;padding:36px 16px}h2{color:var(--pri);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px;margin-bottom:14px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+button,select,input{font:inherit}
+.tab{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 14px;border-radius:8px;cursor:pointer}
+.tab.on{background:var(--pri);color:var(--bg);border-color:var(--pri)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.q{font-style:italic;color:var(--acc);border-left:4px solid var(--acc);padding-left:12px;margin-top:14px}
+ul{padding-left:20px;margin:6px 0}
+.bar{height:12px;background:var(--bd);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .4s}
+label.ck{display:flex;gap:8px;align-items:flex-start;padding:6px 0;cursor:pointer}
+.f{display:grid;grid-template-columns:1fr 90px;gap:6px 10px;align-items:center}
+.f input[type=number]{padding:6px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--tx);width:100%}
+.res{font-size:28px;font-weight:bold;color:var(--pri)}.badge{display:inline-block;padding:6px 14px;border-radius:8px;color:#fff;font-weight:bold}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid var(--bd);padding:6px;text-align:center}th{background:var(--pri);color:var(--bg)}
+.sl{display:grid;grid-template-columns:150px 1fr 30px;gap:8px;align-items:center;margin:6px 0;font-size:14px}
+.tl{display:flex;flex-direction:column;gap:10px}.lv{border-left:4px solid var(--acc);padding-left:12px}
+.eq{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-weight:bold}.eq span{background:var(--card);border:1px solid var(--bd);padding:8px 12px;border-radius:8px;cursor:pointer}.eq span:hover{background:var(--acc);color:#fff}
+.xl{display:inline-block;margin-top:10px;background:var(--acc);color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
+</style></head><body>
+<nav><a href="#roadmap">Roadmap</a><a href="#tracker">Tracker</a><a href="#dcf">Kalkulator DCF</a><a href="#tesis">Tesis & Rating</a><a href="#karier">Karier</a></nav>
+<header><h1>Equity Research Analyst Roadmap 2026</h1><p>Peta jalan lengkap membangun keahlian riset ekuitas, analisis saham, valuasi, dan keputusan investasi, dalam 5 langkah interaktif.</p>
+<div class="chips"><span>Analisis Laporan Keuangan</span><span>Riset Industri</span><span>Valuasi</span><span>Pemodelan</span><span>Tesis Investasi</span><span>Risiko</span></div></header>
+
+<section id="roadmap"><h2>5 Langkah Roadmap</h2><div class="tabs" id="tabs"></div><div class="card" id="stepbox"></div></section>
+
+<section id="tracker"><h2>Tracker Progres Belajar</h2><div class="card"><div class="bar"><i id="pb"></i></div><p id="pt" style="color:var(--mut)"></p><div id="cl"></div><button class="tab" onclick="resetCl()">Reset</button></div></section>
+
+<section id="dcf"><h2>Kalkulator Valuasi DCF</h2><p style="color:var(--mut)">Valuasi mengubah riset menjadi keputusan investasi. Angka contoh, ubah sesuai asumsi Anda.</p>
+<div class="grid"><div class="card"><div class="f" id="inp"></div></div>
+<div class="card"><div>Nilai wajar / saham</div><div class="res" id="fv">-</div><div>Upside: <b id="up">-</b></div><p><span class="badge" id="rt">-</span></p><div style="color:var(--mut);font-size:13px">EV: <span id="ev"></span> | Ekuitas: <span id="eqv"></span></div></div></div>
+<div class="card"><b>Sensitivitas: WACC (kolom) x g (baris)</b><div style="overflow-x:auto"><table id="sens"></table></div></div>
+<a class="xl" href="Equity_Research_Model.xlsx" download>Unduh Excel (DCF, Multiples, Tesis, Tracker)</a></section>
+
+<section id="tesis"><h2>Scorecard Tesis Investasi</h2><p style="color:var(--mut)">Tesis yang kuat memadukan fakta, analisis, dan keyakinan. Geser skor 1-5.</p>
+<div class="grid"><div class="card" id="sc"></div><div class="card"><div>Skor tertimbang</div><div class="res" id="ss">-</div><p><span class="badge" id="sr">-</span></p>
+<div style="font-size:13px;color:var(--mut)">Kerangka rating: Strong Buy, Buy, Hold, Sell, Strong Sell.</div></div></div></section>
+
+<section id="karier"><h2>Karier & Rumus Sukses</h2><div class="grid">
+<div class="card tl"><div class="lv"><b>Entry</b><br>Research Intern, Junior Analyst, Associate</div><div class="lv"><b>Menengah</b><br>Equity Research Analyst, Senior, Sector Specialist</div><div class="lv"><b>Lanjut</b><br>VP, Research Director, Portfolio Manager, CIO</div><div class="lv"><b>Sertifikasi</b><br>CFA, FRM, NISM</div></div>
+<div class="card"><b>Keterampilan pembeda (klik rumus)</b><div class="eq" id="eq" style="margin-top:12px"></div><p id="eqd" style="color:var(--mut)">Klik salah satu elemen.</p></div></div>
+<div class="q">Investasi terbaik adalah berinvestasi pada pengetahuanmu.</div></section>
+<footer>Materi berdasarkan carousel "Equity Research Analyst Roadmap 2026" (Uzair Aslam). Angka kalkulator hanya ilustrasi, bukan rekomendasi investasi.</footer>
+
+<script>
+const S=[
+{n:"1 Fondasi",t:"Bangun fondasi yang kuat",a:["Pahami dasar akuntansi, keuangan, ekonomi, dan pasar modal","Pelajari cara bisnis menghasilkan pendapatan, laba, arus kas","Kuasai laba rugi, neraca, arus kas","Kembangkan kemampuan kuantitatif","Biasakan membaca laporan tahunan & earnings"],k:"Akuntansi Keuangan, Keuangan Korporat, Ekonomi, Pasar Modal, Analisis Laporan Keuangan, Dasar Bisnis",q:"Analis terbaik tidak hanya menganalisis angka, mereka memahami bisnis."},
+{n:"2 Industri",t:"Pahami industri secara mendalam",a:["Struktur industri & dinamika persaingan","Ukuran pasar, pendorong pertumbuhan","Tren & siklus bisnis","Perusahaan terkemuka & pesaing baru","Disrupsi teknologi"],k:"Industri 2026: AI, Semikonduktor, Cloud, Keamanan Siber, Energi Terbarukan, Kendaraan Listrik, Pembayaran Digital, Inovasi Kesehatan. Sumber: laporan tahunan, earnings call, publikasi industri, dokumen regulator.",q:"Riset ekuitas yang baik dimulai dari memahami industri sebelum menganalisis perusahaan."},
+{n:"3 Valuasi",t:"Kuasai teknik valuasi",a:["Bangun model keuangan profesional","Proyeksikan pendapatan, margin, laba, arus kas","Pahami estimasi nilai intrinsik","Analisis skenario & sensitivitas"],k:"Metode: DCF, Comparable Company, Precedent Transaction, EV/EBITDA, P/E, P/B. Hasil: model keuangan, laporan valuasi, catatan investasi, laporan coverage.",q:"Valuasi mengubah riset menjadi keputusan investasi."},
+{n:"4 Tesis",t:"Susun tesis investasi",a:["Kekuatan & kelemahan bisnis","Keunggulan kompetitif","Kualitas manajemen & eksekusi","Peluang & risiko pertumbuhan","Daya tarik investasi"],k:"Dicari investor 2026: pertumbuhan berkelanjutan, integrasi AI, ekspansi profitabilitas, arus kas kuat, efisiensi modal, moat.",q:"Tesis investasi yang kuat memadukan fakta, analisis, dan keyakinan."},
+{n:"5 Karier",t:"Bangun karier jangka panjang",a:["Mulai sebagai intern/junior analyst","Menjadi analis senior / sector specialist","Ambil CFA, FRM, NISM","Menuju VP, Research Director, PM, CIO"],k:"Pembeda: pemodelan, valuasi, pengetahuan industri, komunikasi, penulisan investasi, independensi, interpretasi data.",q:"Investasi terbaik adalah berinvestasi pada pengetahuanmu."}];
+const $=id=>document.getElementById(id);
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},ld=(k,d)=>{try{const x=localStorage.getItem(k);return x?JSON.parse(x):d}catch(e){return d}};
+function showStep(i){document.querySelectorAll('.tab[data-s]').forEach((b,j)=>b.classList.toggle('on',j==i));const s=S[i];
+$('stepbox').innerHTML=`<h3 style="margin-top:0">${s.t}</h3><ul>${s.a.map(x=>`<li>${x}</li>`).join('')}</ul><p style="color:var(--mut)">${s.k}</p><div class="q">${s.q}</div>`}
+S.forEach((s,i)=>{const b=document.createElement('button');b.className='tab';b.dataset.s=i;b.textContent=s.n;b.onclick=()=>showStep(i);$('tabs').appendChild(b)});showStep(0);
+// tracker
+let ck=ld('erck',{});const all=[];S.forEach((s,i)=>s.a.forEach((a,j)=>all.push([i+'-'+j,a])));
+function drawCl(){$('cl').innerHTML=all.map(([k,a])=>`<label class="ck"><input type="checkbox" ${ck[k]?'checked':''} onchange="tg('${k}',this.checked)"> ${a}</label>`).join('');upd()}
+function tg(k,v){ck[k]=v;sv('erck',ck);upd()}function upd(){const n=all.filter(([k])=>ck[k]).length,p=Math.round(n/all.length*100);$('pb').style.width=p+'%';$('pt').textContent=`${n} dari ${all.length} tugas selesai (${p}%)`}
+function resetCl(){ck={};sv('erck',ck);drawCl()}drawCl();
+// DCF
+const P=[["Pendapatan dasar",10000],["Pertumbuhan %",10],["Margin EBITDA %",25],["D&A % pendapatan",5],["Pajak %",22],["Capex % pendapatan",6],["NWC % kenaikan pendapatan",10],["WACC %",10],["Growth terminal g %",3],["Utang bersih",3000],["Saham (miliar)",5],["Harga pasar",1500]];
+$('inp').innerHTML=P.map((p,i)=>`<span>${p[0]}</span><input type="number" step="any" id="p${i}" value="${p[1]}" oninput="calc()">`).join('');
+function val(w,g,v){let r=v[0],prev=r,pv=0,f=0;for(let y=1;y<=5;y++){r=prev*(1+v[1]/100);const eb=r*v[2]/100,da=r*v[3]/100,np=(eb-da)*(1-v[4]/100);f=np+da-r*v[5]/100-(r-prev)*v[6]/100;pv+=f/Math.pow(1+w,y);prev=r}
+const tv=f*(1+g)/(w-g)/Math.pow(1+w,5),ev=pv+tv,eq=ev-v[9];return{ev,eq,ps:eq/v[10]}}
+const fm=n=>Math.round(n).toLocaleString('id-ID');
+function rate(u){return u>=.3?["STRONG BUY","#1e8e3e"]:u>=.1?["BUY","#6aa84f"]:u>=-.1?["HOLD","#e0a800"]:u>=-.3?["SELL","#e67e22"]:["STRONG SELL","#c0392b"]}
+function calc(){const v=P.map((_,i)=>+$('p'+i).value),w=v[7]/100,g=v[8]/100;if(w<=g||v[10]<=0){$('fv').textContent='WACC harus > g';return}
+const r=val(w,g,v),u=r.ps/v[11]-1,[rt,c]=rate(u);$('fv').textContent='Rp '+fm(r.ps);$('up').textContent=(u*100).toFixed(1)+'%';$('rt').textContent=rt;$('rt').style.background=c;$('ev').textContent=fm(r.ev);$('eqv').textContent=fm(r.eq);
+const ws=[-2,-1,0,1,2].map(d=>w+d/100),gs=[-1,-.5,0,.5,1].map(d=>g+d/100);
+$('sens').innerHTML='<tr><th>g \\ WACC</th>'+ws.map(x=>`<th>${(x*100).toFixed(1)}%</th>`).join('')+'</tr>'+gs.map(gg=>`<tr><th>${(gg*100).toFixed(1)}%</th>`+ws.map(x=>x>gg?`<td style="background:${rate(val(x,gg,v).ps/v[11]-1)[1]}33">${fm(val(x,gg,v).ps)}</td>`:'<td>-</td>').join('')+'</tr>').join('')}calc();
+// thesis
+const C=[["Pertumbuhan berkelanjutan",.2],["Integrasi AI",.1],["Ekspansi profitabilitas",.15],["Arus kas kuat",.15],["Efisiensi modal",.1],["Competitive moat",.15],["Kualitas manajemen",.1],["Valuasi menarik",.05]];
+$('sc').innerHTML=C.map((c,i)=>`<div class="sl"><span>${c[0]}</span><input type="range" min="1" max="5" value="3" id="s${i}" oninput="th()"><b id="v${i}">3</b></div>`).join('');
+function th(){let t=0;C.forEach((c,i)=>{const x=+$('s'+i).value;$('v'+i).textContent=x;t+=x*c[1]});$('ss').textContent=t.toFixed(2)+' / 5';
+const [r,c]=t>=4.5?["STRONG BUY","#1e8e3e"]:t>=3.75?["BUY","#6aa84f"]:t>=2.75?["HOLD","#e0a800"]:t>=2?["SELL","#e67e22"]:["STRONG SELL","#c0392b"];$('sr').textContent=r;$('sr').style.background=c}th();
+// formula
+const E=[["Pengetahuan","Dasar akuntansi, keuangan, ekonomi."],["Riset","Industri dan perusahaan secara mendalam."],["Valuasi","Mengubah riset jadi keputusan."],["Disiplin","Proses konsisten, bukan emosi."],["Konsistensi","Membaca dan menulis rutin."],["Rasa ingin tahu","Selalu bertanya mengapa."]];
+$('eq').innerHTML=E.map((e,i)=>`<span onclick="$('eqd').textContent='${e[0]}: ${e[1]}'">${e[0]}</span>`+(i<5?'+':'= Sukses jangka panjang')).join(' ');
+</script></body></html>

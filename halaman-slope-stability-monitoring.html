@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Open Pit Slope Stability & Geotechnical Monitoring</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f6fb;--fg:#14213d;--card:rgba(255,255,255,.88);--p:#2bb0a6;--p2:#e4572e;--mut:#51607a;--bd:rgba(20,33,61,.15);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1226;--fg:#eef2fb;--card:rgba(20,30,58,.82);--mut:#a9b6d3;--bd:rgba(255,255,255,.14);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1226;--fg:#eef2fb;--card:rgba(20,30,58,.82);--mut:#a9b6d3;--bd:rgba(255,255,255,.14);color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.55}
+#cv{position:fixed;inset:0;z-index:0;width:100%;height:100%}main,header,footer{position:relative;z-index:1;max-width:1040px;margin:auto;padding:0 16px}
+.hero{padding:56px 0 24px;text-align:center}.hero h1{font-size:clamp(1.8rem,5vw,3.1rem);margin:.2em 0;background:linear-gradient(90deg,var(--p),var(--p2),var(--p));background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:200%}}.tag{display:inline-block;padding:4px 14px;border:1px solid var(--p);border-radius:99px;color:var(--p);font-weight:600;font-size:.85rem}
+.by{margin-top:10px;color:var(--mut)}.by b[contenteditable]{color:var(--p);border-bottom:1px dashed var(--p);padding:0 4px;outline:0}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.btn,button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:9px 16px;font-weight:600;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;transition:transform .15s}.btn{text-decoration:none;display:inline-block}.btn:hover,button:hover{transform:translateY(-2px) scale(1.03)}
+button.g{background:var(--card);color:var(--fg);border:1px solid var(--bd)}button.on{outline:2px solid var(--p)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;overflow-x:auto;padding:10px 0;background:linear-gradient(var(--bg),transparent)}nav button{white-space:nowrap}
+.card{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--bd);border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}h2{margin:.2em 0}h3{margin:.2em 0;color:var(--p)}
+.acc{cursor:pointer}.acc .b{display:none;margin-top:8px;color:var(--mut)}.acc.o .b{display:block}.f{font-family:ui-monospace,Menlo,monospace;background:rgba(127,127,127,.15);padding:2px 8px;border-radius:6px;display:inline-block;margin-top:4px;color:var(--fg)}
+.min{display:flex;flex-wrap:wrap;gap:8px}label{display:block;font-size:.85rem;color:var(--mut);margin-top:8px}input[type=number],input[type=range]{width:100%}input[type=number]{padding:7px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font:inherit}
+.res{font-size:1.5rem;font-weight:800;color:var(--p)}.ans{display:none;margin-top:8px;padding:10px;border-left:4px solid var(--p);background:rgba(127,127,127,.12);border-radius:6px}.ans.o{display:block;animation:fi .4s}@keyframes fi{from{opacity:0;transform:translateY(8px)}}
+svg.ch{width:100%;height:150px;background:rgba(127,127,127,.1);border-radius:10px}textarea{width:100%;min-height:70px;padding:7px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font:inherit}.bar{height:14px;border-radius:7px;background:linear-gradient(90deg,var(--p),var(--p2));transition:width .6s;margin:3px 0}.sec{display:none}.sec.on{display:block;animation:fi .4s}.ok{color:#2e9e5b;font-weight:700}.bad{color:var(--p2);font-weight:700}footer{text-align:center;color:var(--mut);padding:30px 16px 50px}
+</style></head><body><canvas id="cv"></canvas>
+<header class="hero"><span class="tag">WORKSHOP 2 HARI • GEOTEKNIK LERENG TAMBANG TERBUKA</span>
+<h1>Open Pit Slope Stability & Geotechnical Monitoring</h1>
+<p>Analisis kestabilan lereng, monitoring & early warning: teori, kalkulator FoS, contoh soal & studi kasus 10 komoditas.</p>
+<div class="by">Dibuat oleh: <b contenteditable="true" id="nm" title="Klik untuk mengganti nama">[Nama Anda]</b> ✏️</div>
+<div class="btns"><a class="btn" href="#app" onclick="go('t1')">Mulai Belajar ⛏️</a><button class="g" onclick="dl()">⬇ Unduh Halaman (HTML)</button><button class="g" id="xl" onclick="xls()">⬇ Unduh Excel Perhitungan</button></div></header>
+<main id="app"><nav id="nav"></nav>
+<section class="sec" id="t1"></section><section class="sec" id="t2"></section><section class="sec" id="mn"></section><section class="sec" id="ca"></section></main>
+<footer>© 2026 • Dibuat oleh <span id="nm2">[Nama Anda]</span> • Angka contoh bersifat ilustratif untuk pelatihan, bukan data proyek riil.</footer>
+<script>
+const $=id=>document.getElementById(id),fm=(n,d=1)=>(isFinite(n)?n:0).toLocaleString('id-ID',{maximumFractionDigits:d});
+/* nama */
+try{const s=localStorage.getItem('nm');if(s){$('nm').textContent=s;$('nm2').textContent=s}}catch(e){}
+$('nm').oninput=()=>{const v=$('nm').textContent;$('nm2').textContent=v;try{localStorage.setItem('nm',v)}catch(e){}};
+/* background */
+const cv=$('cv'),cx=cv.getContext('2d');let W,H,P=[],mx=-9,my=-9;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(90,W/12|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:Math.random()-.5,vy:Math.random()-.5,r:Math.random()*2+1}))}
+addEventListener('resize',rs);addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});rs();
+function fr(){const c=getComputedStyle(document.documentElement).getPropertyValue('--p').trim()||'#d4a017';cx.clearRect(0,0,W,H);
+P.forEach((a,i)=>{a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;const dx=mx-a.x,dy=my-a.y,d=Math.hypot(dx,dy);if(d<150){a.x+=dx/d*1.2;a.y+=dy/d*1.2}
+cx.globalAlpha=.6;cx.fillStyle=c;cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fill();for(let j=i+1;j<P.length;j++){const b=P[j],e=Math.hypot(a.x-b.x,a.y-b.y);if(e<110){cx.globalAlpha=.25*(1-e/110);cx.strokeStyle=c;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}});requestAnimationFrame(fr)}fr();
+/* nav */
+const tabs=[['t1','📘 Day 1: Stabilitas Lereng'],['t2','📗 Day 2: Monitoring & EWS'],['mn','⛏️ Lab Mineral'],['ca','🧮 Kalkulator']];
+$('nav').innerHTML=tabs.map(t=>`<button class="g" data-t="${t[0]}" onclick="go('${t[0]}')">${t[1]}</button>`).join('');
+function go(id){document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('on',s.id==id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==id))}
+const D1=[['Fundamental of Open Pit Slope Geotechnical Engineering','Desain lereng pit menyeimbangkan keselamatan dan ekonomi (stripping ratio). Parameter utama: kohesi (c), sudut geser dalam (φ), unit weight (γ), dan kuat batuan (UCS, GSI). Geologi struktur (sesar, kekar, bedding), pelapukan, dan air tanah mengendalikan kekuatan massa batuan. Geometri: tinggi bench, lebar berm, sudut bench-face, sudut inter-ramp, dan sudut overall.','τ = c + σ′ tan φ'],
+['Slope Stability Analysis & Slope Failure Assessment','Factor of Safety (FoS) = gaya penahan / gaya penggerak, dihitung dengan metode kesetimbangan batas (LEM: Bishop, Janbu, Spencer, Morgenstern-Price). Mekanisme: planar, wedge, toppling, circular/rotasi, dan runtuhan dangkal pada tanah lapuk. Air tanah menurunkan tegangan efektif dan menambah gaya penggerak. Kriteria contoh: FoS ≥ 1,2-1,3 (overall), PoF ≤ 5-10% bergantung konsekuensi.','FoS = Σ Penahan / Σ Penggerak'],
+['Practical Slope Stability Modelling Using Geotechnical Software','Rocscience Slide2 (2D LEM), Slide3 (3D LEM), RS2 (elemen hingga, SSR). Alur: geometri → material & kriteria kekuatan (Mohr-Coulomb / Hoek-Brown) → muka air/tekanan pori → beban (gempa, ledakan) → analisis → sensitivitas & probabilistik. Validasi model dengan back-analysis longsoran lapangan.','SRF (RS2): FoS = faktor reduksi kekuatan kritis']];
+const D2=[['Geotechnical Monitoring Methods & Instrumentation','Metode: survey prisma/total station, extensometer, crack meter, inclinometer, piezometer (VWP), tiltmeter, dan GNSS. Skala luas: Slope Stability Radar/Ground-Based Radar (kontinu, milimetrik) dan Satellite InSAR (cakupan besar, regional). Pemilihan bergantung pada karakter longsor, laju gerak, dan visibilitas.','Rencana: parameter → instrumen → frekuensi → ambang'],
+['Monitoring Data & Slope Performance Assessment','Analisis displacement, velocity, acceleration. Pola: regresif (stabil), progresif (percepatan), dan transien (dipicu hujan/ledakan). Korelasikan dengan hujan, tekanan pori, dan blasting. Metode inverse velocity (Fukuzono) memprediksi waktu runtuh saat 1/v menuju nol.','v = Δd/Δt ; a = Δv/Δt ; 1/v → 0 saat runtuh'],
+['Early Warning System (EWS) & Geotechnical Risk Management','Trigger level berbasis velocity/displacement dalam TARP: Hijau, Kuning, Oranye, Merah, lengkap dengan respons: alert, evakuasi, emergency response. Integrasikan sensor real-time, alarm, SMS/radio, dan prosedur akses area. Tinjau ambang berkala dengan kinerja lereng dan geologi.','TARP: Ambang → Respons → Penanggung jawab']];
+[['t1','Hari Pertama',D1],['t2','Hari Kedua',D2]].forEach(([id,l,d])=>$(id).innerHTML=`<h2>${l}</h2><div class="grid">`+d.map((x,i)=>`<div class="card acc" onclick="this.classList.toggle('o')"><h3>${i+1}. ${x[0]}</h3><small>Klik untuk membuka materi</small><div class="b"><p>${x[1]}</p><span class="f">${x[2]}</span></div></div>`).join('')+'</div>');
+const rad=x=>x*Math.PI/180,GW=9.81;
+function fos(H,pf,pp,c,ph,g,m){const cf=1/Math.tan(rad(pf)),cp=1/Math.tan(rad(pp)),z=H*(1-Math.sqrt(cf*Math.tan(rad(pp)))),A=(H-z)/Math.sin(rad(pp)),W=.5*g*H*H*((1-(z/H)**2)*cp-cf),zw=m*z,U=.5*GW*zw*A,V=.5*GW*zw*zw,b=H*(Math.sqrt(cp*cf)-cf);
+return{z,A,W,U,V,b,F:(c*A+(W*Math.cos(rad(pp))-U-V*Math.sin(rad(pp)))*Math.tan(rad(ph)))/(W*Math.sin(rad(pp))+V*Math.cos(rad(pp)))}}
+/* [ikon,nama,H,pf,pp,c,phi,gamma,m,kasus,tindakan] */
+const M=[['🥇','Emas',120,55,33,140,35,26,.5,'Dinding pit pada granodiorit dengan sesar yang searah lereng. Curah hujan ekstrem menaikkan tekanan air pada retakan tarik; radar mendeteksi percepatan dan TARP naik ke Oranye.','Depressurization (horizontal drain), akses dibatasi, perubahan urutan penambangan, dan peninjauan ulang ambang TARP.'],
+['⚫','Batubara',90,40,25,90,28,21,.5,'Bidang lemah claystone (bedding) searah dip memicu longsoran planar. Air pada rekahan menurunkan FoS dalam hitungan hari.','Horizontal drain, pengurangan sudut lereng, pemantauan prisma pada crest, dan kontrol ledakan di dekat dinding akhir.'],
+['🔋','Nikel',70,45,27,70,30,18,.5,'Laterit/saprolit berkohesi rendah dan jenuh air saat hujan tropis; terjadi longsor dangkal dan tension crack di crest.','Drainase permukaan, bench lebih landai, buttress di toe, dan revegetasi/penutup lereng.'],
+['🟤','Bauksit',40,40,24,50,28,19,.5,'Lereng lempung bauksit dangkal; erosi dan saturasi menyebabkan runtuhan berulang di musim hujan.','Parit keliling, sump & pompa, serta inspeksi visual harian dengan ambang crack-meter.'],
+['🧲','Logam Tanah Jarang',100,52,32,130,34,25,.5,'Batuan lapuk dengan zona sesar; pit dalam dengan air tanah tinggi. Monitoring prisma dan piezometer menunjukkan tekanan pori naik.','Dewatering, sudut inter-ramp diturunkan, dan InSAR untuk pantauan regional.'],
+['🏖️','Pasir Silika',30,38,25,25,32,17,.5,'Pasir lepas berkohesi kecil; saat pit mendekati muka air terjadi rembesan dan keruntuhan tepi bench.','Dewatering, kemiringan landai, dan monitoring prisma sederhana dengan frekuensi tinggi saat hujan.'],
+['🔶','Tembaga',300,50,31,260,38,26,.5,'High wall porfiri 300 m dengan sistem kekar. Radar + InSAR mendeteksi gerakan progresif; inverse velocity dipakai memprediksi runtuh.','Evakuasi terukur, relokasi alat, pembebanan balik (toe), dan back-analysis untuk desain ulang.'],
+['☢️','Uranium',80,45,27,90,30,22,.5,'Pit dengan batas ketat air dan radiologi; dewatering harus dikelola sesuai izin sambil menjaga kestabilan lereng.','Integrasi monitoring air tanah dan lereng, dokumentasi regulatori, dan skenario darurat.'],
+['🥈','Timah',25,45,27,30,30,18,.5,'Dinding pasir kuarsa alluvial yang rawan runtuh di sekitar kolong dan sump; aktivitas tambang rakyat di dekatnya.','Penetapan buffer, sudut aman, rambu, dan pengendalian akses area.'],
+['⛓️','Besi/Mangan',150,50,31,170,36,29,.5,'Struktur kekar dan wedge pada batuan keras; getaran ledakan memicu rockfall. Perlu kontrol blasting.','Presplit/trim blasting, catch bench, dan monitoring getaran dengan ambang PPV.']];
+let cur=0;
+function rm(){const m=M[cur],d=fos(+m[2],m[3],m[4],m[5],m[6],m[7],0),w=fos(+m[2],m[3],m[4],m[5],m[6],m[7],m[8]),ok=w.F>=1.3;
+$('mn').innerHTML=`<h2>Lab Mineral</h2><div class="min">${M.map((x,i)=>`<button class="${i==cur?'':'g'}" onclick="cur=${i};rm()">${x[0]} ${x[1]}</button>`).join('')}</div>
+<div class="grid"><div class="card"><h3>📝 Contoh Soal: Pit ${m[1]}</h3><p>Lereng pit ${m[1]}: tinggi <b>${m[2]} m</b>, sudut muka <b>${m[3]}°</b>, bidang gelincir <b>${m[4]}°</b>, c = <b>${m[5]} kPa</b>, φ = <b>${m[6]}°</b>, γ = <b>${m[7]} kN/m³</b>, permukaan atas datar. Retakan tarik terisi air <b>${m[8]*100}%</b> kedalamannya. Hitung (a) kedalaman retakan z dan panjang bidang A, (b) berat blok W, (c) FoS kering, (d) FoS basah, (e) kesimpulan terhadap FoS minimum 1,3.</p>
+<button onclick="this.nextElementSibling.classList.toggle('o')">Lihat Pembahasan</button><div class="ans"><b>(a)</b> z = H[1 - √(cot ψf · tan ψp)] = <b>${fm(d.z,2)} m</b>; A = (H - z)/sin ψp = <b>${fm(d.A,1)} m</b><br><b>(b)</b> W = ½γH²[(1-(z/H)²)cot ψp - cot ψf] = <b>${fm(d.W,0)} kN/m</b><br><b>(c)</b> FoS kering = <b>${fm(d.F,2)}</b><br><b>(d)</b> zw = ${fm(w.z*m[8],2)} m; U = ${fm(w.U,0)} kN/m; V = ${fm(w.V,0)} kN/m; FoS basah = <b class="${ok?'ok':'bad'}">${fm(w.F,2)}</b><br><b>(e)</b> ${ok?'<span class="ok">Memenuhi FoS ≥ 1,3.</span>':'<span class="bad">Tidak memenuhi: perlu drainase/depressurization, penurunan sudut, atau buttress.</span>'}</div>
+<label>Saturasi retakan m: <b id="pv">${m[8]}</b></label><input type="range" min="0" max="1" step="0.05" value="${m[8]}" oninput="sv(this.value)"><div>FoS: <span class="res" id="pn"></span></div></div>
+<div class="card"><h3>📚 Studi Kasus (ilustratif)</h3><p><b>Situasi:</b> ${m[9]}</p><p><b>Tindakan:</b> ${m[10]}</p><p><b>Diskusi:</b> (1) Mekanisme dominan? (2) Level TARP dan respons yang tepat? (3) Instrumen yang paling sesuai? (4) Risiko bagi pekerja dan peralatan di bawah lereng?</p></div></div>`;sv(m[8])}
+function sv(v){const m=M[cur],f=fos(+m[2],m[3],m[4],m[5],m[6],m[7],+v).F;$('pv').textContent=v;$('pn').innerHTML=`<span class="${f>=1.3?'ok':f>=1?'bad':'bad'}">${fm(f,2)}</span> <small>${f>=1.3?'Memenuhi':f>=1?'Marginal':'Tidak stabil'}</small>`}
+rm();
+const inp=(id,l,v,s=1)=>`<label>${l}<input type="number" id="${id}" value="${v}" step="${s}" oninput="cal()"></label>`;
+const dd=Array.from({length:22},(_,i)=>(30*Math.log(26/(25-i))).toFixed(1)).join(', ');
+$('ca').innerHTML=`<h2>Kalkulator Interaktif</h2><div class="grid">
+<div class="card"><h3>1. FoS Planar + Sensitivitas Air</h3>${inp('a1','H (m)',120)}${inp('a2','Sudut muka ψf (°)',55)}${inp('a3','Sudut bidang ψp (°)',33)}${inp('a4','c (kPa)',140)}${inp('a5','φ (°)',35)}${inp('a6','γ (kN/m³)',26)}${inp('a7','Saturasi m (0-1)',.5,.05)}<p>FoS: <span class="res" id="r1"></span><br><small id="r1b"></small></p><div id="r1c"></div></div>
+<div class="card"><h3>2. Probabilitas Kegagalan (Monte Carlo)</h3>${inp('p1','SD kohesi (kPa)',30)}${inp('p2','SD sudut geser (°)',3)}${inp('p3','Jumlah simulasi',3000,500)}<p>Memakai parameter kartu 1 sebagai rata-rata.</p><button onclick="mc()">▶ Jalankan simulasi</button><p>PoF: <span class="res" id="r2">-</span><br><small id="r2b"></small></p></div></div>
+<div class="card"><h3>3. Analisis Monitoring & Inverse Velocity</h3><label>Displacement kumulatif harian (mm), pisahkan koma</label><textarea id="md" oninput="cal()">${dd}</textarea><div class="grid"><div>${inp('m1','Ambang Kuning (mm/hari)',2,.5)}${inp('m2','Ambang Oranye (mm/hari)',5,.5)}${inp('m3','Ambang Merah (mm/hari)',10,.5)}</div><div><p>Status terakhir: <span class="res" id="r3"></span><br><small id="r3b"></small></p></div></div><svg class="ch" id="c1" viewBox="0 0 400 150" preserveAspectRatio="none"></svg><small>Garis: velocity (mm/hari). Putus-putus: inverse velocity (skala relatif)</small></div>
+<div class="card"><p>Hitungan lengkap dengan rumus ada di <b>Slope_Stability_Monitoring_Workbook.xlsx</b> (6 sheet). Angka bersifat ilustratif; keputusan lereng riil wajib oleh geotechnical engineer/Competent Person.</p><button onclick="xls()">⬇ Unduh Excel Perhitungan</button></div>`;
+const g=i=>parseFloat($(i).value)||0;
+function cal(){const r=fos(g('a1'),g('a2'),g('a3'),g('a4'),g('a5'),g('a6'),g('a7')),f=r.F;$('r1').innerHTML=`<span class="${f>=1.3?'ok':'bad'}">${fm(f,2)}</span>`;$('r1b').textContent=`z = ${fm(r.z,1)} m, A = ${fm(r.A,1)} m, W = ${fm(r.W,0)} kN/m | ${f>=1.3?'Memenuhi 1,3':f>=1?'Marginal':'Tidak stabil'}`;
+$('r1c').innerHTML=[0,.25,.5,.75,1].map(m=>{const x=fos(g('a1'),g('a2'),g('a3'),g('a4'),g('a5'),g('a6'),m).F;return `<small>m=${m}: <b>${fm(x,2)}</b></small><div class="bar" style="width:${Math.max(2,Math.min(100,x/2*100))}%;${x<1?'background:#d62839':''}"></div>`}).join('');
+const d=$('md').value.split(',').map(x=>parseFloat(x)).filter(x=>!isNaN(x));if(d.length<3){return}
+const v=d.slice(1).map((x,i)=>x-d[i]),iv=v.map(x=>x>0?1/x:NaN),lv=v[v.length-1],st=lv>=g('m3')?'🔴 MERAH':lv>=g('m2')?'🟠 ORANYE':lv>=g('m1')?'🟡 KUNING':'🟢 HIJAU';
+const n=Math.min(7,v.length),xs=[],ys=[];for(let i=v.length-n;i<v.length;i++)if(isFinite(iv[i])){xs.push(i+2);ys.push(iv[i])}
+let tf='-';if(xs.length>2){const mx=xs.reduce((a,b)=>a+b)/xs.length,my=ys.reduce((a,b)=>a+b)/ys.length;let sx=0,sy=0;xs.forEach((x,i)=>{sx+=(x-mx)**2;sy+=(x-mx)*(ys[i]-my)});const sl=sy/sx,ic=my-sl*mx;tf=sl<0?`perkiraan runtuh hari ke-${fm(-ic/sl,1)} (sisa ${fm(-ic/sl-d.length,1)} hari)`:'tren belum menuju nol'}
+$('r3').textContent=st;$('r3b').textContent=`v = ${fm(lv,2)} mm/hari, a = ${fm(v.length>1?lv-v[v.length-2]:0,2)} mm/hari² | ${tf}`;
+const mv=Math.max(...v),mi=Math.max(...iv.filter(isFinite)),pt=(a,mx)=>a.map((y,i)=>isFinite(y)?`${i/(a.length-1)*400},${145-y/mx*135}`:'').filter(Boolean).join(' ');
+$('c1').innerHTML=`<polyline fill="none" stroke="#e4572e" stroke-width="2" points="${pt(v,mv)}"/><polyline fill="none" stroke="#2bb0a6" stroke-width="2" stroke-dasharray="5 3" points="${pt(iv,mi)}"/>`}
+function mc(){const mu=[g('a4'),g('a5')],sd=[g('p1'),g('p2')],N=Math.min(20000,g('p3')),nr=()=>Math.sqrt(-2*Math.log(Math.random()||1e-9))*Math.cos(2*Math.PI*Math.random());let bad=0,s=0;for(let i=0;i<N;i++){const f=fos(g('a1'),g('a2'),g('a3'),Math.max(0,mu[0]+sd[0]*nr()),Math.max(5,mu[1]+sd[1]*nr()),g('a6'),g('a7')).F;s+=f;if(f<1)bad++}
+const p=bad/N*100;$('r2').innerHTML=`<span class="${p<=10?'ok':'bad'}">${fm(p,1)}%</span>`;$('r2b').textContent=`FoS rata-rata ${fm(s/N,2)} | contoh kriteria PoF ≤ 5-10% (bergantung konsekuensi)`}
+cal();
+function dl(){try{const b=new Blob(['<!DOCTYPE html>'+document.documentElement.outerHTML],{type:'text/html'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mining-slope-landing.html';a.click()}catch(e){alert('Gunakan Ctrl+S / Simpan Halaman.')}}
+function xls(){alert('File Excel tersedia sebagai lampiran terpisah di chat: Slope_Stability_Monitoring_Workbook.xlsx')}
+go('t1');
+</script></body></html>

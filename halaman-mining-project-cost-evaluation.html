@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Mining Project Cost Evaluation & Optimization</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f6fb;--fg:#14213d;--card:rgba(255,255,255,.88);--p:#d4a017;--p2:#e4572e;--mut:#51607a;--bd:rgba(20,33,61,.15);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1226;--fg:#eef2fb;--card:rgba(20,30,58,.82);--mut:#a9b6d3;--bd:rgba(255,255,255,.14);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1226;--fg:#eef2fb;--card:rgba(20,30,58,.82);--mut:#a9b6d3;--bd:rgba(255,255,255,.14);color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.55}
+#cv{position:fixed;inset:0;z-index:0;width:100%;height:100%}main,header,footer{position:relative;z-index:1;max-width:1040px;margin:auto;padding:0 16px}
+.hero{padding:56px 0 24px;text-align:center}.hero h1{font-size:clamp(1.8rem,5vw,3.1rem);margin:.2em 0;background:linear-gradient(90deg,var(--p),var(--p2),var(--p));background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:200%}}.tag{display:inline-block;padding:4px 14px;border:1px solid var(--p);border-radius:99px;color:var(--p);font-weight:600;font-size:.85rem}
+.by{margin-top:10px;color:var(--mut)}.by b[contenteditable]{color:var(--p);border-bottom:1px dashed var(--p);padding:0 4px;outline:0}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.btn,button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:9px 16px;font-weight:600;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;transition:transform .15s}.btn{text-decoration:none;display:inline-block}.btn:hover,button:hover{transform:translateY(-2px) scale(1.03)}
+button.g{background:var(--card);color:var(--fg);border:1px solid var(--bd)}button.on{outline:2px solid var(--p)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;overflow-x:auto;padding:10px 0;background:linear-gradient(var(--bg),transparent)}nav button{white-space:nowrap}
+.card{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--bd);border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}h2{margin:.2em 0}h3{margin:.2em 0;color:var(--p)}
+.acc{cursor:pointer}.acc .b{display:none;margin-top:8px;color:var(--mut)}.acc.o .b{display:block}.f{font-family:ui-monospace,Menlo,monospace;background:rgba(127,127,127,.15);padding:2px 8px;border-radius:6px;display:inline-block;margin-top:4px;color:var(--fg)}
+.min{display:flex;flex-wrap:wrap;gap:8px}label{display:block;font-size:.85rem;color:var(--mut);margin-top:8px}input[type=number],input[type=range]{width:100%}input[type=number]{padding:7px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font:inherit}
+.res{font-size:1.5rem;font-weight:800;color:var(--p)}.ans{display:none;margin-top:8px;padding:10px;border-left:4px solid var(--p);background:rgba(127,127,127,.12);border-radius:6px}.ans.o{display:block;animation:fi .4s}@keyframes fi{from{opacity:0;transform:translateY(8px)}}
+.sec{display:none}.sec.on{display:block;animation:fi .4s}.ok{color:#2e9e5b;font-weight:700}.bad{color:var(--p2);font-weight:700}footer{text-align:center;color:var(--mut);padding:30px 16px 50px}
+</style></head><body><canvas id="cv"></canvas>
+<header class="hero"><span class="tag">WORKSHOP 2 HARI • TEKNIK & MANAJEMEN PROYEK TAMBANG</span>
+<h1>Mining Project Cost Evaluation & Optimization</h1>
+<p>Teori, kalkulator interaktif, contoh soal & studi kasus untuk 10 komoditas tambang.</p>
+<div class="by">Dibuat oleh: <b contenteditable="true" id="nm" title="Klik untuk mengganti nama">[Nama Anda]</b> ✏️</div>
+<div class="btns"><a class="btn" href="#app" onclick="go('t1')">Mulai Belajar ⛏️</a><button class="g" onclick="dl()">⬇ Unduh Halaman (HTML)</button><button class="g" id="xl" onclick="xls()">⬇ Unduh Excel Perhitungan</button></div></header>
+<main id="app"><nav id="nav"></nav>
+<section class="sec" id="t1"></section><section class="sec" id="t2"></section><section class="sec" id="mn"></section><section class="sec" id="ca"></section></main>
+<footer>© 2026 • Dibuat oleh <span id="nm2">[Nama Anda]</span> • Angka contoh bersifat ilustratif untuk pelatihan, bukan data proyek riil.</footer>
+<script>
+const $=id=>document.getElementById(id),fm=(n,d=1)=>(isFinite(n)?n:0).toLocaleString('id-ID',{maximumFractionDigits:d});
+/* nama */
+try{const s=localStorage.getItem('nm');if(s){$('nm').textContent=s;$('nm2').textContent=s}}catch(e){}
+$('nm').oninput=()=>{const v=$('nm').textContent;$('nm2').textContent=v;try{localStorage.setItem('nm',v)}catch(e){}};
+/* background */
+const cv=$('cv'),cx=cv.getContext('2d');let W,H,P=[],mx=-9,my=-9;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(90,W/12|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:Math.random()-.5,vy:Math.random()-.5,r:Math.random()*2+1}))}
+addEventListener('resize',rs);addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});rs();
+function fr(){const c=getComputedStyle(document.documentElement).getPropertyValue('--p').trim()||'#d4a017';cx.clearRect(0,0,W,H);
+P.forEach((a,i)=>{a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;const dx=mx-a.x,dy=my-a.y,d=Math.hypot(dx,dy);if(d<150){a.x+=dx/d*1.2;a.y+=dy/d*1.2}
+cx.globalAlpha=.6;cx.fillStyle=c;cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fill();for(let j=i+1;j<P.length;j++){const b=P[j],e=Math.hypot(a.x-b.x,a.y-b.y);if(e<110){cx.globalAlpha=.25*(1-e/110);cx.strokeStyle=c;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}});requestAnimationFrame(fr)}fr();
+/* nav */
+const tabs=[['t1','📘 Day 1: Fundamental'],['t2','📗 Day 2: Optimasi Biaya'],['mn','⛏️ Lab Mineral'],['ca','🧮 Kalkulator']];
+$('nav').innerHTML=tabs.map(t=>`<button class="g" data-t="${t[0]}" onclick="go('${t[0]}')">${t[1]}</button>`).join('');
+function go(id){document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('on',s.id==id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==id))}
+/* teori */
+const D1=[['Fundamentals of Mining Project Engineering & Management','Siklus proyek: eksplorasi → studi (PEA/PFS/FS) → FID → konstruksi → komisioning → operasi. Tiap tahap menurunkan ketidakpastian dan menaikkan akurasi biaya. Tata kelola memakai stage-gate, WBS, dan RACI.','Akurasi: Class 5 (-30/+50%) → Class 3 (-10/+15%)'],
+['Project Cost Estimation & Planning','CAPEX = direct (peralatan, sipil, instalasi) + indirect (EPCM, owner cost) + kontingensi + eskalasi. Metode: analogi, parametrik/faktor Lang, dan bottom-up (unit rate x quantity). OPEX dinyatakan per ton ore/ton produk.','CAPEX = (Direct + Indirect) x (1+Kontingensi) x Eskalasi'],
+['Procurement Strategy & Vendor Evaluation','Strategi: kategori Kraljic (leverage, strategic, bottleneck, routine), paket kontrak (EPC, EPCM, unit rate, lump sum). Evaluasi: kelayakan teknis, komersial, HSE, lokal konten, risiko.','Skor = Σ (bobot x nilai kriteria)'],
+['Value Engineering & Project Cost Optimization','VE adalah studi terstruktur (Job Plan: informasi → fungsi → kreatif → evaluasi → pengembangan → presentasi) untuk mencapai fungsi yang sama dengan biaya lebih rendah tanpa menurunkan mutu, keselamatan, dan kepatuhan.','Value = Fungsi / Biaya']];
+const D2=[['Practical Project Cost Estimation Using Excel','Bangun model: sheet input (biru), perhitungan (hitam), ringkasan. Pakai referensi sel, bukan angka tertanam; tambah analisis sensitivitas dan tabel data.','NPV = -CAPEX + CF x [1-(1+r)^-n]/r'],
+['Bid Evaluation, Vendor Selection & TCO','Harga terendah belum tentu termurah. TCO mencakup harga beli, opex (BBM, perawatan, ban), downtime, suku cadang, dan nilai sisa, didiskon ke nilai kini.','TCO = Harga + PV(Opex) - PV(Nilai sisa)'],
+['Value Engineering & Cost-Saving Strategies','Strategi: optimasi desain (pit/stripping ratio, layout), standardisasi, modularisasi, pengadaan konsolidasi, kontrak berbasis kinerja, serta reuse aset. Prioritaskan komponen berindeks nilai < 1.','Penghematan % = (Biaya awal - Biaya VE) / Biaya awal'],
+['Project Execution, Cost Monitoring & Performance Evaluation','Earned Value Management: bandingkan rencana (PV), progres (EV), dan biaya aktual (AC). Gunakan forecast EAC dan tindakan koreksi berbasis ambang batas.','CPI = EV/AC ; SPI = EV/PV ; EAC = BAC/CPI'],
+['Career Talk: Mining Engineering & Project Management','Jalur karier: mining/process/cost engineer → project/planning engineer → project manager → asset/GM. Sertifikasi: PMP, AACE CCP/EVP, CVS (value). Kompetensi: komersial, K3, dan komunikasi.','Teknis + Komersial + Kepemimpinan']];
+[['t1','Day 1',D1],['t2','Day 2',D2]].forEach(([id,l,d])=>$(id).innerHTML=`<h2>${l}</h2><div class="grid">`+d.map((x,i)=>`<div class="card acc" onclick="this.classList.toggle('o')"><h3>${i+1}. ${x[0]}</h3><small>Klik untuk membuka materi</small><div class="b"><p>${x[1]}</p><span class="f">${x[2]}</span></div></div>`).join('')+'</div>');
+/* mineral */
+const M=[['🥇','Emas','oz',150000,1900,1150,450e6,12,'Tambang heap-leach memakai kontingensi 8% sehingga CAPEX membengkak 22%. Tim VE mengganti 3 tahap crushing menjadi 2 tahap + HPGR dan memindahkan pad lebih dekat ke crusher.','Hemat CAPEX ±11% dan opex hauling -9%; kontingensi dinaikkan ke 15% sesuai Class 3.'],
+['⚫','Batubara','ton',5000000,95,62,180e6,15,'Strip ratio 9:1 membuat biaya pit tinggi. Evaluasi menggeser desain pit, memakai hauling road lebih landai, dan kontrak kontraktor unit-rate dengan indeks BBM.','Cash cost turun USD 4/ton; sensitivitas harga batubara jadi lebih aman.'],
+['🔋','Nikel','ton Ni',30000,17000,11500,900e6,20,'Proyek HPAL/RKEF menghadapi biaya energi dan reagen tinggi. VE menyorot opsi captive power vs jaringan dan pemilihan material tahan korosi.','Opsi power hybrid menurunkan opex ±6%; TCO material memilih paduan lebih mahal tapi umur 2x.'],
+['🟤','Bauksit','ton',4000000,48,27,120e6,15,'Margin tipis, biaya logistik dominan. Studi membandingkan jalan angkut vs conveyor ke pelabuhan dan kontrak tongkang.','Conveyor memiliki TCO terendah pada produksi > 3 Mtpa; hemat ±USD 2,5/ton.'],
+['🧲','Logam Tanah Jarang','ton TREO',8000,60000,38000,400e6,15,'Biaya pemisahan (SX) dan reagen besar, serta risiko pasar. VE memeriksa recovery flotasi dan konsumsi reagen sebelum menambah kapasitas.','Peningkatan recovery 3 poin lebih bernilai daripada hemat CAPEX 5%.'],
+['🏖️','Pasir Silika','ton',1500000,28,16,40e6,10,'Spesifikasi kemurnian (Fe2O3) menentukan harga. Alternatif: washing + magnetic separation vs attrition scrubbing.','Skema washing+magnetik memenuhi spesifikasi dengan CAPEX 18% lebih rendah.'],
+['🔶','Tembaga','ton Cu',100000,9000,5600,1.5e9,25,'Proyek besar dengan CAPEX tinggi; kadar menurun. VE pada ukuran SAG mill, ketersediaan air, dan tahapan (phasing) investasi.','Phasing 2 tahap menunda 30% CAPEX dan memperbaiki NPV pada harga rendah.'],
+['☢️','Uranium','lb U3O8',3000000,75,45,350e6,12,'ISR vs konvensional: biaya well-field, regulasi, dan manajemen limbah. Fokus pada kepatuhan dan biaya penutupan.','ISR memiliki CAPEX lebih rendah; provisi penutupan 100% dimasukkan ke model.'],
+['🥈','Timah','ton Sn',6000,26000,18500,90e6,10,'Dredging/alluvial: biaya BBM dan downtime kapal keruk tinggi. Penilaian TCO untuk penggantian peralatan vs overhaul.','Overhaul tertunda menaikkan downtime; penggantian komponen kunci TCO-nya lebih baik.'],
+['⛓️','Besi/Mangan','ton',2000000,110,72,150e6,12,'Biaya angkut dan blending menentukan margin. Evaluasi lokasi stockpile, rute, serta fleksibilitas kontrak jetty.','Stockpile dekat pelabuhan memangkas biaya rehandling ±USD 1,8/ton.']];
+let cur=0;
+function an(m,r=.1){return(1-Math.pow(1+r,-m[7]))/r}
+function rm(){const m=M[cur],cf=m[3]*(m[4]-m[5]),npv=-m[6]+cf*an(m),be=m[5]+m[6]/(m[3]*an(m));
+$('mn').innerHTML=`<h2>Lab Mineral</h2><div class="min">${M.map((x,i)=>`<button class="${i==cur?'':'g'}" onclick="cur=${i};rm()">${x[0]} ${x[1]}</button>`).join('')}</div>
+<div class="grid"><div class="card"><h3>📝 Contoh Soal: ${m[1]}</h3><p>Tambang ${m[1]} memproduksi <b>${fm(m[3],0)} ${m[2]}/tahun</b>, harga jual <b>USD ${fm(m[4],0)}/${m[2]}</b>, opex <b>USD ${fm(m[5],0)}/${m[2]}</b>, CAPEX <b>USD ${fm(m[6]/1e6,0)} juta</b>, umur <b>${m[7]} tahun</b>, diskonto 10%. Hitung (a) arus kas tahunan, (b) NPV, (c) harga break-even.</p>
+<button onclick="this.nextElementSibling.classList.toggle('o')">Lihat Pembahasan</button><div class="ans"><b>(a)</b> CF = ${fm(m[3],0)} x (${fm(m[4],0)} - ${fm(m[5],0)}) = <b>USD ${fm(cf/1e6)} juta/thn</b><br><b>(b)</b> Faktor anuitas = ${fm(an(m),3)}; NPV = -${fm(m[6]/1e6,0)} + ${fm(cf/1e6)} x ${fm(an(m),3)} = <b class="${npv>0?'ok':'bad'}">USD ${fm(npv/1e6)} juta</b><br><b>(c)</b> Harga break-even = opex + CAPEX/(Produksi x Faktor) = <b>USD ${fm(be,0)}/${m[2]}</b></div>
+<label>Uji sensitivitas harga: <b id="pv">0%</b></label><input type="range" min="-40" max="40" value="0" oninput="sv(this.value)"><div>NPV baru: <span class="res" id="pn">USD ${fm(npv/1e6)} juta</span></div></div>
+<div class="card"><h3>📚 Studi Kasus (ilustratif)</h3><p><b>Situasi & analisis:</b> ${m[8]}</p><p><b>Hasil VE:</b> ${m[9]}</p><p><b>Diskusi:</b> (1) Risiko biaya terbesar? (2) Mana opsi dengan TCO terendah? (3) Apa pemicu eskalasi kontingensi?</p></div></div>`}
+function sv(v){const m=M[cur],p=m[4]*(1+v/100),n=-m[6]+m[3]*(p-m[5])*an(m);$('pv').textContent=(v>0?'+':'')+v+'%';$('pn').innerHTML=`<span class="${n>0?'ok':'bad'}">USD ${fm(n/1e6)} juta</span>`}
+rm();
+/* kalkulator */
+const inp=(id,l,v,s=1)=>`<label>${l}<input type="number" id="${id}" value="${v}" step="${s}" oninput="cal()"></label>`;
+$('ca').innerHTML=`<h2>Kalkulator Interaktif</h2><div class="grid">
+<div class="card"><h3>1. Estimasi CAPEX</h3>${inp('c1','Peralatan utama (USD juta)',12)}${inp('c2','Faktor Lang',2.4,.1)}${inp('c3','Indirect (%)',18)}${inp('c4','Kontingensi (%)',15)}${inp('c5','Eskalasi (%/thn)',4)}${inp('c6','Tahun eskalasi',2)}<p>Total CAPEX: <span class="res" id="r1"></span><br><small id="r1b"></small></p></div>
+<div class="card"><h3>2. TCO Vendor</h3>${inp('t1','Harga beli (USD ribu)',1500)}${inp('t2','Opex/thn (USD ribu)',420)}${inp('t3','Nilai sisa (USD ribu)',250)}${inp('t4','Umur (thn)',8)}${inp('t5','Diskonto (%)',10)}<p>TCO (NPV): <span class="res" id="r2"></span></p></div>
+<div class="card"><h3>3. Value Engineering</h3>${inp('v1','Fungsi komponen (% dari total)',35)}${inp('v2','Biaya komponen (% dari total)',50)}${inp('v3','Biaya awal (USD juta)',5)}${inp('v4','Target biaya VE (USD juta)',4.2,.1)}<p>Value Index: <span class="res" id="r3"></span><br><small id="r3b"></small></p></div>
+<div class="card"><h3>4. Monitoring EVM</h3>${inp('e1','BAC (USD juta)',10)}${inp('e2','Progres aktual (%)',41)}${inp('e3','Rencana progres (%)',48)}${inp('e4','Biaya aktual AC (USD juta)',5.3,.1)}<p>CPI / SPI: <span class="res" id="r4"></span><br><small id="r4b"></small></p></div></div>
+<div class="card"><button onclick="xls()">⬇ Unduh Excel: 5 sheet berumus (Estimasi, TCO, VE, EVM, Mineral)</button></div>`;
+const g=i=>parseFloat($(i).value)||0;
+function cal(){const d=g('c1')*g('c2'),i=d*g('c3')/100,b=(d+i)*(1+g('c4')/100),t=b*Math.pow(1+g('c5')/100,g('c6'));
+$('r1').textContent='USD '+fm(t)+' juta';$('r1b').textContent=`Rentang Class 4: ${fm(t*.85)} s.d. ${fm(t*1.3)} juta`;
+const r=g('t5')/100,a=r?(1-Math.pow(1+r,-g('t4')))/r:g('t4');$('r2').textContent='USD '+fm(g('t1')+g('t2')*a-g('t3')/Math.pow(1+r,g('t4')),0)+' ribu';
+const vi=g('v1')/(g('v2')||1);$('r3').textContent=fm(vi,2);$('r3b').innerHTML=(vi<1?'<span class="bad">Prioritas VE</span>':'<span class="ok">Nilai baik</span>')+` | Hemat ${fm((g('v3')-g('v4'))/(g('v3')||1)*100)}% (USD ${fm(g('v3')-g('v4'),2)} juta)`;
+const ev=g('e1')*g('e2')/100,pv=g('e1')*g('e3')/100,cpi=ev/(g('e4')||1),spi=ev/(pv||1);$('r4').textContent=fm(cpi,2)+' / '+fm(spi,2);$('r4b').innerHTML=`${cpi<1?'<span class="bad">Over budget</span>':'<span class="ok">Sesuai budget</span>'}, ${spi<1?'<span class="bad">terlambat</span>':'<span class="ok">sesuai jadwal</span>'} | EAC = USD ${fm(g('e1')/(cpi||1))} juta`}cal();
+function dl(){try{const b=new Blob(['<!DOCTYPE html>'+document.documentElement.outerHTML],{type:'text/html'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mining-cost-landing.html';a.click()}catch(e){alert('Gunakan Ctrl+S / Simpan Halaman.')}}
+function xls(){alert('File Excel tersedia sebagai lampiran terpisah di chat: Mining_Project_Cost_Workbook.xlsx')}
+go('t1');
+</script></body></html>

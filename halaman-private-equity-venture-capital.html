@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Private Equity & Venture Capital Lab</title>
+<style>
+:root{--bg:#07061a;--card:rgba(20,16,50,.72);--tx:#eef0ff;--mut:#a9b0d6;--a:#00e5ff;--b:#ff2fb3;--c:#ffd400;--bd:rgba(255,255,255,.14)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--tx);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+#bg{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+main,nav,footer{position:relative;z-index:1}
+nav{position:sticky;top:0;display:flex;gap:4px;padding:8px 12px;overflow-x:auto;background:rgba(7,6,26,.8);backdrop-filter:blur(8px);border-bottom:1px solid var(--bd);z-index:5}
+nav a{color:var(--tx);text-decoration:none;padding:6px 12px;border-radius:16px;font-size:14px;white-space:nowrap}nav a:hover{background:linear-gradient(90deg,var(--a),var(--b));color:#000}
+.hero{text-align:center;padding:90px 16px 60px}
+h1{font-size:clamp(32px,7vw,64px);margin:0;background:linear-gradient(90deg,var(--a),var(--b),var(--c),var(--a));background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:fl 6s linear infinite}
+@keyframes fl{to{background-position:300%}}
+.hero p{max-width:680px;margin:14px auto;color:var(--mut)}
+.stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:26px}.stat{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px 22px;min-width:140px}.stat b{display:block;font-size:30px;color:var(--c)}
+section{max-width:1000px;margin:0 auto;padding:34px 16px}h2{margin:0 0 14px;font-size:28px;color:var(--a)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:14px;backdrop-filter:blur(6px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+button,select,input{font:inherit}
+.btn{border:1px solid var(--bd);background:rgba(255,255,255,.06);color:var(--tx);padding:8px 14px;border-radius:10px;cursor:pointer;margin:0 6px 6px 0}.btn:hover,.btn.on{background:linear-gradient(90deg,var(--a),var(--b));color:#000;border-color:transparent}
+.flip{height:150px;perspective:800px;cursor:pointer}.fi{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}.flip.on .fi{transform:rotateY(180deg)}
+.fi>div{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid var(--bd);font-size:14px}
+.fi .f{background:linear-gradient(135deg,#2b1a6e,#6a1b9a);font-weight:bold;font-size:17px}.fi .k{transform:rotateY(180deg);background:var(--card)}
+.f2{display:grid;grid-template-columns:1fr 100px;gap:6px 10px;align-items:center;font-size:14px}
+input[type=number]{background:rgba(255,255,255,.08);border:1px solid var(--bd);color:var(--tx);padding:6px;border-radius:6px;width:100%}
+.res{font-size:26px;font-weight:bold;color:var(--c)}.m{color:var(--mut);font-size:13px}
+.fx{font-family:Consolas,monospace;background:rgba(0,229,255,.1);padding:10px;border-radius:8px;color:var(--a);margin:8px 0}
+.bar{height:10px;border-radius:5px;background:rgba(255,255,255,.12);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));width:0;transition:width .5s}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 16px;margin-bottom:10px}summary{cursor:pointer;font-weight:bold;color:var(--c)}
+.opt{display:block;width:100%;text-align:left;margin:6px 0}.ok{background:#1faa59!important;color:#fff!important}.no{background:#c62855!important;color:#fff!important}
+.xl{display:inline-block;background:linear-gradient(90deg,var(--a),var(--b));color:#000;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:10px}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
+</style></head><body>
+<canvas id="bg"></canvas>
+<nav><a href="#teori">Teori</a><a href="#filosofi">Filosofi</a><a href="#rumus">Rumus</a><a href="#lab">Kalkulator</a><a href="#soal">Kuis</a><a href="#kasus">Studi Kasus</a></nav>
+<main>
+<div class="hero"><h1>Private Equity & Venture Capital</h1><p>Memahami cara modal besar menciptakan nilai: dari buyout berutang hingga taruhan pada startup. Gerakkan kursor: latar belakang bereaksi.</p>
+<div class="stats"><div class="stat"><b data-n="20">0</b>IRR target PE (%)</div><div class="stat"><b data-n="3">0</b>MOIC target PE (x)</div><div class="stat"><b data-n="10">0</b>Horizon fund (tahun)</div><div class="stat"><b data-n="2">0</b>Fee + 20% carry</div></div></div>
+
+<section id="teori"><h2>Teori: PE vs VC</h2><div class="card"><button class="btn on" onclick="cmp(0,this)">Private Equity</button><button class="btn" onclick="cmp(1,this)">Venture Capital</button><div id="cmp"></div></div></section>
+
+<section id="filosofi"><h2>Filosofi (klik kartu)</h2><div class="grid" id="phil"></div></section>
+
+<section id="rumus"><h2>Rumus Kunci</h2><div class="card"><div id="fb"></div><div class="fx" id="fx"></div><div class="m" id="fd"></div></div></section>
+
+<section id="lab"><h2>Kalkulator Interaktif</h2>
+<div class="grid">
+<div class="card"><b>1. IRR & MOIC</b><div class="f2"><span>Investasi</span><input type="number" id="r0" value="10"><span>Nilai exit</span><input type="number" id="r1" value="35"><span>Tahun</span><input type="number" id="r2" value="5"></div><p class="res" id="ro"></p></div>
+<div class="card"><b>2. Putaran VC & dilusi</b><div class="f2"><span>Investasi</span><input type="number" id="v0" value="5"><span>Pre-money</span><input type="number" id="v1" value="20"><span>Pendiri sebelum (%)</span><input type="number" id="v2" value="100"><span>ESOP baru (%)</span><input type="number" id="v3" value="10"></div><p class="res" id="vo"></p></div>
+<div class="card"><b>3. LBO 5 tahun</b><div class="f2"><span>EBITDA</span><input type="number" id="l0" value="100"><span>Multiple masuk</span><input type="number" id="l1" value="8"><span>% utang</span><input type="number" id="l2" value="60"><span>Bunga %</span><input type="number" id="l3" value="9"><span>Growth EBITDA %</span><input type="number" id="l4" value="8"><span>Multiple exit</span><input type="number" id="l5" value="8"></div><p class="res" id="lo"></p><div class="bar"><i id="lb"></i></div><div class="m" id="lm"></div></div>
+<div class="card"><b>4. Waterfall fund</b><div class="f2"><span>Modal LP</span><input type="number" id="w0" value="1000"><span>Distribusi</span><input type="number" id="w1" value="2000"><span>Hurdle %</span><input type="number" id="w2" value="8"><span>Tahun</span><input type="number" id="w3" value="5"><span>Carry %</span><input type="number" id="w4" value="20"></div><p class="res" id="wo"></p></div>
+</div><a class="xl" href="PE_VC_Workbook.xlsx" download>Unduh Spreadsheet Excel</a></section>
+
+<section id="soal"><h2>Kuis Contoh Soal</h2><div class="card"><div class="bar"><i id="qb"></i></div><div id="qq"></div></div></section>
+
+<section id="kasus"><h2>Studi Kasus</h2><div id="cs"></div></section>
+</main>
+<footer>Materi edukasi. Angka kasus adalah angka publik yang dibulatkan/perkiraan, kalkulator hanya ilustrasi, bukan nasihat investasi.</footer>
+<script>
+const $=id=>document.getElementById(id),n=id=>+$(id).value;
+// background
+const cv=$('bg'),x=cv.getContext('2d');let W,H,ps=[],mx=-999,my=-999;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;ps=Array.from({length:Math.min(110,Math.floor(W*H/14000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*1.2,vy:(Math.random()-.5)*1.2,h:Math.random()*360}))}
+addEventListener('resize',rs);addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});addEventListener('pointerdown',e=>ps.forEach(p=>{const d=Math.hypot(p.x-e.clientX,p.y-e.clientY)+1;if(d<250){p.vx+=(p.x-e.clientX)/d*6;p.vy+=(p.y-e.clientY)/d*6}}));rs();
+let t=0;function draw(){t++;x.fillStyle='rgba(7,6,26,.25)';x.fillRect(0,0,W,H);
+const g=x.createRadialGradient(W/2+Math.sin(t/120)*W/3,H/2+Math.cos(t/150)*H/3,0,W/2,H/2,Math.max(W,H)/1.2);g.addColorStop(0,'rgba(120,30,200,.18)');g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,W,H);
+for(const p of ps){const dx=mx-p.x,dy=my-p.y,d=Math.hypot(dx,dy);if(d<200){p.vx+=dx/d*.05;p.vy+=dy/d*.05}
+p.vx*=.995;p.vy*=.995;const s=Math.hypot(p.vx,p.vy);if(s<.4){p.vx*=1.02;p.vy*=1.02}if(s>5){p.vx*=.9;p.vy*=.9}
+p.x=(p.x+p.vx+W)%W;p.y=(p.y+p.vy+H)%H;p.h=(p.h+.6)%360;x.fillStyle=`hsl(${p.h},100%,60%)`;x.beginPath();x.arc(p.x,p.y,2.2,0,7);x.fill()}
+for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){const a=ps[i],b=ps[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){x.strokeStyle=`hsla(${a.h},100%,60%,${1-d/120})`;x.lineWidth=.7;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+requestAnimationFrame(draw)}draw();
+// counters
+document.querySelectorAll('[data-n]').forEach(e=>{const T=+e.dataset.n;let v=0;const iv=setInterval(()=>{v+=T/40;if(v>=T){v=T;clearInterval(iv)}e.textContent=Math.round(v*10)/10},30)});
+// compare
+const C=[["Matang, arus kas stabil","Akuisisi mayoritas, sering memakai utang (LBO)","Operasional, deleveraging, multiple expansion","MOIC 2-3x, IRR 20-25%","4-7 tahun","Moderat"],["Startup awal sampai growth","Ekuitas minoritas (preferred shares)","Pertumbuhan eksponensial","Power law: sedikit pemenang besar","7-10 tahun","Sangat tinggi"]];
+const CL=["Tahap","Instrumen","Sumber return","Pola return","Horizon","Risiko"];
+function cmp(i,b){document.querySelectorAll('#teori .btn').forEach(e=>e.classList.remove('on'));b.classList.add('on');$('cmp').innerHTML='<table style="width:100%;margin-top:12px;border-collapse:collapse">'+CL.map((l,j)=>`<tr><td style="padding:8px;border-bottom:1px solid var(--bd);color:var(--c)">${l}</td><td style="padding:8px;border-bottom:1px solid var(--bd)">${C[i][j]}</td></tr>`).join('')+'</table>'}cmp(0,document.querySelector('#teori .btn'));
+// philosophy
+const PH=[["Pemilik, bukan manajer","PE: insentif dan kepemilikan menyelaraskan kepentingan, nilai tumbuh dari disiplin operasional."],["Asimetri","VC: kerugian terbatas pada modal, keuntungan tak terbatas. Cari taruhan besar."],["Power law","Sedikit investasi menghasilkan sebagian besar return fund; hindari pemerataan."],["Leverage dengan disiplin","Utang memperbesar return, tetapi menuntut arus kas yang bisa diprediksi."],["Kesabaran modal","Nilai dibangun bertahun-tahun; exit adalah hasil proses, bukan tujuan."],["Skin in the game","GP ikut menaruh uang dan mendapat carry hanya jika LP untung lebih dulu (hurdle)."]];
+$('phil').innerHTML=PH.map(p=>`<div class="flip" onclick="this.classList.toggle('on')"><div class="fi"><div class="f">${p[0]}</div><div class="k">${p[1]}</div></div></div>`).join('');
+// formulas
+const FM=[["MOIC","Nilai exit / Modal","Berapa kali lipat modal kembali."],["IRR","MOIC^(1/n) - 1","Untuk satu arus masuk dan satu exit. Umumnya NPV(arus kas)=0."],["Post-money","Pre-money + Investasi","Ownership investor = Investasi / Post-money."],["Dilusi","Kepemilikan x (1 - % saham baru)","Berlaku untuk setiap putaran dan ESOP."],["Metode VC","Post = Exit / (1+IRR)^n x Retensi","Valuasi maksimum hari ini agar target IRR tercapai."],["Ekuitas LBO","EBITDA x Multiple x (1 - %utang)","Modal sponsor di awal."],["Carry","MAX(0, MIN(Laba - Pref, Carry% x Laba))","Catch-up penuh; Pref = Modal x ((1+h)^n - 1)."],["TVPI","DPI + RVPI","DPI = distribusi/modal; RVPI = NAV/modal."]];
+$('fb').innerHTML=FM.map((f,i)=>`<button class="btn" onclick="fs(${i},this)">${f[0]}</button>`).join('');
+function fs(i,b){document.querySelectorAll('#fb .btn').forEach(e=>e.classList.remove('on'));b.classList.add('on');$('fx').textContent=FM[i][0]+' = '+FM[i][1];$('fd').textContent=FM[i][2]}fs(0,document.querySelector('#fb .btn'));
+// calc
+const f1=v=>isFinite(v)?v.toLocaleString('id-ID',{maximumFractionDigits:2}):'-';
+function lbo(){const E=n('l0'),M=n('l1'),dp=n('l2')/100,r=n('l3')/100,g=n('l4')/100,X=n('l5'),ev=E*M;let D=ev*dp,e0=ev-D,eb=E;for(let y=1;y<=5;y++){eb*=1+g;const fcf=eb*.5,int=D*r*.75;D=Math.max(0,D-Math.max(0,fcf-int))}
+const ex=eb*X-D,mo=ex/e0,irr=Math.pow(mo,.2)-1;return{mo,irr,e0,ex,D}}
+function calc(){const a=n('r0'),b=n('r1'),y=n('r2');$('ro').textContent=`MOIC ${f1(b/a)}x | IRR ${f1((Math.pow(b/a,1/y)-1)*100)}%`;
+const i=n('v0'),p=n('v1'),f=n('v2'),es=n('v3');const post=i+p,inv=i/post;$('vo').innerHTML=`Post-money ${f1(post)} | Investor ${f1(inv*100)}%<br><span class="m">Pendiri setelah putaran + ESOP: ${f1(f*(1-inv)*(1-es/100))}%</span>`;
+const L=lbo();$('lo').textContent=`MOIC ${f1(L.mo)}x | IRR ${f1(L.irr*100)}%`;$('lb').style.width=Math.max(0,Math.min(100,L.irr*100*2.5))+'%';$('lm').textContent=`Ekuitas awal ${f1(L.e0)}, ekuitas exit ${f1(L.ex)}, utang tersisa ${f1(L.D)}`;
+const c=n('w0'),d=n('w1'),h=n('w2')/100,Y=n('w3'),cp=n('w4')/100,pr=d-c,pf=c*(Math.pow(1+h,Y)-1),ca=Math.max(0,Math.min(pr-pf,cp*pr));$('wo').innerHTML=`Carry GP ${f1(ca)} | LP bersih ${f1(d-ca)}<br><span class="m">Pref ${f1(pf)}, net MOIC LP ${f1((d-ca)/c)}x</span>`}
+document.querySelectorAll('#lab input').forEach(e=>e.oninput=calc);calc();
+// quiz
+const Q=[["Rp10 M menjadi Rp35 M. Berapa MOIC?",["2.5x","3.5x","4.5x"],1],["VC menaruh Rp5 M untuk 20%. Post-money?",["Rp20 M","Rp25 M","Rp30 M"],1],["Pendiri 100%, Seri A 20%, ESOP 10%. Sisa kepemilikan?",["72%","70%","80%"],0],["Pola return khas VC adalah...",["Merata","Power law","Linear"],1],["Hurdle 8% pada carry berfungsi untuk...",["Menaikkan fee manajemen","Memastikan LP menerima return minimum dulu","Mengurangi utang LBO"],1]];
+let qi=0,sc=0;function rq(){if(qi>=Q.length){$('qq').innerHTML=`<h3>Skor: ${sc}/${Q.length}</h3><button class="btn" onclick="qi=0;sc=0;rq()">Ulangi</button>`;$('qb').style.width='100%';return}
+const q=Q[qi];$('qb').style.width=qi/Q.length*100+'%';$('qq').innerHTML=`<p><b>${qi+1}. ${q[0]}</b></p>`+q[1].map((o,i)=>`<button class="btn opt" onclick="an(${i},this)">${o}</button>`).join('')}
+function an(i,b){const q=Q[qi];document.querySelectorAll('.opt').forEach((e,j)=>{e.disabled=true;if(j==q[2])e.classList.add('ok')});if(i==q[2])sc++;else b.classList.add('no');setTimeout(()=>{qi++;rq()},1100)}rq();
+// cases
+const CS=[["KKR dan RJR Nabisco (1988-89), PE/LBO","Buyout sekitar US$25 miliar, salah satu LBO terbesar pada masanya, dengan utang sangat besar. Pelajaran: leverage memperbesar return dan risiko; harga masuk menentukan."],["Peter Thiel dan Facebook (2004), VC awal","Investasi awal sekitar US$500 ribu untuk sekitar 10% saham. Pelajaran: taruhan pada tim dan pertumbuhan; satu pemenang menutup banyak kegagalan."],["SoftBank dan Alibaba (2000), VC/growth","Investasi sekitar US$20 juta di tahap awal yang kemudian bernilai miliaran dolar. Pelajaran: kesabaran dan konsentrasi pada pendiri kuat."],["Ilustrasi hipotetis: akuisisi kontraktor hauling Kaltim","Ekuitas Rp200 M, utang 50%, EBITDA naik lewat utilisasi armada dan kontrak jangka panjang. Uji sensitivitas harga komoditas dan multiple exit di kalkulator LBO."]];
+$('cs').innerHTML=CS.map(c=>`<details><summary>${c[0]}</summary><p>${c[1]}</p></details>`).join('');
+</script></body></html>
