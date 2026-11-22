@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Mining Budget Planning & Cost Control</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f6fb;--fg:#14213d;--card:rgba(255,255,255,.88);--p:#e08a00;--p2:#d62839;--mut:#51607a;--bd:rgba(20,33,61,.15);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1226;--fg:#eef2fb;--card:rgba(20,30,58,.82);--mut:#a9b6d3;--bd:rgba(255,255,255,.14);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1226;--fg:#eef2fb;--card:rgba(20,30,58,.82);--mut:#a9b6d3;--bd:rgba(255,255,255,.14);color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.55}
+#cv{position:fixed;inset:0;z-index:0;width:100%;height:100%}main,header,footer{position:relative;z-index:1;max-width:1040px;margin:auto;padding:0 16px}
+.hero{padding:56px 0 24px;text-align:center}.hero h1{font-size:clamp(1.8rem,5vw,3.1rem);margin:.2em 0;background:linear-gradient(90deg,var(--p),var(--p2),var(--p));background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:200%}}.tag{display:inline-block;padding:4px 14px;border:1px solid var(--p);border-radius:99px;color:var(--p);font-weight:600;font-size:.85rem}
+.by{margin-top:10px;color:var(--mut)}.by b[contenteditable]{color:var(--p);border-bottom:1px dashed var(--p);padding:0 4px;outline:0}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.btn,button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:9px 16px;font-weight:600;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;transition:transform .15s}.btn{text-decoration:none;display:inline-block}.btn:hover,button:hover{transform:translateY(-2px) scale(1.03)}
+button.g{background:var(--card);color:var(--fg);border:1px solid var(--bd)}button.on{outline:2px solid var(--p)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;overflow-x:auto;padding:10px 0;background:linear-gradient(var(--bg),transparent)}nav button{white-space:nowrap}
+.card{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--bd);border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}h2{margin:.2em 0}h3{margin:.2em 0;color:var(--p)}
+.acc{cursor:pointer}.acc .b{display:none;margin-top:8px;color:var(--mut)}.acc.o .b{display:block}.f{font-family:ui-monospace,Menlo,monospace;background:rgba(127,127,127,.15);padding:2px 8px;border-radius:6px;display:inline-block;margin-top:4px;color:var(--fg)}
+.min{display:flex;flex-wrap:wrap;gap:8px}label{display:block;font-size:.85rem;color:var(--mut);margin-top:8px}input[type=number],input[type=range]{width:100%}input[type=number]{padding:7px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font:inherit}
+.res{font-size:1.5rem;font-weight:800;color:var(--p)}.ans{display:none;margin-top:8px;padding:10px;border-left:4px solid var(--p);background:rgba(127,127,127,.12);border-radius:6px}.ans.o{display:block;animation:fi .4s}@keyframes fi{from{opacity:0;transform:translateY(8px)}}
+.bar{height:14px;border-radius:7px;background:linear-gradient(90deg,var(--p),var(--p2));transition:width .6s;margin:3px 0}.sec{display:none}.sec.on{display:block;animation:fi .4s}.ok{color:#2e9e5b;font-weight:700}.bad{color:var(--p2);font-weight:700}footer{text-align:center;color:var(--mut);padding:30px 16px 50px}
+</style></head><body><canvas id="cv"></canvas>
+<header class="hero"><span class="tag">WORKSHOP 2 HARI • BUDGETING & COST CONTROL TAMBANG</span>
+<h1>Mining Budget Planning & Cost Control</h1>
+<p>Teori, kalkulator varian interaktif, contoh soal & studi kasus untuk 10 komoditas tambang.</p>
+<div class="by">Dibuat oleh: <b contenteditable="true" id="nm" title="Klik untuk mengganti nama">[Nama Anda]</b> ✏️</div>
+<div class="btns"><a class="btn" href="#app" onclick="go('t1')">Mulai Belajar ⛏️</a><button class="g" onclick="dl()">⬇ Unduh Halaman (HTML)</button><button class="g" id="xl" onclick="xls()">⬇ Unduh Excel Perhitungan</button></div></header>
+<main id="app"><nav id="nav"></nav>
+<section class="sec" id="t1"></section><section class="sec" id="t2"></section><section class="sec" id="mn"></section><section class="sec" id="ca"></section></main>
+<footer>© 2026 • Dibuat oleh <span id="nm2">[Nama Anda]</span> • Angka contoh bersifat ilustratif untuk pelatihan, bukan data proyek riil.</footer>
+<script>
+const $=id=>document.getElementById(id),fm=(n,d=1)=>(isFinite(n)?n:0).toLocaleString('id-ID',{maximumFractionDigits:d});
+/* nama */
+try{const s=localStorage.getItem('nm');if(s){$('nm').textContent=s;$('nm2').textContent=s}}catch(e){}
+$('nm').oninput=()=>{const v=$('nm').textContent;$('nm2').textContent=v;try{localStorage.setItem('nm',v)}catch(e){}};
+/* background */
+const cv=$('cv'),cx=cv.getContext('2d');let W,H,P=[],mx=-9,my=-9;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(90,W/12|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:Math.random()-.5,vy:Math.random()-.5,r:Math.random()*2+1}))}
+addEventListener('resize',rs);addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});rs();
+function fr(){const c=getComputedStyle(document.documentElement).getPropertyValue('--p').trim()||'#d4a017';cx.clearRect(0,0,W,H);
+P.forEach((a,i)=>{a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;const dx=mx-a.x,dy=my-a.y,d=Math.hypot(dx,dy);if(d<150){a.x+=dx/d*1.2;a.y+=dy/d*1.2}
+cx.globalAlpha=.6;cx.fillStyle=c;cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fill();for(let j=i+1;j<P.length;j++){const b=P[j],e=Math.hypot(a.x-b.x,a.y-b.y);if(e<110){cx.globalAlpha=.25*(1-e/110);cx.strokeStyle=c;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}});requestAnimationFrame(fr)}fr();
+/* nav */
+const tabs=[['t1','📘 Day 1: Budget Planning'],['t2','📗 Day 2: Excel & Varian'],['mn','⛏️ Lab Mineral'],['ca','🧮 Kalkulator & Dashboard']];
+$('nav').innerHTML=tabs.map(t=>`<button class="g" data-t="${t[0]}" onclick="go('${t[0]}')">${t[1]}</button>`).join('');
+function go(id){document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('on',s.id==id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==id))}
+const D1=[['Fundamentals of Mining Budgeting','Anggaran adalah rencana keuangan terukur yang diturunkan dari rencana tambang (LOM, mine plan, jadwal produksi). Pendekatan: top-down, bottom-up, dan zero-based. Siklus: perencanaan → persetujuan → eksekusi → kontrol → revisi/forecast.','Anggaran = Σ (Qty driver x Harga satuan)'],
+['Mining Cost Classification & Cost Structure','Klasifikasi: tetap vs variabel, langsung vs tidak langsung, dan menurut aktivitas (drill, blast, load, haul, process, G&A). Struktur biaya tambang didominasi BBM, tenaga kerja, perawatan, bahan peledak, dan kontraktor. Cash cost = biaya operasi per unit produk.','Cash cost/unit = (Biaya variabel + Biaya tetap) / Produksi'],
+['Mining Budget Preparation & Financial Planning','Susun asumsi: produksi, strip ratio, jarak angkut, produktivitas alat, harga BBM, kurs, harga komoditas. Hubungkan anggaran biaya ke P&L dan arus kas (EBITDA, CAPEX sustaining, pajak, royalti). Gunakan phasing bulanan sesuai musim dan jadwal produksi.','EBITDA = Pendapatan - Cash cost'],
+['Mining Cost Control Fundamentals','Kontrol biaya = ukur, bandingkan, analisis, tindak lanjut. Pilar: tanggung jawab per cost center, otorisasi pengeluaran, KPI biaya per aktivitas, serta pelaporan tepat waktu. Pakai anggaran fleksibel agar perbandingan adil saat volume berubah.','Anggaran fleksibel = Biaya var ang. x Volume akt. + Biaya tetap'],
+['Budget Monitoring & Financial Performance Indicators','KPI: cash cost/ton, biaya per BCM, biaya per jam alat, serapan anggaran, EBITDA margin, AISC (emas/tembaga), forecast akhir tahun, dan burn rate. Tetapkan ambang (misal ±5% hijau, 5-10% kuning, >10% merah).','Serapan = Aktual / Anggaran; Burn rate = Terpakai / Bulan']];
+const D2=[['Excel-Based Mining Budget Preparation','Struktur workbook: Asumsi (biru) → Driver → Anggaran → Phasing → Ringkasan. Rumus penting: SUMIFS, INDEX/MATCH, SUMPRODUCT, validasi data, dan sel terkunci. Hindari angka tertanam dalam rumus.','=Qty*Harga ; =SUMIFS(Biaya,Sifat,"Variabel")'],
+['Budget vs Actual Analysis','Bandingkan anggaran statis, anggaran fleksibel, dan aktual per cost center dan per aktivitas. Varian bulan berjalan dan YTD, plus persentase varian dan penjelasan tertulis untuk varian material (misal > 5% atau > USD 100 ribu).','Varian = Aktual - Anggaran ; Positif = biaya lebih besar (Unfavorable)'],
+['Mining Cost Variance Analysis: Price, Volume & Cost Drivers','Uraikan varian menjadi harga (BBM, kurs, tarif kontraktor), volume/efisiensi (liter/jam, produktivitas, strip ratio, cycle time), dan faktor lain (bauran, kualitas bijih, cuaca, downtime).','Varian harga = (HargaAkt - HargaAng) x QtyAkt\nVarian volume = (QtyAkt - QtyAng) x HargaAng'],
+['Cost Variance Interpretation & Corrective Actions','Interpretasi: apakah varian struktural atau sementara, terkendali atau tidak. Tindakan: renegosiasi/lindung nilai BBM, perbaikan produktivitas, optimasi jarak angkut, penjadwalan perawatan, revisi forecast, dan eskalasi ke manajemen.','Forecast = Aktual YTD + Sisa anggaran terkoreksi'],
+['Mining Cost Monitoring Dashboard Development','Dashboard: kartu KPI, tren bulanan, waterfall varian, peta panas (heat map) cost center, dan alarm ambang. Di Excel: PivotTable, conditional formatting, sparkline, dan grafik dinamis dengan named range.','RAG: Hijau <5% | Kuning 5-10% | Merah >10%']];
+[['t1','Day 1',D1],['t2','Day 2',D2]].forEach(([id,l,d])=>$(id).innerHTML=`<h2>${l}</h2><div class="grid">`+d.map((x,i)=>`<div class="card acc" onclick="this.classList.toggle('o')"><h3>${i+1}. ${x[0]}</h3><small>Klik untuk membuka materi</small><div class="b"><p>${x[1]}</p><span class="f" style="white-space:pre-line">${x[2]}</span></div></div>`).join('')+'</div>');
+/* mineral: [ikon,nama,satuan,Qang,Qakt,Vang,Vakt,Tetap,Harga,kasus,tindakan] */
+const M=[['🥇','Emas','oz',150000,142000,900,985,30e6,1900,'Produksi turun 5% karena grade lebih rendah, sementara biaya reagen (sianida, kapur) dan listrik naik. Cash cost/oz naik meski anggaran statis tampak aman.','Fokus pada pengendalian konsumsi reagen per ton ore, rekonsiliasi grade, dan forecast AISC kuartalan.'],
+['⚫','Batubara','ton',5e6,5.3e6,48,52,22e6,95,'Volume melebihi anggaran, tetapi BBM dan tarif kontraktor hauling naik karena jarak angkut bertambah dan harga solar tinggi.','Evaluasi rute hauling, hedging BBM, dan klausul eskalasi kontrak; analisis strip ratio aktual vs rencana.'],
+['🔋','Nikel','ton Ni',30000,27500,9500,10800,60e6,17000,'Pabrik pengolahan beroperasi di bawah kapasitas; biaya energi dan reagen per ton Ni melonjak karena biaya tetap terbagi volume lebih kecil.','Perbaiki availability pabrik, optimasi konsumsi energi, dan tinjau ulang kontrak listrik.'],
+['🟤','Bauksit','ton',4e6,4.2e6,20,21.5,14e6,48,'Margin tipis; kenaikan biaya tongkang dan demurrage menambah biaya variabel walau produksi di atas rencana.','Jadwalkan pengapalan, kontrak tongkang multi-tahun, dan KPI demurrage.'],
+['🧲','Logam Tanah Jarang','ton TREO',8000,7600,30000,33500,40e6,60000,'Konsumsi reagen pemisahan (SX) lebih tinggi dari desain dan recovery lebih rendah, menaikkan biaya per ton TREO.','Kontrol dosis reagen, audit recovery per sirkuit, dan lock-in harga reagen.'],
+['🏖️','Pasir Silika','ton',1.5e6,1.6e6,12,12.8,3e6,28,'Volume naik, namun biaya pencucian dan air serta penanganan produk off-spec menaikkan biaya per ton.','Standar kontrol kualitas, daur ulang air, dan pemantauan yield produk.'],
+['🔶','Tembaga','ton Cu',100000,104000,4400,4750,120e6,9000,'Kadar menurun, rasio stripping naik, dan biaya tire/BBM alat besar naik; volume tercapai tetapi cash cost naik.','Reoptimasi pit, kontrol cycle time, dan manajemen ban berbasis TKPH.'],
+['☢️','Uranium','lb U3O8',3e6,2.8e6,32,36,30e6,75,'Well-field belum mencapai produktivitas rencana, sehingga volume turun dan biaya reagen/pompa per lb naik; biaya tetap kepatuhan tetap.','Kinerja well-field, jadwal penambahan wellpad, dan pemantauan biaya penutupan.'],
+['🥈','Timah','ton Sn',6000,5600,15500,17200,8e6,26000,'Downtime kapal keruk dan biaya BBM tinggi menurunkan produksi dan menaikkan biaya per ton Sn.','Preventive maintenance, jadwal dok, dan pemantauan BBM per jam operasi.'],
+['⛓️','Besi/Mangan','ton',2e6,2.1e6,55,58,14e6,110,'Biaya rehandling, blending, dan jetty naik; volume lebih tinggi tidak otomatis menurunkan biaya per ton.','Optimasi stockpile, kontrak jetty, dan KPI biaya logistik per ton.']];
+let cur=0;
+function rm(){const m=M[cur],st=m[3]*m[5]+m[7],fx=m[4]*m[5]+m[7],ac=m[4]*m[6]+m[7],vv=fx-st,sv=ac-fx,cc=ac/m[4],mg=(m[8]-cc)/m[8]*100,cb=st/m[3],u=sv>0;
+$('mn').innerHTML=`<h2>Lab Mineral</h2><div class="min">${M.map((x,i)=>`<button class="${i==cur?'':'g'}" onclick="cur=${i};rm()">${x[0]} ${x[1]}</button>`).join('')}</div>
+<div class="grid"><div class="card"><h3>📝 Contoh Soal: ${m[1]}</h3><p>Anggaran tambang ${m[1]}: produksi <b>${fm(m[3],0)} ${m[2]}</b>, biaya variabel <b>USD ${fm(m[5],1)}/${m[2]}</b>, biaya tetap <b>USD ${fm(m[7]/1e6,0)} juta/thn</b>. Realisasi: produksi <b>${fm(m[4],0)} ${m[2]}</b>, biaya variabel <b>USD ${fm(m[6],1)}/${m[2]}</b>, biaya tetap sesuai anggaran. Harga jual USD ${fm(m[8],0)}/${m[2]}. Hitung (a) anggaran statis, (b) anggaran fleksibel, (c) biaya aktual, (d) varian volume dan varian pengeluaran, (e) cash cost aktual dan margin.</p>
+<button onclick="this.nextElementSibling.classList.toggle('o')">Lihat Pembahasan</button><div class="ans"><b>(a)</b> Statis = ${fm(m[3],0)} x ${fm(m[5],1)} + ${fm(m[7]/1e6,0)} jt = <b>USD ${fm(st/1e6)} juta</b> (USD ${fm(cb,1)}/${m[2]})<br><b>(b)</b> Fleksibel = ${fm(m[4],0)} x ${fm(m[5],1)} + ${fm(m[7]/1e6,0)} jt = <b>USD ${fm(fx/1e6)} juta</b><br><b>(c)</b> Aktual = ${fm(m[4],0)} x ${fm(m[6],1)} + ${fm(m[7]/1e6,0)} jt = <b>USD ${fm(ac/1e6)} juta</b><br><b>(d)</b> Varian volume = ${fm(vv/1e6)} jt; varian pengeluaran = <b class="${u?'bad':'ok'}">${fm(sv/1e6)} jt (${u?'Unfavorable':'Favorable'})</b><br><b>(e)</b> Cash cost aktual = <b>USD ${fm(cc,1)}/${m[2]}</b>; margin = <b class="${mg>0?'ok':'bad'}">${fm(mg)}%</b></div>
+<label>Simulasi kenaikan biaya variabel aktual: <b id="pv">0%</b></label><input type="range" min="-15" max="25" value="0" oninput="sv(this.value)"><div>Cash cost: <span class="res" id="pn">USD ${fm(cc,1)}/${m[2]}</span></div></div>
+<div class="card"><h3>📚 Studi Kasus (ilustratif)</h3><p><b>Situasi:</b> ${m[9]}</p><p><b>Tindakan korektif:</b> ${m[10]}</p><p><b>Diskusi:</b> (1) Berapa varian karena volume vs harga/efisiensi? (2) Apakah varian terkendali? (3) Apa forecast akhir tahun? (4) Siapa pemilik tindakan dan kapan tenggatnya?</p></div></div>`}
+function sv(v){const m=M[cur],c=(m[4]*m[6]*(1+v/100)+m[7])/m[4],mg=(m[8]-c)/m[8]*100;$('pv').textContent=(v>0?'+':'')+v+'%';$('pn').innerHTML=`<span class="${mg>0?'ok':'bad'}">USD ${fm(c,1)}/${m[2]} (margin ${fm(mg)}%)</span>`}
+rm();
+/* kalkulator */
+const inp=(id,l,v,s=1)=>`<label>${l}<input type="number" id="${id}" value="${v}" step="${s}" oninput="cal()"></label>`;
+$('ca').innerHTML=`<h2>Kalkulator & Dashboard Interaktif</h2><div class="grid">
+<div class="card"><h3>1. Struktur Biaya & Break-even</h3>${inp('a1','Produksi (ribu ton)',1200)}${inp('a2','Biaya variabel (USD/ton)',11.2,.1)}${inp('a3','Biaya tetap (USD juta)',3.5,.1)}${inp('a4','Harga jual (USD/ton)',20,.1)}<p>Cash cost/ton: <span class="res" id="r1"></span><br><small id="r1b"></small></p></div>
+<div class="card"><h3>2. Varian Harga & Volume</h3>${inp('b1','Qty anggaran',2400000)}${inp('b2','Harga anggaran (USD)',1,.01)}${inp('b3','Qty aktual',2560000)}${inp('b4','Harga aktual (USD)',1.12,.01)}<p>Varian total: <span class="res" id="r2"></span><br><small id="r2b"></small></p></div>
+<div class="card"><h3>3. Burn Rate & Forecast</h3>${inp('c1','Anggaran tahunan (USD juta)',19.5,.1)}${inp('c2','Terpakai YTD (USD juta)',17.2,.1)}${inp('c3','Bulan berjalan (1-12)',10)}<p>Forecast akhir tahun: <span class="res" id="r3"></span><br><small id="r3b"></small></p></div></div>
+<div class="card"><h3>4. Dashboard EBITDA: Anggaran vs Aktual</h3><div class="grid"><div>${inp('d1','Produksi anggaran (ton)',1200000)}${inp('d2','Produksi aktual (ton)',1280000)}${inp('d3','Harga anggaran (USD/ton)',20,.1)}${inp('d4','Harga aktual (USD/ton)',19.6,.1)}</div><div>${inp('d5','Biaya var. anggaran (USD/ton)',13.75,.01)}${inp('d6','Biaya var. aktual (USD/ton)',14.3,.01)}${inp('d7','Biaya tetap (USD juta)',3.1,.1)}<div id="db" style="margin-top:12px"></div></div></div></div>
+<div class="card"><p>Hasil lengkap dengan rumus Excel tersedia pada file <b>Mining_Budget_CostControl_Workbook.xlsx</b> (5 sheet).</p><button onclick="xls()">⬇ Unduh Excel Perhitungan</button></div>`;
+const g=i=>parseFloat($(i).value)||0;
+function cal(){const cc=g('a2')+g('a3')*1e6/((g('a1')*1000)||1),be=g('a3')*1e6/((g('a4')-g('a2'))||1)/1000;$('r1').textContent='USD '+fm(cc,2);$('r1b').innerHTML=`Margin ${fm((g('a4')-cc)/(g('a4')||1)*100)}% | Break-even ${fm(be,0)} ribu ton`;
+const pv=(g('b4')-g('b2'))*g('b3'),vv=(g('b3')-g('b1'))*g('b2'),t=pv+vv;$('r2').innerHTML=`<span class="${t>0?'bad':'ok'}">${fm(t,0)}</span>`;$('r2b').innerHTML=`Harga: ${fm(pv,0)} | Volume: ${fm(vv,0)} | ${t>0?'Unfavorable':'Favorable'}`;
+const br=g('c2')/(g('c3')||1),f=br*12,p=f/(g('c1')||1)*100;$('r3').innerHTML=`<span class="${p>105?'bad':'ok'}">USD ${fm(f)} juta</span>`;$('r3b').innerHTML=`Burn rate ${fm(br,2)} jt/bln | ${fm(p)}% dari anggaran | ${p>110?'🔴 Merah':p>105?'🟡 Kuning':'🟢 Hijau'}`;
+const eb=g('d1')*(g('d3')-g('d5'))-g('d7')*1e6,ea=g('d2')*(g('d4')-g('d6'))-g('d7')*1e6,mx=Math.max(Math.abs(eb),Math.abs(ea),1);
+$('db').innerHTML=`EBITDA anggaran: <b>USD ${fm(eb/1e6)} juta</b><div class="bar" style="width:${Math.abs(eb)/mx*100}%"></div>EBITDA aktual: <b class="${ea>=eb?'ok':'bad'}">USD ${fm(ea/1e6)} juta</b><div class="bar" style="width:${Math.abs(ea)/mx*100}%"></div><small>Selisih: USD ${fm((ea-eb)/1e6)} juta (${fm((ea-eb)/(Math.abs(eb)||1)*100)}%)</small>`}cal();
+function dl(){try{const b=new Blob(['<!DOCTYPE html>'+document.documentElement.outerHTML],{type:'text/html'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mining-budget-landing.html';a.click()}catch(e){alert('Gunakan Ctrl+S / Simpan Halaman.')}}
+function xls(){alert('File Excel tersedia sebagai lampiran terpisah di chat: Mining_Budget_CostControl_Workbook.xlsx')}
+go('t1');
+</script></body></html>
