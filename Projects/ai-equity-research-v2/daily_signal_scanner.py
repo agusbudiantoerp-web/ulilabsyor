@@ -13,7 +13,7 @@ def load_universe(path: str | None = None) -> dict:
     if not path: return DEFAULT_UNIVERSE
     with open(path, encoding="utf-8") as f: raw = json.load(f)
     return {m: [str(s).strip().upper() for s in syms] for m, syms in raw.items() if m in ("IDX","US")}
-def scan_universe(universe: dict | None = None, config: dict | None = None, max_workers: int = 4) -> dict:
+def scan_universe(universe: dict | None = None, config: dict | None = None, max_workers: int = 1) -> dict:
     universe = universe or load_universe()
     jobs = []
     with ThreadPoolExecutor(max_workers=max(1,min(int(max_workers),8))) as pool:

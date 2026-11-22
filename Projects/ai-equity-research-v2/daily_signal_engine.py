@@ -57,10 +57,33 @@ def load_daily_history(symbol: str, market: str, period: str = "1y") -> tuple[pd
                        progress=False, threads=False)
     if bars is None or bars.empty:
         raise ValueError(f"Data harian {meta['ticker']} tidak tersedia.")
+    required = ["Open", "High", "Low", "Close", "Volume"]
+
     if isinstance(bars.columns, pd.MultiIndex):
-        bars.columns = bars.columns.get_level_values(0)
-    bars.columns = [str(c).strip().title() for c in bars.columns]
-    bars = bars.loc[:, ["Open", "High", "Low", "Close", "Volume"]]
+        selected = {}
+        for field in required:
+            matches = [
+                i for i, column in enumerate(bars.columns)
+                if field in {
+                    str(part).strip().title()
+                    for part in (column if isinstance(column, tuple) else (column,))
+                }
+            ]
+            if not matches:
+                raise ValueError(f"Kolom {field} tidak ditemukan dari Yahoo Finance.")
+            selected[field] = bars.iloc[:, matches[0]]
+
+        bars = pd.DataFrame(selected, index=bars.index)
+
+    else:
+        bars.columns = [str(c).strip().title() for c in bars.columns]
+        bars = bars.loc[:, ~bars.columns.duplicated(keep="first")]
+
+        missing = set(required) - set(bars.columns)
+        if missing:
+            raise ValueError(f"Kolom harga tidak tersedia: {sorted(missing)}")
+
+        bars = bars.loc[:, required]
     bars.index = pd.to_datetime(bars.index)
     if getattr(bars.index, "tz", None) is not None:
         bars.index = bars.index.tz_localize(None)

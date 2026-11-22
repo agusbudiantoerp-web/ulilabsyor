@@ -18,3 +18,4 @@ app.py.backup*
 /equity-research-lab-main/
 /equity-research-lab-source.zip
 *.bak
+logs/

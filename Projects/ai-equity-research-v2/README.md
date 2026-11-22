@@ -46,3 +46,34 @@ Yahoo Finance is third-party data, not official IDX data. Coverage, timing and s
 
 ## Next gates
 Validate live issuer data and statement units; then add per-share valuation, scenario analysis and source-quality flags. Deploy only after tests and manual review.
+
+## Final Daily Report + Gemma
+
+Daily report menyertakan kandidat prioritas, watchlist, data gagal, dan bagian khusus TPIA (termasuk ketika statusnya `NO_TRADE`). Ollama lokal memakai `gemma4:latest`; komentar AI diminta dalam Bahasa Indonesia dengan struktur ringkasan pasar, prioritas, risiko, TPIA, dan rencana sesi berikutnya.
+
+Pengaturan Ollama opsional di `.env`:
+
+```env
+OLLAMA_URL=http://127.0.0.1:11434/api/generate
+OLLAMA_MODEL=gemma4:latest
+OLLAMA_TIMEOUT_SECONDS=300
+OLLAMA_NUM_PREDICT=650
+```
+
+## Final backtest report
+
+```powershell
+python daily_signal_cli.py backtest BBCA IDX
+```
+
+Perintah menampilkan metrik backtest dalam format ringkas. Untuk seluruh detail transaksi dalam JSON:
+
+```powershell
+python daily_signal_cli.py backtest BBCA IDX --json
+```
+
+Parameter biaya dan pengelolaan risiko dapat diatur melalui opsi `--fee-bps`, `--slippage-bps`, `--risk-fraction`, `--max-allocation`, dan `--max-holding-sessions`.
+
+## Final validation
+
+Jalankan `FINAL_TESTS.bat` dari folder proyek setelah dependensi pada `requirements.txt` tersedia. Pengujian ini tidak mengirim Telegram dan tidak mengubah Task Scheduler.
